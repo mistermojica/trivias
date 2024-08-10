@@ -56,8 +56,7 @@ def get_polly_response(engine, voiceid, text, prosodyrate="100%"):
         if newscaster == "news":
             polly_text = f'<speak><prosody rate="{prosodyrate}"><amazon:domain name="news">{text}</amazon:domain></prosody></speak>'
         else:
-            polly_text = f'<speak><prosody rate="{prosodyrate}">{text}</prosody></speak>'
-            # polly_text = f'<speak><prosody rate="{prosodyrate}"><amazon:domain name="conversational">{text}</amazon:domain></prosody></speak>'
+            polly_text = f'<speak><prosody rate="{prosodyrate}"><amazon:domain name="conversational">{text}</amazon:domain></prosody></speak>'
     else:
         raise ValueError("Invalid TextType")
 
@@ -218,16 +217,16 @@ def add_options(options, video_clip, options_font_path, margin=170, top_margin=1
 
 # Revelar la opción correcta
 def reveal_correct_option(options_clips, video_clip, options, correct_option_index, start_time, reveal_time, options_font_path, margin=80):
-    # print(f"[DEBUG] Opciones: {options}")
-    # print(f"[DEBUG] Clips de Opciones: {options_clips}")
-    # print(f"[DEBUG] Índice de Opción Correcta: {correct_option_index}")
-    # print(f"[DEBUG] reveal_correct_option - video_clip.duration: {video_clip.duration}")
-    # print(f"[DEBUG] reveal_correct_option - start_time: {start_time}")
-    # print(f"[DEBUG] reveal_correct_option - reveal_time: {reveal_time}")
+    print(f"[DEBUG] Opciones: {options}")
+    print(f"[DEBUG] Clips de Opciones: {options_clips}")
+    print(f"[DEBUG] Índice de Opción Correcta: {correct_option_index}")
+    print(f"[DEBUG] reveal_correct_option - video_clip.duration: {video_clip.duration}")
+    print(f"[DEBUG] reveal_correct_option - start_time: {start_time}")
+    print(f"[DEBUG] reveal_correct_option - reveal_time: {reveal_time}")
 
     # Obtener el texto de la opción correcta desde el arreglo
     correct_option_text = options[correct_option_index]
-    # print(f"[DEBUG] Texto de Opción Correcta: {correct_option_text}")
+    print(f"[DEBUG] Texto de Opción Correcta: {correct_option_text}")
 
     # Obtener el clip de la opción correcta
     composite_clip = options_clips[correct_option_index]
@@ -292,6 +291,25 @@ def reveal_correct_option(options_clips, video_clip, options, correct_option_ind
         size=(composite_clip.w, composite_clip.h)
     )
 
+    print(f"[DEBUG] correct_option_bg_clip.w: {correct_option_bg_clip.w}")
+    print(f"[DEBUG] correct_option_bg_clip.h: {correct_option_bg_clip.h}")
+    print(f"[DEBUG] composite_clip.w: {composite_clip.w}")
+    print(f"[DEBUG] composite_clip.h: {composite_clip.h}")
+    # if callable(correct_option_bg_clip.pos):
+    #     # Si es una función, obtén la posición para el primer frame (por ejemplo)
+    #     first_frame_pos = correct_option_bg_clip.pos(0)  # Aquí el "0" representa el primer frame
+    #     print(f"[DEBUG] correct_option_bg_clip first_frame_pos: {first_frame_pos}")
+        
+    #     # Si quieres desglosar los valores x e y
+    #     x_pos, y_pos = first_frame_pos
+    #     print(f"[DEBUG] correct_option_bg_clip x_pos: {x_pos}, y_pos: {y_pos}")
+    # else:
+    #     # Si es una tupla, simplemente la desglosas como antes
+    #     x_pos, y_pos = correct_option_bg_clip.pos
+    #     print(f"[DEBUG] correct_option_bg_clip x_pos: {x_pos}, y_pos: {y_pos}")
+    # x_pos, y_pos = composite_clip.pos
+    # print(f"[DEBUG] composite_clip x_pos: {x_pos}, y_pos: {y_pos}")
+    
     # Actualizar la lista de clips de opciones con el nuevo clip compuesto para la opción correcta
     options_clips[correct_option_index] = new_composed_clip
 
@@ -339,12 +357,12 @@ def compose_video(video_total_duration, background_clip, logo_clip, question_cli
     return final_clip
 
 # Función principal para generar el video de trivia
-def generate_trivia_video(voice, background_video_path, logo_path, question_text, question_image, options, correct_option_index, account_text, narration_text, narration_text_winner, tictac_sound_path, ding_sound_path, question_font_path, options_font_path, account_font_path, question_image_font_path):
+def generate_trivia_video(background_video_path, logo_path, question_text, question_image, options, correct_option_index, account_text, narration_text, narration_text_winner, tictac_sound_path, ding_sound_path, question_font_path, options_font_path, account_font_path, question_image_font_path):
     uuidcode = str(uuid.uuid4())  # Genera un UUID único para archivos temporales
     narration_audio_file = f"./audios/{uuidcode}.mp3"
-    generate_narration(narration_text, narration_audio_file, voice)
+    generate_narration(narration_text, narration_audio_file, "Lupe")
     narration_audio_file_winner = f"./audios/{uuidcode}_winner.mp3"
-    generate_narration(narration_text_winner, narration_audio_file_winner, voice)
+    generate_narration(narration_text_winner, narration_audio_file_winner, "Lupe")
     narration_audio = AudioFileClip(narration_audio_file)
     narration_audio_winner = AudioFileClip(narration_audio_file_winner)
     
@@ -420,7 +438,7 @@ def generate_trivia_video(voice, background_video_path, logo_path, question_text
 
 
 # Función para generar un video con múltiples preguntas
-def generate_combined_trivia_video(voice, questions_json, background_video_path, logo_path, account_text, tictac_sound_path, ding_sound_path, output_file, question_font_path, options_font_path, account_font_path, question_image_font_path):
+def generate_combined_trivia_video(questions_json, background_video_path, logo_path, account_text, tictac_sound_path, ding_sound_path, output_file, question_font_path, options_font_path, account_font_path, question_image_font_path):
     start_time = time.time()  # Inicia el temporizador
     
     all_clips = []
@@ -435,7 +453,6 @@ def generate_combined_trivia_video(voice, questions_json, background_video_path,
         narration_text_winner = f"Es, {options[correct_option_index]}!"
         
         trivia_clip = generate_trivia_video(
-            voice=voice,
             background_video_path=background_video_path,
             logo_path=logo_path,
             question_text=question_text,
@@ -537,7 +554,6 @@ questions_json = [
 ]
 
 generate_combined_trivia_video(
-    voice="Pedro",
     questions_json=questions_json,
     background_video_path="./assets/videos/background1.mp4",
     logo_path="./assets/images/logo.png",
@@ -549,4 +565,5 @@ generate_combined_trivia_video(
     options_font_path="./assets/fonts/Sniglet-Regular.ttf",
     account_font_path="./assets/fonts/Sniglet-Regular.ttf",
     question_image_font_path="./assets/fonts/AppleColorEmoji.ttf"
+    
 )
