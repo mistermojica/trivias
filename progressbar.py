@@ -25,7 +25,7 @@ def create_emoji_image(unicode_text, font_path, constant_font_size, emoji_size):
     # Devuelve la imagen redimensionada como un objeto PIL
     return im_resized
 
-def create_progress_bar_with_emoji(duration, width=800, height=100, scale_height=0.8, emoji_size=100, bar_height=100, bar_color="green", bg_color="black", emoji="🚀", constant_font_size=137, font_path="path_to_your_font.ttf"):
+def create_progress_bar_with_emoji(duration, width=800, height=100, scale_height=0.8, emoji_size=100, bar_height=100, bar_color="green", bg_color="black", emoji="🚀", constant_font_size=137, font_path="path_to_your_font.ttf", proportion=0.8):
     # Diccionario de colores RGB
     color_dict = {
         "yellow": (255, 255, 0),
@@ -52,20 +52,40 @@ def create_progress_bar_with_emoji(duration, width=800, height=100, scale_height
     total_height = int((bar_height + emoji_clip.h) * scale_height)  # Nueva altura reducida
 
     # Definir el tamaño ocupado por la barra de progreso y el emoji (80% del ancho total)
-    content_width = int(width * 0.8)
+    content_width = int(width * proportion)
     margin = (width - content_width) // 2  # Espacio en blanco a los lados
 
+
     def make_frame(t):
-        # Crear una imagen de fondo con color sólido
-        img = np.full((bar_height, content_width, 3), bg_color_rgb, dtype=np.uint8)
+        # Crear una imagen de fondo con color sólido usando PIL
+        img = Image.new("RGBA", (content_width, bar_height), (0, 0, 0, 0))  # Fondo transparente
         
-        # Calcular el ancho del progress bar basado en el tiempo t y la duración total
+        draw = ImageDraw.Draw(img)
+        radius = bar_height // 2  # El radio es la mitad de la altura para bordes completamente redondeados
+        
+        # Dibujar la barra de fondo gris con bordes redondeados
+        draw.rounded_rectangle(
+            [(0, 0), (content_width, bar_height)], 
+            radius=radius, 
+            fill=bg_color_rgb
+        )
+        
+        # Calcular el ancho de la barra de progreso basada en el tiempo t y la duración total
         bar_width = int((t / duration) * content_width)
         
-        # Rellenar el progress bar
-        img[:, :bar_width] = bar_color_rgb
+        # Dibujar la barra de progreso con bordes redondeados sobre la barra gris
+        draw.rounded_rectangle(
+            [(0, 0), (bar_width, bar_height)], 
+            radius=radius, 
+            fill=bar_color_rgb
+        )
         
-        return img
+        # Convertir la imagen de PIL a RGB para evitar conflictos de canal alfa
+        img = img.convert("RGB")
+        
+        # Convertir la imagen de PIL a un array NumPy para MoviePy
+        return np.array(img)
+ 
 
     # Crear un VideoClip para la barra de progreso
     progress_bar_clip = VideoClip(make_frame, duration=duration).set_position((margin, (total_height - bar_height) // 2))
@@ -88,20 +108,20 @@ def create_progress_bar_with_emoji(duration, width=800, height=100, scale_height
     return final_clip
 
 # Ejemplo de uso
-duration = 10  # Duración de 10 segundos
 progress_bar_with_emoji = create_progress_bar_with_emoji(
-  duration, 
-  width=800,         # Ancho del video
+  duration=3,        # Duración en segundos
+  width=400,         # Ancho del video
   height=0,          # Altura inicial del video (no se usa directamente ahora)
-  scale_height=1,    # Reducir la altura del video al 80%
-  emoji_size=50,    # Tamaño del emoji 
-  bar_height=30,     # Altura de la barra de progreso
+  scale_height=0.8,    # Reducir la altura del video al 80%
+  emoji_size=50,     # Tamaño del emoji 
+  bar_height=20,     # Altura de la barra de progreso
   bar_color="yellow", 
   bg_color="gray", 
-  emoji="🚀", 
+  emoji="🐶", 
   constant_font_size=137,     # Tamaño del emoji 
-  font_path="./assets/fonts/AppleColorEmoji.ttf"
+  font_path="./assets/fonts/AppleColorEmoji.ttf",
+  proportion=0.85    # Espacio que ocupa la barra dentro del recuadro
 )
 
 # Guardar el video o previsualizarlo
-progress_bar_with_emoji.write_videofile("progress_bar_with_emoji.mp4", fps=24)
+progress_bar_with_emoji.write_videofile("./videos/progress_bar_with_emoji.mp4", fps=24)

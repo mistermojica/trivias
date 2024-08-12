@@ -1,16 +1,26 @@
 import os
-from moviepy.editor import concatenate_videoclips, VideoFileClip, ImageClip, TextClip, CompositeVideoClip, AudioFileClip, CompositeAudioClip
+from moviepy.editor import concatenate_videoclips, VideoFileClip, ImageClip, TextClip, CompositeVideoClip, AudioFileClip, CompositeAudioClip, VideoClip
 from moviepy.video.fx.all import fadein, fadeout
 import boto3
 import time
 import uuid
 import io
+import json
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
-from io import BytesIO
+from openai import OpenAI
+from dotenv import load_dotenv, find_dotenv
 
-# Ejemplo de uso de la función principal
-uuidcode = str(uuid.uuid4())
+load_dotenv(find_dotenv())
+
+uuidcode = ""  # Genera un UUID único para archivos temporales
+
+
+OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY", "")
+
+openai = OpenAI()
+
+openai.api_key = OPENAI_API_KEY
 
 voices = [
     {"Engine": "generative", "LanguageCode": "en-US", "VoiceId": "Matthew", "Gender": "Male", "TextType": "text", "Newscaster": ""},
@@ -36,12 +46,12 @@ voices = [
 ]
 
 def get_polly_response(engine, voiceid, text, prosodyrate="100%"):
-    print("get_polly_response:", engine, voiceid, text, prosodyrate)
+    # print("get_polly_response:", engine, voiceid, text, prosodyrate)
 
     # Coloca tu lista de voces aquí
     voice = next((v for v in voices if v["Engine"] == engine and v["VoiceId"] == voiceid), None)
 
-    print(voice)
+    # print(voice)
 
     if not voice:
         raise ValueError(f"Voice with Engine '{engine}' and VoiceId '{voiceid}' not found.")
@@ -63,7 +73,7 @@ def get_polly_response(engine, voiceid, text, prosodyrate="100%"):
 
     polly_client = boto3.Session(profile_name='doccumi', region_name="us-east-1").client("polly")
 
-    print("get_polly_response:", polly_text, text_type, voiceid, language_code)
+    # print("get_polly_response:", polly_text, text_type, voiceid, language_code)
 
     response = polly_client.synthesize_speech(
         Engine=engine,
@@ -77,13 +87,13 @@ def get_polly_response(engine, voiceid, text, prosodyrate="100%"):
     return response
 
 def create_file_path(file_path):
-    print("file_path:", file_path)
+    # print("file_path:", file_path)
     directory = os.path.dirname(file_path)
     if not os.path.exists(directory):
         os.makedirs(directory)
         print(f"Ruta creada: {directory}")
-    else:
-        print(f"La ruta ya existe: {directory}")
+    # else:
+    #     print(f"La ruta ya existe: {directory}")
 
 def text_to_speech_polly(text, output_filename, voz, max_retries=7):
     create_file_path(output_filename)
@@ -124,7 +134,7 @@ def add_logo(logo_path, video_clip):
     logo_image = Image.open(logo_path)
 
     # Calcular el nuevo tamaño del logo
-    final_width = int(video_clip.w * 0.8)
+    final_width = int(video_clip.w * 0.5)
     aspect_ratio = logo_image.height / logo_image.width
     new_height = int(final_width * aspect_ratio)
 
@@ -135,7 +145,7 @@ def add_logo(logo_path, video_clip):
     logo_clip = ImageClip(np.array(logo_resized)).set_duration(video_clip.duration)
 
     # Posicionar el logo en el video
-    logo_clip = logo_clip.set_position(("center", 100))  # Agregar un margen de 100 píxeles desde la parte superior
+    logo_clip = logo_clip.set_position(("center", 200))  # Agregar un margen de 100 píxeles desde la parte superior
 
     return logo_clip
 
@@ -152,8 +162,9 @@ def add_question_text(question_text, video_clip, question_font_path, margin=80, 
 
 # Añadir opciones de respuesta
 def add_options(options, video_clip, options_font_path, margin=170, top_margin=1000):
-    print(f"[DEBUG] add_options - video_clip.duration: {video_clip.duration}")
-    
+    # print(f"[DEBUG] add_options - video_clip.duration: {video_clip.duration}")
+
+    top_margin=950
     option_clips = []
     first_option_pos = top_margin
     option_space = 170
@@ -273,7 +284,7 @@ def reveal_correct_option(options_clips, video_clip, options, correct_option_ind
     #     composite_clip.clips + [correct_option_bg_clip],
     #     size=(composite_clip.w, composite_clip.h)
     # )
-    
+
     # Ajustar el clip original para que termine cuando comience correct_option_bg_clip
     new_clips = []
     for clip in composite_clip.clips:
@@ -309,132 +320,271 @@ def add_sound_effects(tictac_sound_path, start_time, reveal_time):
     tictac_sound = AudioFileClip(tictac_sound_path).subclip(start_time, reveal_time)
     return tictac_sound
 
+# Función para crear la imagen del emoji y devolverla como un objeto Image de PIL
+def create_emoji_image(unicode_text, font_path, constant_font_size, emoji_size):
+    # Cargar la fuente con el tamaño especificado
+    font = ImageFont.truetype(font_path, constant_font_size)
+
+    # Calcular el tamaño del texto (emoji) utilizando getbbox
+    left, top, right, bottom = font.getbbox(unicode_text)
+    text_width = right - left
+    text_height = bottom - top
+
+    # Crea una nueva imagen con el tamaño del texto
+    im = Image.new("RGBA", (text_width, text_height), (0, 0, 0, 0))
+    draw = ImageDraw.Draw(im)
+
+    # Dibuja el emoji en la imagen
+    draw.text((-left, -top), unicode_text, font=font, embedded_color=True)
+
+    # Redimensionar la imagen al tamaño especificado por el parámetro emoji_size
+    im_resized = im.resize((emoji_size, emoji_size), Image.Resampling.LANCZOS)
+
+    # Devuelve la imagen redimensionada como un objeto PIL
+    return im_resized
+
+def create_progress_bar_with_emoji(duration, width=800, height=100, scale_height=0.8, emoji_size=100, bar_height=100, bar_color="green", bg_color="black", emoji="🚀", constant_font_size=137, font_path="path_to_your_font.ttf", proportion=0.8):
+    # Diccionario de colores RGB
+    color_dict = {
+        "yellow": (255, 255, 0),
+        "green": (0, 255, 0),
+        "red": (255, 0, 0),
+        "blue": (0, 0, 255),
+        "white": (255, 255, 255),
+        "black": (0, 0, 0),
+        "gray": (128, 128, 128),
+    }
+
+    # Convertir nombres de colores a valores RGB
+    bar_color_rgb = color_dict[bar_color]
+    bg_color_rgb = color_dict[bg_color]
+
+    # Crear la imagen del emoji y convertirla en un array numpy
+    emoji_image = create_emoji_image(emoji, font_path, constant_font_size, emoji_size)
+    emoji_array = np.array(emoji_image)
+
+    # Crear un ImageClip a partir del array numpy
+    emoji_clip = ImageClip(emoji_array).set_duration(duration)
+
+    # Reducir la altura total del video según el parámetro scale_height
+    total_height = int((bar_height + emoji_clip.h) * scale_height)  # Nueva altura reducida
+
+    # Definir el tamaño ocupado por la barra de progreso y el emoji (80% del ancho total)
+    content_width = int(width * proportion)
+    margin = (width - content_width) // 2  # Espacio en blanco a los lados
+
+
+    def make_frame(t):
+        # Crear una imagen de fondo con color sólido usando PIL
+        img = Image.new("RGBA", (content_width, bar_height), (0, 0, 0, 0))  # Fondo transparente
+
+        draw = ImageDraw.Draw(img)
+        radius = bar_height // 2  # El radio es la mitad de la altura para bordes completamente redondeados
+
+        # Dibujar la barra de fondo gris con bordes redondeados
+        draw.rounded_rectangle(
+            [(0, 0), (content_width, bar_height)],
+            radius=radius,
+            fill=bg_color_rgb
+        )
+
+        # Calcular el ancho de la barra de progreso basada en el tiempo t y la duración total
+        bar_width = int((t / duration) * content_width)
+
+        # Dibujar la barra de progreso con bordes redondeados sobre la barra gris
+        draw.rounded_rectangle(
+            [(0, 0), (bar_width, bar_height)],
+            radius=radius,
+            fill=bar_color_rgb
+        )
+
+        # Convertir la imagen de PIL a RGB para evitar conflictos de canal alfa
+        img = img.convert("RGB")
+
+        # Convertir la imagen de PIL a un array NumPy para MoviePy
+        return np.array(img)
+
+    # Crear un VideoClip para la barra de progreso
+    progress_bar_clip = VideoClip(make_frame, duration=duration).set_position((margin, (total_height - bar_height) // 2))
+
+    # Calcular la posición vertical del emoji y la barra para que ambos estén centrados
+    emoji_position_y = (total_height - bar_height) // 2 - emoji_clip.h // 2 + bar_height // 2
+
+    # Alinear el centro del emoji con el borde derecho de la barra de progreso dentro del 80%
+    emoji_clip = emoji_clip.set_position(lambda t: (
+        margin + int((t / duration) * content_width) - emoji_clip.w // 2,
+        emoji_position_y
+    ))
+
+    # Componer el clip final con la barra de progreso y el emoji
+    final_clip = CompositeVideoClip([
+        progress_bar_clip,
+        emoji_clip
+    ], size=(width, total_height))
+
+    return final_clip
+
+
 # Componer el video final
-def compose_video(video_total_duration, background_clip, logo_clip, question_clip, question_image_clip, options_clips, account_clip, narration_audio, narration_audio_winner, clock_sound_effects, ding_sound_effects):
-    final_clip = CompositeVideoClip([background_clip.set_start(0), logo_clip.set_start(0), question_clip.set_start(0), question_image_clip.set_start(0), *options_clips, account_clip.set_start(0)])
+def compose_video(video_total_duration, background_clip, logo_clip, question_clip, question_image_clip, options_clips, account_clip, narration_audio, narration_audio_winner, clock_sound_effects, ding_sound_effects, progress_bar_with_emoji):
+    final_clip = CompositeVideoClip([background_clip.set_start(0), logo_clip.set_start(0), question_clip.set_start(0), question_image_clip.set_start(0), *options_clips, account_clip.set_start(0), progress_bar_with_emoji.set_start(narration_audio.duration)])
     final_clip.set_duration(video_total_duration)
-    print(f"[DEBUG] final_clip.duration 1: {final_clip.duration}")
-    for idx, clip in enumerate(options_clips):
-        print(f"[DEBUG] options_clips[{idx}] - start: {clip.start}, duration: {clip.duration}, end: {clip.end}")
-    
+    print(f"[DEBUG] video_total_duration 1: {video_total_duration}")
+    # for idx, clip in enumerate(options_clips):
+    #     print(f"[DEBUG] options_clips[{idx}] - start: {clip.start}, duration: {clip.duration}, end: {clip.end}")
+
     # final_audio = CompositeAudioClip([narration_audio.set_start(0), sound_effects.set_start(narration_audio.duration)])
     final_audio = CompositeAudioClip([
         narration_audio.set_start(0),
         clock_sound_effects.set_start(narration_audio.duration),
-        ding_sound_effects.volumex(0.1).set_start(narration_audio.duration + clock_sound_effects.duration),
-        narration_audio_winner.set_start(narration_audio.duration + clock_sound_effects.duration)
+        ding_sound_effects.volumex(0.05).set_start(narration_audio.duration + clock_sound_effects.duration),
+        narration_audio_winner.set_start(narration_audio.duration + clock_sound_effects.duration + 1)
     ])
-    
+
     print(f"[DEBUG] narration_audio.duration: {narration_audio.duration}")
     print(f"[DEBUG] clock_sound_effects.duration: {clock_sound_effects.duration}")
-    print(f"[DEBUG] narration_audio.duration + clock_sound_effects.duration: {narration_audio.duration + clock_sound_effects.duration}")
-    print(f"[DEBUG] final_audio.duration: {final_audio.duration}")
-    
+    print(f"[DEBUG] ding_sound_effects.duration: {ding_sound_effects.duration}")
+    print(f"[DEBUG] narration_audio_winner.duration: {narration_audio_winner.duration}")
+    # print(f"[DEBUG] clock_sound_effects.duration: {clock_sound_effects.duration}")
+    # print(f"[DEBUG] narration_audio.duration + clock_sound_effects.duration: {narration_audio.duration + clock_sound_effects.duration}")
+    # print(f"[DEBUG] final_audio.duration: {final_audio.duration}")
+
     final_clip = final_clip.set_audio(final_audio)
+    print(f"[DEBUG] final_audio.duration 2: {final_audio.duration}")
     print(f"[DEBUG] final_clip.duration 2: {final_clip.duration}")
-    
+
     # final_clip = final_clip.subclip(0, 4)
     # final_clip.write_videofile(output_file, codec='libx264', fps=24, preset='ultrafast')
     # final_clip.write_videofile(output_file, codec='libx264', fps=24, preset='ultrafast')
     return final_clip
 
 # Función principal para generar el video de trivia
-def generate_trivia_video(voice, background_video_path, logo_path, question_text, question_image, options, correct_option_index, account_text, narration_text, narration_text_winner, tictac_sound_path, ding_sound_path, question_font_path, options_font_path, account_font_path, question_image_font_path):
-    uuidcode = str(uuid.uuid4())  # Genera un UUID único para archivos temporales
+def generate_trivia_video(main_question, voice, background_video_path, logo_path, question_text, question_image, options, correct_option_index, account_text, narration_text, narration_text_winner, tictac_sound_path, ding_sound_path, question_font_path, options_font_path, account_font_path, question_image_font_path):
     narration_audio_file = f"./audios/{uuidcode}.mp3"
     generate_narration(narration_text, narration_audio_file, voice)
     narration_audio_file_winner = f"./audios/{uuidcode}_winner.mp3"
     generate_narration(narration_text_winner, narration_audio_file_winner, voice)
     narration_audio = AudioFileClip(narration_audio_file)
     narration_audio_winner = AudioFileClip(narration_audio_file_winner)
-    
+
     clock_sound_effects = add_sound_effects(tictac_sound_path, start_time=0, reveal_time=3)
     video_duration_before_winner = narration_audio.duration + clock_sound_effects.duration
-    video_total_duration = narration_audio.duration + clock_sound_effects.duration + narration_audio_winner.duration
-    video_winner_duration = narration_audio_winner.duration
     ding_sound_effects = add_sound_effects(ding_sound_path, start_time=0, reveal_time=2)
-    ding_sound_effects.volumex(0.1)
+    ding_sound_effects.volumex(0.05)
+    # video_total_duration = narration_audio.duration + clock_sound_effects.duration + narration_audio_winner.duration
+    video_winner_duration = max(narration_audio_winner.duration, ding_sound_effects.duration)
+    video_total_duration = narration_audio.duration + clock_sound_effects.duration + max(narration_audio_winner.duration, ding_sound_effects.duration)
     
-    print(f"[DEBUG] video_duration_before_winner: {video_duration_before_winner}")
-    print(f"[DEBUG] video_winner_duration: {video_winner_duration}")
-    print(f"[DEBUG] total_duration: {video_total_duration}")
+    print(f"[DEBUG] generate_trivia_video - narration_audio.duration: {narration_audio.duration}")
+    print(f"[DEBUG] generate_trivia_video - clock_sound_effects.duration: {clock_sound_effects.duration}")
+    print(f"[DEBUG] generate_trivia_video - ding_sound_effects.duration: {ding_sound_effects.duration}")
+    print(f"[DEBUG] generate_trivia_video - total: {narration_audio.duration + clock_sound_effects.duration + ding_sound_effects.duration}")
+    print(f"[DEBUG] generate_trivia_video - narration_audio_winner.duration: {narration_audio_winner.duration}")
+    
+    # print(f"[DEBUG] video_duration_before_winner: {video_duration_before_winner}")
+    # print(f"[DEBUG] video_winner_duration: {video_winner_duration}")
+    print(f"[DEBUG] video_total_duration: {video_total_duration}")
+
     background_clip = create_background_video(background_video_path, duration=video_total_duration)
-    print(f"[DEBUG] background_clip.duration: {background_clip.duration}")
+    # print(f"[DEBUG] background_clip.duration: {background_clip.duration}")
     logo_clip = add_logo(logo_path, background_clip)
-    question_clip = add_question_text(question_text, background_clip, question_font_path)
-    
+    if (question_image):
+        question_clip = add_question_text(main_question, background_clip, question_font_path)
+    else:
+        question_clip = add_question_text(question_text, background_clip, question_font_path)
+
     # Función para guardar la imagen del emoji
     def save_emoji_image(unicode_text, font_path, font_size, output_path):
         # Cargar la fuente con el tamaño especificado
         font = ImageFont.truetype(font_path, font_size)
-        
+
         # Calcular el tamaño del texto (emoji) utilizando getbbox
         left, top, right, bottom = font.getbbox(unicode_text)
         text_width = right - left
         text_height = bottom - top
-        
+
         # Asegúrate de que las dimensiones sean positivas
         text_width = max(1, text_width)
         text_height = max(1, text_height)
-        
+
         # Crea una nueva imagen con el tamaño del texto
         im = Image.new("RGBA", (text_width, text_height), (0, 0, 0, 0))
         draw = ImageDraw.Draw(im)
-        
+
         # Dibuja el emoji en la imagen
         draw.text((-left, -top), unicode_text, font=font, embedded_color=True)
-        
+
         # Guarda la imagen en un archivo
         im.save(output_path)
-    
+
     # Condicional para generar el question_image_clip
     if question_image.strip():
         # Generar la imagen del emoji y guardarla
         emoji_image_path = f"./images/{uuidcode}_emoji.png"
         save_emoji_image(question_image, question_image_font_path, 137, emoji_image_path)
-        
+
         # Crear el ImageClip a partir de la imagen guardada
         question_image_clip = ImageClip(emoji_image_path)
         question_image_clip = question_image_clip.set_duration(question_clip.duration)
-        question_image_clip = question_image_clip.set_position(('center', question_clip.size[1] + 500))  # Posición debajo del question_clip
+        question_image_clip = question_image_clip.set_position(('center', question_clip.size[1] + 450))  # Posición debajo del question_clip
     else:
         # Crear un clip vacío si question_image está en blanco
         question_image_clip = TextClip(' ', fontsize=150, color='white')
         question_image_clip = question_image_clip.set_duration(question_clip.duration)
         question_image_clip = question_image_clip.set_position(('center', question_clip.size[1] + 500))  # Posición debajo del question_clip
-    
+
     options_clips = add_options(options, background_clip, options_font_path) #, reveal_time=4
     # Pasa la fuente de opciones a la función reveal_correct_option
     options_clips = reveal_correct_option(options_clips, background_clip, options, correct_option_index, start_time=video_duration_before_winner, reveal_time=video_winner_duration, options_font_path=options_font_path)
     account_clip = add_account_text(account_text, background_clip, account_font_path)
 
+    # Ejemplo de uso
+    progress_bar_with_emoji = create_progress_bar_with_emoji(
+        duration=clock_sound_effects.duration,        # Duración en segundos
+        width=int(background_clip.w * 0.8),         # Ancho del video
+        height=0,          # Altura inicial del video (no se usa directamente ahora)
+        scale_height=0.8,    # Reducir la altura del video al 80%
+        emoji_size=70,     # Tamaño del emoji 
+        bar_height=40,     # Altura de la barra de progreso
+        bar_color="yellow", 
+        bg_color="gray", 
+        emoji="🚀", 
+        constant_font_size=137,     # Tamaño del emoji 
+        font_path="./assets/fonts/AppleColorEmoji.ttf",
+        proportion=0.85    # Espacio que ocupa la barra dentro del recuadro
+    )
+
+    progress_bar_with_emoji = progress_bar_with_emoji.set_pos(("center", 1575))
+
     # exit()
 
-    video_clip = compose_video(video_total_duration, background_clip, logo_clip, question_clip, question_image_clip, options_clips, account_clip, narration_audio, narration_audio_winner, clock_sound_effects, ding_sound_effects)
+    video_clip = compose_video(video_total_duration, background_clip, logo_clip, question_clip, question_image_clip, options_clips, account_clip, narration_audio, narration_audio_winner, clock_sound_effects, ding_sound_effects, progress_bar_with_emoji)
 
     # Limpieza de archivos temporales
     # os.remove(narration_audio_file)
     # os.remove(narration_audio_file_winner)
-    
+
     return video_clip
 
 
 # Función para generar un video con múltiples preguntas
-def generate_combined_trivia_video(voice, questions_json, background_video_path, logo_path, account_text, tictac_sound_path, ding_sound_path, output_file, question_font_path, options_font_path, account_font_path, question_image_font_path):
+def generate_combined_trivia_video(main_question, voice, questions_json, background_video_path, logo_path, account_text, tictac_sound_path, ding_sound_path, output_file, question_font_path, options_font_path, account_font_path, question_image_font_path):
     start_time = time.time()  # Inicia el temporizador
-    
+
     all_clips = []
-    
+
     for question in questions_json:
         question_text = question['question_text']
         question_image = question['question_image']
         options = question['options']
         correct_option_index = question['correct_option_index']
-        
+
         narration_text = f"¿{question_text}?"
-        narration_text_winner = f"Es, {options[correct_option_index]}!"
-        
+        narration_text_winner = f"{options[correct_option_index]}!!"
+        # narration_text_winner = f"Es, {options[correct_option_index]}!"
+
         trivia_clip = generate_trivia_video(
+            main_question=main_question,
             voice=voice,
             background_video_path=background_video_path,
             logo_path=logo_path,
@@ -452,101 +602,118 @@ def generate_combined_trivia_video(voice, questions_json, background_video_path,
             account_font_path=account_font_path,
             question_image_font_path=question_image_font_path
         )
-        
+
         all_clips.append(trivia_clip)
-        
+
     for idx, clip in enumerate(all_clips):
         print(f"[DEBUG] all_clips[{idx}] - start: {clip.start}, duration: {clip.duration}, end: {clip.end}")
 
     # Combinar todos los clips en un solo video
     final_video = concatenate_videoclips(all_clips, method="compose")
     print(f"[DEBUG] generate_combined_trivia_video - final_video.duration: {final_video.duration}")
-    
+
     # Guardar el video final
-    # final_video = final_video.subclip(0, 10)
+    # final_video = final_video.subclip(0, 4)
     final_video.write_videofile(output_file, codec="libx264", audio_codec="aac", fps=24, preset='ultrafast')
-    
+
     end_time = time.time()  # Detiene el temporizador
     processing_time = end_time - start_time  # Calcula el tiempo de procesamiento
 
     print(f"Tiempo de procesamiento: {processing_time} segundos")
 
 
-# Ejemplo de uso con JSON de entrada
-questions_json = [
-    {
-        "question_text": "¿Cuál es la palabra en inglés para este emoji?",
-        "question_image": "🐶",
-        "options": ["Dog", "Cat", "Rabbit", "Mouse"],
-        "correct_option_index": 0
-    },
-    {
-        "question_text": "¿Cuál es la palabra en inglés para este emoji?",
-        "question_image": "🐱",
-        "options": ["Dog", "Cat", "Rabbit", "Mouse"],
-        "correct_option_index": 1
-    },
-    {
-        "question_text": "¿Cuál es la palabra en inglés para este emoji?",
-        "question_image": "🐭",
-        "options": ["Dog", "Cat", "Rabbit", "Mouse"],
-        "correct_option_index": 3
-    },
-    {
-        "question_text": "¿Cuál es la palabra en inglés para este emoji?",
-        "question_image": "🐰",
-        "options": ["Dog", "Cat", "Rabbit", "Mouse"],
-        "correct_option_index": 2
-    },
-    {
-        "question_text": "¿Cuál es la palabra en inglés para este emoji?",
-        "question_image": "🐻",
-        "options": ["Bear", "Lion", "Tiger", "Elephant"],
-        "correct_option_index": 0
-    },
-    {
-        "question_text": "¿Cuál es la palabra en inglés para este emoji?",
-        "question_image": "🐼",
-        "options": ["Bear", "Lion", "Tiger", "Panda"],
-        "correct_option_index": 3
-    },
-    {
-        "question_text": "¿Cuál es la palabra en inglés para este emoji?",
-        "question_image": "🦁",
-        "options": ["Bear", "Lion", "Tiger", "Elephant"],
-        "correct_option_index": 1
-    },
-    {
-        "question_text": "¿Cuál es la palabra en inglés para este emoji?",
-        "question_image": "🐯",
-        "options": ["Bear", "Lion", "Tiger", "Elephant"],
-        "correct_option_index": 2
-    },
-    {
-        "question_text": "¿Cuál es la palabra en inglés para este emoji?",
-        "question_image": "🐘",
-        "options": ["Bear", "Lion", "Tiger", "Elephant"],
-        "correct_option_index": 3
-    },
-    {
-        "question_text": "¿Cuál es la palabra en inglés para este emoji?",
-        "question_image": "🦊",
-        "options": ["Fox", "Wolf", "Dog", "Cat"],
-        "correct_option_index": 0
-    }
-]
+def generate_quiz_questions(theme, num_questions=2, num_options=4):
+    # Genera la lista de opciones
+    options_list = [f'"Opción {i+1}"' for i in range(num_options)]
 
-generate_combined_trivia_video(
-    voice="Pedro",
-    questions_json=questions_json,
-    background_video_path="./assets/videos/background1.mp4",
-    logo_path="./assets/images/logo.png",
-    account_text="@elclubdelosgenios",
-    tictac_sound_path="./assets/audios/clock.mp3",
-    ding_sound_path="./assets/audios/ding.mp3",
-    output_file=f"./videos/{uuidcode}.mp4",
-    question_font_path="./assets/fonts/TT-Milks-Casual-Pie-Trial-Base.otf",
-    options_font_path="./assets/fonts/Sniglet-Regular.ttf",
-    account_font_path="./assets/fonts/Sniglet-Regular.ttf",
-    question_image_font_path="./assets/fonts/AppleColorEmoji.ttf"
-)
+    # Determina si se debe incluir "emoji" en la pregunta
+    emoji_included = 'emoji' in theme.lower()
+
+    # Construye el prompt para la IA
+    prompt = (
+        f"Genera una lista de {num_questions} preguntas en formato JSON para un quiz / trivia sobre '{theme}'. "
+        f"El JSON debe incluir una pregunta principal corta con el estilo MrBeast en la propiedad 'main_question' que aplique para todas las preguntas de la propiedad 'questions', "
+        f"seguido de un array 'questions' que contenga objetos con las siguientes propiedades: "
+        f"el texto de la pregunta con variantes {'mencionando siempre el tema central en cada pregunta ' if not emoji_included else ''} para hacer la pronunciación más humana y consistente {'SIN INCLUIR EL EMOJI' if emoji_included else ''}, "
+        f"{'una imagen representada como un emoji,' if emoji_included else ''} "
+        f"opciones de respuesta con {num_options} opciones (18 caracteres máximo por opción), y el índice de la opción correcta. Las opciones correctas deben estár en posiciones aleatorias dentro del arreglo."
+        f"Aquí hay un ejemplo del formato:\n\n"
+        "{\n"
+        "  \"main_question\": \"Pregunta principal de ejemplo?\",\n"
+        "  \"questions\": [\n"
+        "    {\n"
+        f"        \"question_text\": \"Variantes de la pregunta de ejemplo?\",\n"
+        f"        \"question_image\": \"{'🇩🇴' if emoji_included else ''}\",\n"
+        f"        \"options\": {options_list},\n"
+        f"        \"correct_option_index\": (El index que corresponda a la opción correcta)\n"
+        "    }\n"
+        "  ]\n"
+        "}"
+    )
+
+    # print(prompt)
+
+    messages = [
+        {
+            "role": "system",
+            "content": [
+                {
+                    "type": "text",
+                    "text": f"Eres una útil asistente virtual que ayuda a generar trivias y quizes educativas para videos en redes sociales.",
+                },
+            ],
+        },
+        {
+            "role": "user",
+            "content": [
+                {
+                    "type": "text",
+                    "text": prompt,
+                },
+            ],
+        }
+    ]
+
+    response = openai.chat.completions.create(
+        model="gpt-4o-mini",
+        messages=messages,
+        temperature=0.5,
+        response_format={"type": "json_object"}
+    )
+
+    result = response.choices[0].message.content
+
+    return json.loads(result)
+
+
+def main():
+    # Genera el código UUID para el archivo de salida
+    uuidcode = str(uuid.uuid4())
+
+    # Genera las preguntas del quiz
+    trivia = generate_quiz_questions("crochet básico", num_questions=2, num_options=3)
+
+    print(trivia)
+
+    # Genera el video combinado de la trivia
+    generate_combined_trivia_video(
+        main_question=trivia["main_question"],
+        voice="Pedro",
+        questions_json=trivia["questions"],
+        background_video_path="./assets/videos/background1.mp4",
+        logo_path="./assets/images/logo.png",
+        account_text="@elclubdelosgenios",
+        tictac_sound_path="./assets/audios/clock.mp3",
+        ding_sound_path="./assets/audios/ding.mp3",
+        output_file=f"./videos/{uuidcode}.mp4",
+        question_font_path="./assets/fonts/TT-Milks-Casual-Pie-Trial-Base.otf",
+        options_font_path="./assets/fonts/Sniglet-Regular.ttf",
+        account_font_path="./assets/fonts/Sniglet-Regular.ttf",
+        question_image_font_path="./assets/fonts/AppleColorEmoji.ttf"
+    )
+
+    # Opcional: Imprime el JSON de la trivia
+    # print(json.dumps(trivia, indent=4, ensure_ascii=False))
+
+if __name__ == "__main__":
+    main()

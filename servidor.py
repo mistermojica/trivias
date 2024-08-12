@@ -3,6 +3,7 @@ import socketserver
 import os
 from datetime import datetime
 import mimetypes
+from moviepy.editor import VideoFileClip
 
 # Define el puerto en el que el servidor va a escuchar
 PORT = 8787
@@ -76,16 +77,16 @@ class CustomHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
             file_duration = "Unknown duration"  # Placeholder for video duration
             if not os.path.isdir(file) and mimetypes.guess_type(file)[0].startswith('video'):
                 file_duration = self.get_video_duration(file)
-            
+
             response += f"""
                 <div class="col-12 col-sm-6 col-md-4">
                     <div class="card">
-                        <div class="video-container">
+                        <!--<div class="video-container">
                             <video class="card-img-top" controls>
                                 <source src="{link_name}" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
-                        </div>
+                        </div>-->
                         <div class="card-body">
                             <h5 class="card-title">{display_name}</h5>
                             <p class="card-text"><small class="text-muted">Created: {file_time}</small></p>
@@ -141,9 +142,18 @@ class CustomHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
         return None
 
     def get_video_duration(self, filepath):
-        # Aquí puedes implementar una función que extraiga la duración del video usando una librería como ffmpeg o similar.
-        # Este método es un placeholder.
-        return "00:00:00"
+        try:
+            # Abre el archivo de video
+            clip = VideoFileClip(filepath)
+            # Extrae la duración en segundos
+            duration = clip.duration
+            # Convierte la duración a formato hh:mm:ss
+            hours, remainder = divmod(duration, 3600)
+            minutes, seconds = divmod(remainder, 60)
+            return f"{int(hours):02}:{int(minutes):02}:{int(seconds):02}"
+        except Exception as e:
+            print(f"Error al obtener la duración del video: {e}")
+            return "00:00:00"
 
 # Configura el servidor
 with socketserver.TCPServer(("", PORT), CustomHTTPRequestHandler) as httpd:
