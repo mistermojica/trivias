@@ -9,12 +9,13 @@ import json
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 from openai import OpenAI
+import subprocess
+import argparse
 from dotenv import load_dotenv, find_dotenv
 
 load_dotenv(find_dotenv())
 
 uuidcode = ""  # Genera un UUID único para archivos temporales
-
 
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY", "")
 
@@ -77,7 +78,7 @@ def get_polly_response(engine, voiceid, text, prosodyrate="100%"):
 
     response = polly_client.synthesize_speech(
         Engine=engine,
-        OutputFormat="mp3",
+        OutputFormat="ogg_vorbis",
         Text=polly_text,
         TextType=text_type,
         VoiceId=voiceid,
@@ -149,8 +150,47 @@ def add_logo(logo_path, video_clip):
 
     return logo_clip
 
+
 # Añadir texto de la pregunta
 def add_question_text(question_text, video_clip, question_font_path, margin=80, top_margin=450):
+    # Calcular el ancho máximo permitido para el texto, considerando los márgenes
+    max_width = video_clip.w - 2 * margin
+    
+    print(f"[DEBUG] add_question_text - max_width: {max_width}")
+
+    # Calcular la longitud del texto
+    text_length = len(question_text)
+    
+    print(f"[DEBUG] add_question_text - text_length: {text_length}")
+
+    # Definir límites de fontsize
+    min_fontsize = 50
+    max_fontsize = 80
+
+    # Definir rango de caracteres
+    min_chars = 55
+    max_chars = 100
+
+    # Cálculo del fontsize basado en la longitud del texto
+    if text_length <= min_chars:
+        fontsize = max_fontsize
+    elif text_length >= max_chars:
+        fontsize = min_fontsize
+    else:
+        # Ajuste proporcional entre los valores definidos
+        fontsize = int(max_fontsize - ((text_length - min_chars) / (max_chars - min_chars)) * (max_fontsize - min_fontsize))
+
+    print(f"[DEBUG] add_question_text - fontsize: {fontsize}")
+
+    # Crear el TextClip con ajuste de línea
+    question_clip = (TextClip(question_text, fontsize=fontsize, color='white', font=question_font_path, method='caption', size=(max_width, None))
+                     .set_duration(video_clip.duration)
+                     .set_pos(("center", top_margin)))  # Controlar la altura de presentación con top_margin
+    return question_clip
+
+
+# Añadir texto de la pregunta
+def ok_add_question_text(question_text, video_clip, question_font_path, margin=80, top_margin=450):
     # Calcular el ancho máximo permitido para el texto, considerando los márgenes
     max_width = video_clip.w - 2 * margin
 
@@ -167,7 +207,14 @@ def add_options(options, video_clip, options_font_path, margin=170, top_margin=1
     top_margin=950
     option_clips = []
     first_option_pos = top_margin
-    option_space = 170
+
+    # Condicional para ajustar el espacio entre opciones
+    if len(options) == 3:
+        option_space = 170
+    elif len(options) == 4:
+        option_space = 150
+    else:
+        option_space = 170  # Valor por defecto
 
     y_positions = []
     for i in range(len(options)):
@@ -343,7 +390,7 @@ def create_emoji_image(unicode_text, font_path, constant_font_size, emoji_size):
     # Devuelve la imagen redimensionada como un objeto PIL
     return im_resized
 
-def create_progress_bar_with_emoji(duration, width=800, height=100, scale_height=0.8, emoji_size=100, bar_height=100, bar_color="green", bg_color="black", emoji="🚀", constant_font_size=137, font_path="path_to_your_font.ttf", proportion=0.8):
+def create_progress_bar_with_emoji(duration, width=800, height=100, scale_height=0.8, emoji_size=100, bar_height=100, bar_color="green", bg_color="black", emoji="🚀", constant_font_size=137, font_path="", proportion=0.8):
     # Diccionario de colores RGB
     color_dict = {
         "yellow": (255, 255, 0),
@@ -460,9 +507,9 @@ def compose_video(video_total_duration, background_clip, logo_clip, question_cli
 
 # Función principal para generar el video de trivia
 def generate_trivia_video(main_question, voice, background_video_path, logo_path, question_text, question_image, options, correct_option_index, account_text, narration_text, narration_text_winner, tictac_sound_path, ding_sound_path, question_font_path, options_font_path, account_font_path, question_image_font_path):
-    narration_audio_file = f"./audios/{uuidcode}.mp3"
+    narration_audio_file = f"./audios/{uuidcode}.ogg"
     generate_narration(narration_text, narration_audio_file, voice)
-    narration_audio_file_winner = f"./audios/{uuidcode}_winner.mp3"
+    narration_audio_file_winner = f"./audios/{uuidcode}_winner.ogg"
     generate_narration(narration_text_winner, narration_audio_file_winner, voice)
     narration_audio = AudioFileClip(narration_audio_file)
     narration_audio_winner = AudioFileClip(narration_audio_file_winner)
@@ -544,12 +591,12 @@ def generate_trivia_video(main_question, voice, background_video_path, logo_path
         width=int(background_clip.w * 0.8),         # Ancho del video
         height=0,          # Altura inicial del video (no se usa directamente ahora)
         scale_height=0.8,    # Reducir la altura del video al 80%
-        emoji_size=70,     # Tamaño del emoji 
+        emoji_size=70,     # Tamaño del emoji
         bar_height=40,     # Altura de la barra de progreso
-        bar_color="yellow", 
-        bg_color="gray", 
-        emoji="🚀", 
-        constant_font_size=137,     # Tamaño del emoji 
+        bar_color="yellow",
+        bg_color="gray",
+        emoji="🚀",
+        constant_font_size=137,     # Tamaño del emoji
         font_path="./assets/fonts/AppleColorEmoji.ttf",
         proportion=0.85    # Espacio que ocupa la barra dentro del recuadro
     )
@@ -566,6 +613,79 @@ def generate_trivia_video(main_question, voice, background_video_path, logo_path
 
     return video_clip
 
+
+def beta_generate_combined_trivia_video(main_question, voice, questions_json, background_video_path, logo_path, account_text, tictac_sound_path, ding_sound_path, output_file, question_font_path, options_font_path, account_font_path, question_image_font_path):
+    start_time = time.time()  # Inicia el temporizador
+
+    all_clips = []
+    temp_files = []
+
+    for idx, question in enumerate(questions_json):
+        question_text = question['question_text']
+        question_image = question['question_image']
+        options = question['options']
+        correct_option_index = question['correct_option_index']
+
+        narration_text = f"¿{question_text}?"
+        narration_text_winner = f"{options[correct_option_index]}!!"
+
+        # Aquí normalmente usarías generate_trivia_video para generar el clip con MoviePy
+        # En lugar de eso, construirás un comando ffmpeg para procesar cada clip
+        temp_output = f"temp_clip_{idx}.mp4"
+
+        ffmpeg_command = [
+            'ffmpeg',
+            '-y',  # Sobrescribir el archivo de salida si existe
+            '-i', background_video_path,
+            '-vf', f"drawtext=fontfile={question_font_path}:text='{question_text}':x=(w-text_w)/2:y=(h-text_h)/3",
+            '-c:v', 'libx264',
+            '-preset', 'faster', # 'ultrafast',
+            '-c:a', 'aac',
+            '-b:a', '192k',
+            temp_output
+        ]
+
+        # Ejecutar el comando ffmpeg para generar cada clip
+        subprocess.run(ffmpeg_command)
+        temp_files.append(temp_output)
+
+    # Crear el archivo de lista para ffmpeg
+    with open("input.txt", "w") as f:
+        for temp_file in temp_files:
+            f.write(f"file '{os.path.abspath(temp_file)}'\n")
+
+    # Concatenar los clips con ffmpeg
+    ffmpeg_concat_command = [
+        'ffmpeg',
+        '-y',  # Sobrescribir el archivo de salida si existe
+        '-f', 'concat',  # Usar el archivo de lista para concatenación
+        '-safe', '0',
+        '-i', 'input.txt',
+        '-c:v', 'libx264',
+        '-preset', 'faster', #'ultrafast',
+        '-c:a', 'aac',
+        '-b:a', '192k',
+        output_file
+    ]
+
+    process = subprocess.Popen(ffmpeg_concat_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
+
+    # Mostrar barra de progreso
+    for line in process.stderr:
+        if "frame=" in line or "time=" in line:
+            print(line.strip())  # Mostrar líneas de progreso de FFmpeg
+
+    process.wait()  # Esperar a que termine el proceso FFmpeg
+
+    # Limpiar archivos temporales
+    for temp_file in temp_files:
+        os.remove(temp_file)
+    os.remove("input.txt")
+
+    end_time = time.time()  # Detener el temporizador
+    processing_time = end_time - start_time  # Calcular tiempo de procesamiento
+
+    print(f"Tiempo de procesamiento: {processing_time} segundos")
 
 # Función para generar un video con múltiples preguntas
 def generate_combined_trivia_video(main_question, voice, questions_json, background_video_path, logo_path, account_text, tictac_sound_path, ding_sound_path, output_file, question_font_path, options_font_path, account_font_path, question_image_font_path):
@@ -614,7 +734,7 @@ def generate_combined_trivia_video(main_question, voice, questions_json, backgro
 
     # Guardar el video final
     # final_video = final_video.subclip(0, 4)
-    final_video.write_videofile(output_file, codec="libx264", audio_codec="aac", fps=24, preset='ultrafast')
+    final_video.write_videofile(output_file, codec="libx264", audio_codec="aac", fps=12, preset='ultrafast')
 
     end_time = time.time()  # Detiene el temporizador
     processing_time = end_time - start_time  # Calcula el tiempo de procesamiento
@@ -631,12 +751,12 @@ def generate_quiz_questions(theme, num_questions=2, num_options=4):
 
     # Construye el prompt para la IA
     prompt = (
-        f"Genera una lista de {num_questions} preguntas en formato JSON para un quiz / trivia sobre '{theme}'. "
-        f"El JSON debe incluir una pregunta principal corta con el estilo MrBeast en la propiedad 'main_question' que aplique para todas las preguntas de la propiedad 'questions', "
+        f"Genera una lista de {num_questions} preguntas cortas en formato JSON para un quiz / trivia sobre ['{theme}']. "
+        f"El JSON debe incluir una pregunta principal corta sin emojis en ella, con el estilo MrBeast en la propiedad 'main_question' que aplique para todas las preguntas de la propiedad 'questions', "
         f"seguido de un array 'questions' que contenga objetos con las siguientes propiedades: "
-        f"el texto de la pregunta con variantes {'mencionando siempre el tema central en cada pregunta ' if not emoji_included else ''} para hacer la pronunciación más humana y consistente {'SIN INCLUIR EL EMOJI' if emoji_included else ''}, "
+        f"el texto de la pregunta corta {'sin emojis en ella' if emoji_included else ''} con variantes {'mencionando siempre el tema central en cada pregunta ' if not emoji_included else ''} para hacer la pronunciación más humana y consistente {'SIN INCLUIR EL EMOJI' if emoji_included else ''}, "
         f"{'una imagen representada como un emoji,' if emoji_included else ''} "
-        f"opciones de respuesta con {num_options} opciones (18 caracteres máximo por opción), y el índice de la opción correcta. Las opciones correctas deben estár en posiciones aleatorias dentro del arreglo."
+        f"opciones de respuesta con {num_options} opciones donde alternes la opción correcta en las diferentes posiciones del arreglo de opciones entre 0 y {num_options - 1}, (IMPORTANTE: deben tener un tamano de 18 caracteres máximo por opción), y el índice de la opción correcta (IMPORTANTE: Las opciones correctas deben estár en posiciones aleatorias entre 0 y {num_options - 1} dentro del arreglo de la propiedad 'options').\n\n"
         f"Aquí hay un ejemplo del formato:\n\n"
         "{\n"
         "  \"main_question\": \"Pregunta principal de ejemplo?\",\n"
@@ -645,10 +765,14 @@ def generate_quiz_questions(theme, num_questions=2, num_options=4):
         f"        \"question_text\": \"Variantes de la pregunta de ejemplo?\",\n"
         f"        \"question_image\": \"{'🇩🇴' if emoji_included else ''}\",\n"
         f"        \"options\": {options_list},\n"
-        f"        \"correct_option_index\": (El index que corresponda a la opción correcta)\n"
+        f"        \"correct_option_index\": 2\n"
         "    }\n"
         "  ]\n"
-        "}"
+        "} \n\n"
+        f"Notas Importantes: "
+        "- En las opciones distribuye de forma equitativa y no secuencial la asignación de las opciones correctas en posiciones entre 0 y {num_options - 1}.\n"
+        "- Todos los campos son obligatorios que estén presentes aunque estén en blanco.\n"
+        "- REALIZA UNA DOBE VERIFICACION DE LAS OPCIONES CORRECTAS. NO PUEDES COMETER ERRORES.\n"
     )
 
     # print(prompt)
@@ -674,10 +798,12 @@ def generate_quiz_questions(theme, num_questions=2, num_options=4):
         }
     ]
 
+    print(prompt)
+
     response = openai.chat.completions.create(
         model="gpt-4o-mini",
         messages=messages,
-        temperature=0.5,
+        temperature=1,
         response_format={"type": "json_object"}
     )
 
@@ -687,11 +813,19 @@ def generate_quiz_questions(theme, num_questions=2, num_options=4):
 
 
 def main():
+    # Configura el analizador de argumentos de línea de comandos
+    parser = argparse.ArgumentParser(description="Genera un video de trivia basado en las preguntas del quiz.")
+    parser.add_argument("main_question", type=str, help="La pregunta principal del quiz.")
+    parser.add_argument("num_questions", type=int, help="El número de preguntas en el quiz.")
+    parser.add_argument("num_options", type=int, help="El número de opciones por pregunta.")
+
+    args = parser.parse_args()
+
     # Genera el código UUID para el archivo de salida
     uuidcode = str(uuid.uuid4())
 
-    # Genera las preguntas del quiz
-    trivia = generate_quiz_questions("crochet básico", num_questions=2, num_options=3)
+    # Genera las preguntas del quiz usando los argumentos proporcionados
+    trivia = generate_quiz_questions(args.main_question, num_questions=args.num_questions, num_options=args.num_options)
 
     print(trivia)
 
@@ -717,3 +851,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

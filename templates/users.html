@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Username Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .results { 
+            margin-top: 20px;
+        }
+        .results p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Username Checker</h1>
+    <p>Enter a username to check its availability on Instagram, YouTube, Facebook, and X (Twitter).</p>
+    <input type="text" id="username" placeholder="Enter username">
+    <button onclick="checkUsername()">Check Username</button>
+
+    <div class="results" id="results"></div>
+
+    <script>
+        async function checkUsernameInstagram(username) {
+            const response = await fetch(`http://localhost:3000/check-instagram/${username}`);
+            const data = await response.json();
+            return data.exists;
+        }
+
+        async function checkUsernameYouTube(username) {
+            const response = await fetch(`http://localhost:3000/check-youtube/${username}`);
+            const data = await response.json();
+            return data.exists;
+        }
+
+        async function checkUsernameFacebook(username) {
+            const response = await fetch(`http://localhost:3000/check-facebook/${username}`);
+            const data = await response.json();
+            return data.exists;
+        }
+
+        async function checkUsernameX(username) {
+            const response = await fetch(`http://localhost:3000/check-x/${username}`);
+            const data = await response.json();
+            return data.exists;
+        }
+
+        async function checkUsername() {
+            const username = document.getElementById('username').value;
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = 'Checking...';
+
+            const results = await Promise.all([
+                checkUsernameInstagram(username),
+                checkUsernameYouTube(username),
+                checkUsernameFacebook(username),
+                checkUsernameX(username)
+            ]);
+
+            const availability = {
+                instagram: results[0],
+                youtube: results[1],
+                facebook: results[2],
+                x: results[3]
+            };
+
+            resultsDiv.innerHTML = `
+                <p>Instagram: ${availability.instagram ? 'Exists' : 'Does not exist'}</p>
+                <p>YouTube: ${availability.youtube ? 'Exists' : 'Does not exist'}</p>
+                <p>Facebook: ${availability.facebook ? 'Exists' : 'Does not exist'}</p>
+                <p>X (Twitter): ${availability.x ? 'Exists' : 'Does not exist'}</p>
+            `;
+        }
+    </script>
+</body>
+</html>

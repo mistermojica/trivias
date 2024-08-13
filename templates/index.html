@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Generación de Videos</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h2>Formulario de Generación de Videos</h2>
+        <hr>
+        <form id="videoForm">
+            <div class="form-group row">
+                <label for="main_question" class="col-sm-2 col-form-label">Tema:</label>
+                <div class="col-sm-10">
+                    <input type="text" id="main_question" name="main_question" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="num_questions" class="col-sm-2 col-form-label">Cantidad Preguntas:</label>
+                <div class="col-sm-4">
+                    <input type="range" id="num_questions" name="num_questions" class="form-control" min="2" max="30" value="2" oninput="updateNumQuestionsValue(this.value)">
+                    <span id="num_questions_value">2</span> preguntas
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="num_options" class="col-sm-2 col-form-label">Cantidad Opciones:</label>
+                <div class="col-sm-4">
+                    <input type="range" id="num_options" name="num_options" class="form-control" min="1" max="10" value="3" oninput="updateNumOptionsValue(this.value)">
+                    <span id="num_options_value">3</span> opciones
+                </div>
+            </div>
+
+            <!-- <div class="form-group row">
+                <label for="context" class="col-sm-2 col-form-label">Contexto:</label>
+                <div class="col-sm-10">
+                    <textarea id="context" name="context" class="form-control" rows="5"></textarea>
+                </div>
+            </div> -->
+
+            <div class="form-group row">
+                <label for="language" class="col-sm-2 col-form-label">Idioma:</label>
+                <div class="col-sm-4">
+                    <select id="language" name="language" class="form-control" >
+                        <option value="" selected>Selecciona un idioma</option>
+                        <option value="English">Inglés</option>
+                        <option value="Espanol">Español</option>
+                        <option value="Chino">Chino</option>
+                        <option value="Hindi">Hindi</option>
+                        <option value="Árabe">Árabe</option>
+                        <option value="Portugués">Portugués</option>
+                        <option value="Bengalí">Bengalí</option>
+                        <option value="Ruso">Ruso</option>
+                        <option value="Japonés">Japonés</option>
+                        <option value="Alemán">Alemán</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="voice" class="col-sm-2 col-form-label">Voz:</label>
+                <div class="col-sm-4">
+                    <select id="voice" name="voice" class="form-control" >
+                        <option value="" selected>Selecciona una voz</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- <div class="form-group row">
+                <label for="conversation_tone" class="col-sm-2 col-form-label">Tono de la Conversación:</label>
+                <div class="col-sm-4">
+                    <select id="conversation_tone" name="conversation_tone" class="form-control" >
+                        <option value="" selected>Selecciona un tono</option>
+                        <option value="Entusiasta">Entusiasta</option>
+                        <option value="Humorístico">Humorístico</option>
+                        <option value="Motivacional">Motivacional</option>
+                        <option value="Conversacional">Conversacional</option>
+                        <option value="Autoritario">Autoritario</option>
+                        <option value="Persuasivo">Persuasivo</option>
+                        <option value="Narrativo">Narrativo</option>
+                        <option value="Empático">Empático</option>
+                        <option value="Innovador">Innovador</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="video_type" class="col-sm-2 col-form-label">Tipo de Video:</label>
+                <div class="col-sm-4">
+                    <select id="video_type" name="video_type" class="form-control" >
+                        <option value="" selected>Selecciona un tipo de video</option>
+                        <option value="Tour Virtual">Tour Virtual</option>
+                        <option value="Resumen de Características">Resumen de Características</option>
+                        <option value="Histórico">Histórico</option>
+                        <option value="Reportaje">Reportaje</option>
+                        <option value="Noticia">Noticia</option>
+                        <option value="VSL">VSL (Video Sales Letter)</option>
+                        <option value="Tutorial">Tutorial</option>
+                        <option value="Testimonial">Testimonial</option>
+                        <option value="Entrevista">Entrevista</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="asset_type" class="col-sm-2 col-form-label">Tipo de Activo:</label>
+                <div class="col-sm-4">
+                    <select id="asset_type" name="asset_type" class="form-control" >
+                        <option value="" selected>Selecciona un tipo de activo</option>
+                        <option value="Casa">Casa</option>
+                        <option value="Apartamento">Apartamento</option>
+                        <option value="Villa">Villa</option>
+                        <option value="Ático">Ático</option>
+                        <option value="Terreno">Terreno</option>
+                        <option value="Mansión">Mansión</option>
+                        <option value="Yate">Yate</option>
+                        <option value="Jet Privado">Jet Privado</option>
+                        <option value="Automóvil de Lujo">Automóvil de Lujo</option>
+                        <option value="Isla Privada">Isla Privada</option>
+                        <option value="Penthouse">Penthouse</option>
+                        <option value="Rancho">Rancho</option>
+                        <option value="Castillo">Castillo</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="asset_name" class="col-sm-2 col-form-label">Nombre del Activo:</label>
+                <div class="col-sm-4">
+                    <input type="text" id="asset_name" name="asset_name" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="video_source" class="col-sm-2 col-form-label">Fuente de Videos:</label>
+                <div class="col-sm-4">
+                    <select id="video_source" name="video_source" class="form-control" >
+                        <option value="" selected>Selecciona una fuente de videos</option>
+                        <option value="Scrapping">Scrapping</option>
+                        <option value="Carga Manual">Carga Manual</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="url" class="col-sm-2 col-form-label">URL:</label>
+                <div class="col-sm-10">
+                    <input type="text" id="url" name="url" class="form-control" >
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="number_images" class="col-sm-2 col-form-label">Número de Imágenes:</label>
+                <div class="col-sm-4">
+                    <input type="number" id="number_images" name="number_images" class="form-control" >
+                </div>
+            </div> -->
+
+            <div class="form-group row">
+                <label for="background_music" class="col-sm-2 col-form-label">Música de Fondo:</label>
+                <div class="col-sm-4">
+                    <select id="background_music" name="background_music" class="form-control" >
+                        <option value="" selected>Selecciona música de fondo</option>
+                        <option value="Animada">Animada</option>
+                        <option value="Deporte">Deporte</option>
+                        <option value="Éxito">Éxito</option>
+                        <option value="Felicidad">Felicidad</option>
+                        <option value="Inspiracional">Inspiracional</option>
+                        <option value="Reto">Reto</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="background_video" class="col-sm-2 col-form-label">Video de Fondo:</label>
+                <div class="col-sm-4">
+                    <select id="background_video" name="background_video" class="form-control" >
+                        <option value="" selected>Selecciona video de fondo</option>
+                        <option value="espacio1">Espacio 1</option>
+                        <option value="espacio2">Espacio 2</option>
+                        <option value="espacio3">Espacio 3</option>
+                        <option value="tierra1">Tierra 1</option>
+                        <option value="tierra2">Tierra 2</option>
+                        <option value="tierra3">Tierra 3</option>
+                        <option value="playas1">Playas 1</option>
+                        <option value="playas2">Playas 2</option>
+                        <option value="playas3">Playas 3</option>
+                        <option value="nubes1">Nubes 1</option>
+                        <option value="nubes2">Nubes 2</option>
+                        <option value="nubes3">Nubes 3</option>
+                        <option value="rios1">Rios 1</option>
+                        <option value="rios2">Rios 2</option>
+                        <option value="rios3">Rios 3</option>
+                        <option value="montanas1">Montañas 1</option>
+                        <option value="montanas2">Montañas 2</option>
+                        <option value="montanas3">Montañas 3</option>
+                        <option value="rios1">Rios 1</option>
+                        <option value="rios3">Rios 2</option>
+                        <option value="rios3">Rios 3</option>
+                        <option value="atardeceres1">Atardeceres 1</option>
+                        <option value="atardeceres2">Atardeceres 2</option>
+                        <option value="atardeceres3">Atardeceres 3</option>
+                        <option value="newyork1">New York 1</option>
+                        <option value="newyork2">New York 2</option>
+                        <option value="newyork3">New York 3</option>
+                        <option value="sanfrancisco1">San Francisco 1</option>
+                        <option value="sanfrancisco2">San Francisco 2</option>
+                        <option value="sanfrancisco3">San Francisco 3</option>
+                        <option value="paris1">Paris 1</option>
+                        <option value="paris2">Paris 2</option>
+                        <option value="paris2">Paris 3</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- <div class="form-group row">
+                <label for="visual_style" class="col-sm-2 col-form-label">Estilo Visual:</label>
+                <div class="col-sm-4">
+                    <select id="visual_style" name="visual_style" class="form-control" >
+                        <option value="" selected>Selecciona un estilo visual</option>
+                        <option value="Minimalista">Minimalista</option>
+                        <option value="Lujoso">Lujoso</option>
+                        <option value="Moderno">Moderno</option>
+                        <option value="Clásico">Clásico</option>
+                    </select>
+                </div>
+            </div> -->
+
+            <!-- <div class="form-group row">
+                <label for="interval" class="col-sm-2 col-form-label">Intervalo (segundos):</label>
+                <div class="col-sm-4">
+                    <input type="number" id="interval" name="interval" class="form-control" min="1" max="10">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="platforms" class="col-sm-2 col-form-label">Plataformas:</label>
+                <div class="col-sm-10">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="instagram" name="platforms" value="Instagram">
+                        <label class="form-check-label" for="instagram">Instagram</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="tiktok" name="platforms" value="TikTok">
+                        <label class="form-check-label" for="tiktok">TikTok</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="youtube" name="platforms" value="YouTube">
+                        <label class="form-check-label" for="youtube">YouTube</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="facebook" name="platforms" value="Facebook">
+                        <label class="form-check-label" for="facebook">Facebook</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="linkedin" name="platforms" value="LinkedIn">
+                        <label class="form-check-label" for="linkedin">LinkedIn</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="twitter" name="platforms" value="Twitter">
+                        <label class="form-check-label" for="twitter">Twitter</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="pinterest" name="platforms" value="Pinterest">
+                        <label class="form-check-label" for="pinterest">Pinterest</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Generar Miniatura:</label>
+                <div class="col-sm-10">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="generate_thumbnail_yes" name="generate_thumbnail" value="Yes">
+                        <label class="form-check-label" for="generate_thumbnail_yes">Sí</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="generate_thumbnail_no" name="generate_thumbnail" value="No">
+                        <label class="form-check-label" for="generate_thumbnail_no">No</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Orientación:</label>
+                <div class="col-sm-10">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="orientation_portrait" name="orientation" value="Portrait">
+                        <label class="form-check-label" for="orientation_portrait">Portrait</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="orientation_landscape" name="orientation" value="Landscape">
+                        <label class="form-check-label" for="orientation_landscape">Landscape</label>
+                    </div>
+                </div>
+            </div> -->
+
+            <!-- <div class="form-group row">
+                <label for="caption_text" class="col-sm-2 col-form-label">Texto del Caption:</label>
+                <div class="col-sm-10">
+                    <textarea id="caption_text" name="caption_text" class="form-control" rows="7" ></textarea>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="hashtags" class="col-sm-2 col-form-label">Hashtags:</label>
+                <div class="col-sm-10">
+                    <input type="text" id="hashtags" name="hashtags" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="call_to_action" class="col-sm-2 col-form-label">Llamado a la Acción:</label>
+                <div class="col-sm-10">
+                    <input type="text" id="call_to_action" name="call_to_action" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="mention_account" class="col-sm-2 col-form-label">Cuenta a Mencionar:</label>
+                <div class="col-sm-10">
+                    <input type="text" id="mention_account" name="mention_account" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="contact_info" class="col-sm-2 col-form-label">Datos de Contacto:</label>
+                <div class="col-sm-10">
+                    <input type="text" id="contact_info" name="contact_info" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="output_format" class="col-sm-2 col-form-label">Formato de Salida:</label>
+                <div class="col-sm-4">
+                    <select id="output_format" name="output_format" class="form-control" >
+                        <option value="" selected>Selecciona un formato de salida</option>
+                        <option value="MP4">MP4</option>
+                        <option value="MOV">MOV</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="publication_datetime" class="col-sm-2 col-form-label">Fecha y Hora de Publicación:</label>
+                <div class="col-sm-4">
+                    <input type="datetime-local" id="publication_datetime" name="publication_datetime" class="form-control" >
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="photos" class="col-sm-2 col-form-label">Fotos:</label>
+                <div class="col-sm-10">
+                    <input type="file" id="photos" name="photos" class="form-control" multiple>
+                </div>
+            </div> -->
+
+            <div class="form-group row">
+                <div class="col-sm-10 offset-sm-2">
+                    <hr>
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                    <button type="button" class="btn btn-danger" id="stopButton">Detener</button>
+                </div>
+            </div>
+        </form>
+
+        <!-- Lista de videos -->
+        <div id="videoList" class="mt-5"> 
+            <hr>
+            <h3>Videos Generados</h3>
+            <hr>
+            <div class="row" id="videoListContent">
+                <!-- Aquí se cargará la lista de videos -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Bootstrap modal para éxito -->
+    <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="successModalLabel">Información enviada</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    El video está en proceso de creación.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap modal para ver video -->
+    <div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-labelledby="viewModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="viewModalLabel">Vista previa del video</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <video id="viewVideo" width="100%" controls>
+                        <source id="viewVideoSource" src="" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const voces = [
+            {"Language": "English", "VoiceId": "Danielle", "Gender": "Female"},
+            {"Language": "English", "VoiceId": "Gregory", "Gender": "Male"},
+            {"Language": "English", "VoiceId": "Ivy", "Gender": "Female"},
+            {"Language": "English", "VoiceId": "Joanna", "Gender": "Female"},
+            {"Language": "English", "VoiceId": "Kendra", "Gender": "Female"},
+            {"Language": "English", "VoiceId": "Kimberly", "Gender": "Female"},
+            {"Language": "English", "VoiceId": "Salli", "Gender": "Female"},
+            {"Language": "English", "VoiceId": "Joey", "Gender": "Male"},
+            {"Language": "English", "VoiceId": "Justin", "Gender": "Male"},
+            {"Language": "English", "VoiceId": "Kevin", "Gender": "Male"},
+            {"Language": "English", "VoiceId": "Matthew", "Gender": "Male"},
+            {"Language": "English", "VoiceId": "Ruth", "Gender": "Female"},
+            {"Language": "English", "VoiceId": "Stephen", "Gender": "Male"},
+            {"Language": "Espanol", "VoiceId": "Lupe", "Gender": "Female"},
+            {"Language": "Espanol", "VoiceId": "Pedro", "Gender": "Male"}
+        ];
+
+        function updateNumQuestionsValue(value) {
+            document.getElementById('num_questions_value').textContent = value;
+        }
+
+        function updateNumOptionsValue(value) {
+            document.getElementById('num_options_value').textContent = value;
+        }
+
+        $(document).ready(function () {
+            // Función para cargar la lista de videos
+            function loadPropertyList() {
+                $.ajax({
+                    type: "GET",
+                    url: "/videos",
+                    success: function (response) {
+                        let videoListContent = $("#videoListContent");
+                        videoListContent.empty();
+                        response.forEach((video) => {
+                            console.log(video);
+                            let encodedProperty = encodeURIComponent(video.filename);
+                            let videoid = btoa(encodedProperty);
+                            videoListContent.append(`
+                                <div class="col-sm-4 mb-3" id="videoid_${videoid}">
+                                    <div class="card rounded border">
+                                        <div class="card-body text-center">
+                                            <h7 class="card-title">${video.process_id}</h7><br>
+                                            <p class="card-text"><small class="text-muted">Modificado: ${video.modified}</small><br>
+                                            <small class="text-muted">Estado: ${video.status || ""}</small></p>
+                                            <div class="btn-group" role="group" aria-label="Acciones del video">
+                                                <button class="btn btn-info btn-sm view-button" data-video="${video.filename}" title="Ver"><i class="fas fa-eye"></i></button>&nbsp;&nbsp;&nbsp;
+                                                <a href="${video.filename}" class="btn btn-primary btn-sm" download title="Descargar"><i class="fas fa-download"></i></a>&nbsp;&nbsp;&nbsp;
+                                                <button class="btn btn-danger btn-sm delete-button" data-video="${video.process_id}" title="Borrar"><i class="fas fa-trash-alt"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            `);
+                        });
+
+                        // Agregar evento de clic para los botones de borrar
+                        $(".delete-button").click(function () {
+                            var videoid = $(this).data("video");
+                            // let videoid = btoa(video);
+                            $.ajax({
+                                type: "DELETE",
+                                url: "/videos/" + videoid,
+                                success: function (response) {
+                                    alert("Propiedad borrada exitosamente.");
+                                    $("#videoid_" + videoid).remove();
+                                },
+                                error: function () {
+                                    alert("Hubo un error al borrar el video.");
+                                }
+                            });
+                        });
+
+                        // Agregar evento de clic para los botones de ver
+                        $(".view-button").click(function () {
+                            var videoSrc = $(this).data("video");
+                            $("#viewVideoSource").attr("src", videoSrc);
+                            $("#viewVideo")[0].load();
+                            $("#viewModal").modal('show');
+                        });
+                    },
+                    error: function (error) {
+                        alert("Hubo un error al cargar la lista de videos.", error);
+                    }
+                });
+            }
+
+            // Cargar la lista de videos al cargar la página
+            loadPropertyList();
+
+            // Ejecutar loadPropertyList() cada minuto
+            setInterval(loadPropertyList, 60000); // 60000 milisegundos = 1 minuto
+
+            $("#videoForm").submit(function (event) {
+                event.preventDefault(); // Evitar el envío del formulario por defecto
+
+                // Recoger los datos del formulario
+                var formData = {
+                    url: $("#url").val(),
+                    language: $("#language").val(),
+                    voice: $("#voice").val(),
+                    main_question: $("#main_question").val(),
+                    num_questions: $("#num_questions").val(),
+                    num_options: $("#num_options").val(),
+                    background_music: $("#background_music").val(),
+                    background_video: $("#background_video").val()
+                };
+
+                // Enviar los datos a Flask mediante una solicitud AJAX en formato JSON
+                $.ajax({
+                    type: "POST",
+                    url: "/process",
+                    contentType: "application/json",
+                    data: JSON.stringify(formData),
+                    success: function (response) {
+                        // Mostrar el modal de éxito
+                        $("#successModal").modal('show');
+                        // Limpiar el formulario
+                        $("#videoForm")[0].reset();
+                        // Recargar la lista de videos
+                        loadPropertyList();
+                    },
+                    error: function (response) {
+                        alert("Hubo un error en la creación de la video.", JSON.stringify(response));
+                    }
+                });
+            });
+
+            $("#stopButton").click(function () {
+                // Enviar señal de detención a Flask mediante una solicitud AJAX
+                $.ajax({
+                    type: "POST",
+                    url: "/stop",
+                    success: function (response) {
+                        alert("Proceso detenido.");
+                    },
+                    error: function (response) {
+                        alert("Hubo un error al detener el proceso.");
+                    }
+                });
+            });
+
+            $("#language").change(function () {
+                var selectedLanguage = $(this).val();
+                var filteredVoices = voces.filter(function (voice) {
+                    return voice.Language.toLowerCase() === selectedLanguage.toLowerCase();
+                });
+
+                var voiceDropdown = $("#voice");
+                voiceDropdown.empty();
+                voiceDropdown.append('<option value="" selected>Selecciona una voz</option>');
+
+                filteredVoices.forEach(function (voice) {
+                    voiceDropdown.append(new Option(`${voice.VoiceId} (${voice.Gender})`, voice.VoiceId));
+                });
+            });
+        });
+    </script>
+    <!-- Font Awesome for icons -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/all.min.js"></script>
+</body>
+
+</html>
