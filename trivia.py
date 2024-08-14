@@ -541,6 +541,25 @@ def compose_video(video_total_duration, background_clip, logo_clip, question_cli
     # final_clip.write_videofile(output_file, codec='libx264', fps=24, preset='ultrafast')
     return final_clip
 
+def get_clip_top_position(clip, t=None):
+    """
+    Devuelve la coordenada y (top) del clip en el tiempo t.
+    Si .pos es una tupla, devuelve y directamente.
+    Si .pos es una función, llama a la función con el tiempo t para obtener y.
+    """
+    if isinstance(clip.pos, tuple):
+        # Si es una tupla, desempaquetar directamente
+        _, y = clip.pos
+    elif callable(clip.pos):
+        # Si es una función, llamar a la función con t para obtener la posición y
+        if t is None:
+            t = 0  # Por defecto, puedes usar t=0 o cualquier otro valor de tiempo
+        _, y = clip.pos(t)
+    else:
+        raise TypeError("El valor de .pos no es ni una tupla ni una función.")
+    
+    return y
+
 # Función principal para generar el video de trivia
 def generate_trivia_video(main_question, voice, background_video_path, logo_path, question_text, question_image, options, correct_option_index, account_text, narration_text, narration_text_winner, tictac_sound_path, ding_sound_path, question_font_path, options_font_path, account_font_path, question_image_font_path):
     narration_audio_file = f"./audios/{uuidcode}.ogg"
@@ -616,7 +635,12 @@ def generate_trivia_video(main_question, voice, background_video_path, logo_path
         question_image_clip = question_image_clip.set_duration(question_clip.duration)
         question_image_clip = question_image_clip.set_position(('center', question_clip.size[1] + 500))  # Posición debajo del question_clip
 
-    options_top_margin = question_image_clip[1] + 300
+    print(f"[DEBUG] question_image_clip: {question_image_clip.pos}")
+    
+    clip_top_position = get_clip_top_position(question_image_clip)  # Clip es un ImageClip, VideoClip o TextClip
+    
+    options_top_margin = clip_top_position + 200
+
     print(f"[DEBUG] options_top_margin: {options_top_margin}")
     
     options_clips = add_options(options, background_clip, options_font_path, top_margin=options_top_margin) #, reveal_time=4

@@ -648,7 +648,7 @@ def generate_trivia_video(main_question, voice, background_video_path, logo_path
     
     clip_top_position = get_clip_top_position(question_image_clip)  # Clip es un ImageClip, VideoClip o TextClip
     
-    options_top_margin = clip_top_position + 300
+    options_top_margin = clip_top_position + 200
 
     print(f"[DEBUG] options_top_margin: {options_top_margin}")
     
