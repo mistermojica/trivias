@@ -2,7 +2,7 @@ module.exports = {
   apps: [
     {
       name: 'servidor',           // Nombre de la aplicación en PM2
-      script: 'servidor.py',      // Script que se ejecutará
+      script: 'main.py',      // Script que se ejecutará
       interpreter: 'python',      // Interprete para ejecutar el script (asegúrate de que python3 esté instalado)
       watch: false,               // Desactivar la observación de archivos para reinicios automáticos
       autorestart: true,          // Reiniciar automáticamente si la aplicación se cae

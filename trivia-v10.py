@@ -165,6 +165,12 @@ def create_background_video(background_video_path, duration):
     return background_clip.set_opacity(0.5)
 
 
+# Crear un clip de video de fondo con opacidad
+def ok_create_background_video(background_video_path, duration):
+    background_clip = VideoFileClip(background_video_path).subclip(0, duration)
+    return background_clip.set_opacity(0.5)
+
+
 def add_logo(logo_path, video_clip):
     # Abrir el logo como imagen Pillow
     logo_image = Image.open(logo_path)
@@ -241,7 +247,7 @@ def add_options(options, video_clip, options_font_path, top_margin, margin=170):
 
     if not top_margin:
         top_margin=950
-    
+
     option_clips = []
     first_option_pos = top_margin
 
@@ -457,6 +463,7 @@ def create_progress_bar_with_emoji(duration, width=800, height=100, scale_height
     content_width = int(width * proportion)
     margin = (width - content_width) // 2  # Espacio en blanco a los lados
 
+
     def make_frame(t):
         # Crear una imagen de fondo con color sólido usando PIL
         img = Image.new("RGBA", (content_width, bar_height), (0, 0, 0, 0))  # Fondo transparente
@@ -541,6 +548,27 @@ def compose_video(video_total_duration, background_clip, logo_clip, question_cli
     # final_clip.write_videofile(output_file, codec='libx264', fps=24, preset='ultrafast')
     return final_clip
 
+
+def get_clip_top_position(clip, t=None):
+    """
+    Devuelve la coordenada y (top) del clip en el tiempo t.
+    Si .pos es una tupla, devuelve y directamente.
+    Si .pos es una función, llama a la función con el tiempo t para obtener y.
+    """
+    if isinstance(clip.pos, tuple):
+        # Si es una tupla, desempaquetar directamente
+        _, y = clip.pos
+    elif callable(clip.pos):
+        # Si es una función, llamar a la función con t para obtener la posición y
+        if t is None:
+            t = 0  # Por defecto, puedes usar t=0 o cualquier otro valor de tiempo
+        _, y = clip.pos(t)
+    else:
+        raise TypeError("El valor de .pos no es ni una tupla ni una función.")
+    
+    return y
+
+
 # Función principal para generar el video de trivia
 def generate_trivia_video(main_question, voice, background_video_path, logo_path, question_text, question_image, options, correct_option_index, account_text, narration_text, narration_text_winner, tictac_sound_path, ding_sound_path, question_font_path, options_font_path, account_font_path, question_image_font_path):
     narration_audio_file = f"./audios/{uuidcode}.ogg"
@@ -616,7 +644,12 @@ def generate_trivia_video(main_question, voice, background_video_path, logo_path
         question_image_clip = question_image_clip.set_duration(question_clip.duration)
         question_image_clip = question_image_clip.set_position(('center', question_clip.size[1] + 500))  # Posición debajo del question_clip
 
-    options_top_margin = question_image_clip[1] + 300
+    print(f"[DEBUG] question_image_clip: {question_image_clip.pos}")
+    
+    clip_top_position = get_clip_top_position(question_image_clip)  # Clip es un ImageClip, VideoClip o TextClip
+    
+    options_top_margin = clip_top_position + 300
+
     print(f"[DEBUG] options_top_margin: {options_top_margin}")
     
     options_clips = add_options(options, background_clip, options_font_path, top_margin=options_top_margin) #, reveal_time=4
@@ -851,31 +884,29 @@ def generate_quiz_questions(theme, num_questions=2, num_options=4):
     return json.loads(result)
 
 
-def create_video(uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video):
+def main():
     # Configura el analizador de argumentos de línea de comandos
-    # parser = argparse.ArgumentParser(description="Genera un video de trivia basado en las preguntas del quiz.")
-    # parser.add_argument("main_question", type=str, help="La pregunta principal del quiz.")
-    # parser.add_argument("num_questions", type=int, help="El número de preguntas en el quiz.")
-    # parser.add_argument("num_options", type=int, help="El número de opciones por pregunta.")
+    parser = argparse.ArgumentParser(description="Genera un video de trivia basado en las preguntas del quiz.")
+    parser.add_argument("main_question", type=str, help="La pregunta principal del quiz.")
+    parser.add_argument("num_questions", type=int, help="El número de preguntas en el quiz.")
+    parser.add_argument("num_options", type=int, help="El número de opciones por pregunta.")
 
-    # args = parser.parse_args()
+    args = parser.parse_args()
 
     # Genera el código UUID para el archivo de salida
-    # uuidcode = str(uuid.uuid4())
-    uuidcode = uuid4
+    uuidcode = str(uuid.uuid4())
 
     # Genera las preguntas del quiz usando los argumentos proporcionados
-    # trivia = generate_quiz_questions(args.main_question, num_questions=args.num_questions, num_options=args.num_options)
-    trivia = generate_quiz_questions(main_question, num_questions, num_options)
+    trivia = generate_quiz_questions(args.main_question, num_questions=args.num_questions, num_options=args.num_options)
 
     print(trivia)
 
     # Genera el video combinado de la trivia
     generate_combined_trivia_video(
         main_question=trivia["main_question"],
-        voice=voice,
+        voice="Pedro",
         questions_json=trivia["questions"],
-        background_video_path=f"./assets/videos/{background_video}.mp4",
+        background_video_path="./assets/videos/espacio2.mp4",
         logo_path="./assets/images/logo.png",
         account_text="@elclubdelosgenios",
         tictac_sound_path="./assets/audios/clock.mp3",
@@ -890,20 +921,6 @@ def create_video(uuid4, language, voice, main_question, num_questions, num_optio
     # Opcional: Imprime el JSON de la trivia
     # print(json.dumps(trivia, indent=4, ensure_ascii=False))
 
-# if __name__ == "__main__":
-#     main()
+if __name__ == "__main__":
+    main()
 
-
-def create_video_main(uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video):
-    # data = [{'url': 'https://www.kayak.com/rimg/himg/17/76/2c/booking-3989982-257263533-043832.jpg', 'description': 'A luxurious, well-lit house with arched windows, a grand entrance, and a gated courtyard surrounded by lush greenery and tall trees.'}, {'url': 'https://www.kayak.com/rimg/himg/97/73/c7/booking-3989982-257263588-299448.jpg', 'description': 'A grand staircase with ornate railings and statues leads to an upper level in an elegant, spacious interior with warm-toned walls and decorative elements.'}, {'url': 'https://www.kayak.com/rimg/himg/21/16/65/booking-3989982-257263572-216394.jpg', 'description': 'A spacious, well-lit kitchen with modern appliances, granite countertops, dark cabinetry, and an arched entryway leading to a grand hallway.'}, {'url': 'https://www.kayak.com/rimg/himg/50/e3/c8/booking-3989982-257263543-083612.jpg', 'description': 'A luxurious bedroom features a four-poster bed, a cozy seating area with ornate furniture, a large TV, and eclectic decor including a plush rug and animal figurines.'}, {'url': 'https://www.kayak.com/rimg/himg/f1/0f/8b/booking-3989982-257263555-150000.jpg', 'description': 'A cozy, well-decorated living room features a fireplace, elegant seating, framed artwork, and a floor lamp with multiple globes.'}, {'url': 'https://www.kayak.com/rimg/himg/36/10/ec/booking-3989982-257263552-131976.jpg', 'description': 'The image shows a luxurious bathroom featuring a large glass-enclosed shower and a separate bathtub area with arched windows and elegant tile work.'}, {'url': 'https://www.kayak.com/rimg/himg/14/cd/e2/booking-3989982-257263561-169186.jpg', 'description': 'A luxurious dining room with ornate furniture, a chandelier, medieval shields on the wall, and a classical statue in an alcove.'}, {'url': 'https://www.kayak.com/rimg/himg/8a/ee/e5/booking-3989982-257263570-205725.jpg', 'description': 'A serene pool area with a small waterfall, decorative bridge, and lush greenery under a purple-hued sky.'}, {'url': 'https://www.kayak.com/rimg/himg/ed/f0/4a/booking-3989982-257263582-272624.jpg', 'description': 'A serene outdoor spa area features a small pool with pink lighting, surrounded by tropical plants, a waterfall, and a classical statue under a pergola.'}, {'url': 'https://www.kayak.com/rimg/himg/13/93/3a/booking-3989982-257263567-188337.jpg', 'description': 'The image shows an outdoor patio area with a pergola, equipped with a ceiling fan, string lights, a barbecue grill, and metal patio furniture.'}]
-    
-    # create_property_name_audio(download_path, property_name)
-    # num_elements, thumb_filename = process_images_and_audios(data, voz, download_path, uuid4)
-    
-    print("---------------------------------------------------")
-    print("uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video:", uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video)
-    print("---------------------------------------------------")
-    
-    create_video(uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video)
-
-    return True
