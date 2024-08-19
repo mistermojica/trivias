@@ -1,0 +1,48 @@
+2024-08-17 16:55:52.826 | INFO     | __main__:omprint:30 - pending_processes: [{'uuid': '685b9ec6-fea3-4aa7-91a5-59de2f48ad43', 'language': 'Spanish', 'voice': 'Andres', 'main_question': 'Qué tanto sabes sobre la creación del mundo según Génesis.', 'num_questions': 10, 'num_options': 3, 'background_music': 'animada2', 'background_video': 'nubes1', 'fecha_creacion': '2024-08-17T16:55:52.820752+00:00', 'fecha_modificacion': '2024-08-17T16:55:52.820752+00:00', 'estado': 'pendiente'}]
+2024-08-17 16:55:52.827 | INFO     | __main__:omprint:30 - Ejecutando el proceso ID: 685b9ec6-fea3-4aa7-91a5-59de2f48ad43
+2024-08-17 16:55:52.828 | INFO     | __main__:omprint:30 - ---------------------------------------------------
+2024-08-17 16:55:52.829 | INFO     | __main__:omprint:30 - uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video: 685b9ec6-fea3-4aa7-91a5-59de2f48ad43 Spanish Andres Qué tanto sabes sobre la creación del mundo según Génesis. 10 3 animada2 nubes1
+2024-08-17 16:55:52.829 | INFO     | __main__:omprint:30 - ---------------------------------------------------
+2024-08-17 16:55:52.830 | INFO     | __main__:omprint:30 - Genera una lista de 10 preguntas cortas en idioma Spanish en formato JSON para un quiz / trivia sobre ['Qué tanto sabes sobre la creación del mundo según Génesis.']. El JSON debe incluir una pregunta principal corta en idioma Spanish sin emojis en ella, con el estilo MrBeast en la propiedad 'main_question' que aplique para todas las preguntas de la propiedad 'questions', seguido de un arreglo 'questions' que contenga objetos con las siguientes propiedades: el texto de la pregunta corta en idioma Spanish  con variantes mencionando siempre el tema central en cada pregunta  para hacer la pronunciación más humana y consistente ,  opciones de respuesta en idioma Spanish con 3 opciones donde alternes la opción correcta en las diferentes posiciones del arreglo de opciones entre 0 y 2, (IMPORTANTE: deben tener un tamano de 18 caracteres máximo por opción), y el índice de la opción correcta (IMPORTANTE: Las opciones correctas deben estár en posiciones aleatorias entre 0 y 2 dentro del arreglo de la propiedad 'options').
+
+Aquí hay un ejemplo del formato:
+
+{
+  "main_question": "Pregunta principal de ejemplo?",
+  "questions": [
+    {
+        "question_text": "Variantes de la pregunta de ejemplo?",
+        "question_image": "",
+        "options": ['"Opción 1"', '"Opción 2"', '"Opción 3"'],
+        "correct_option_index": 2
+    }
+  ]
+} 
+
+Notas Importantes: - Todo el contenido que generes debe estar en idioma Spanish.
+- En las opciones distribuye de forma equitativa y no secuencial la asignación de las opciones correctas en posiciones entre 0 y {num_options - 1}.
+- Todos los campos son obligatorios que estén presentes aunque estén en blanco.
+- REALIZA UNA DOBE VERIFICACION DE LAS OPCIONES CORRECTAS. NO PUEDES COMETER ERRORES.
+
+2024-08-17 16:55:58.455 | INFO     | __main__:omprint:30 - {'main_question': '¿Qué tanto sabes sobre la creación del mundo según Génesis?', 'questions': [{'question_text': '¿Qué creó Dios primero?', 'question_image': '', 'options': ['La tierra', 'La luz', 'El agua'], 'correct_option_index': 1}, {'question_text': '¿Cuántos días de creación hay?', 'question_image': '', 'options': ['5 días', '6 días', '7 días'], 'correct_option_index': 1}, {'question_text': '¿Qué creó en el día 3?', 'question_image': '', 'options': ['Las estrellas', 'Las plantas', 'Los animales'], 'correct_option_index': 1}, {'question_text': '¿En qué día creó a los humanos?', 'question_image': '', 'options': ['Día 5', 'Día 6', 'Día 4'], 'correct_option_index': 1}, {'question_text': '¿Qué dijo Dios que era bueno?', 'question_image': '', 'options': ['El agua', 'La luz', 'La oscuridad'], 'correct_option_index': 1}, {'question_text': '¿Quién fue creado a su imagen?', 'question_image': '', 'options': ['Los animales', 'Los humanos', 'Las plantas'], 'correct_option_index': 1}, {'question_text': '¿Qué creó el segundo día?', 'question_image': '', 'options': ['El cielo', 'La tierra', 'La luz'], 'correct_option_index': 0}, {'question_text': '¿Cuándo separó las aguas?', 'question_image': '', 'options': ['Día 2', 'Día 4', 'Día 3'], 'correct_option_index': 0}, {'question_text': '¿Qué creó en el día 4?', 'question_image': '', 'options': ['Los humanos', 'Las luces', 'Las plantas'], 'correct_option_index': 1}, {'question_text': '¿Qué creó en el día 5?', 'question_image': '', 'options': ['Los animales', 'Las aves', 'Las plantas'], 'correct_option_index': 2}]}
+2024-08-17 16:55:58.456 | INFO     | __main__:omprint:30 - Error on attempt 1: Voice with Languaje 'Spanish' and VoiceId 'Andres' not found.
+2024-08-17 16:56:01.456 | INFO     | __main__:omprint:30 - Error on attempt 2: Voice with Languaje 'Spanish' and VoiceId 'Andres' not found.
+2024-08-17 16:56:04.457 | INFO     | __main__:omprint:30 - Error on attempt 3: Voice with Languaje 'Spanish' and VoiceId 'Andres' not found.
+2024-08-17 16:56:07.458 | INFO     | __main__:omprint:30 - Error on attempt 4: Voice with Languaje 'Spanish' and VoiceId 'Andres' not found.
+2024-08-17 16:56:09.177 | INFO     | __main__:omprint:30 - Ya hay un proceso en ejecución.
+2024-08-17 16:56:10.458 | INFO     | __main__:omprint:30 - Error on attempt 5: Voice with Languaje 'Spanish' and VoiceId 'Andres' not found.
+2024-08-17 16:56:13.459 | INFO     | __main__:omprint:30 - Error on attempt 6: Voice with Languaje 'Spanish' and VoiceId 'Andres' not found.
+2024-08-17 16:56:16.459 | INFO     | __main__:omprint:30 - Error on attempt 7: Voice with Languaje 'Spanish' and VoiceId 'Andres' not found.
+2024-08-17 16:56:19.464 | INFO     | __main__:omprint:30 - Error al procesar el proceso ID: 685b9ec6-fea3-4aa7-91a5-59de2f48ad43, error: Failed to get Polly response after 7 attempts
+2024-08-17 16:56:24.465 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-17 16:56:24.465 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-17 16:57:09.178 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-17 16:57:09.178 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-17 16:58:09.179 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-17 16:58:09.179 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-17 16:59:09.180 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-17 16:59:09.180 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-17 17:00:09.181 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-17 17:00:09.181 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-17 17:01:09.181 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-17 17:01:09.182 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.

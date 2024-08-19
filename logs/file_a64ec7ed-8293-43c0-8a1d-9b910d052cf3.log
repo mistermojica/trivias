@@ -1,0 +1,45 @@
+2024-08-16 16:52:46.228 | INFO     | __main__:omprint:30 - Ya hay un proceso en ejecución.
+2024-08-16 16:52:46.374 | INFO     | __main__:omprint:30 - None
+2024-08-16 16:52:46.375 | INFO     | __main__:omprint:30 - Error on attempt 6: name 'engine' is not defined
+2024-08-16 16:52:49.375 | INFO     | __main__:omprint:30 - None
+2024-08-16 16:52:49.376 | INFO     | __main__:omprint:30 - Error on attempt 7: name 'engine' is not defined
+2024-08-16 16:52:52.380 | INFO     | __main__:omprint:30 - Error al procesar el proceso ID: 8d367a4c-6f2a-47cd-8cad-f8d3e21008f3, error: Failed to get Polly response after 7 attempts
+2024-08-16 16:52:57.381 | INFO     | __main__:omprint:30 - pending_processes: [{'uuid': 'a64ec7ed-8293-43c0-8a1d-9b910d052cf3', 'language': 'Espanol', 'voice': 'Pedro', 'main_question': 'Una lista de 10 PELÍCULAS que puedan ser representados por 3 emojis secuenciales y que se respondan con una palabra', 'num_questions': 2, 'num_options': 3, 'background_music': 'animada2', 'background_video': 'sanfrancisco1', 'fecha_creacion': '2024-08-16T16:52:46.223255+00:00', 'fecha_modificacion': '2024-08-16T16:52:46.223255+00:00', 'estado': 'pendiente'}]
+2024-08-16 16:52:57.382 | INFO     | __main__:omprint:30 - Ejecutando el proceso ID: a64ec7ed-8293-43c0-8a1d-9b910d052cf3
+2024-08-16 16:52:57.382 | INFO     | __main__:omprint:30 - ---------------------------------------------------
+2024-08-16 16:52:57.383 | INFO     | __main__:omprint:30 - uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video: a64ec7ed-8293-43c0-8a1d-9b910d052cf3 Espanol Pedro Una lista de 10 PELÍCULAS que puedan ser representados por 3 emojis secuenciales y que se respondan con una palabra 2 3 animada2 sanfrancisco1
+2024-08-16 16:52:57.383 | INFO     | __main__:omprint:30 - ---------------------------------------------------
+2024-08-16 16:52:57.383 | INFO     | __main__:omprint:30 - Genera una lista de 2 preguntas cortas en idioma Espanol en formato JSON para un quiz / trivia sobre ['Una lista de 10 PELÍCULAS que puedan ser representados por 3 emojis secuenciales y que se respondan con una palabra']. El JSON debe incluir una pregunta principal corta en idioma Espanol sin emojis en ella, con el estilo MrBeast en la propiedad 'main_question' que aplique para todas las preguntas de la propiedad 'questions', seguido de un arreglo 'questions' que contenga objetos con las siguientes propiedades: el texto de la pregunta corta en idioma Espanol sin emojis en ella con variantes  para hacer la pronunciación más humana y consistente SIN INCLUIR EL EMOJI, una imagen representada como un emoji, opciones de respuesta en idioma Espanol con 3 opciones donde alternes la opción correcta en las diferentes posiciones del arreglo de opciones entre 0 y 2, (IMPORTANTE: deben tener un tamano de 18 caracteres máximo por opción), y el índice de la opción correcta (IMPORTANTE: Las opciones correctas deben estár en posiciones aleatorias entre 0 y 2 dentro del arreglo de la propiedad 'options').
+
+Aquí hay un ejemplo del formato:
+
+{
+  "main_question": "Pregunta principal de ejemplo?",
+  "questions": [
+    {
+        "question_text": "Variantes de la pregunta de ejemplo?",
+        "question_image": "🇩🇴",
+        "options": ['"Opción 1"', '"Opción 2"', '"Opción 3"'],
+        "correct_option_index": 2
+    }
+  ]
+} 
+
+Notas Importantes: - Todo el contenido que generes debe estar en idioma Espanol.
+- En las opciones distribuye de forma equitativa y no secuencial la asignación de las opciones correctas en posiciones entre 0 y {num_options - 1}.
+- Todos los campos son obligatorios que estén presentes aunque estén en blanco.
+- REALIZA UNA DOBE VERIFICACION DE LAS OPCIONES CORRECTAS. NO PUEDES COMETER ERRORES.
+
+2024-08-16 16:53:00.116 | INFO     | __main__:omprint:30 - {'main_question': '¿Adivina la película solo con emojis?', 'questions': [{'question_text': '¿Qué película es esta?', 'question_image': '👽🚀🌌', 'options': ['Avatar', 'Interstellar', 'Gravity'], 'correct_option_index': 1}, {'question_text': '¿Cómo se llama esta película?', 'question_image': '🐉⚔️👑', 'options': ['El Hobbit', 'Mi vecino Totoro', 'La guerra de los mundos'], 'correct_option_index': 0}]}
+2024-08-16 16:53:00.116 | INFO     | __main__:omprint:30 - {'Engine': 'neural', 'LanguageCode': 'es-US', 'VoiceId': 'Pedro', 'Gender': 'Male', 'TextType': 'ssml', 'Newscaster': ''}
+2024-08-16 16:53:00.189 | INFO     | __main__:omprint:30 - Error on attempt 1: name 'engine' is not defined
+2024-08-16 16:53:03.190 | INFO     | __main__:omprint:30 - {'Engine': 'neural', 'LanguageCode': 'es-US', 'VoiceId': 'Pedro', 'Gender': 'Male', 'TextType': 'ssml', 'Newscaster': ''}
+2024-08-16 16:53:03.238 | INFO     | __main__:omprint:30 - Error on attempt 2: name 'engine' is not defined
+2024-08-16 16:53:06.238 | INFO     | __main__:omprint:30 - {'Engine': 'neural', 'LanguageCode': 'es-US', 'VoiceId': 'Pedro', 'Gender': 'Male', 'TextType': 'ssml', 'Newscaster': ''}
+2024-08-16 16:53:06.288 | INFO     | __main__:omprint:30 - Error on attempt 3: name 'engine' is not defined
+2024-08-16 16:53:09.288 | INFO     | __main__:omprint:30 - {'Engine': 'neural', 'LanguageCode': 'es-US', 'VoiceId': 'Pedro', 'Gender': 'Male', 'TextType': 'ssml', 'Newscaster': ''}
+2024-08-16 16:53:09.337 | INFO     | __main__:omprint:30 - Error on attempt 4: name 'engine' is not defined
+2024-08-16 16:53:12.337 | INFO     | __main__:omprint:30 - {'Engine': 'neural', 'LanguageCode': 'es-US', 'VoiceId': 'Pedro', 'Gender': 'Male', 'TextType': 'ssml', 'Newscaster': ''}
+2024-08-16 16:53:12.385 | INFO     | __main__:omprint:30 - Error on attempt 5: name 'engine' is not defined
+2024-08-16 16:53:15.386 | INFO     | __main__:omprint:30 - {'Engine': 'neural', 'LanguageCode': 'es-US', 'VoiceId': 'Pedro', 'Gender': 'Male', 'TextType': 'ssml', 'Newscaster': ''}
+2024-08-16 16:53:15.494 | INFO     | __main__:omprint:30 - Error on attempt 6: name 'engine' is not defined

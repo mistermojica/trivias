@@ -4,20 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario de Generación de Videos</title>
+    <title>Generación Video Triviass</title>
     <!-- Bootstrap CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
     <div class="container mt-5">
-        <h2>Formulario de Generación de Videos</h2>
+        <h2>Generación Videos Trivias</h2>
         <hr>
         <form id="videoForm">
             <div class="form-group row">
-                <label for="main_question" class="col-sm-2 col-form-label">Tema:</label>
+                <label for="main_question" class="col-sm-2 col-form-label">Tema(s):</label>
                 <div class="col-sm-10">
-                    <input type="text" id="main_question" name="main_question" class="form-control">
+                    <textarea id="main_question" name="main_question" rows="5" class="form-control"></textarea>
                 </div>
             </div>
 
@@ -49,16 +49,16 @@
                 <div class="col-sm-4">
                     <select id="language" name="language" class="form-control" >
                         <option value="" selected>Selecciona un idioma</option>
+                        <option value="Spanish">Español</option>
                         <option value="English">Inglés</option>
-                        <option value="Espanol">Español</option>
-                        <option value="Chino">Chino</option>
+                        <option value="French">Francés</option>
+                        <option value="Portuguese">Portugués</option>
+                        <option value="Italian">Italiano</option>
+                        <option value="Chinese">Chino</option>
                         <option value="Hindi">Hindi</option>
-                        <option value="Árabe">Árabe</option>
-                        <option value="Portugués">Portugués</option>
-                        <option value="Bengalí">Bengalí</option>
-                        <option value="Ruso">Ruso</option>
-                        <option value="Japonés">Japonés</option>
-                        <option value="Alemán">Alemán</option>
+                        <option value="Russian">Ruso</option>
+                        <option value="German">Alemán</option>
+                        <!-- <option value="Japanese">Japonés</option> -->
                     </select>
                 </div>
             </div>
@@ -164,30 +164,65 @@
 
             <div class="form-group row">
                 <label for="background_music" class="col-sm-2 col-form-label">Música de Fondo:</label>
-                <div class="col-sm-4">
-                    <select id="background_music" name="background_music" class="form-control" >
+                <div class="col-sm-4 d-flex align-items-center">
+                    <select id="background_music" name="background_music" class="form-control">
                         <option value="" selected>Selecciona música de fondo</option>
-                        <option value="Animada">Animada</option>
-                        <option value="Deporte">Deporte</option>
-                        <option value="Éxito">Éxito</option>
-                        <option value="Felicidad">Felicidad</option>
-                        <option value="Inspiracional">Inspiracional</option>
-                        <option value="Reto">Reto</option>
+                        <option value="animada1">Animada 1</option>
+                        <option value="animada2">Animada 2</option>
+                        <option value="animada3">Animada 3</option>
+                        <option value="animada4">Animada 4</option>
+                        <option value="animada5">Animada 5</option>
+                        <option value="animada6">Animada 6</option>
+                        <option value="animada7">Animada 7</option>
+                        <option value="animada8">Animada 8</option>
+                        <option value="deporte1">Deporte 1</option>
+                        <option value="deporte2">Deporte 2</option>
+                        <option value="deporte3">Deporte 3</option>
+                        <option value="deporte4">Deporte 4</option>
+                        <option value="deporte5">Deporte 5</option>
+                        <option value="deporte6">Deporte 6</option>
+                        <option value="deporte7">Deporte 7</option>
+                        <option value="deporte8">Deporte 8</option>
+                        <option value="dramatica1">Dramatica 1</option>
+                        <option value="exito1">Exito 1</option>
+                        <option value="exito2">Exito 2</option>
+                        <option value="exito3">Exito 3</option>
+                        <option value="exito4">Exito 4</option>
+                        <option value="exito5">Exito 5</option>
+                        <option value="exito6">Exito 6</option>
+                        <option value="exito7">Exito 7</option>
+                        <option value="felicidad1">Felicidad 1</option>
+                        <option value="felicidad2">Felicidad 2</option>
+                        <option value="felicidad3">Felicidad 3</option>
+                        <option value="felicidad4">Felicidad 4</option>
+                        <option value="inspiracional1">Inspiracional 1</option>
+                        <option value="inspiracional2">Inspiracional 2</option>
+                        <option value="inspiracional3">Inspiracional 3</option>
+                        <option value="inspiracional4">Inspiracional 4</option>
+                        <option value="navidad1">Navidad 1</option>
+                        <option value="relajada1">Relajada 1</option>
+                        <option value="reto1">Reto 1</option>
+                        <option value="reto2">Reto 2</option>
+                        <option value="reto3">Reto 3</option>
                     </select>
+                    <button type="button" class="btn btn-info btn-md ml-2 hear-background_music" title="Reproducir Música">
+                        <i class="fas fa-play"></i>
+                    </button>
+                    <audio id="audioPlayer" controls style="display: none; margin-left: 10px;">
+                        <source id="audioSource" src="" type="audio/mpeg">
+                        Tu navegador no soporta la reproducción de audio.
+                    </audio>
                 </div>
             </div>
 
             <div class="form-group row">
                 <label for="background_video" class="col-sm-2 col-form-label">Video de Fondo:</label>
-                <div class="col-sm-4">
+                <div class="col-sm-4 d-flex">
                     <select id="background_video" name="background_video" class="form-control" >
                         <option value="" selected>Selecciona video de fondo</option>
                         <option value="espacio1">Espacio 1</option>
                         <option value="espacio2">Espacio 2</option>
                         <option value="espacio3">Espacio 3</option>
-                        <option value="tierra1">Tierra 1</option>
-                        <option value="tierra2">Tierra 2</option>
-                        <option value="tierra3">Tierra 3</option>
                         <option value="playas1">Playas 1</option>
                         <option value="playas2">Playas 2</option>
                         <option value="playas3">Playas 3</option>
@@ -200,9 +235,6 @@
                         <option value="montanas1">Montañas 1</option>
                         <option value="montanas2">Montañas 2</option>
                         <option value="montanas3">Montañas 3</option>
-                        <option value="rios1">Rios 1</option>
-                        <option value="rios3">Rios 2</option>
-                        <option value="rios3">Rios 3</option>
                         <option value="atardeceres1">Atardeceres 1</option>
                         <option value="atardeceres2">Atardeceres 2</option>
                         <option value="atardeceres3">Atardeceres 3</option>
@@ -216,6 +248,24 @@
                         <option value="paris2">Paris 2</option>
                         <option value="paris2">Paris 3</option>
                     </select>
+                    <button type="button" class="btn btn-info btn-md ml-2 view-background_video" title="Previsualizar Video">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="account" class="col-sm-2 col-form-label">Cuenta:</label>
+                <div class="col-sm-10">
+                    <input type="text" id="account" name="account" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="logo" class="col-sm-2 col-form-label">Logo:</label>
+                <div class="col-sm-4">
+                    <!-- <input type="file" id="logo" name="logo" class="form-control" accept=".jpg, .jpeg, .png"> -->
+                    <input type="file" id="logo" name="logo" accept=".jpg, .jpeg, .png" class="form-control form-control-md">
                 </div>
             </div>
 
@@ -428,21 +478,54 @@
 
     <script>
         const voces = [
-            {"Language": "English", "VoiceId": "Danielle", "Gender": "Female"},
-            {"Language": "English", "VoiceId": "Gregory", "Gender": "Male"},
-            {"Language": "English", "VoiceId": "Ivy", "Gender": "Female"},
-            {"Language": "English", "VoiceId": "Joanna", "Gender": "Female"},
-            {"Language": "English", "VoiceId": "Kendra", "Gender": "Female"},
-            {"Language": "English", "VoiceId": "Kimberly", "Gender": "Female"},
-            {"Language": "English", "VoiceId": "Salli", "Gender": "Female"},
-            {"Language": "English", "VoiceId": "Joey", "Gender": "Male"},
-            {"Language": "English", "VoiceId": "Justin", "Gender": "Male"},
-            {"Language": "English", "VoiceId": "Kevin", "Gender": "Male"},
-            {"Language": "English", "VoiceId": "Matthew", "Gender": "Male"},
-            {"Language": "English", "VoiceId": "Ruth", "Gender": "Female"},
-            {"Language": "English", "VoiceId": "Stephen", "Gender": "Male"},
-            {"Language": "Espanol", "VoiceId": "Lupe", "Gender": "Female"},
-            {"Language": "Espanol", "VoiceId": "Pedro", "Gender": "Male"}
+            {"Language": "English", "VoiceId": "Danielle", "Name": "Danielle", "Gender": "Female"},
+            {"Language": "English", "VoiceId": "Gregory", "Name": "Gregory", "Gender": "Male"},
+            {"Language": "English", "VoiceId": "Ivy", "Name": "Ivy", "Gender": "Female"},
+            {"Language": "English", "VoiceId": "Joanna", "Name": "Joanna", "Gender": "Female"},
+            {"Language": "English", "VoiceId": "Kendra", "Name": "Kendra", "Gender": "Female"},
+            {"Language": "English", "VoiceId": "Kimberly", "Name": "Kimberly", "Gender": "Female"},
+            {"Language": "English", "VoiceId": "Salli", "Name": "Salli", "Gender": "Female"},
+            {"Language": "English", "VoiceId": "Joey", "Name": "Joey", "Gender": "Male"},
+            {"Language": "English", "VoiceId": "Justin", "Name": "Justin", "Gender": "Male"},
+            {"Language": "English", "VoiceId": "Kevin", "Name": "Kevin", "Gender": "Male"},
+            {"Language": "English", "VoiceId": "Matthew", "Name": "Matthew", "Gender": "Male"},
+            {"Language": "English", "VoiceId": "Ruth", "Name": "Ruth", "Gender": "Female"},
+            {"Language": "English", "VoiceId": "Stephen", "Name": "Stephen", "Gender": "Male"},
+
+            {"Language": "Spanish", "VoiceId": "Lupe", "Name": "Lupe", "Gender": "Female"},
+            {"Language": "Spanish", "VoiceId": "Pedro", "Name": "Pedro", "Gender": "Male"},
+            {"Language": "Spanish", "VoiceId": "Miguel", "Name": "Miguel", "Gender": "Male"},
+            {"Language": "Spanish", "VoiceId": "Penelope", "Name": "Penelope", "Gender": "Female"},
+            {"Language": "Spanish", "VoiceId": "Mia", "Name": "Mia", "Gender": "Female"},
+            {"Language": "Spanish", "VoiceId": "Andres", "Name": "Andres", "Gender": "Male"},
+
+            {"Language": "French", "VoiceId": "Lea", "Name": "Lea", "Gender": "Female"},
+            {"Language": "French", "VoiceId": "Remi", "Name": "Remi", "Gender": "Male"},
+            {"Language": "French", "VoiceId": "Celine", "Name": "Celine", "Gender": "Female"},
+            {"Language": "French", "VoiceId": "Mathieu", "Name": "Mathieu", "Gender": "Male"},
+
+            {"Language": "Portuguese", "VoiceId": "Camila", "Name": "Camila", "Gender": "Female"},
+            {"Language": "Portuguese", "VoiceId": "Vitoria", "Name": "Vitoria", "Gender": "Female"},
+            {"Language": "Portuguese", "VoiceId": "Ricardo", "Name": "Ricardo", "Gender": "Male"},
+            {"Language": "Portuguese", "VoiceId": "Thiago", "Name": "Thiago", "Gender": "Male"},
+
+            {"Language": "Italian", "VoiceId": "Bianca", "Name": "Bianca", "Gender": "Female"},
+            {"Language": "Italian", "VoiceId": "Adriano", "Name": "Adriano", "Gender": "Male"},
+            {"Language": "Italian", "VoiceId": "Carla", "Name": "Carla", "Gender": "Female"},
+            {"Language": "Italian", "VoiceId": "Giorgio", "Name": "Giorgio", "Gender": "Male"},
+
+            {"Language": "German", "VoiceId": "Vicki", "Name": "Vicki", "Gender": "Female"},
+            {"Language": "German", "VoiceId": "Daniel", "Name": "Daniel", "Gender": "Male"},
+            {"Language": "German", "VoiceId": "Marlene", "Name": "Marlene", "Gender": "Female"},
+            {"Language": "German", "VoiceId": "Hans", "Name": "Hans", "Gender": "Male"},
+
+            {"Language": "Russian", "VoiceId": "Tatyana", "Name": "Tatyana", "Gender": "Female"},
+            {"Language": "Russian", "VoiceId": "Maxim", "Name": "Maxim", "Gender": "Male"},
+
+            {"Language": "Chinese", "VoiceId": "Zhiyu", "Name": "Zhiyu", "Gender": "Female"},
+
+            {"Language": "Hindi", "VoiceId": "Kajal", "Name": "Kajal", "Gender": "Female"},
+            {"Language": "Hindi", "VoiceId": "Aditi", "Name": "Aditi", "Gender": "Female"}
         ];
 
         function updateNumQuestionsValue(value) {
@@ -470,13 +553,19 @@
                                 <div class="col-sm-4 mb-3" id="videoid_${videoid}">
                                     <div class="card rounded border">
                                         <div class="card-body text-center">
-                                            <h7 class="card-title">${video.process_id}</h7><br>
-                                            <p class="card-text"><small class="text-muted">Modificado: ${video.modified}</small><br>
-                                            <small class="text-muted">Estado: ${video.status || ""}</small></p>
+                                            <h7 class="card-title">Tema: ${video.main_question}</h7><br>
+                                            <p class="card-text">
+                                                <small class="text-muted">Id: ${video.process_id}</small><br>
+                                                <small class="text-muted">Idioma: ${video.language}</small><br>
+                                                <small class="text-muted">Cantidad Preguntas: ${video.num_questions}</small><br>
+                                                <small class="text-muted">Cantidad Opciones: ${video.num_options}</small><br>
+                                                <small class="text-muted">Modificado: ${video.modified}</small><br>
+                                                <small class="text-muted">Estado: ${video.status || ""}</small>
+                                            </p>
                                             <div class="btn-group" role="group" aria-label="Acciones del video">
-                                                <button class="btn btn-info btn-sm view-button" data-video="${video.filename}" title="Ver"><i class="fas fa-eye"></i></button>&nbsp;&nbsp;&nbsp;
-                                                <a href="${video.filename}" class="btn btn-primary btn-sm" download title="Descargar"><i class="fas fa-download"></i></a>&nbsp;&nbsp;&nbsp;
-                                                <button class="btn btn-danger btn-sm delete-button" data-video="${video.process_id}" title="Borrar"><i class="fas fa-trash-alt"></i></button>
+                                                <button class="btn btn-info btn-lg view-button" data-video="${video.filename}" title="Ver"><i class="fas fa-eye"></i></button>&nbsp;&nbsp;&nbsp;
+                                                <a href="${video.filename}" class="btn btn-primary btn-lg" download title="Descargar"><i class="fas fa-download"></i></a>&nbsp;&nbsp;&nbsp;
+                                                <button class="btn btn-danger btn-lg delete-button" data-video="${video.process_id}" title="Borrar"><i class="fas fa-trash-alt"></i></button>
                                             </div>
                                         </div>
                                     </div>
@@ -508,6 +597,60 @@
                             $("#viewVideo")[0].load();
                             $("#viewModal").modal('show');
                         });
+
+                        // Agregar evento de clic para el botón de previsualización de la música de fondo
+                        $(".hear-background_music").click(function () {
+                            var selectedMusic = $("#background_music").val(); // Obtener el valor del campo background_music
+
+                            if (selectedMusic) {
+                                $.ajax({
+                                    type: "GET",
+                                    url: `/backgroundmusic/${selectedMusic}`, // URL del servicio que retorna la URL de la música
+                                    success: function (response) {
+                                        // Suponiendo que 'response' es un objeto JSON con la URL de la música
+                                        var musicUrl = response.music_url;
+
+                                        // Configurar la URL de la música en el reproductor de audio
+                                        $("#audioSource").attr("src", musicUrl);
+                                        $("#audioPlayer")[0].load(); // Cargar la música
+                                        $("#audioPlayer")[0].play(); // Reproducir la música
+                                        $("#audioPlayer").show(); // Mostrar el reproductor de audio
+                                    },
+                                    error: function () {
+                                        alert("Hubo un error al cargar la previsualización de la música.");
+                                    }
+                                });
+                            } else {
+                                alert("Por favor selecciona una música de fondo antes de previsualizar.");
+                            }
+                        });
+
+                        // Agregar evento de clic para el botón de previsualización del video de fondo
+                        $(".view-background_video").click(function () {
+                            var selectedVideo = $("#background_video").val(); // Obtener el valor del campo background_video
+
+                            if (selectedVideo) {
+                                $.ajax({
+                                    type: "GET",
+                                    url: `/backgroundvideo/${selectedVideo}`, // URL del servicio que retorna la URL del video
+                                    // data: { video: selectedVideo }, // Enviar el valor seleccionado en el GET
+                                    success: function (response) {
+                                        // Suponiendo que 'response' es un string con la URL del video
+                                        var videoUrl = response.video_url;
+
+                                        // Configurar la URL del video en el modal
+                                        $("#viewVideoSource").attr("src", videoUrl);
+                                        $("#viewVideo")[0].load(); // Cargar el video
+                                        $("#viewModal").modal('show'); // Mostrar el modal de previsualización
+                                    },
+                                    error: function () {
+                                        alert("Hubo un error al cargar la previsualización del video.");
+                                    }
+                                });
+                            } else {
+                                alert("Por favor selecciona un video de fondo antes de previsualizar.");
+                            }
+                        });
                     },
                     error: function (error) {
                         alert("Hubo un error al cargar la lista de videos.", error);
@@ -524,24 +667,46 @@
             $("#videoForm").submit(function (event) {
                 event.preventDefault(); // Evitar el envío del formulario por defecto
 
-                // Recoger los datos del formulario
-                var formData = {
-                    url: $("#url").val(),
-                    language: $("#language").val(),
-                    voice: $("#voice").val(),
-                    main_question: $("#main_question").val(),
-                    num_questions: $("#num_questions").val(),
-                    num_options: $("#num_options").val(),
-                    background_music: $("#background_music").val(),
-                    background_video: $("#background_video").val()
-                };
+                // Crear un objeto FormData para manejar el envío del archivo
+                var formData = new FormData();
+
+                // Agregar los campos del formulario al FormData
+                formData.append("url", $("#url").val());
+                formData.append("language", $("#language").val());
+                formData.append("voice", $("#voice").val());
+                formData.append("main_question", $("#main_question").val());
+                formData.append("num_questions", $("#num_questions").val());
+                formData.append("num_options", $("#num_options").val());
+                formData.append("background_music", $("#background_music").val());
+                formData.append("background_video", $("#background_video").val());
+                formData.append("account", $("#account").val());
+
+                // Agregar el archivo del logo al FormData
+                var logoFile = $("#logo")[0].files[0]; // Captura el archivo del input con id 'logo'
+                if (logoFile) {
+                    formData.append("logo", logoFile);
+                }
+
+                // // Recoger los datos del formulario
+                // var formData = {
+                //     url: $("#url").val(),
+                //     language: $("#language").val(),
+                //     voice: $("#voice").val(),
+                //     main_question: $("#main_question").val(),
+                //     num_questions: $("#num_questions").val(),
+                //     num_options: $("#num_options").val(),
+                //     background_music: $("#background_music").val(),
+                //     background_video: $("#background_video").val()
+                // };
 
                 // Enviar los datos a Flask mediante una solicitud AJAX en formato JSON
                 $.ajax({
                     type: "POST",
                     url: "/process",
-                    contentType: "application/json",
-                    data: JSON.stringify(formData),
+                    // contentType: "application/json",
+                    contentType: false,  // Necesario para que jQuery no procese los datos
+                    processData: false,  // Necesario para que jQuery no convierta el FormData en una cadena
+                    data: formData,
                     success: function (response) {
                         // Mostrar el modal de éxito
                         $("#successModal").modal('show');
@@ -549,6 +714,7 @@
                         $("#videoForm")[0].reset();
                         // Recargar la lista de videos
                         loadPropertyList();
+                        $("#videoForm").reset();
                     },
                     error: function (response) {
                         alert("Hubo un error en la creación de la video.", JSON.stringify(response));
@@ -581,7 +747,7 @@
                 voiceDropdown.append('<option value="" selected>Selecciona una voz</option>');
 
                 filteredVoices.forEach(function (voice) {
-                    voiceDropdown.append(new Option(`${voice.VoiceId} (${voice.Gender})`, voice.VoiceId));
+                    voiceDropdown.append(new Option(`${voice.Name} (${voice.Gender})`, voice.VoiceId));
                 });
             });
         });

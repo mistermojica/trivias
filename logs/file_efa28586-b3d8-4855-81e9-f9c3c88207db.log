@@ -1,0 +1,25 @@
+2024-08-19 02:34:10.041 | INFO     | __main__:omprint:30 - Traceback (most recent call last):
+
+2024-08-19 02:34:10.043 | INFO     | __main__:omprint:30 -   File "/home/t2ytuser/.pyenv/versions/3.11.9/lib/python3.11/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+2024-08-19 02:34:10.043 | INFO     | __main__:omprint:30 -   File "/home/t2ytuser/.pyenv/versions/3.11.9/lib/python3.11/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+2024-08-19 02:34:10.044 | INFO     | __main__:omprint:30 -   File "/home/t2ytuser/.pyenv/versions/3.11.9/lib/python3.11/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+
+2024-08-19 02:34:10.044 | INFO     | __main__:omprint:30 -   File "/home/t2ytuser/.pyenv/versions/3.11.9/lib/python3.11/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+2024-08-19 02:34:10.045 | INFO     | __main__:omprint:30 -   File "/home/t2ytuser/trivia/main.py", line 304, in process_request
+    save_to_db(process_id, language, voice, main_question, num_questions, num_options, background_music, background_video, logo_path, account_text)
+
+2024-08-19 02:34:10.045 | INFO     | __main__:omprint:30 - TypeError: save_to_db() takes 9 positional arguments but 10 were given
+
+2024-08-19 02:34:56.999 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-19 02:34:57.000 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.

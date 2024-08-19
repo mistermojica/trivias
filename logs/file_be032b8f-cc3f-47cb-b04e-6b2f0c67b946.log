@@ -1,0 +1,39 @@
+2024-08-16 17:07:40.543 | INFO     | __main__:omprint:30 - pending_processes: [{'uuid': 'be032b8f-cc3f-47cb-b04e-6b2f0c67b946', 'language': 'French', 'voice': 'Rémi', 'main_question': 'Una lista de 10 PELÍCULAS que puedan ser representados por 3 emojis secuenciales y que se respondan con una palabra.', 'num_questions': 2, 'num_options': 3, 'background_music': 'animada3', 'background_video': 'sanfrancisco1', 'fecha_creacion': '2024-08-16T17:07:40.538884+00:00', 'fecha_modificacion': '2024-08-16T17:07:40.538884+00:00', 'estado': 'pendiente'}]
+2024-08-16 17:07:40.544 | INFO     | __main__:omprint:30 - Ejecutando el proceso ID: be032b8f-cc3f-47cb-b04e-6b2f0c67b946
+2024-08-16 17:07:40.544 | INFO     | __main__:omprint:30 - ---------------------------------------------------
+2024-08-16 17:07:40.545 | INFO     | __main__:omprint:30 - uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video: be032b8f-cc3f-47cb-b04e-6b2f0c67b946 French Rémi Una lista de 10 PELÍCULAS que puedan ser representados por 3 emojis secuenciales y que se respondan con una palabra. 2 3 animada3 sanfrancisco1
+2024-08-16 17:07:40.545 | INFO     | __main__:omprint:30 - ---------------------------------------------------
+2024-08-16 17:07:40.545 | INFO     | __main__:omprint:30 - Genera una lista de 2 preguntas cortas en idioma French en formato JSON para un quiz / trivia sobre ['Una lista de 10 PELÍCULAS que puedan ser representados por 3 emojis secuenciales y que se respondan con una palabra.']. El JSON debe incluir una pregunta principal corta en idioma French sin emojis en ella, con el estilo MrBeast en la propiedad 'main_question' que aplique para todas las preguntas de la propiedad 'questions', seguido de un arreglo 'questions' que contenga objetos con las siguientes propiedades: el texto de la pregunta corta en idioma French sin emojis en ella con variantes  para hacer la pronunciación más humana y consistente SIN INCLUIR EL EMOJI, una imagen representada como un emoji, opciones de respuesta en idioma French con 3 opciones donde alternes la opción correcta en las diferentes posiciones del arreglo de opciones entre 0 y 2, (IMPORTANTE: deben tener un tamano de 18 caracteres máximo por opción), y el índice de la opción correcta (IMPORTANTE: Las opciones correctas deben estár en posiciones aleatorias entre 0 y 2 dentro del arreglo de la propiedad 'options').
+
+Aquí hay un ejemplo del formato:
+
+{
+  "main_question": "Pregunta principal de ejemplo?",
+  "questions": [
+    {
+        "question_text": "Variantes de la pregunta de ejemplo?",
+        "question_image": "🇩🇴",
+        "options": ['"Opción 1"', '"Opción 2"', '"Opción 3"'],
+        "correct_option_index": 2
+    }
+  ]
+} 
+
+Notas Importantes: - Todo el contenido que generes debe estar en idioma French.
+- En las opciones distribuye de forma equitativa y no secuencial la asignación de las opciones correctas en posiciones entre 0 y {num_options - 1}.
+- Todos los campos son obligatorios que estén presentes aunque estén en blanco.
+- REALIZA UNA DOBE VERIFICACION DE LAS OPCIONES CORRECTAS. NO PUEDES COMETER ERRORES.
+
+2024-08-16 17:07:42.676 | INFO     | __main__:omprint:30 - {'main_question': 'Devinez la filmographie avec des émojis!', 'questions': [{'question_text': "Qu'est-ce que ces emojis signifient?", 'question_image': '🎬', 'options': ["'Avengers'", "'Inception'", "'Titanic'"], 'correct_option_index': 0}, {'question_text': 'Identifiez le film à partir de ces emojis?', 'question_image': '🎥', 'options': ["'Frozen'", "'Jaws'", "'Matrix'"], 'correct_option_index': 1}]}
+2024-08-16 17:07:42.677 | INFO     | __main__:omprint:30 - =========================================
+ {'Engine': 'neural', 'LanguageCode': 'fr-FR', 'VoiceId': 'Rémi', 'Gender': 'Male', 'TextType': 'text', 'Newscaster': ''} 
+=========================================
+2024-08-16 17:07:42.864 | INFO     | __main__:omprint:30 - Error on attempt 1: An error occurred (ValidationException) when calling the SynthesizeSpeech operation: 1 validation error detected: Value 'Rémi' at 'voiceId' failed to satisfy constraint: Member must satisfy enum value set: [Lotte, Maxim, Ayanda, Salli, Ola, Arthur, Ida, Tomoko, Remi, Geraint, Miguel, Elin, Lisa, Giorgio, Marlene, Ines, Kajal, Zhiyu, Zeina, Suvi, Karl, Gwyneth, Joanna, Lucia, Cristiano, Astrid, Andres, Vicki, Mia, Vitoria, Bianca, Chantal, Raveena, Daniel, Amy, Liam, Ruth, Kevin, Brian, Russell, Aria, Matthew, Aditi, Zayd, Dora, Enrique, Hans, Danielle, Hiujin, Carmen, Sofie, Gregory, Ivy, Ewa, Maja, Gabrielle, Nicole, Filiz, Camila, Jacek, Thiago, Justin, Celine, Kazuha, Kendra, Arlet, Ricardo, Mads, Hannah, Mathieu, Lea, Sergio, Hala, Tatyana, Penelope, Naja, Olivia, Ruben, Laura, Takumi, Mizuki, Carla, Conchita, Jan, Kimberly, Liv, Adriano, Lupe, Joey, Pedro, Seoyeon, Emma, Niamh, Stephen]
+2024-08-16 17:07:45.866 | INFO     | __main__:omprint:30 - =========================================
+ {'Engine': 'neural', 'LanguageCode': 'fr-FR', 'VoiceId': 'Rémi', 'Gender': 'Male', 'TextType': 'text', 'Newscaster': ''} 
+=========================================
+2024-08-16 17:07:46.000 | INFO     | __main__:omprint:30 - Error on attempt 2: An error occurred (ValidationException) when calling the SynthesizeSpeech operation: 1 validation error detected: Value 'Rémi' at 'voiceId' failed to satisfy constraint: Member must satisfy enum value set: [Lotte, Maxim, Ayanda, Salli, Ola, Arthur, Ida, Tomoko, Remi, Geraint, Miguel, Elin, Lisa, Giorgio, Marlene, Ines, Kajal, Zhiyu, Zeina, Suvi, Karl, Gwyneth, Joanna, Lucia, Cristiano, Astrid, Andres, Vicki, Mia, Vitoria, Bianca, Chantal, Raveena, Daniel, Amy, Liam, Ruth, Kevin, Brian, Russell, Aria, Matthew, Aditi, Zayd, Dora, Enrique, Hans, Danielle, Hiujin, Carmen, Sofie, Gregory, Ivy, Ewa, Maja, Gabrielle, Nicole, Filiz, Camila, Jacek, Thiago, Justin, Celine, Kazuha, Kendra, Arlet, Ricardo, Mads, Hannah, Mathieu, Lea, Sergio, Hala, Tatyana, Penelope, Naja, Olivia, Ruben, Laura, Takumi, Mizuki, Carla, Conchita, Jan, Kimberly, Liv, Adriano, Lupe, Joey, Pedro, Seoyeon, Emma, Niamh, Stephen]
+2024-08-16 17:07:49.002 | INFO     | __main__:omprint:30 - =========================================
+ {'Engine': 'neural', 'LanguageCode': 'fr-FR', 'VoiceId': 'Rémi', 'Gender': 'Male', 'TextType': 'text', 'Newscaster': ''} 
+=========================================
+2024-08-16 17:07:49.127 | INFO     | __main__:omprint:30 - Error on attempt 3: An error occurred (ValidationException) when calling the SynthesizeSpeech operation: 1 validation error detected: Value 'Rémi' at 'voiceId' failed to satisfy constraint: Member must satisfy enum value set: [Lotte, Maxim, Ayanda, Salli, Ola, Arthur, Ida, Tomoko, Remi, Geraint, Miguel, Elin, Lisa, Giorgio, Marlene, Ines, Kajal, Zhiyu, Zeina, Suvi, Karl, Gwyneth, Joanna, Lucia, Cristiano, Astrid, Andres, Vicki, Mia, Vitoria, Bianca, Chantal, Raveena, Daniel, Amy, Liam, Ruth, Kevin, Brian, Russell, Aria, Matthew, Aditi, Zayd, Dora, Enrique, Hans, Danielle, Hiujin, Carmen, Sofie, Gregory, Ivy, Ewa, Maja, Gabrielle, Nicole, Filiz, Camila, Jacek, Thiago, Justin, Celine, Kazuha, Kendra, Arlet, Ricardo, Mads, Hannah, Mathieu, Lea, Sergio, Hala, Tatyana, Penelope, Naja, Olivia, Ruben, Laura, Takumi, Mizuki, Carla, Conchita, Jan, Kimberly, Liv, Adriano, Lupe, Joey, Pedro, Seoyeon, Emma, Niamh, Stephen]

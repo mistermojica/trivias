@@ -1,0 +1,30 @@
+2024-08-16 16:49:46.883 | INFO     | __main__:omprint:30 - pending_processes: [{'uuid': 'f8096799-2639-41e2-9893-f1740fbdceb1', 'language': 'Espanol', 'voice': 'Andrés', 'main_question': 'Una lista de 10 PELÍCULAS que puedan ser representados por 3 emojis secuenciales y que se respondan con una palabra.', 'num_questions': 2, 'num_options': 3, 'background_music': 'animada1', 'background_video': 'sanfrancisco1', 'fecha_creacion': '2024-08-16T16:49:46.876459+00:00', 'fecha_modificacion': '2024-08-16T16:49:46.876459+00:00', 'estado': 'pendiente'}]
+2024-08-16 16:49:46.884 | INFO     | __main__:omprint:30 - Ejecutando el proceso ID: f8096799-2639-41e2-9893-f1740fbdceb1
+2024-08-16 16:49:46.885 | INFO     | __main__:omprint:30 - ---------------------------------------------------
+2024-08-16 16:49:46.885 | INFO     | __main__:omprint:30 - uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video: f8096799-2639-41e2-9893-f1740fbdceb1 Espanol Andrés Una lista de 10 PELÍCULAS que puedan ser representados por 3 emojis secuenciales y que se respondan con una palabra. 2 3 animada1 sanfrancisco1
+2024-08-16 16:49:46.885 | INFO     | __main__:omprint:30 - ---------------------------------------------------
+2024-08-16 16:49:46.886 | INFO     | __main__:omprint:30 - Genera una lista de 2 preguntas cortas en idioma Espanol en formato JSON para un quiz / trivia sobre ['Una lista de 10 PELÍCULAS que puedan ser representados por 3 emojis secuenciales y que se respondan con una palabra.']. El JSON debe incluir una pregunta principal corta en idioma Espanol sin emojis en ella, con el estilo MrBeast en la propiedad 'main_question' que aplique para todas las preguntas de la propiedad 'questions', seguido de un arreglo 'questions' que contenga objetos con las siguientes propiedades: el texto de la pregunta corta en idioma Espanol sin emojis en ella con variantes  para hacer la pronunciación más humana y consistente SIN INCLUIR EL EMOJI, una imagen representada como un emoji, opciones de respuesta en idioma Espanol con 3 opciones donde alternes la opción correcta en las diferentes posiciones del arreglo de opciones entre 0 y 2, (IMPORTANTE: deben tener un tamano de 18 caracteres máximo por opción), y el índice de la opción correcta (IMPORTANTE: Las opciones correctas deben estár en posiciones aleatorias entre 0 y 2 dentro del arreglo de la propiedad 'options').
+
+Aquí hay un ejemplo del formato:
+
+{
+  "main_question": "Pregunta principal de ejemplo?",
+  "questions": [
+    {
+        "question_text": "Variantes de la pregunta de ejemplo?",
+        "question_image": "🇩🇴",
+        "options": ['"Opción 1"', '"Opción 2"', '"Opción 3"'],
+        "correct_option_index": 2
+    }
+  ]
+} 
+
+Notas Importantes: - Todo el contenido que generes debe estar en idioma Espanol.
+- En las opciones distribuye de forma equitativa y no secuencial la asignación de las opciones correctas en posiciones entre 0 y {num_options - 1}.
+- Todos los campos son obligatorios que estén presentes aunque estén en blanco.
+- REALIZA UNA DOBE VERIFICACION DE LAS OPCIONES CORRECTAS. NO PUEDES COMETER ERRORES.
+
+2024-08-16 16:49:48.267 | INFO     | __main__:omprint:30 - {'main_question': '¿Adivina la película usando emojis?', 'questions': [{'question_text': '¿Qué película es esta?', 'question_image': '🎬', 'options': ['Titanic', 'El Rey León', 'Frozen'], 'correct_option_index': 0}, {'question_text': '¿Qué película puedes adivinar?', 'question_image': '🎥', 'options': ['Avengers', 'Toy Story', 'Joker'], 'correct_option_index': 2}]}
+2024-08-16 16:49:48.268 | INFO     | __main__:omprint:30 - Error on attempt 1: 'NoneType' object is not subscriptable
+2024-08-16 16:49:51.268 | INFO     | __main__:omprint:30 - Error on attempt 2: 'NoneType' object is not subscriptable
+2024-08-16 16:49:54.269 | INFO     | __main__:omprint:30 - Error on attempt 3: 'NoneType' object is not subscriptable

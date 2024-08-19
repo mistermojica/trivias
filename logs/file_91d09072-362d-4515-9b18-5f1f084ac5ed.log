@@ -1,0 +1,6 @@
+2024-08-16 17:31:47.779 | INFO     | __main__:omprint:30 - Ya hay un proceso en ejecución.
+2024-08-16 17:32:22.925 | INFO     | __main__:omprint:30 - Error al procesar el proceso ID: 708514b3-6f95-4bc6-b946-58ec5e632444, error: [Errno 32] Broken pipe
+
+MoviePy error: FFMPEG encountered the following error while writing file ./public/generados/videos/708514b3-6f95-4bc6-b946-58ec5e632444.mp4:
+
+ b''

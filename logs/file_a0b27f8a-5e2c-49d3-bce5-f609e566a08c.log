@@ -1,0 +1,78 @@
+2024-08-14 17:42:21.746 | INFO     | __main__:omprint:30 - Ya hay un proceso en ejecución.
+2024-08-14 17:42:22.717 | INFO     | __main__:omprint:30 - pending_processes: [{'uuid': 'a0b27f8a-5e2c-49d3-bce5-f609e566a08c', 'language': 'Italian', 'voice': 'Bianca', 'main_question': 'trivia sobre identificar deportes a partir de emojis', 'num_questions': 2, 'num_options': 3, 'background_music': 'deporte2', 'background_video': 'sanfrancisco3', 'fecha_creacion': '2024-08-14T17:42:21.741758+00:00', 'fecha_modificacion': '2024-08-14T17:42:21.741758+00:00', 'estado': 'pendiente'}]
+2024-08-14 17:42:22.718 | INFO     | __main__:omprint:30 - Ejecutando el proceso ID: a0b27f8a-5e2c-49d3-bce5-f609e566a08c
+2024-08-14 17:42:22.718 | INFO     | __main__:omprint:30 - ---------------------------------------------------
+2024-08-14 17:42:22.719 | INFO     | __main__:omprint:30 - uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video: a0b27f8a-5e2c-49d3-bce5-f609e566a08c Italian Bianca trivia sobre identificar deportes a partir de emojis 2 3 deporte2 sanfrancisco3
+2024-08-14 17:42:22.719 | INFO     | __main__:omprint:30 - ---------------------------------------------------
+2024-08-14 17:42:22.720 | INFO     | __main__:omprint:30 - Genera una lista de 2 preguntas cortas en idioma Italian en formato JSON para un quiz / trivia sobre ['trivia sobre identificar deportes a partir de emojis']. El JSON debe incluir una pregunta principal corta en idioma Italian sin emojis en ella, con el estilo MrBeast en la propiedad 'main_question' que aplique para todas las preguntas de la propiedad 'questions', seguido de un arreglo 'questions' que contenga objetos con las siguientes propiedades: el texto de la pregunta corta en idioma Italian sin emojis en ella con variantes  para hacer la pronunciación más humana y consistente SIN INCLUIR EL EMOJI, una imagen representada como un emoji, opciones de respuesta en idioma Italian con 3 opciones donde alternes la opción correcta en las diferentes posiciones del arreglo de opciones entre 0 y 2, (IMPORTANTE: deben tener un tamano de 18 caracteres máximo por opción), y el índice de la opción correcta (IMPORTANTE: Las opciones correctas deben estár en posiciones aleatorias entre 0 y 2 dentro del arreglo de la propiedad 'options').
+
+Aquí hay un ejemplo del formato:
+
+{
+  "main_question": "Pregunta principal de ejemplo?",
+  "questions": [
+    {
+        "question_text": "Variantes de la pregunta de ejemplo?",
+        "question_image": "🇩🇴",
+        "options": ['"Opción 1"', '"Opción 2"', '"Opción 3"'],
+        "correct_option_index": 2
+    }
+  ]
+} 
+
+Notas Importantes: - Todo el contenido que generes debe estar en idioma Italian.
+- En las opciones distribuye de forma equitativa y no secuencial la asignación de las opciones correctas en posiciones entre 0 y {num_options - 1}.
+- Todos los campos son obligatorios que estén presentes aunque estén en blanco.
+- REALIZA UNA DOBE VERIFICACION DE LAS OPCIONES CORRECTAS. NO PUEDES COMETER ERRORES.
+
+2024-08-14 17:42:24.546 | INFO     | __main__:omprint:30 - {'main_question': 'Indovina lo sport dagli emoji!', 'questions': [{'question_text': 'Quale sport è rappresentato?', 'question_image': '⚽️', 'options': ['Pallacanestro', 'Calcio', 'Tennis'], 'correct_option_index': 1}, {'question_text': 'Riconosci questo sport?', 'question_image': '🏈', 'options': ['Golf', 'Pallone', 'Football'], 'correct_option_index': 2}]}
+2024-08-14 17:42:25.210 | INFO     | __main__:omprint:30 - [DEBUG] video_total_duration: 7.04
+2024-08-14 17:42:25.342 | INFO     | __main__:omprint:30 - create_background_video - background_clip.w, background_clip.h: 1080 1920
+2024-08-14 17:42:25.384 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - max_width: 920
+2024-08-14 17:42:25.385 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - text_length: 30
+2024-08-14 17:42:25.385 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - fontsize: 80
+2024-08-14 17:42:25.439 | INFO     | __main__:omprint:30 - [DEBUG] question_image_clip: <function VideoClip.set_position.<locals>.<lambda> at 0x7309a0ee7c40>
+2024-08-14 17:42:25.440 | INFO     | __main__:omprint:30 - [DEBUG] options_top_margin: 844
+2024-08-14 17:42:25.603 | INFO     | __main__:omprint:30 - [DEBUG] video_total_duration 1: 7.04
+2024-08-14 17:42:25.604 | INFO     | __main__:omprint:30 - [DEBUG] narration_audio.duration: 2.04
+2024-08-14 17:42:25.605 | INFO     | __main__:omprint:30 - [DEBUG] clock_sound_effects.duration: 3
+2024-08-14 17:42:25.605 | INFO     | __main__:omprint:30 - [DEBUG] ding_sound_effects.duration: 2
+2024-08-14 17:42:25.605 | INFO     | __main__:omprint:30 - [DEBUG] narration_audio_winner.duration: 0.78
+2024-08-14 17:42:25.606 | INFO     | __main__:omprint:30 - [DEBUG] final_audio.duration 2: 7.04
+2024-08-14 17:42:25.606 | INFO     | __main__:omprint:30 - [DEBUG] final_clip.duration 2: 7.04
+2024-08-14 17:42:26.122 | INFO     | __main__:omprint:30 - [DEBUG] video_total_duration: 6.8
+2024-08-14 17:42:26.238 | INFO     | __main__:omprint:30 - create_background_video - background_clip.w, background_clip.h: 1080 1920
+2024-08-14 17:42:26.272 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - max_width: 920
+2024-08-14 17:42:26.272 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - text_length: 30
+2024-08-14 17:42:26.272 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - fontsize: 80
+2024-08-14 17:42:26.325 | INFO     | __main__:omprint:30 - [DEBUG] question_image_clip: <function VideoClip.set_position.<locals>.<lambda> at 0x7309a03d5e40>
+2024-08-14 17:42:26.326 | INFO     | __main__:omprint:30 - [DEBUG] options_top_margin: 844
+2024-08-14 17:42:26.484 | INFO     | __main__:omprint:30 - [DEBUG] video_total_duration 1: 6.8
+2024-08-14 17:42:26.484 | INFO     | __main__:omprint:30 - [DEBUG] narration_audio.duration: 1.8
+2024-08-14 17:42:26.485 | INFO     | __main__:omprint:30 - [DEBUG] clock_sound_effects.duration: 3
+2024-08-14 17:42:26.485 | INFO     | __main__:omprint:30 - [DEBUG] ding_sound_effects.duration: 2
+2024-08-14 17:42:26.486 | INFO     | __main__:omprint:30 - [DEBUG] narration_audio_winner.duration: 0.91
+2024-08-14 17:42:26.486 | INFO     | __main__:omprint:30 - [DEBUG] final_audio.duration 2: 6.8
+2024-08-14 17:42:26.487 | INFO     | __main__:omprint:30 - [DEBUG] final_clip.duration 2: 6.8
+2024-08-14 17:42:26.487 | INFO     | __main__:omprint:30 - [DEBUG] all_clips[0] - start: 0, duration: 7.04, end: 7.04
+2024-08-14 17:42:26.488 | INFO     | __main__:omprint:30 - [DEBUG] all_clips[1] - start: 0, duration: 6.8, end: 6.8
+2024-08-14 17:42:26.501 | INFO     | __main__:omprint:30 - [DEBUG] generate_combined_trivia_video - final_video.duration: 13.84
+2024-08-14 17:43:03.014 | INFO     | __main__:omprint:30 - Ya hay un proceso en ejecución.
+2024-08-14 17:44:03.015 | INFO     | __main__:omprint:30 - Ya hay un proceso en ejecución.
+2024-08-14 17:44:04.222 | INFO     | __main__:omprint:30 - Tiempo de procesamiento: 99.6752769947052 segundos
+2024-08-14 17:44:04.223 | INFO     | __main__:omprint:30 - video_to_upload: https://trivias.luxuryroamers.com/generados/videos/a0b27f8a-5e2c-49d3-bce5-f609e566a08c.mp4
+2024-08-14 17:44:04.223 | INFO     | __main__:omprint:30 - El script tomó 101.50 segundos en ejecutarse.
+2024-08-14 17:44:09.234 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-14 17:44:09.234 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-14 17:45:03.016 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-14 17:45:03.016 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-14 17:46:03.017 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-14 17:46:03.017 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-14 17:47:03.018 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-14 17:47:03.019 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-14 17:48:03.019 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-14 17:48:03.020 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-14 17:49:03.021 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-14 17:49:03.021 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-14 17:50:03.022 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-14 17:50:03.022 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.

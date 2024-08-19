@@ -1,0 +1,35 @@
+2024-08-15 18:56:52.630 | INFO     | __main__:omprint:30 - Ya hay un proceso en ejecución.
+2024-08-15 18:56:57.405 | INFO     | __main__:omprint:30 - Ya hay un proceso en ejecución.
+2024-08-15 18:57:57.407 | INFO     | __main__:omprint:30 - Ya hay un proceso en ejecución.
+2024-08-15 18:58:57.408 | INFO     | __main__:omprint:30 - Ya hay un proceso en ejecución.
+2024-08-15 18:59:03.440 | INFO     | __main__:omprint:30 - Error al procesar el proceso ID: 1e438ddd-5c5b-4a62-813a-18a53b8ab1da, error: x1 must be greater than or equal to x0
+2024-08-15 18:59:08.441 | INFO     | __main__:omprint:30 - pending_processes: [{'uuid': '1c55fa40-dc02-40d4-9fce-169e97f74396', 'language': 'Espanol', 'voice': 'Pedro', 'main_question': 'identificar nombres de inventores a partir de emojis de sus inventos', 'num_questions': 10, 'num_options': 3, 'background_music': 'animada2', 'background_video': 'newyork3', 'fecha_creacion': '2024-08-15T18:56:52.624063+00:00', 'fecha_modificacion': '2024-08-15T18:56:52.624063+00:00', 'estado': 'pendiente'}]
+2024-08-15 18:59:08.442 | INFO     | __main__:omprint:30 - Ejecutando el proceso ID: 1c55fa40-dc02-40d4-9fce-169e97f74396
+2024-08-15 18:59:08.442 | INFO     | __main__:omprint:30 - ---------------------------------------------------
+2024-08-15 18:59:08.443 | INFO     | __main__:omprint:30 - uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video: 1c55fa40-dc02-40d4-9fce-169e97f74396 Espanol Pedro identificar nombres de inventores a partir de emojis de sus inventos 10 3 animada2 newyork3
+2024-08-15 18:59:08.443 | INFO     | __main__:omprint:30 - ---------------------------------------------------
+2024-08-15 18:59:08.444 | INFO     | __main__:omprint:30 - Genera una lista de 10 preguntas cortas en idioma Espanol en formato JSON para un quiz / trivia sobre ['identificar nombres de inventores a partir de emojis de sus inventos']. El JSON debe incluir una pregunta principal corta en idioma Espanol sin emojis en ella, con el estilo MrBeast en la propiedad 'main_question' que aplique para todas las preguntas de la propiedad 'questions', seguido de un arreglo 'questions' que contenga objetos con las siguientes propiedades: el texto de la pregunta corta en idioma Espanol sin emojis en ella con variantes  para hacer la pronunciación más humana y consistente SIN INCLUIR EL EMOJI, una imagen representada como un emoji, opciones de respuesta en idioma Espanol con 3 opciones donde alternes la opción correcta en las diferentes posiciones del arreglo de opciones entre 0 y 2, (IMPORTANTE: deben tener un tamano de 18 caracteres máximo por opción), y el índice de la opción correcta (IMPORTANTE: Las opciones correctas deben estár en posiciones aleatorias entre 0 y 2 dentro del arreglo de la propiedad 'options').
+
+Aquí hay un ejemplo del formato:
+
+{
+  "main_question": "Pregunta principal de ejemplo?",
+  "questions": [
+    {
+        "question_text": "Variantes de la pregunta de ejemplo?",
+        "question_image": "🇩🇴",
+        "options": ['"Opción 1"', '"Opción 2"', '"Opción 3"'],
+        "correct_option_index": 2
+    }
+  ]
+} 
+
+Notas Importantes: - Todo el contenido que generes debe estar en idioma Espanol.
+- En las opciones distribuye de forma equitativa y no secuencial la asignación de las opciones correctas en posiciones entre 0 y {num_options - 1}.
+- Todos los campos son obligatorios que estén presentes aunque estén en blanco.
+- REALIZA UNA DOBE VERIFICACION DE LAS OPCIONES CORRECTAS. NO PUEDES COMETER ERRORES.
+
+2024-08-15 18:59:12.540 | INFO     | __main__:omprint:30 - {'main_question': '¿Quién es el inventor según los emojis de sus inventos?', 'questions': [{'question_text': '¿Quién inventó la bombilla?', 'question_image': '💡', 'options': ['Thomas Edison', 'Nikola Tesla', 'Alexander Graham']}, '{', 'question_text    :', '¿Quién es el creador del teléfono?', 'question_image    :   ', '📞  ', 'options   :   [', '   ', 'Alexander Graham', 'Nikola Tesla', 'Thomas Edison', '  '], 'correct_option_index : 1  },{': ' ,  ', '¿Quién inventó la penicilina?   ': '  , ', '  ': 'Alexander Fleming', 'options   :   [': 1, 'Louis Pasteur': 'Carlos Chagas  ]   ,  ', 'correct_option_index': 0}
+2024-08-15 18:59:12.545 | INFO     | __main__:omprint:30 - Error al procesar el proceso ID: 1c55fa40-dc02-40d4-9fce-169e97f74396, error: 'correct_option_index'
+2024-08-15 18:59:17.546 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-15 18:59:17.546 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.

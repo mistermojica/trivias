@@ -1,0 +1,332 @@
+2024-08-17 17:02:03.408 | INFO     | __main__:omprint:30 - pending_processes: [{'uuid': '3f43e1b6-7c39-424a-b2a8-d49258f36a07', 'language': 'Spanish', 'voice': 'Andres', 'main_question': 'Qué tanto sabes sobre la creación del mundo según Génesis.', 'num_questions': 10, 'num_options': 3, 'background_music': 'deporte4', 'background_video': 'nubes1', 'fecha_creacion': '2024-08-17T17:02:03.402508+00:00', 'fecha_modificacion': '2024-08-17T17:02:03.402508+00:00', 'estado': 'pendiente'}]
+2024-08-17 17:02:03.408 | INFO     | __main__:omprint:30 - Ejecutando el proceso ID: 3f43e1b6-7c39-424a-b2a8-d49258f36a07
+2024-08-17 17:02:03.409 | INFO     | __main__:omprint:30 - ---------------------------------------------------
+2024-08-17 17:02:03.409 | INFO     | __main__:omprint:30 - uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video: 3f43e1b6-7c39-424a-b2a8-d49258f36a07 Spanish Andres Qué tanto sabes sobre la creación del mundo según Génesis. 10 3 deporte4 nubes1
+2024-08-17 17:02:03.410 | INFO     | __main__:omprint:30 - ---------------------------------------------------
+2024-08-17 17:02:03.410 | INFO     | __main__:omprint:30 - Genera una lista de 10 preguntas cortas en idioma Spanish en formato JSON para un quiz / trivia sobre ['Qué tanto sabes sobre la creación del mundo según Génesis.']. El JSON debe incluir una pregunta principal corta en idioma Spanish sin emojis en ella, con el estilo MrBeast en la propiedad 'main_question' que aplique para todas las preguntas de la propiedad 'questions', seguido de un arreglo 'questions' que contenga objetos con las siguientes propiedades: el texto de la pregunta corta en idioma Spanish  con variantes mencionando siempre el tema central en cada pregunta  para hacer la pronunciación más humana y consistente ,  opciones de respuesta en idioma Spanish con 3 opciones donde alternes la opción correcta en las diferentes posiciones del arreglo de opciones entre 0 y 2, (IMPORTANTE: deben tener un tamano de 18 caracteres máximo por opción), y el índice de la opción correcta (IMPORTANTE: Las opciones correctas deben estár en posiciones aleatorias entre 0 y 2 dentro del arreglo de la propiedad 'options').
+
+Aquí hay un ejemplo del formato:
+
+{
+  "main_question": "Pregunta principal de ejemplo?",
+  "questions": [
+    {
+        "question_text": "Variantes de la pregunta de ejemplo?",
+        "question_image": "",
+        "options": ['"Opción 1"', '"Opción 2"', '"Opción 3"'],
+        "correct_option_index": 2
+    }
+  ]
+} 
+
+Notas Importantes: - Todo el contenido que generes debe estar en idioma Spanish.
+- En las opciones distribuye de forma equitativa y no secuencial la asignación de las opciones correctas en posiciones entre 0 y {num_options - 1}.
+- Todos los campos son obligatorios que estén presentes aunque estén en blanco.
+- REALIZA UNA DOBE VERIFICACION DE LAS OPCIONES CORRECTAS. NO PUEDES COMETER ERRORES.
+
+2024-08-17 17:02:10.956 | INFO     | __main__:omprint:30 - {'main_question': '¿Qué tanto sabes sobre la creación del mundo según Génesis?', 'questions': [{'question_text': '¿En cuántos días creó Dios el mundo?', 'question_image': '', 'options': ['Siete días', 'Seis días', 'Cinco días'], 'correct_option_index': 1}, {'question_text': '¿Qué creó Dios el primer día?', 'question_image': '', 'options': ['La luz', 'Las estrellas', 'Los animales'], 'correct_option_index': 0}, {'question_text': '¿Qué creó en el cuarto día?', 'question_image': '', 'options': ['Las plantas', 'El sol y la luna', 'Los peces'], 'correct_option_index': 1}, {'question_text': '¿Qué creó Dios el tercer día?', 'question_image': '', 'options': ['Las aves', 'Las plantas y árboles', 'Los cielos'], 'correct_option_index': 1}, {'question_text': '¿Quién fue creado a imagen de Dios?', 'question_image': '', 'options': ['Los animales', 'El hombre', 'Las aves'], 'correct_option_index': 1}, {'question_text': '¿Qué creó el sexto día?', 'question_image': '', 'options': ['Los árboles', 'Los humanos y animales', 'Las estrellas'], 'correct_option_index': 1}, {'question_text': '¿Qué se creó antes de los animales?', 'question_image': '', 'options': ['Las plantas', 'Las aguas', 'El hombre'], 'correct_option_index': 0}, {'question_text': '¿Cómo se describe a la creación?', 'question_image': '', 'options': ['Como caótica', 'Como buena', 'Como inmensa'], 'correct_option_index': 1}, {'question_text': '¿En qué día descansó Dios?', 'question_image': '', 'options': ['Tercer día', 'Séptimo día', 'Quinto día'], 'correct_option_index': 1}, {'question_text': '¿Qué dijo Dios sobre su creación?', 'question_image': '', 'options': ['Era perfecta', 'Era útil', 'Era normal'], 'correct_option_index': 0}]}
+2024-08-17 17:02:11.600 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - ctxVideo: {'video_width': 1080, 'video_height': 1920, 'video_duration': 6.8100000000000005}
+2024-08-17 17:02:11.600 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - video_total_duration: 6.8100000000000005
+2024-08-17 17:02:11.601 | INFO     | __main__:omprint:30 - [DEBUG] ============= add_logo - ctxVideo: {'video_width': 1080, 'video_height': 1920, 'video_duration': 6.8100000000000005} =============
+2024-08-17 17:02:11.639 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - logo_clip.w, logo_clip.h: 540 175
+2024-08-17 17:02:11.639 | INFO     | __main__:omprint:30 - [DEBUG] ============= add_question_text - ctxVideo: {'video_width': 1080, 'video_height': 1920, 'video_duration': 6.8100000000000005} =============
+2024-08-17 17:02:11.640 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - max_width: 920
+2024-08-17 17:02:11.640 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - text_length: 36
+2024-08-17 17:02:11.640 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - fontsize: 80
+2024-08-17 17:02:11.695 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - question_clip.w, question_clip.h: 920 291
+2024-08-17 17:02:11.715 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - question_image_clip.w, question_image_clip.h: 91 120
+2024-08-17 17:02:11.715 | INFO     | __main__:omprint:30 - [DEBUG] question_image_clip: <function VideoClip.set_position.<locals>.<lambda> at 0x717a617e7920>
+2024-08-17 17:02:11.716 | INFO     | __main__:omprint:30 - [DEBUG] options_top_margin: 991
+2024-08-17 17:02:11.864 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - account_clip.w, account_clip.h: 430 64
+2024-08-17 17:02:11.887 | INFO     | __main__:omprint:30 - [DEBUG] video_total_duration 1: 6.8100000000000005
+2024-08-17 17:02:11.888 | INFO     | __main__:omprint:30 - [DEBUG] narration_audio.duration: 1.81
+2024-08-17 17:02:11.889 | INFO     | __main__:omprint:30 - [DEBUG] clock_sound_effects.duration: 3
+2024-08-17 17:02:11.890 | INFO     | __main__:omprint:30 - [DEBUG] ding_sound_effects.duration: 2
+2024-08-17 17:02:11.891 | INFO     | __main__:omprint:30 - [DEBUG] narration_audio_winner.duration: 0.85
+2024-08-17 17:02:11.892 | INFO     | __main__:omprint:30 - [DEBUG] final_audio.duration 2: 6.8100000000000005
+2024-08-17 17:02:11.892 | INFO     | __main__:omprint:30 - [DEBUG] final_clip.duration 2: 6.8100000000000005
+2024-08-17 17:02:12.360 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - ctxVideo: {'video_width': 1080, 'video_height': 1920, 'video_duration': 6.5}
+2024-08-17 17:02:12.360 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - video_total_duration: 6.5
+2024-08-17 17:02:12.360 | INFO     | __main__:omprint:30 - [DEBUG] ============= add_logo - ctxVideo: {'video_width': 1080, 'video_height': 1920, 'video_duration': 6.5} =============
+2024-08-17 17:02:12.395 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - logo_clip.w, logo_clip.h: 540 175
+2024-08-17 17:02:12.396 | INFO     | __main__:omprint:30 - [DEBUG] ============= add_question_text - ctxVideo: {'video_width': 1080, 'video_height': 1920, 'video_duration': 6.5} =============
+2024-08-17 17:02:12.396 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - max_width: 920
+2024-08-17 17:02:12.396 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - text_length: 29
+2024-08-17 17:02:12.397 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - fontsize: 80
+2024-08-17 17:02:12.439 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - question_clip.w, question_clip.h: 920 194
+2024-08-17 17:02:12.458 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - question_image_clip.w, question_image_clip.h: 91 120
+2024-08-17 17:02:12.458 | INFO     | __main__:omprint:30 - [DEBUG] question_image_clip: <function VideoClip.set_position.<locals>.<lambda> at 0x717a4dde47c0>
+2024-08-17 17:02:12.459 | INFO     | __main__:omprint:30 - [DEBUG] options_top_margin: 894
+2024-08-17 17:02:12.602 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - account_clip.w, account_clip.h: 430 64
+2024-08-17 17:02:12.626 | INFO     | __main__:omprint:30 - [DEBUG] video_total_duration 1: 6.5
+2024-08-17 17:02:12.627 | INFO     | __main__:omprint:30 - [DEBUG] narration_audio.duration: 1.5
+2024-08-17 17:02:12.627 | INFO     | __main__:omprint:30 - [DEBUG] clock_sound_effects.duration: 3
+2024-08-17 17:02:12.627 | INFO     | __main__:omprint:30 - [DEBUG] ding_sound_effects.duration: 2
+2024-08-17 17:02:12.627 | INFO     | __main__:omprint:30 - [DEBUG] narration_audio_winner.duration: 0.61
+2024-08-17 17:02:12.628 | INFO     | __main__:omprint:30 - [DEBUG] final_audio.duration 2: 6.5
+2024-08-17 17:02:12.628 | INFO     | __main__:omprint:30 - [DEBUG] final_clip.duration 2: 6.5
+2024-08-17 17:02:13.193 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - ctxVideo: {'video_width': 1080, 'video_height': 1920, 'video_duration': 6.34}
+2024-08-17 17:02:13.193 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - video_total_duration: 6.34
+2024-08-17 17:02:13.194 | INFO     | __main__:omprint:30 - [DEBUG] ============= add_logo - ctxVideo: {'video_width': 1080, 'video_height': 1920, 'video_duration': 6.34} =============
+2024-08-17 17:02:13.228 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - logo_clip.w, logo_clip.h: 540 175
+2024-08-17 17:02:13.228 | INFO     | __main__:omprint:30 - [DEBUG] ============= add_question_text - ctxVideo: {'video_width': 1080, 'video_height': 1920, 'video_duration': 6.34} =============
+2024-08-17 17:02:13.228 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - max_width: 920
+2024-08-17 17:02:13.229 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - text_length: 27
+2024-08-17 17:02:13.229 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - fontsize: 80
+2024-08-17 17:02:13.270 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - question_clip.w, question_clip.h: 920 194
+2024-08-17 17:02:13.289 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - question_image_clip.w, question_image_clip.h: 91 120
+2024-08-17 17:02:13.290 | INFO     | __main__:omprint:30 - [DEBUG] question_image_clip: <function VideoClip.set_position.<locals>.<lambda> at 0x717a63a9dd00>
+2024-08-17 17:02:13.290 | INFO     | __main__:omprint:30 - [DEBUG] options_top_margin: 894
+2024-08-17 17:02:13.435 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - account_clip.w, account_clip.h: 430 64
+2024-08-17 17:02:13.460 | INFO     | __main__:omprint:30 - [DEBUG] video_total_duration 1: 6.34
+2024-08-17 17:02:13.460 | INFO     | __main__:omprint:30 - [DEBUG] narration_audio.duration: 1.34
+2024-08-17 17:02:13.462 | INFO     | __main__:omprint:30 - [DEBUG] clock_sound_effects.duration: 3
+2024-08-17 17:02:13.463 | INFO     | __main__:omprint:30 - [DEBUG] ding_sound_effects.duration: 2
+2024-08-17 17:02:13.464 | INFO     | __main__:omprint:30 - [DEBUG] narration_audio_winner.duration: 1.0
+2024-08-17 17:02:13.465 | INFO     | __main__:omprint:30 - [DEBUG] final_audio.duration 2: 6.34
+2024-08-17 17:02:13.466 | INFO     | __main__:omprint:30 - [DEBUG] final_clip.duration 2: 6.34
+2024-08-17 17:02:13.919 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - ctxVideo: {'video_width': 1080, 'video_height': 1920, 'video_duration': 6.55}
+2024-08-17 17:02:13.920 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - video_total_duration: 6.55
+2024-08-17 17:02:13.920 | INFO     | __main__:omprint:30 - [DEBUG] ============= add_logo - ctxVideo: {'video_width': 1080, 'video_height': 1920, 'video_duration': 6.55} =============
+2024-08-17 17:02:13.952 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - logo_clip.w, logo_clip.h: 540 175
+2024-08-17 17:02:13.952 | INFO     | __main__:omprint:30 - [DEBUG] ============= add_question_text - ctxVideo: {'video_width': 1080, 'video_height': 1920, 'video_duration': 6.55} =============
+2024-08-17 17:02:13.952 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - max_width: 920
+2024-08-17 17:02:13.953 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - text_length: 29
+2024-08-17 17:02:13.953 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - fontsize: 80
+2024-08-17 17:02:13.995 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - question_clip.w, question_clip.h: 920 194
+2024-08-17 17:02:14.014 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - question_image_clip.w, question_image_clip.h: 91 120
+2024-08-17 17:02:14.014 | INFO     | __main__:omprint:30 - [DEBUG] question_image_clip: <function VideoClip.set_position.<locals>.<lambda> at 0x717a61c6e5c0>
+2024-08-17 17:02:14.014 | INFO     | __main__:omprint:30 - [DEBUG] options_top_margin: 894
+2024-08-17 17:02:14.162 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - account_clip.w, account_clip.h: 430 64
+2024-08-17 17:02:14.184 | INFO     | __main__:omprint:30 - [DEBUG] video_total_duration 1: 6.55
+2024-08-17 17:02:14.185 | INFO     | __main__:omprint:30 - [DEBUG] narration_audio.duration: 1.55
+2024-08-17 17:02:14.186 | INFO     | __main__:omprint:30 - [DEBUG] clock_sound_effects.duration: 3
+2024-08-17 17:02:14.187 | INFO     | __main__:omprint:30 - [DEBUG] ding_sound_effects.duration: 2
+2024-08-17 17:02:14.188 | INFO     | __main__:omprint:30 - [DEBUG] narration_audio_winner.duration: 1.31
+2024-08-17 17:02:14.189 | INFO     | __main__:omprint:30 - [DEBUG] final_audio.duration 2: 6.859999999999999
+2024-08-17 17:02:14.190 | INFO     | __main__:omprint:30 - [DEBUG] final_clip.duration 2: 6.55
+2024-08-17 17:02:14.746 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - ctxVideo: {'video_width': 1080, 'video_height': 1920, 'video_duration': 6.75}
+2024-08-17 17:02:14.746 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - video_total_duration: 6.75
+2024-08-17 17:02:14.747 | INFO     | __main__:omprint:30 - [DEBUG] ============= add_logo - ctxVideo: {'video_width': 1080, 'video_height': 1920, 'video_duration': 6.75} =============
+2024-08-17 17:02:14.780 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - logo_clip.w, logo_clip.h: 540 175
+2024-08-17 17:02:14.781 | INFO     | __main__:omprint:30 - [DEBUG] ============= add_question_text - ctxVideo: {'video_width': 1080, 'video_height': 1920, 'video_duration': 6.75} =============
+2024-08-17 17:02:14.781 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - max_width: 920
+2024-08-17 17:02:14.782 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - text_length: 35
+2024-08-17 17:02:14.782 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - fontsize: 80
+2024-08-17 17:02:14.829 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - question_clip.w, question_clip.h: 920 194
+2024-08-17 17:02:14.848 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - question_image_clip.w, question_image_clip.h: 91 120
+2024-08-17 17:02:14.848 | INFO     | __main__:omprint:30 - [DEBUG] question_image_clip: <function VideoClip.set_position.<locals>.<lambda> at 0x717a4d7976a0>
+2024-08-17 17:02:14.849 | INFO     | __main__:omprint:30 - [DEBUG] options_top_margin: 894
+2024-08-17 17:02:14.992 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - account_clip.w, account_clip.h: 430 64
+2024-08-17 17:02:15.018 | INFO     | __main__:omprint:30 - [DEBUG] video_total_duration 1: 6.75
+2024-08-17 17:02:15.019 | INFO     | __main__:omprint:30 - [DEBUG] narration_audio.duration: 1.75
+2024-08-17 17:02:15.019 | INFO     | __main__:omprint:30 - [DEBUG] clock_sound_effects.duration: 3
+2024-08-17 17:02:15.020 | INFO     | __main__:omprint:30 - [DEBUG] ding_sound_effects.duration: 2
+2024-08-17 17:02:15.020 | INFO     | __main__:omprint:30 - [DEBUG] narration_audio_winner.duration: 0.56
+2024-08-17 17:02:15.020 | INFO     | __main__:omprint:30 - [DEBUG] final_audio.duration 2: 6.75
+2024-08-17 17:02:15.020 | INFO     | __main__:omprint:30 - [DEBUG] final_clip.duration 2: 6.75
+2024-08-17 17:02:15.451 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - ctxVideo: {'video_width': 1080, 'video_height': 1920, 'video_duration': 6.26}
+2024-08-17 17:02:15.452 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - video_total_duration: 6.26
+2024-08-17 17:02:15.452 | INFO     | __main__:omprint:30 - [DEBUG] ============= add_logo - ctxVideo: {'video_width': 1080, 'video_height': 1920, 'video_duration': 6.26} =============
+2024-08-17 17:02:15.486 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - logo_clip.w, logo_clip.h: 540 175
+2024-08-17 17:02:15.486 | INFO     | __main__:omprint:30 - [DEBUG] ============= add_question_text - ctxVideo: {'video_width': 1080, 'video_height': 1920, 'video_duration': 6.26} =============
+2024-08-17 17:02:15.486 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - max_width: 920
+2024-08-17 17:02:15.487 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - text_length: 23
+2024-08-17 17:02:15.487 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - fontsize: 80
+2024-08-17 17:02:15.538 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - question_clip.w, question_clip.h: 920 194
+2024-08-17 17:02:15.558 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - question_image_clip.w, question_image_clip.h: 91 120
+2024-08-17 17:02:15.558 | INFO     | __main__:omprint:30 - [DEBUG] question_image_clip: <function VideoClip.set_position.<locals>.<lambda> at 0x717a61a63ec0>
+2024-08-17 17:02:15.558 | INFO     | __main__:omprint:30 - [DEBUG] options_top_margin: 894
+2024-08-17 17:02:15.709 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - account_clip.w, account_clip.h: 430 64
+2024-08-17 17:02:15.732 | INFO     | __main__:omprint:30 - [DEBUG] video_total_duration 1: 6.26
+2024-08-17 17:02:15.732 | INFO     | __main__:omprint:30 - [DEBUG] narration_audio.duration: 1.26
+2024-08-17 17:02:15.733 | INFO     | __main__:omprint:30 - [DEBUG] clock_sound_effects.duration: 3
+2024-08-17 17:02:15.733 | INFO     | __main__:omprint:30 - [DEBUG] ding_sound_effects.duration: 2
+2024-08-17 17:02:15.734 | INFO     | __main__:omprint:30 - [DEBUG] narration_audio_winner.duration: 1.28
+2024-08-17 17:02:15.734 | INFO     | __main__:omprint:30 - [DEBUG] final_audio.duration 2: 6.54
+2024-08-17 17:02:15.734 | INFO     | __main__:omprint:30 - [DEBUG] final_clip.duration 2: 6.26
+2024-08-17 17:02:16.190 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - ctxVideo: {'video_width': 1080, 'video_height': 1920, 'video_duration': 6.74}
+2024-08-17 17:02:16.191 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - video_total_duration: 6.74
+2024-08-17 17:02:16.191 | INFO     | __main__:omprint:30 - [DEBUG] ============= add_logo - ctxVideo: {'video_width': 1080, 'video_height': 1920, 'video_duration': 6.74} =============
+2024-08-17 17:02:16.223 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - logo_clip.w, logo_clip.h: 540 175
+2024-08-17 17:02:16.224 | INFO     | __main__:omprint:30 - [DEBUG] ============= add_question_text - ctxVideo: {'video_width': 1080, 'video_height': 1920, 'video_duration': 6.74} =============
+2024-08-17 17:02:16.224 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - max_width: 920
+2024-08-17 17:02:16.224 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - text_length: 35
+2024-08-17 17:02:16.224 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - fontsize: 80
+2024-08-17 17:02:16.273 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - question_clip.w, question_clip.h: 920 194
+2024-08-17 17:02:16.292 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - question_image_clip.w, question_image_clip.h: 91 120
+2024-08-17 17:02:16.292 | INFO     | __main__:omprint:30 - [DEBUG] question_image_clip: <function VideoClip.set_position.<locals>.<lambda> at 0x717a4dcb31a0>
+2024-08-17 17:02:16.292 | INFO     | __main__:omprint:30 - [DEBUG] options_top_margin: 894
+2024-08-17 17:02:16.436 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - account_clip.w, account_clip.h: 430 64
+2024-08-17 17:02:16.463 | INFO     | __main__:omprint:30 - [DEBUG] video_total_duration 1: 6.74
+2024-08-17 17:02:16.464 | INFO     | __main__:omprint:30 - [DEBUG] narration_audio.duration: 1.74
+2024-08-17 17:02:16.464 | INFO     | __main__:omprint:30 - [DEBUG] clock_sound_effects.duration: 3
+2024-08-17 17:02:16.464 | INFO     | __main__:omprint:30 - [DEBUG] ding_sound_effects.duration: 2
+2024-08-17 17:02:16.464 | INFO     | __main__:omprint:30 - [DEBUG] narration_audio_winner.duration: 0.8
+2024-08-17 17:02:16.465 | INFO     | __main__:omprint:30 - [DEBUG] final_audio.duration 2: 6.74
+2024-08-17 17:02:16.465 | INFO     | __main__:omprint:30 - [DEBUG] final_clip.duration 2: 6.74
+2024-08-17 17:02:16.978 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - ctxVideo: {'video_width': 1080, 'video_height': 1920, 'video_duration': 6.5600000000000005}
+2024-08-17 17:02:16.979 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - video_total_duration: 6.5600000000000005
+2024-08-17 17:02:16.979 | INFO     | __main__:omprint:30 - [DEBUG] ============= add_logo - ctxVideo: {'video_width': 1080, 'video_height': 1920, 'video_duration': 6.5600000000000005} =============
+2024-08-17 17:02:17.011 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - logo_clip.w, logo_clip.h: 540 175
+2024-08-17 17:02:17.013 | INFO     | __main__:omprint:30 - [DEBUG] ============= add_question_text - ctxVideo: {'video_width': 1080, 'video_height': 1920, 'video_duration': 6.5600000000000005} =============
+2024-08-17 17:02:17.013 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - max_width: 920
+2024-08-17 17:02:17.013 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - text_length: 32
+2024-08-17 17:02:17.014 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - fontsize: 80
+2024-08-17 17:02:17.057 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - question_clip.w, question_clip.h: 920 194
+2024-08-17 17:02:17.077 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - question_image_clip.w, question_image_clip.h: 91 120
+2024-08-17 17:02:17.077 | INFO     | __main__:omprint:30 - [DEBUG] question_image_clip: <function VideoClip.set_position.<locals>.<lambda> at 0x717a4d945300>
+2024-08-17 17:02:17.078 | INFO     | __main__:omprint:30 - [DEBUG] options_top_margin: 894
+2024-08-17 17:02:17.227 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - account_clip.w, account_clip.h: 430 64
+2024-08-17 17:02:17.250 | INFO     | __main__:omprint:30 - [DEBUG] video_total_duration 1: 6.5600000000000005
+2024-08-17 17:02:17.251 | INFO     | __main__:omprint:30 - [DEBUG] narration_audio.duration: 1.56
+2024-08-17 17:02:17.251 | INFO     | __main__:omprint:30 - [DEBUG] clock_sound_effects.duration: 3
+2024-08-17 17:02:17.251 | INFO     | __main__:omprint:30 - [DEBUG] ding_sound_effects.duration: 2
+2024-08-17 17:02:17.252 | INFO     | __main__:omprint:30 - [DEBUG] narration_audio_winner.duration: 0.66
+2024-08-17 17:02:17.252 | INFO     | __main__:omprint:30 - [DEBUG] final_audio.duration 2: 6.5600000000000005
+2024-08-17 17:02:17.253 | INFO     | __main__:omprint:30 - [DEBUG] final_clip.duration 2: 6.5600000000000005
+2024-08-17 17:02:17.752 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - ctxVideo: {'video_width': 1080, 'video_height': 1920, 'video_duration': 6.49}
+2024-08-17 17:02:17.752 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - video_total_duration: 6.49
+2024-08-17 17:02:17.753 | INFO     | __main__:omprint:30 - [DEBUG] ============= add_logo - ctxVideo: {'video_width': 1080, 'video_height': 1920, 'video_duration': 6.49} =============
+2024-08-17 17:02:17.787 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - logo_clip.w, logo_clip.h: 540 175
+2024-08-17 17:02:17.789 | INFO     | __main__:omprint:30 - [DEBUG] ============= add_question_text - ctxVideo: {'video_width': 1080, 'video_height': 1920, 'video_duration': 6.49} =============
+2024-08-17 17:02:17.790 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - max_width: 920
+2024-08-17 17:02:17.791 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - text_length: 26
+2024-08-17 17:02:17.792 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - fontsize: 80
+2024-08-17 17:02:17.833 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - question_clip.w, question_clip.h: 920 194
+2024-08-17 17:02:17.853 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - question_image_clip.w, question_image_clip.h: 91 120
+2024-08-17 17:02:17.853 | INFO     | __main__:omprint:30 - [DEBUG] question_image_clip: <function VideoClip.set_position.<locals>.<lambda> at 0x717a61ccee80>
+2024-08-17 17:02:17.854 | INFO     | __main__:omprint:30 - [DEBUG] options_top_margin: 894
+2024-08-17 17:02:18.002 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - account_clip.w, account_clip.h: 430 64
+2024-08-17 17:02:18.025 | INFO     | __main__:omprint:30 - [DEBUG] video_total_duration 1: 6.49
+2024-08-17 17:02:18.026 | INFO     | __main__:omprint:30 - [DEBUG] narration_audio.duration: 1.49
+2024-08-17 17:02:18.027 | INFO     | __main__:omprint:30 - [DEBUG] clock_sound_effects.duration: 3
+2024-08-17 17:02:18.027 | INFO     | __main__:omprint:30 - [DEBUG] ding_sound_effects.duration: 2
+2024-08-17 17:02:18.028 | INFO     | __main__:omprint:30 - [DEBUG] narration_audio_winner.duration: 0.89
+2024-08-17 17:02:18.028 | INFO     | __main__:omprint:30 - [DEBUG] final_audio.duration 2: 6.49
+2024-08-17 17:02:18.029 | INFO     | __main__:omprint:30 - [DEBUG] final_clip.duration 2: 6.49
+2024-08-17 17:02:18.528 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - ctxVideo: {'video_width': 1080, 'video_height': 1920, 'video_duration': 6.61}
+2024-08-17 17:02:18.529 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - video_total_duration: 6.61
+2024-08-17 17:02:18.529 | INFO     | __main__:omprint:30 - [DEBUG] ============= add_logo - ctxVideo: {'video_width': 1080, 'video_height': 1920, 'video_duration': 6.61} =============
+2024-08-17 17:02:18.562 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - logo_clip.w, logo_clip.h: 540 175
+2024-08-17 17:02:18.562 | INFO     | __main__:omprint:30 - [DEBUG] ============= add_question_text - ctxVideo: {'video_width': 1080, 'video_height': 1920, 'video_duration': 6.61} =============
+2024-08-17 17:02:18.563 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - max_width: 920
+2024-08-17 17:02:18.563 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - text_length: 33
+2024-08-17 17:02:18.563 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - fontsize: 80
+2024-08-17 17:02:18.608 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - question_clip.w, question_clip.h: 920 194
+2024-08-17 17:02:18.627 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - question_image_clip.w, question_image_clip.h: 91 120
+2024-08-17 17:02:18.627 | INFO     | __main__:omprint:30 - [DEBUG] question_image_clip: <function VideoClip.set_position.<locals>.<lambda> at 0x717a61a622a0>
+2024-08-17 17:02:18.628 | INFO     | __main__:omprint:30 - [DEBUG] options_top_margin: 894
+2024-08-17 17:02:18.767 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - account_clip.w, account_clip.h: 430 64
+2024-08-17 17:02:18.788 | INFO     | __main__:omprint:30 - [DEBUG] video_total_duration 1: 6.61
+2024-08-17 17:02:18.789 | INFO     | __main__:omprint:30 - [DEBUG] narration_audio.duration: 1.61
+2024-08-17 17:02:18.789 | INFO     | __main__:omprint:30 - [DEBUG] clock_sound_effects.duration: 3
+2024-08-17 17:02:18.789 | INFO     | __main__:omprint:30 - [DEBUG] ding_sound_effects.duration: 2
+2024-08-17 17:02:18.790 | INFO     | __main__:omprint:30 - [DEBUG] narration_audio_winner.duration: 0.8
+2024-08-17 17:02:18.790 | INFO     | __main__:omprint:30 - [DEBUG] final_audio.duration 2: 6.61
+2024-08-17 17:02:18.790 | INFO     | __main__:omprint:30 - [DEBUG] final_clip.duration 2: 6.61
+2024-08-17 17:02:18.958 | INFO     | __main__:omprint:30 - create_background_video - background_clip.w, background_clip.h: 1080 1920
+2024-08-17 17:02:18.967 | INFO     | __main__:omprint:30 - trivia_sequence: <moviepy.video.compositing.CompositeVideoClip.CompositeVideoClip object at 0x717a63a6a990>
+2024-08-17 17:02:31.053 | INFO     | __main__:omprint:30 - Ya hay un proceso en ejecución.
+2024-08-17 17:03:31.054 | INFO     | __main__:omprint:30 - Ya hay un proceso en ejecución.
+2024-08-17 17:04:31.055 | INFO     | __main__:omprint:30 - Ya hay un proceso en ejecución.
+2024-08-17 17:05:31.055 | INFO     | __main__:omprint:30 - Ya hay un proceso en ejecución.
+2024-08-17 17:06:31.056 | INFO     | __main__:omprint:30 - Ya hay un proceso en ejecución.
+2024-08-17 17:07:31.057 | INFO     | __main__:omprint:30 - Ya hay un proceso en ejecución.
+2024-08-17 17:08:31.058 | INFO     | __main__:omprint:30 - Ya hay un proceso en ejecución.
+2024-08-17 17:09:31.058 | INFO     | __main__:omprint:30 - Ya hay un proceso en ejecución.
+2024-08-17 17:10:31.059 | INFO     | __main__:omprint:30 - Ya hay un proceso en ejecución.
+2024-08-17 17:11:31.060 | INFO     | __main__:omprint:30 - Ya hay un proceso en ejecución.
+2024-08-17 17:12:18.992 | INFO     | __main__:omprint:30 - Tiempo de procesamiento: 608.035304069519 segundos
+2024-08-17 17:12:18.992 | INFO     | __main__:omprint:30 - video_to_upload: https://trivias.luxuryroamers.com/generados/videos/3f43e1b6-7c39-424a-b2a8-d49258f36a07.mp4
+2024-08-17 17:12:18.993 | INFO     | __main__:omprint:30 - El script tomó 615.58 segundos en ejecutarse.
+2024-08-17 17:12:24.000 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-17 17:12:24.001 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-17 17:12:31.060 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-17 17:12:31.061 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-17 17:13:31.061 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-17 17:13:31.062 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-17 17:14:31.062 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-17 17:14:31.062 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-17 17:15:31.063 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-17 17:15:31.063 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-17 17:16:31.064 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-17 17:16:31.064 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-17 17:17:31.065 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-17 17:17:31.065 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-17 17:18:31.066 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-17 17:18:31.066 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-17 17:19:31.067 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-17 17:19:31.067 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-17 17:20:31.068 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-17 17:20:31.068 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-17 17:21:31.068 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-17 17:21:31.069 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-17 17:22:31.069 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-17 17:22:31.070 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-17 17:23:31.070 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-17 17:23:31.071 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-17 17:24:31.071 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-17 17:24:31.072 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-17 17:25:31.072 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-17 17:25:31.073 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-17 17:26:31.073 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-17 17:26:31.074 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-17 17:27:31.074 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-17 17:27:31.075 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-17 17:28:31.075 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-17 17:28:31.076 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-17 17:29:31.076 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-17 17:29:31.076 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-17 17:30:31.077 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-17 17:30:31.077 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-17 17:31:31.078 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-17 17:31:31.078 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-17 17:32:31.079 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-17 17:32:31.079 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-17 17:33:31.080 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-17 17:33:31.080 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-17 17:34:31.081 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-17 17:34:31.081 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-17 17:35:31.082 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-17 17:35:31.082 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-17 17:36:31.083 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-17 17:36:31.083 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-17 17:37:31.084 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-17 17:37:31.084 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-17 17:38:31.085 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-17 17:38:31.085 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-17 17:39:31.086 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-17 17:39:31.086 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-17 17:40:31.087 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-17 17:40:31.087 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-17 17:41:31.088 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-17 17:41:31.088 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-17 17:42:31.089 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-17 17:42:31.089 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-17 17:43:31.090 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-17 17:43:31.090 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-17 17:44:31.090 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-17 17:44:31.091 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-17 17:45:31.091 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-17 17:45:31.092 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-17 17:46:31.092 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-17 17:46:31.093 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-17 17:47:31.093 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-17 17:47:31.094 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-17 17:48:31.094 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-17 17:48:31.095 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-17 17:49:31.095 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-17 17:49:31.096 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-17 17:50:31.096 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-17 17:50:31.096 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-17 17:51:31.097 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-17 17:51:31.098 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-17 17:52:31.098 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-17 17:52:31.098 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-17 17:53:31.099 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-17 17:53:31.099 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-17 17:54:31.100 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-17 17:54:31.100 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-17 17:55:31.101 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-17 17:55:31.101 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.

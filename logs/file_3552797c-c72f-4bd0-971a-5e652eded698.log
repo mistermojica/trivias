@@ -1,0 +1,49 @@
+2024-08-14 12:38:24.781 | INFO     | __main__:omprint:30 - pending_processes: [{'uuid': '3552797c-c72f-4bd0-971a-5e652eded698', 'language': '', 'voice': '', 'main_question': '', 'num_questions': 2, 'num_options': 3, 'background_music': '', 'background_video': '', 'fecha_creacion': '2024-08-14T12:38:24.776847+00:00', 'fecha_modificacion': '2024-08-14T12:38:24.776847+00:00', 'estado': 'pendiente'}]
+2024-08-14 12:38:24.782 | INFO     | __main__:omprint:30 - Ejecutando el proceso ID: 3552797c-c72f-4bd0-971a-5e652eded698
+2024-08-14 12:38:24.783 | INFO     | __main__:omprint:30 - ---------------------------------------------------
+2024-08-14 12:38:24.783 | INFO     | __main__:omprint:30 - uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video: 3552797c-c72f-4bd0-971a-5e652eded698    2 3  
+2024-08-14 12:38:24.783 | INFO     | __main__:omprint:30 - ---------------------------------------------------
+2024-08-14 12:38:24.784 | INFO     | __main__:omprint:30 - Genera una lista de 2 preguntas cortas en idioma  en formato JSON para un quiz / trivia sobre ['']. El JSON debe incluir una pregunta principal corta en idioma  sin emojis en ella, con el estilo MrBeast en la propiedad 'main_question' que aplique para todas las preguntas de la propiedad 'questions', seguido de un arreglo 'questions' que contenga objetos con las siguientes propiedades: el texto de la pregunta corta en idioma   con variantes mencionando siempre el tema central en cada pregunta  para hacer la pronunciación más humana y consistente ,  opciones de respuesta en idioma  con 3 opciones donde alternes la opción correcta en las diferentes posiciones del arreglo de opciones entre 0 y 2, (IMPORTANTE: deben tener un tamano de 18 caracteres máximo por opción), y el índice de la opción correcta (IMPORTANTE: Las opciones correctas deben estár en posiciones aleatorias entre 0 y 2 dentro del arreglo de la propiedad 'options').
+
+Aquí hay un ejemplo del formato:
+
+{
+  "main_question": "Pregunta principal de ejemplo?",
+  "questions": [
+    {
+        "question_text": "Variantes de la pregunta de ejemplo?",
+        "question_image": "",
+        "options": ['"Opción 1"', '"Opción 2"', '"Opción 3"'],
+        "correct_option_index": 2
+    }
+  ]
+} 
+
+Notas Importantes: - Todo el contenido que generes debe estar en idioma .
+- En las opciones distribuye de forma equitativa y no secuencial la asignación de las opciones correctas en posiciones entre 0 y {num_options - 1}.
+- Todos los campos son obligatorios que estén presentes aunque estén en blanco.
+- REALIZA UNA DOBE VERIFICACION DE LAS OPCIONES CORRECTAS. NO PUEDES COMETER ERRORES.
+
+2024-08-14 12:38:26.972 | INFO     | __main__:omprint:30 - {'main_question': '¿Qué sabes sobre historia?', 'questions': [{'question_text': '¿Quién fue el primer rey de España?', 'question_image': '', 'options': ['Fernando II', 'Felipe II', 'Carlos I'], 'correct_option_index': 0}, {'question_text': '¿En qué año cayó el Imperio Romano?', 'question_image': '', 'options': ['476 d.C.', '1492 d.C.', '1453 d.C.'], 'correct_option_index': 1}]}
+2024-08-14 12:38:26.973 | INFO     | __main__:omprint:30 - Error on attempt 1: Voice with Engine 'neural' and VoiceId '' not found.
+2024-08-14 12:38:29.973 | INFO     | __main__:omprint:30 - Error on attempt 2: Voice with Engine 'neural' and VoiceId '' not found.
+2024-08-14 12:38:32.975 | INFO     | __main__:omprint:30 - Error on attempt 3: Voice with Engine 'neural' and VoiceId '' not found.
+2024-08-14 12:38:35.975 | INFO     | __main__:omprint:30 - Error on attempt 4: Voice with Engine 'neural' and VoiceId '' not found.
+2024-08-14 12:38:38.976 | INFO     | __main__:omprint:30 - Error on attempt 5: Voice with Engine 'neural' and VoiceId '' not found.
+2024-08-14 12:38:41.977 | INFO     | __main__:omprint:30 - Error on attempt 6: Voice with Engine 'neural' and VoiceId '' not found.
+2024-08-14 12:38:44.977 | INFO     | __main__:omprint:30 - Error on attempt 7: Voice with Engine 'neural' and VoiceId '' not found.
+2024-08-14 12:38:47.982 | INFO     | __main__:omprint:30 - Error al procesar el proceso ID: 3552797c-c72f-4bd0-971a-5e652eded698, error: Failed to get Polly response after 7 attempts
+2024-08-14 12:38:52.982 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-14 12:38:52.983 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-14 12:39:15.730 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-14 12:39:15.730 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-14 12:40:15.731 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-14 12:40:15.731 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-14 12:41:15.732 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-14 12:41:15.732 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-14 12:42:15.733 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-14 12:42:15.733 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-14 12:43:15.734 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-14 12:43:15.734 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-14 12:44:15.735 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-14 12:44:15.735 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.

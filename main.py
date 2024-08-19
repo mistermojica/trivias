@@ -32,7 +32,7 @@ def omprint(*args, **kwargs):
 
 builtins.print = omprint
 
-PUBLIC_FOLDER = 'videos'
+PUBLIC_FOLDER = 'public'
 
 PORT = os.environ.get("PORT", "")
 
@@ -135,7 +135,7 @@ def run_http_server(port, directory):
     httpd = HTTPServer(('localhost', port), SimpleHTTPRequestHandler)
     httpd.serve_forever()
 
-async def create_video_local(uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video):
+async def create_video_local(uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video, logo_path, account_text):
     # Registrar el tiempo de inicio
     start_time = time.time()
     
@@ -152,12 +152,12 @@ async def create_video_local(uuid4, language, voice, main_question, num_question
     # Llamar a la función para borrar el contenido de la carpeta
     clear_directory(download_path)
 
-    create_video_main(uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video)
+    create_video_main(uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video, logo_path, account_text)
 
     # send_vehicle_data_to_instagram(ctx)
     
     server_url = f"https://trivias.luxuryroamers.com"
-    video_to_upload = f'{server_url}/{uuid4}.mp4'
+    video_to_upload = f'{server_url}/generados/videos/{uuid4}.mp4'
     cover_url = f'{server_url}/{uuid4}/thumbnail/{uuid4}.jpg'
     
     print("video_to_upload:", video_to_upload)
@@ -183,7 +183,7 @@ procesos_table = db.table('procesos')
 
 process_lock = threading.Lock()
 
-def save_to_db(process_id, language, voice, main_question, num_questions, num_options, background_music, background_video):
+def save_to_db(process_id, language, voice, main_question, num_questions, num_options, background_music, background_video, logo_path, account_text):
     timestamp = datetime.now(timezone.utc).isoformat()
     proceso = {
         "uuid": process_id,
@@ -194,6 +194,8 @@ def save_to_db(process_id, language, voice, main_question, num_questions, num_op
         "num_options": num_options,
         "background_music": background_music,
         "background_video": background_video,
+        "logo_path": logo_path,
+        "account_text": account_text,
         "fecha_creacion": timestamp,
         "fecha_modificacion": timestamp,
         "estado": "pendiente"
@@ -203,7 +205,7 @@ def save_to_db(process_id, language, voice, main_question, num_questions, num_op
 
 
 def update_process_status(process_id, status):
-    url_video = f'https://trivias.luxuryroamers.com/{process_id}.mp4'
+    url_video = f'https://trivias.luxuryroamers.com/generados/videos/{process_id}.mp4'
     Process = Query()
     procesos_table.update(
         {
@@ -247,7 +249,9 @@ def process_pending_tasks():
                         process['num_questions'],
                         process['num_options'],
                         process['background_music'],
-                        process['background_video']
+                        process['background_video'],
+                        process['logo_path'],
+                        process['account_text']
                     ))
                     update_process_status(process_id, 'completado')
                 except Exception as e:
@@ -266,23 +270,42 @@ def index():
 
 @app.route('/process', methods=['POST'])
 def process_request():
-    data = request.json
+    # Genera el process_id al inicio
+    process_id = str(uuid.uuid4())
+    
+    # Captura el archivo logo
+    if 'logo' in request.files:
+        logo = request.files['logo']
+        # Obtén la extensión del archivo (por ejemplo, '.jpg' o '.png')
+        extension = os.path.splitext(logo.filename)[1]
+        # Crea la ruta de almacenamiento usando process_id como nombre del archivo
+        logo_path = os.path.join('./public/cargados/logos', f"{process_id}{extension}")
+        os.makedirs(os.path.dirname(logo_path), exist_ok=True)
+        # Guarda el archivo
+        logo.save(logo_path)
+    else:
+        logo_path = ""
+        # return jsonify({"error": "No se subió el logo"}), 400
+
+    # data = request.form.to_dict()  # Captura datos del formulario
+    data = request.form
+
     print(data)
-    language = data.get('language', 'Espanol')
+
+    language = data.get('language', 'Spanish')
     voice = data.get('voice', 'Pedro')
     main_question = data.get('main_question')
     num_questions = int(data.get('num_questions'))
     num_options = int(data.get('num_options'))
     background_music = data.get('background_music')
     background_video = data.get('background_video')
-
-    process_id = str(uuid.uuid4())
+    account_text = data.get('account', '@clubdelosgenios')
 
     logger.add(f"./logs/file_{process_id}.log", rotation="1 day")
 
-    save_to_db(process_id, language, voice, main_question, num_questions, num_options, background_music, background_video)
+    save_to_db(process_id, language, voice, main_question, num_questions, num_options, background_music, background_video, logo_path, account_text)
 
-    # Trigger the process_pending_tasks function
+    # Inicia el proceso en segundo plano
     threading.Thread(target=process_pending_tasks).start()
 
     return jsonify({"message": "Proceso registrado exitosamente.", "process_id": process_id}), 200
@@ -316,6 +339,10 @@ def list_videos():
             video_files.append({
                 "process_id": process['uuid'],
                 "filename": process['url_video'],
+                "main_question": process['main_question'],
+                "num_questions": process['num_questions'],
+                "num_options": process['num_options'],
+                "language": process['language'],
                 "modified": process['fecha_modificacion'],
                 "status": process['estado']
             })
@@ -331,6 +358,46 @@ def delete_process_endpoint(process_id):
     try:
         delete_process(process_id)
         return jsonify({"message": "Process deleted successfully"}), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+@app.route('/backgroundvideo/<videoid>', methods=['GET'])
+def get_background_video(videoid):
+    try:
+        # Ruta del video en la carpeta pública
+        videofile = videoid + ".mp4"
+        video_path = os.path.join('public', 'assets', 'videos', videofile)
+
+        # Verificar si el video existe en la ruta pública
+        if not os.path.exists(video_path):
+            return jsonify({"error": "Video not found"}), 404
+
+        # Generar la URL pública completa para acceder al video
+        video_url = f"https://trivias.luxuryroamers.com/assets/videos/{videofile}"
+
+        return jsonify({"video_url": video_url}), 200
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+    
+
+@app.route('/backgroundmusic/<musicid>', methods=['GET'])
+def get_background_music(musicid):
+    try:
+        # Ruta de la música en la carpeta pública
+        musicfile = musicid + ".mp3"
+        music_path = os.path.join('public', 'assets', 'music', musicfile)
+
+        # Verificar si la música existe en la ruta pública
+        if not os.path.exists(music_path):
+            return jsonify({"error": "Music not found"}), 404
+
+        # Generar la URL pública completa para acceder a la música
+        music_url = f"https://trivias.luxuryroamers.com/assets/music/{musicfile}"
+
+        return jsonify({"music_url": music_url}), 200
+
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 

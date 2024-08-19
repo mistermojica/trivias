@@ -1,0 +1,78 @@
+2024-08-19 02:43:36.206 | INFO     | __main__:omprint:30 - pending_processes: [{'uuid': 'a5efaa64-be34-45fb-9117-774833a9734b', 'language': 'English', 'voice': 'Matthew', 'main_question': 'Qué tanto sabes sobre la historia del Arca de Noé.', 'num_questions': 2, 'num_options': 3, 'background_music': 'animada3', 'background_video': 'playas2', 'logo_path': './public/cargados/logos/a5efaa64-be34-45fb-9117-774833a9734b.png', 'account_text': '@clubdelosgenios', 'fecha_creacion': '2024-08-19T02:43:36.201695+00:00', 'fecha_modificacion': '2024-08-19T02:43:36.201695+00:00', 'estado': 'pendiente'}]
+2024-08-19 02:43:36.207 | INFO     | __main__:omprint:30 - Ejecutando el proceso ID: a5efaa64-be34-45fb-9117-774833a9734b
+2024-08-19 02:43:36.208 | INFO     | __main__:omprint:30 - ---------------------------------------------------
+2024-08-19 02:43:36.208 | INFO     | __main__:omprint:30 - uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video: a5efaa64-be34-45fb-9117-774833a9734b English Matthew Qué tanto sabes sobre la historia del Arca de Noé. 2 3 animada3 playas2
+2024-08-19 02:43:36.209 | INFO     | __main__:omprint:30 - ---------------------------------------------------
+2024-08-19 02:43:36.209 | INFO     | __main__:omprint:30 - Genera una lista de 2 preguntas cortas en idioma English en formato JSON para un quiz / trivia sobre ['Qué tanto sabes sobre la historia del Arca de Noé.']. El JSON debe incluir una pregunta principal corta en idioma English sin emojis en ella, con el estilo MrBeast en la propiedad 'main_question' que aplique para todas las preguntas de la propiedad 'questions', seguido de un arreglo 'questions' que contenga objetos con las siguientes propiedades: el texto de la pregunta corta en idioma English  con variantes mencionando siempre el tema central en cada pregunta  para hacer la pronunciación más humana y consistente ,  opciones de respuesta en idioma English con 3 opciones donde alternes la opción correcta en las diferentes posiciones del arreglo de opciones entre 0 y 2, (IMPORTANTE: deben tener un tamaño de 18 caracteres máximo por opción), y el índice de la opción correcta (IMPORTANTE: Las opciones correctas deben estár en posiciones aleatorias entre 0 y 2 dentro del arreglo de la propiedad 'options').
+
+Aquí hay un ejemplo del formato:
+
+{
+  "main_question": "Pregunta principal de ejemplo?",
+  "questions": [
+    {
+        "question_text": "Variantes de la pregunta de ejemplo?",
+        "question_image": "",
+        "options": ['"Opción 1"', '"Opción 2"', '"Opción 3"'],
+        "correct_option_index": 2
+    }
+  ]
+} 
+
+Notas Importantes: - Todo el contenido que generes debe estar en idioma English.
+- En las opciones distribuye de forma equitativa y no secuencial la asignación de las opciones correctas en posiciones entre 0 y {num_options - 1}.
+- Todos los campos son obligatorios que estén presentes aunque estén en blanco.
+- REALIZA UNA DOBE VERIFICACION DE LAS OPCIONES CORRECTAS. NO PUEDES COMETER ERRORES.
+
+2024-08-19 02:43:37.851 | INFO     | __main__:omprint:30 - {'main_question': "How well do you know the story of Noah's Ark?", 'questions': [{'question_text': 'How many animals did Noah take?', 'question_image': '', 'options': ['One of each kind', 'Two of each kind', 'Seven pairs of each'], 'correct_option_index': 1}, {'question_text': 'What caused the flood?', 'question_image': '', 'options': ["Man's wickedness", 'A long drought', 'A volcanic eruption'], 'correct_option_index': 0}]}
+2024-08-19 02:43:37.851 | INFO     | __main__:omprint:30 - final_logo_path: ./public/cargados/logos/a5efaa64-be34-45fb-9117-774833a9734b.png
+2024-08-19 02:43:37.852 | INFO     | __main__:omprint:30 - final_account_text: @clubdelosgenios
+2024-08-19 02:43:38.532 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - ctxVideo: {'video_width': 1080, 'video_height': 1920, 'video_duration': 6.6899999999999995}
+2024-08-19 02:43:38.533 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - video_total_duration: 6.6899999999999995
+2024-08-19 02:43:38.533 | INFO     | __main__:omprint:30 - [DEBUG] ============= add_logo - ctxVideo: {'video_width': 1080, 'video_height': 1920, 'video_duration': 6.6899999999999995} =============
+2024-08-19 02:43:38.547 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - logo_clip.w, logo_clip.h: 540 150
+2024-08-19 02:43:38.548 | INFO     | __main__:omprint:30 - [DEBUG] ============= add_question_text - ctxVideo: {'video_width': 1080, 'video_height': 1920, 'video_duration': 6.6899999999999995} =============
+2024-08-19 02:43:38.548 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - max_width: 920
+2024-08-19 02:43:38.549 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - text_length: 31
+2024-08-19 02:43:38.549 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - fontsize: 80
+2024-08-19 02:43:38.594 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - question_clip.w, question_clip.h: 920 194
+2024-08-19 02:43:38.615 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - question_image_clip.w, question_image_clip.h: 91 120
+2024-08-19 02:43:38.616 | INFO     | __main__:omprint:30 - [DEBUG] question_image_clip: <function VideoClip.set_position.<locals>.<lambda> at 0x713f505d5b20>
+2024-08-19 02:43:38.616 | INFO     | __main__:omprint:30 - [DEBUG] options_top_margin: 894
+2024-08-19 02:43:38.628 | INFO     | __main__:omprint:30 - [DEBUG] add_options - fontsize for option 'One of each kind': 70
+2024-08-19 02:43:38.670 | INFO     | __main__:omprint:30 - [DEBUG] add_options - fontsize for option 'Two of each kind': 70
+2024-08-19 02:43:38.712 | INFO     | __main__:omprint:30 - [DEBUG] add_options - fontsize for option 'Seven pairs of each': 68
+2024-08-19 02:43:38.780 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - account_clip.w, account_clip.h: 392 64
+2024-08-19 02:43:38.804 | INFO     | __main__:omprint:30 - [DEBUG] video_total_duration 1: 6.6899999999999995
+2024-08-19 02:43:38.804 | INFO     | __main__:omprint:30 - [DEBUG] narration_audio.duration: 1.69
+2024-08-19 02:43:38.805 | INFO     | __main__:omprint:30 - [DEBUG] clock_sound_effects.duration: 3
+2024-08-19 02:43:38.805 | INFO     | __main__:omprint:30 - [DEBUG] ding_sound_effects.duration: 2
+2024-08-19 02:43:38.805 | INFO     | __main__:omprint:30 - [DEBUG] narration_audio_winner.duration: 1.31
+2024-08-19 02:43:38.806 | INFO     | __main__:omprint:30 - [DEBUG] final_audio.duration 2: 7.0
+2024-08-19 02:43:38.806 | INFO     | __main__:omprint:30 - [DEBUG] final_clip.duration 2: 6.6899999999999995
+2024-08-19 02:43:39.334 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - ctxVideo: {'video_width': 1080, 'video_height': 1920, 'video_duration': 6.5}
+2024-08-19 02:43:39.334 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - video_total_duration: 6.5
+2024-08-19 02:43:39.334 | INFO     | __main__:omprint:30 - [DEBUG] ============= add_logo - ctxVideo: {'video_width': 1080, 'video_height': 1920, 'video_duration': 6.5} =============
+2024-08-19 02:43:39.348 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - logo_clip.w, logo_clip.h: 540 150
+2024-08-19 02:43:39.348 | INFO     | __main__:omprint:30 - [DEBUG] ============= add_question_text - ctxVideo: {'video_width': 1080, 'video_height': 1920, 'video_duration': 6.5} =============
+2024-08-19 02:43:39.349 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - max_width: 920
+2024-08-19 02:43:39.349 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - text_length: 22
+2024-08-19 02:43:39.349 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - fontsize: 80
+2024-08-19 02:43:39.389 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - question_clip.w, question_clip.h: 920 194
+2024-08-19 02:43:39.410 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - question_image_clip.w, question_image_clip.h: 91 120
+2024-08-19 02:43:39.411 | INFO     | __main__:omprint:30 - [DEBUG] question_image_clip: <function VideoClip.set_position.<locals>.<lambda> at 0x713f510ea160>
+2024-08-19 02:43:39.411 | INFO     | __main__:omprint:30 - [DEBUG] options_top_margin: 894
+2024-08-19 02:43:39.423 | INFO     | __main__:omprint:30 - [DEBUG] add_options - fontsize for option 'Man's wickedness': 70
+2024-08-19 02:43:39.464 | INFO     | __main__:omprint:30 - [DEBUG] add_options - fontsize for option 'A long drought': 70
+2024-08-19 02:43:39.510 | INFO     | __main__:omprint:30 - [DEBUG] add_options - fontsize for option 'A volcanic eruption': 68
+2024-08-19 02:43:39.585 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - account_clip.w, account_clip.h: 392 64
+2024-08-19 02:43:39.617 | INFO     | __main__:omprint:30 - [DEBUG] video_total_duration 1: 6.5
+2024-08-19 02:43:39.618 | INFO     | __main__:omprint:30 - [DEBUG] narration_audio.duration: 1.5
+2024-08-19 02:43:39.618 | INFO     | __main__:omprint:30 - [DEBUG] clock_sound_effects.duration: 3
+2024-08-19 02:43:39.618 | INFO     | __main__:omprint:30 - [DEBUG] ding_sound_effects.duration: 2
+2024-08-19 02:43:39.619 | INFO     | __main__:omprint:30 - [DEBUG] narration_audio_winner.duration: 1.0
+2024-08-19 02:43:39.620 | INFO     | __main__:omprint:30 - [DEBUG] final_audio.duration 2: 6.5
+2024-08-19 02:43:39.621 | INFO     | __main__:omprint:30 - [DEBUG] final_clip.duration 2: 6.5
+2024-08-19 02:43:39.877 | INFO     | __main__:omprint:30 - create_background_video - background_clip.w, background_clip.h: 1080 1920
+2024-08-19 02:43:39.886 | INFO     | __main__:omprint:30 - trivia_sequence: <moviepy.video.compositing.CompositeVideoClip.CompositeVideoClip object at 0x713f53398650>
+2024-08-19 02:44:09.472 | INFO     | __main__:omprint:30 - Ya hay un proceso en ejecución.

@@ -1,0 +1,47 @@
+2024-08-15 18:47:38.988 | INFO     | __main__:omprint:30 - pending_processes: [{'uuid': 'c5f4fbcf-e8fb-4f78-86e6-dc20af3190fa', 'language': 'Espanol', 'voice': 'Pedro', 'main_question': 'identificar inventos a partir de emojis', 'num_questions': 2, 'num_options': 3, 'background_music': 'animada2', 'background_video': 'playas2', 'fecha_creacion': '2024-08-15T18:47:38.983684+00:00', 'fecha_modificacion': '2024-08-15T18:47:38.983684+00:00', 'estado': 'pendiente'}]
+2024-08-15 18:47:38.989 | INFO     | __main__:omprint:30 - Ejecutando el proceso ID: c5f4fbcf-e8fb-4f78-86e6-dc20af3190fa
+2024-08-15 18:47:38.989 | INFO     | __main__:omprint:30 - ---------------------------------------------------
+2024-08-15 18:47:38.989 | INFO     | __main__:omprint:30 - uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video: c5f4fbcf-e8fb-4f78-86e6-dc20af3190fa Espanol Pedro identificar inventos a partir de emojis 2 3 animada2 playas2
+2024-08-15 18:47:38.990 | INFO     | __main__:omprint:30 - ---------------------------------------------------
+2024-08-15 18:47:38.990 | INFO     | __main__:omprint:30 - Genera una lista de 2 preguntas cortas en idioma Espanol en formato JSON para un quiz / trivia sobre ['identificar inventos a partir de emojis']. El JSON debe incluir una pregunta principal corta en idioma Espanol sin emojis en ella, con el estilo MrBeast en la propiedad 'main_question' que aplique para todas las preguntas de la propiedad 'questions', seguido de un arreglo 'questions' que contenga objetos con las siguientes propiedades: el texto de la pregunta corta en idioma Espanol sin emojis en ella con variantes  para hacer la pronunciación más humana y consistente SIN INCLUIR EL EMOJI, una imagen representada como un emoji, opciones de respuesta en idioma Espanol con 3 opciones donde alternes la opción correcta en las diferentes posiciones del arreglo de opciones entre 0 y 2, (IMPORTANTE: deben tener un tamano de 18 caracteres máximo por opción), y el índice de la opción correcta (IMPORTANTE: Las opciones correctas deben estár en posiciones aleatorias entre 0 y 2 dentro del arreglo de la propiedad 'options').
+
+Aquí hay un ejemplo del formato:
+
+{
+  "main_question": "Pregunta principal de ejemplo?",
+  "questions": [
+    {
+        "question_text": "Variantes de la pregunta de ejemplo?",
+        "question_image": "🇩🇴",
+        "options": ['"Opción 1"', '"Opción 2"', '"Opción 3"'],
+        "correct_option_index": 2
+    }
+  ]
+} 
+
+Notas Importantes: - Todo el contenido que generes debe estar en idioma Espanol.
+- En las opciones distribuye de forma equitativa y no secuencial la asignación de las opciones correctas en posiciones entre 0 y {num_options - 1}.
+- Todos los campos son obligatorios que estén presentes aunque estén en blanco.
+- REALIZA UNA DOBE VERIFICACION DE LAS OPCIONES CORRECTAS. NO PUEDES COMETER ERRORES.
+
+2024-08-15 18:47:40.871 | INFO     | __main__:omprint:30 - {'main_question': 'Identifica el invento a partir de emojis:', 'questions': [{'question_text': '¿Qué invento es este?', 'question_image': '💡', 'options': ['Bombilla', 'Televisor', 'Computadora'], 'correct_option_index': 0}, {'question_text': '¿Puedes adivinar el invento?', 'question_image': '🚀', 'options': ['Avión', 'Cohete', 'Bicicleta'], 'correct_option_index': 1}]}
+2024-08-15 18:47:41.441 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - ctxVideo: {'video_width': 1080, 'video_height': 1920, 'video_duration': 6.1899999999999995}
+2024-08-15 18:47:41.441 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - video_total_duration: 6.1899999999999995
+2024-08-15 18:47:41.441 | INFO     | __main__:omprint:30 - [DEBUG] ============= add_logo - ctxVideo: {'video_width': 1080, 'video_height': 1920, 'video_duration': 6.1899999999999995} =============
+2024-08-15 18:47:41.479 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - logo_clip.w, logo_clip.h: 540 175
+2024-08-15 18:47:41.480 | INFO     | __main__:omprint:30 - [DEBUG] ============= add_question_text - ctxVideo: {'video_width': 1080, 'video_height': 1920, 'video_duration': 6.1899999999999995} =============
+2024-08-15 18:47:41.480 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - max_width: 920
+2024-08-15 18:47:41.480 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - text_length: 41
+2024-08-15 18:47:41.480 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - fontsize: 80
+2024-08-15 18:47:41.536 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - question_clip.w, question_clip.h: 920 291
+2024-08-15 18:47:41.545 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - question_image_clip.w, question_image_clip.h: 161 160
+2024-08-15 18:47:41.546 | INFO     | __main__:omprint:30 - [DEBUG] question_image_clip: <function VideoClip.set_position.<locals>.<lambda> at 0x7118fa4b7920>
+2024-08-15 18:47:41.546 | INFO     | __main__:omprint:30 - [DEBUG] options_top_margin: 941
+2024-08-15 18:47:41.696 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - account_clip.w, account_clip.h: 430 64
+2024-08-15 18:47:41.711 | INFO     | __main__:omprint:30 - Error al procesar el proceso ID: c5f4fbcf-e8fb-4f78-86e6-dc20af3190fa, error: 'dict' object has no attribute 'video_width'
+2024-08-15 18:47:46.712 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-15 18:47:46.713 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-15 18:48:07.217 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-15 18:48:07.217 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-15 18:49:07.218 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-15 18:49:07.218 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.

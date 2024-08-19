@@ -1,0 +1,55 @@
+2024-08-15 18:00:28.848 | INFO     | __main__:omprint:30 - pending_processes: [{'uuid': 'f35a57f8-ece2-481f-a435-9eb2f521f3d0', 'language': 'Espanol', 'voice': 'Pedro', 'main_question': 'identificar tipos de vehiculos a partir de emojis', 'num_questions': 2, 'num_options': 3, 'background_music': 'animada3', 'background_video': 'playas2', 'fecha_creacion': '2024-08-15T18:00:28.770029+00:00', 'fecha_modificacion': '2024-08-15T18:00:28.770029+00:00', 'estado': 'pendiente'}]
+2024-08-15 18:00:28.849 | INFO     | __main__:omprint:30 - Ejecutando el proceso ID: f35a57f8-ece2-481f-a435-9eb2f521f3d0
+2024-08-15 18:00:28.849 | INFO     | __main__:omprint:30 - ---------------------------------------------------
+2024-08-15 18:00:28.850 | INFO     | __main__:omprint:30 - uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video: f35a57f8-ece2-481f-a435-9eb2f521f3d0 Espanol Pedro identificar tipos de vehiculos a partir de emojis 2 3 animada3 playas2
+2024-08-15 18:00:28.850 | INFO     | __main__:omprint:30 - ---------------------------------------------------
+2024-08-15 18:00:28.850 | INFO     | __main__:omprint:30 - Genera una lista de 2 preguntas cortas en idioma Espanol en formato JSON para un quiz / trivia sobre ['identificar tipos de vehiculos a partir de emojis']. El JSON debe incluir una pregunta principal corta en idioma Espanol sin emojis en ella, con el estilo MrBeast en la propiedad 'main_question' que aplique para todas las preguntas de la propiedad 'questions', seguido de un arreglo 'questions' que contenga objetos con las siguientes propiedades: el texto de la pregunta corta en idioma Espanol sin emojis en ella con variantes  para hacer la pronunciación más humana y consistente SIN INCLUIR EL EMOJI, una imagen representada como un emoji, opciones de respuesta en idioma Espanol con 3 opciones donde alternes la opción correcta en las diferentes posiciones del arreglo de opciones entre 0 y 2, (IMPORTANTE: deben tener un tamano de 18 caracteres máximo por opción), y el índice de la opción correcta (IMPORTANTE: Las opciones correctas deben estár en posiciones aleatorias entre 0 y 2 dentro del arreglo de la propiedad 'options').
+
+Aquí hay un ejemplo del formato:
+
+{
+  "main_question": "Pregunta principal de ejemplo?",
+  "questions": [
+    {
+        "question_text": "Variantes de la pregunta de ejemplo?",
+        "question_image": "🇩🇴",
+        "options": ['"Opción 1"', '"Opción 2"', '"Opción 3"'],
+        "correct_option_index": 2
+    }
+  ]
+} 
+
+Notas Importantes: - Todo el contenido que generes debe estar en idioma Espanol.
+- En las opciones distribuye de forma equitativa y no secuencial la asignación de las opciones correctas en posiciones entre 0 y {num_options - 1}.
+- Todos los campos son obligatorios que estén presentes aunque estén en blanco.
+- REALIZA UNA DOBE VERIFICACION DE LAS OPCIONES CORRECTAS. NO PUEDES COMETER ERRORES.
+
+2024-08-15 18:00:30.658 | INFO     | __main__:omprint:30 - {'main_question': '¿Puedes identificar el vehículo a partir de emojis?', 'questions': [{'question_text': '¿Qué vehículo representa este emoji?', 'question_image': '🚗', 'options': ['Coche', 'Bicicleta', 'Tren'], 'correct_option_index': 0}, {'question_text': '¿Cuál es este tipo de vehículo?', 'question_image': '🚌', 'options': ['Camión', 'Autobús', 'Moto'], 'correct_option_index': 1}]}
+2024-08-15 18:00:31.204 | INFO     | __main__:omprint:30 - [DEBUG] video_total_duration: 6.91
+2024-08-15 18:00:31.241 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - max_width: 920
+2024-08-15 18:00:31.241 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - text_length: 51
+2024-08-15 18:00:31.242 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - fontsize: 80
+2024-08-15 18:00:31.308 | INFO     | __main__:omprint:30 - [DEBUG] question_image_clip: <function VideoClip.set_position.<locals>.<lambda> at 0x732cdebc77e0>
+2024-08-15 18:00:31.308 | INFO     | __main__:omprint:30 - [DEBUG] options_top_margin: 941
+2024-08-15 18:00:31.459 | INFO     | __main__:omprint:30 - [DEBUG] video_total_duration 1: 6.91
+2024-08-15 18:00:31.460 | INFO     | __main__:omprint:30 - [DEBUG] narration_audio.duration: 1.91
+2024-08-15 18:00:31.460 | INFO     | __main__:omprint:30 - [DEBUG] clock_sound_effects.duration: 3
+2024-08-15 18:00:31.460 | INFO     | __main__:omprint:30 - [DEBUG] ding_sound_effects.duration: 2
+2024-08-15 18:00:31.461 | INFO     | __main__:omprint:30 - [DEBUG] narration_audio_winner.duration: 0.61
+2024-08-15 18:00:31.461 | INFO     | __main__:omprint:30 - [DEBUG] final_audio.duration 2: 6.91
+2024-08-15 18:00:31.461 | INFO     | __main__:omprint:30 - [DEBUG] final_clip.duration 2: 6.91
+2024-08-15 18:00:31.859 | INFO     | __main__:omprint:30 - Error al procesar el proceso ID: f35a57f8-ece2-481f-a435-9eb2f521f3d0, error: [Errno 32] Broken pipe
+
+MoviePy error: FFMPEG encountered the following error while writing file 0_./public/generados/videos/f35a57f8-ece2-481f-a435-9eb2f521f3d0.mp4:
+
+ b'0_./public/generados/videos/f35a57f8-ece2-481f-a435-9eb2f521f3d0.mp4: No such file or directory\n'
+2024-08-15 18:00:36.860 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-15 18:00:36.861 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-15 18:01:08.041 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-15 18:01:08.041 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-15 18:02:08.042 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-15 18:02:08.042 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-15 18:03:08.043 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-15 18:03:08.043 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-15 18:04:08.044 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-15 18:04:08.044 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.

@@ -1,0 +1,74 @@
+2024-08-15 14:32:46.479 | INFO     | __main__:omprint:30 - pending_processes: [{'uuid': '73f827b2-4292-47a5-91e1-c669fd6a54ac', 'language': 'Espanol', 'voice': 'Pedro', 'main_question': 'identificar emociones a partir de emojis', 'num_questions': 2, 'num_options': 3, 'background_music': 'animada2', 'background_video': 'playas2', 'fecha_creacion': '2024-08-15T14:32:46.471326+00:00', 'fecha_modificacion': '2024-08-15T14:32:46.471326+00:00', 'estado': 'pendiente'}]
+2024-08-15 14:32:46.480 | INFO     | __main__:omprint:30 - Ejecutando el proceso ID: 73f827b2-4292-47a5-91e1-c669fd6a54ac
+2024-08-15 14:32:46.481 | INFO     | __main__:omprint:30 - ---------------------------------------------------
+2024-08-15 14:32:46.482 | INFO     | __main__:omprint:30 - uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video: 73f827b2-4292-47a5-91e1-c669fd6a54ac Espanol Pedro identificar emociones a partir de emojis 2 3 animada2 playas2
+2024-08-15 14:32:46.483 | INFO     | __main__:omprint:30 - ---------------------------------------------------
+2024-08-15 14:32:46.483 | INFO     | __main__:omprint:30 - Genera una lista de 2 preguntas cortas en idioma Espanol en formato JSON para un quiz / trivia sobre ['identificar emociones a partir de emojis']. El JSON debe incluir una pregunta principal corta en idioma Espanol sin emojis en ella, con el estilo MrBeast en la propiedad 'main_question' que aplique para todas las preguntas de la propiedad 'questions', seguido de un arreglo 'questions' que contenga objetos con las siguientes propiedades: el texto de la pregunta corta en idioma Espanol sin emojis en ella con variantes  para hacer la pronunciación más humana y consistente SIN INCLUIR EL EMOJI, una imagen representada como un emoji, opciones de respuesta en idioma Espanol con 3 opciones donde alternes la opción correcta en las diferentes posiciones del arreglo de opciones entre 0 y 2, (IMPORTANTE: deben tener un tamano de 18 caracteres máximo por opción), y el índice de la opción correcta (IMPORTANTE: Las opciones correctas deben estár en posiciones aleatorias entre 0 y 2 dentro del arreglo de la propiedad 'options').
+
+Aquí hay un ejemplo del formato:
+
+{
+  "main_question": "Pregunta principal de ejemplo?",
+  "questions": [
+    {
+        "question_text": "Variantes de la pregunta de ejemplo?",
+        "question_image": "🇩🇴",
+        "options": ['"Opción 1"', '"Opción 2"', '"Opción 3"'],
+        "correct_option_index": 2
+    }
+  ]
+} 
+
+Notas Importantes: - Todo el contenido que generes debe estar en idioma Espanol.
+- En las opciones distribuye de forma equitativa y no secuencial la asignación de las opciones correctas en posiciones entre 0 y {num_options - 1}.
+- Todos los campos son obligatorios que estén presentes aunque estén en blanco.
+- REALIZA UNA DOBE VERIFICACION DE LAS OPCIONES CORRECTAS. NO PUEDES COMETER ERRORES.
+
+2024-08-15 14:32:48.211 | INFO     | __main__:omprint:30 - {'main_question': '¿Puedes identificar la emoción en el emoji?', 'questions': [{'question_text': '¿Qué emoción expresa este emoji?', 'question_image': '😄', 'options': ['Felicidad', 'Tristeza', 'Enfado'], 'correct_option_index': 0}, {'question_text': '¿Qué sentimiento tienes aquí?', 'question_image': '😢', 'options': ['Alegría', 'Tristeza', 'Sorpresa'], 'correct_option_index': 1}]}
+2024-08-15 14:32:48.432 | INFO     | __main__:omprint:30 - create_background_video - background_clip.w, background_clip.h: 1080 1920
+2024-08-15 14:32:49.066 | INFO     | __main__:omprint:30 - [DEBUG] video_total_duration: 6.71
+2024-08-15 14:32:49.104 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - max_width: 920
+2024-08-15 14:32:49.105 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - text_length: 43
+2024-08-15 14:32:49.105 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - fontsize: 80
+2024-08-15 14:32:49.173 | INFO     | __main__:omprint:30 - [DEBUG] question_image_clip: <function VideoClip.set_position.<locals>.<lambda> at 0x77962dcbbe20>
+2024-08-15 14:32:49.173 | INFO     | __main__:omprint:30 - [DEBUG] options_top_margin: 941
+2024-08-15 14:32:49.335 | INFO     | __main__:omprint:30 - [DEBUG] video_total_duration 1: 6.71
+2024-08-15 14:32:49.336 | INFO     | __main__:omprint:30 - [DEBUG] narration_audio.duration: 1.71
+2024-08-15 14:32:49.337 | INFO     | __main__:omprint:30 - [DEBUG] clock_sound_effects.duration: 3
+2024-08-15 14:32:49.339 | INFO     | __main__:omprint:30 - [DEBUG] ding_sound_effects.duration: 2
+2024-08-15 14:32:49.340 | INFO     | __main__:omprint:30 - [DEBUG] narration_audio_winner.duration: 0.85
+2024-08-15 14:32:49.342 | INFO     | __main__:omprint:30 - [DEBUG] final_audio.duration 2: 6.71
+2024-08-15 14:32:49.343 | INFO     | __main__:omprint:30 - [DEBUG] final_clip.duration 2: 6.71
+2024-08-15 14:32:49.862 | INFO     | __main__:omprint:30 - [DEBUG] video_total_duration: 6.53
+2024-08-15 14:32:49.896 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - max_width: 920
+2024-08-15 14:32:49.896 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - text_length: 43
+2024-08-15 14:32:49.896 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - fontsize: 80
+2024-08-15 14:32:49.962 | INFO     | __main__:omprint:30 - [DEBUG] question_image_clip: <function VideoClip.set_position.<locals>.<lambda> at 0x77962c129080>
+2024-08-15 14:32:49.963 | INFO     | __main__:omprint:30 - [DEBUG] options_top_margin: 941
+2024-08-15 14:32:50.131 | INFO     | __main__:omprint:30 - [DEBUG] video_total_duration 1: 6.53
+2024-08-15 14:32:50.131 | INFO     | __main__:omprint:30 - [DEBUG] narration_audio.duration: 1.53
+2024-08-15 14:32:50.132 | INFO     | __main__:omprint:30 - [DEBUG] clock_sound_effects.duration: 3
+2024-08-15 14:32:50.132 | INFO     | __main__:omprint:30 - [DEBUG] ding_sound_effects.duration: 2
+2024-08-15 14:32:50.132 | INFO     | __main__:omprint:30 - [DEBUG] narration_audio_winner.duration: 0.8
+2024-08-15 14:32:50.133 | INFO     | __main__:omprint:30 - [DEBUG] final_audio.duration 2: 6.53
+2024-08-15 14:32:50.133 | INFO     | __main__:omprint:30 - [DEBUG] final_clip.duration 2: 6.53
+2024-08-15 14:32:50.348 | INFO     | __main__:omprint:30 - create_background_video - background_clip.w, background_clip.h: 1080 1920
+2024-08-15 14:32:50.354 | INFO     | __main__:omprint:30 - trivia_sequence: <moviepy.video.compositing.CompositeVideoClip.CompositeVideoClip object at 0x77962ff4abd0>
+2024-08-15 14:33:20.382 | INFO     | __main__:omprint:30 - Ya hay un proceso en ejecución.
+2024-08-15 14:33:36.143 | INFO     | __main__:omprint:30 - Tiempo de procesamiento: 47.93175673484802 segundos
+2024-08-15 14:33:36.144 | INFO     | __main__:omprint:30 - video_to_upload: https://trivias.luxuryroamers.com/generados/videos/73f827b2-4292-47a5-91e1-c669fd6a54ac.mp4
+2024-08-15 14:33:36.145 | INFO     | __main__:omprint:30 - El script tomó 49.66 segundos en ejecutarse.
+2024-08-15 14:33:41.151 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-15 14:33:41.152 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-15 14:34:20.383 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-15 14:34:20.383 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-15 14:35:20.384 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-15 14:35:20.384 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-15 14:36:20.385 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-15 14:36:20.385 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-15 14:37:20.386 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-15 14:37:20.386 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-15 14:38:20.387 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-15 14:38:20.387 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-15 14:39:20.388 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-15 14:39:20.388 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.

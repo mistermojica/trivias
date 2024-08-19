@@ -23,11 +23,12 @@ openai = OpenAI()
 
 openai.api_key = OPENAI_API_KEY
 
+# {"Engine": "generative", "LanguageCode": "en-US", "VoiceId": "Matthew", "Gender": "Male", "TextType": "text", "Newscaster": ""},
+# {"Engine": "generative", "LanguageCode": "en-US", "VoiceId": "Ruth", "Gender": "Female", "TextType": "text", "Newscaster": ""},
+# {"Engine": "long-form", "LanguageCode": "en-US", "VoiceId": "Danielle", "Gender": "Female", "TextType": "text", "Newscaster": ""},
+# {"Engine": "long-form", "LanguageCode": "en-US", "VoiceId": "Gregory", "Gender": "Male", "TextType": "text", "Newscaster": ""},
+
 voices = [
-    {"Engine": "generative", "LanguageCode": "en-US", "VoiceId": "Matthew", "Gender": "Male", "TextType": "text", "Newscaster": ""},
-    {"Engine": "generative", "LanguageCode": "en-US", "VoiceId": "Ruth", "Gender": "Female", "TextType": "text", "Newscaster": ""},
-    {"Engine": "long-form", "LanguageCode": "en-US", "VoiceId": "Danielle", "Gender": "Female", "TextType": "text", "Newscaster": ""},
-    {"Engine": "long-form", "LanguageCode": "en-US", "VoiceId": "Gregory", "Gender": "Male", "TextType": "text", "Newscaster": ""},
     {"Engine": "neural", "LanguageCode": "en-US", "VoiceId": "Danielle", "Gender": "Female", "TextType": "ssml", "Newscaster": ""},
     {"Engine": "neural", "LanguageCode": "en-US", "VoiceId": "Gregory", "Gender": "Male", "TextType": "ssml", "Newscaster": ""},
     {"Engine": "neural", "LanguageCode": "en-US", "VoiceId": "Ivy", "Gender": "Female", "TextType": "ssml", "Newscaster": ""},
@@ -41,22 +42,87 @@ voices = [
     {"Engine": "neural", "LanguageCode": "en-US", "VoiceId": "Matthew", "Gender": "Male", "TextType": "ssml", "Newscaster": "news"},
     {"Engine": "neural", "LanguageCode": "en-US", "VoiceId": "Ruth", "Gender": "Female", "TextType": "ssml", "Newscaster": ""},
     {"Engine": "neural", "LanguageCode": "en-US", "VoiceId": "Stephen", "Gender": "Male", "TextType": "ssml", "Newscaster": ""},
+
     {"Engine": "neural", "LanguageCode": "es-US", "VoiceId": "Lupe", "Gender": "Female", "TextType": "ssml", "Newscaster": "news"},
     {"Engine": "neural", "LanguageCode": "es-US", "VoiceId": "Pedro", "Gender": "Male", "TextType": "ssml", "Newscaster": ""},
-    {"Engine": "standard", "LanguageCode": "es-US", "VoiceId": "Miguel", "Gender": "Male", "TextType": "ssml", "Newscaster": ""}
+    {"Engine": "standard", "LanguageCode": "es-US", "VoiceId": "Miguel", "Gender": "Male", "TextType": "ssml", "Newscaster": ""},
+    {"Engine": "standard", "LanguageCode": "es-US", "VoiceId": "Penelope", "Gender": "Female", "TextType": "ssml", "Newscaster": ""},
+    {"Engine": "neural", "LanguageCode": "es-MX", "VoiceId": "Mia", "Gender": "Female", "TextType": "ssml", "Newscaster": ""},
+    {"Engine": "neural", "LanguageCode": "es-MX", "VoiceId": "Andres", "Gender": "Male", "TextType": "ssml", "Newscaster": ""},
+
+    {"Engine": "neural", "LanguageCode": "fr-FR", "VoiceId": "Lea", "Gender": "Female", "TextType": "ssml", "Newscaster": ""},
+    {"Engine": "neural", "LanguageCode": "fr-FR", "VoiceId": "Remi", "Gender": "Male", "TextType": "ssml", "Newscaster": ""},
+    {"Engine": "standard", "LanguageCode": "fr-FR", "VoiceId": "Celine", "Gender": "Female", "TextType": "text", "Newscaster": ""},
+    {"Engine": "standard", "LanguageCode": "fr-FR", "VoiceId": "Mathieu", "Gender": "Male", "TextType": "text", "Newscaster": ""},
+
+    {"Engine": "neural", "LanguageCode": "pt-BR", "VoiceId": "Camila", "Gender": "Female", "TextType": "ssml", "Newscaster": ""},
+    {"Engine": "neural", "LanguageCode": "pt-BR", "VoiceId": "Vitoria", "Gender": "Female", "TextType": "ssml", "Newscaster": ""},
+    {"Engine": "standard", "LanguageCode": "pt-BR", "VoiceId": "Ricardo", "Gender": "Male", "TextType": "ssml", "Newscaster": ""},
+    {"Engine": "neural", "LanguageCode": "pt-BR", "VoiceId": "Thiago", "Gender": "Male", "TextType": "ssml", "Newscaster": ""},
+
+    {"Engine": "neural", "LanguageCode": "it-IT", "VoiceId": "Bianca", "Gender": "Female", "TextType": "ssml", "Newscaster": ""},
+    {"Engine": "neural", "LanguageCode": "it-IT", "VoiceId": "Adriano", "Gender": "Male", "TextType": "ssml", "Newscaster": ""},
+    {"Engine": "standard", "LanguageCode": "it-IT", "VoiceId": "Carla", "Gender": "Female", "TextType": "ssml", "Newscaster": ""},
+    {"Engine": "standard", "LanguageCode": "it-IT", "VoiceId": "Giorgio", "Gender": "Male", "TextType": "ssml", "Newscaster": ""},
+
+    {"Engine": "neural", "LanguageCode": "de-DE", "VoiceId": "Vicki", "Gender": "Female", "TextType": "ssml", "Newscaster": ""},
+    {"Engine": "neural", "LanguageCode": "de-DE", "VoiceId": "Daniel", "Gender": "Male", "TextType": "ssml", "Newscaster": ""},
+    {"Engine": "standard", "LanguageCode": "de-DE", "VoiceId": "Marlene", "Gender": "Female", "TextType": "ssml", "Newscaster": ""},
+    {"Engine": "standard", "LanguageCode": "de-DE", "VoiceId": "Hans", "Gender": "Male", "TextType": "ssml", "Newscaster": ""},
+
+    {"Engine": "standard", "LanguageCode": "ru-RU", "VoiceId": "Tatyana", "Gender": "Female", "TextType": "ssml", "Newscaster": ""},
+    {"Engine": "standard", "LanguageCode": "ru-RU", "VoiceId": "Maxim", "Gender": "Male", "TextType": "ssml", "Newscaster": ""},
+
+    {"Engine": "standard", "LanguageCode": "zh-CN", "VoiceId": "Zhiyu", "Gender": "Female", "TextType": "ssml", "Newscaster": ""},
+
+    {"Engine": "neural", "LanguageCode": "hi-IN", "VoiceId": "Kajal", "Gender": "Female", "TextType": "ssml", "Newscaster": ""},
+    {"Engine": "standard", "LanguageCode": "hi-IN", "VoiceId": "Aditi", "Gender": "Female", "TextType": "ssml", "Newscaster": ""}
 ]
 
-def get_polly_response(engine, voiceid, text, prosodyrate="100%"):
+def find_voice(voiceid, language):
+    language_map = {
+        "English": "en-US",
+        "Spanish": ["es-US", "es-MX"],
+        "French": "fr-FR",
+        "Portuguese": "pt-BR",
+        "Italian": "it-IT",
+        "Chinese": "zh-CN",
+        "Hindi": "hi-IN",
+        "Russian": "ru-RU",
+        "Japanese": "ja-JP",
+        "German": "de-DE"
+    }
+
+    language_code = language_map.get(language)
+    if not language_code:
+        return None
+
+    if isinstance(language_code, list):
+        # Si el código de idioma es una lista (por ejemplo, para Español), buscar en ambos
+        for code in language_code:
+            for voice in voices:
+                if voice["VoiceId"] == voiceid and voice["LanguageCode"] == code:
+                    return voice
+    else:
+        # Para los demás idiomas, buscar en un solo código
+        for voice in voices:
+            if voice["VoiceId"] == voiceid and voice["LanguageCode"] == language_code:
+                return voice
+    return None
+
+
+def get_polly_response(voiceid, language, text, prosodyrate="100%"):
     # print("get_polly_response:", engine, voiceid, text, prosodyrate)
 
     # Coloca tu lista de voces aquí
-    voice = next((v for v in voices if v["Engine"] == engine and v["VoiceId"] == voiceid), None)
+    voice = find_voice(voiceid, language)
 
-    # print(voice)
+    # print("=========================================\n", voice, "\n=========================================")
 
     if not voice:
-        raise ValueError(f"Voice with Engine '{engine}' and VoiceId '{voiceid}' not found.")
+        raise ValueError(f"Voice with Languaje '{language}' and VoiceId '{voiceid}' not found.")
 
+    engine = voice["Engine"]
     text_type = voice["TextType"]
     language_code = voice["LanguageCode"]
     newscaster = voice["Newscaster"]
@@ -96,14 +162,14 @@ def create_file_path(file_path):
     # else:
     #     print(f"La ruta ya existe: {directory}")
 
-def text_to_speech_polly(text, output_filename, voz, max_retries=7):
+def text_to_speech_polly(text, output_filename, voice, language, max_retries=7):
     create_file_path(output_filename)
 
     attempt = 0
     success = False
     while not success and attempt < max_retries:
         try:
-            response = get_polly_response("neural", voz, text, "100%")
+            response = get_polly_response(voice, language, text, "100%")
             audio_data = response["AudioStream"].read()
 
             with open(output_filename, "wb") as out:
@@ -121,19 +187,20 @@ def text_to_speech_polly(text, output_filename, voz, max_retries=7):
     return output_filename
 
 # Generar el audio narrativo con AWS Polly
-def generate_narration(text, output_file, voz):
-    text_to_speech_polly(text, output_file, voz)
+def generate_narration(text, output_file, voice, language):
+    text_to_speech_polly(text, output_file, voice, language)
 
 
-def create_background_video(background_video_path, duration):
+def create_background_video(background_video_path, background_music_path, target_width, target_height, duration):
     # Cargar el video y cortar la duración al tiempo deseado
-    background_clip = VideoFileClip(background_video_path).subclip(0, duration)
+    # background_clip = VideoFileClip(background_video_path).subclip(0, duration)
+    background_clip = VideoFileClip(background_video_path).loop(duration=duration)
+    background_music_clip = AudioFileClip(background_music_path).set_duration(duration).volumex(0.10)
 
     # Eliminar el audio del clip
     background_clip = background_clip.without_audio()
 
-    # Definir las dimensiones objetivo
-    target_width, target_height = 1080, 1920
+    background_clip = background_clip.set_audio(background_music_clip)
 
     # Obtener dimensiones originales
     original_width, original_height = background_clip.size
@@ -162,15 +229,17 @@ def create_background_video(background_video_path, duration):
     print("create_background_video - background_clip.w, background_clip.h:", background_clip.w, background_clip.h)
 
     # Establecer opacidad y devolver el clip
-    return background_clip.set_opacity(0.5)
+    return background_clip.set_opacity(0.7)
 
 
-def add_logo(logo_path, video_clip):
+def add_logo(logo_path, ctxVideo):
+    print(f"[DEBUG] ============= add_logo - ctxVideo: {ctxVideo} =============")
+
     # Abrir el logo como imagen Pillow
     logo_image = Image.open(logo_path)
 
     # Calcular el nuevo tamaño del logo
-    final_width = int(video_clip.w * 0.5)
+    final_width = int(ctxVideo["video_width"] * 0.5)
     aspect_ratio = logo_image.height / logo_image.width
     new_height = int(final_width * aspect_ratio)
 
@@ -178,7 +247,7 @@ def add_logo(logo_path, video_clip):
     logo_resized = logo_image.resize((final_width, new_height), Image.Resampling.LANCZOS)
 
     # Convertir la imagen redimensionada a ImageClip
-    logo_clip = ImageClip(np.array(logo_resized)).set_duration(video_clip.duration)
+    logo_clip = ImageClip(np.array(logo_resized)).set_duration(ctxVideo["video_duration"])
 
     # Posicionar el logo en el video
     logo_clip = logo_clip.set_position(("center", 200))  # Agregar un margen de 100 píxeles desde la parte superior
@@ -187,15 +256,17 @@ def add_logo(logo_path, video_clip):
 
 
 # Añadir texto de la pregunta
-def add_question_text(question_text, video_clip, question_font_path, margin=80, top_margin=450):
+def add_question_text(question_text, ctxVideo, question_font_path, margin=80, top_margin=450):
+    print(f"[DEBUG] ============= add_question_text - ctxVideo: {ctxVideo} =============")
+
     # Calcular el ancho máximo permitido para el texto, considerando los márgenes
-    max_width = video_clip.w - 2 * margin
-    
+    max_width = ctxVideo["video_width"] - (2 * margin)
+
     print(f"[DEBUG] add_question_text - max_width: {max_width}")
 
     # Calcular la longitud del texto
     text_length = len(question_text)
-    
+
     print(f"[DEBUG] add_question_text - text_length: {text_length}")
 
     # Definir límites de fontsize
@@ -219,29 +290,18 @@ def add_question_text(question_text, video_clip, question_font_path, margin=80, 
 
     # Crear el TextClip con ajuste de línea
     question_clip = (TextClip(question_text, fontsize=fontsize, color='white', font=question_font_path, method='caption', size=(max_width, None))
-                     .set_duration(video_clip.duration)
+                     .set_duration(ctxVideo["video_duration"])
                      .set_pos(("center", top_margin)))  # Controlar la altura de presentación con top_margin
     return question_clip
 
-
-# Añadir texto de la pregunta
-def ok_add_question_text(question_text, video_clip, question_font_path, margin=80, top_margin=450):
-    # Calcular el ancho máximo permitido para el texto, considerando los márgenes
-    max_width = video_clip.w - 2 * margin
-
-    # Crear el TextClip con ajuste de línea
-    question_clip = (TextClip(question_text, fontsize=80, color='white', font=question_font_path, method='caption', size=(max_width, None))
-                     .set_duration(video_clip.duration)
-                     .set_pos(("center", top_margin)))  # Controlar la altura de presentación con top_margin
-    return question_clip
 
 # Añadir opciones de respuesta
-def add_options(options, video_clip, options_font_path, top_margin, margin=170):
+def add_options(options, ctxVideo, options_font_path, top_margin, margin=170):
     # print(f"[DEBUG] add_options - video_clip.duration: {video_clip.duration}")
 
     if not top_margin:
         top_margin=950
-    
+
     option_clips = []
     first_option_pos = top_margin
 
@@ -264,6 +324,11 @@ def add_options(options, video_clip, options_font_path, top_margin, margin=170):
     option_bg_color = 'white'  # Fondo blanco para las opciones
     option_bg_height = 115  # Altura del fondo de las opciones
     corner_radius = 50  # Radio de las esquinas redondeadas del fondo
+    
+    # Definir límites de fontsize para el texto de las opciones
+    max_fontsize = 70
+    min_fontsize = 50
+    max_chars = 18  # Máximo de caracteres para el tamaño de fuente más grande
 
     for i, option in enumerate(options):
         # Crear el círculo con Pillow
@@ -275,17 +340,17 @@ def add_options(options, video_clip, options_font_path, top_margin, margin=170):
         circle_array = np.array(circle_image)
 
         # Convertir el array numpy a ImageClip
-        circle_clip = ImageClip(circle_array).set_duration(video_clip.duration)
+        circle_clip = ImageClip(circle_array).set_duration(ctxVideo["video_duration"])
         circle_clip = circle_clip.set_position((margin, y_positions[i]))
 
         # Crear el texto dentro del círculo
         label_text = chr(65 + i)  # Genera las letras A, B, C
         label_clip = (TextClip(label_text, fontsize=80, color='white', font=options_font_path)
-                      .set_duration(video_clip.duration)
+                      .set_duration(ctxVideo["video_duration"])
                       .set_position((margin + 30, y_positions[i] + 10)))  # Ajustar posición del texto dentro del círculo
 
         # Crear el fondo redondeado para la opción usando Pillow
-        bg_width = video_clip.w - 2 * margin
+        bg_width = ctxVideo["video_width"] - 2 * margin
         bg_image = Image.new("RGBA", (bg_width, option_bg_height), (255, 255, 255, 0))
         rounded_rectangle = Image.new("RGBA", (bg_width, option_bg_height), option_bg_color)
         mask = Image.new("L", (bg_width, option_bg_height), 0)
@@ -295,24 +360,33 @@ def add_options(options, video_clip, options_font_path, top_margin, margin=170):
 
         # Convertir el fondo redondeado a ImageClip
         bg_array = np.array(bg_image)
-        option_bg_clip = ImageClip(bg_array).set_duration(video_clip.duration)
+        option_bg_clip = ImageClip(bg_array).set_duration(ctxVideo["video_duration"])
         option_bg_clip = option_bg_clip.set_position((margin + 10, y_positions[i] + 1))
 
+        # Calcular el fontsize basado en la longitud del texto de la opción
+        text_length = len(option)
+        if text_length <= max_chars:
+            fontsize = max_fontsize
+        else:
+            fontsize = max(min_fontsize, int(max_fontsize - (text_length - max_chars) * (max_fontsize - min_fontsize) / max_chars))
+
+        print(f"[DEBUG] add_options - fontsize for option '{option}': {fontsize}")
+
         # Crear el texto de la opción
-        option_text_clip = (TextClip(option, fontsize=70, color='black', font=options_font_path)
-                            .set_duration(video_clip.duration)
+        option_text_clip = (TextClip(option, fontsize=fontsize, color='black', font=options_font_path)
+                            .set_duration(ctxVideo["video_duration"])
                             .set_position((margin + circle_radius * 2 + 20, y_positions[i] + 15)))
 
         option_text_clip.text = option
 
         # Componer la opción final
-        composed_clip = CompositeVideoClip([option_bg_clip, circle_clip, label_clip, option_text_clip], size=(video_clip.w, video_clip.h))
+        composed_clip = CompositeVideoClip([option_bg_clip, circle_clip, label_clip, option_text_clip], size=(ctxVideo["video_width"], ctxVideo["video_height"]))
         option_clips.append(composed_clip)
 
     return option_clips
 
 # Revelar la opción correcta
-def reveal_correct_option(options_clips, video_clip, options, correct_option_index, start_time, reveal_time, options_font_path, margin=80):
+def reveal_correct_option(options_clips, bg_clip_width, options, correct_option_index, start_time, reveal_time, options_font_path, margin=80):
     # print(f"[DEBUG] Opciones: {options}")
     # print(f"[DEBUG] Clips de Opciones: {options_clips}")
     # print(f"[DEBUG] Índice de Opción Correcta: {correct_option_index}")
@@ -342,7 +416,7 @@ def reveal_correct_option(options_clips, video_clip, options, correct_option_ind
     correct_option_bg_color = 'yellow'
     option_bg_height = 115
     corner_radius = 50
-    bg_width = video_clip.w - 2 * margin
+    bg_width = bg_clip_width - (2 * margin)
 
     # Crear el fondo amarillo para la opción correcta
     correct_bg_image = Image.new("RGBA", (bg_width, option_bg_height), (255, 255, 255, 0))
@@ -393,9 +467,9 @@ def reveal_correct_option(options_clips, video_clip, options, correct_option_ind
     return options_clips
 
 # Añadir el texto de la cuenta
-def add_account_text(account_text, video_clip, account_font_path):
+def add_account_text(account_text, video_duration, account_font_path):
     account_clip = (TextClip(account_text, fontsize=50, color='white', font=account_font_path)
-                    .set_duration(video_clip.duration)
+                    .set_duration(video_duration)
                     .set_pos(("center", 1700)))
     return account_clip
 
@@ -509,10 +583,16 @@ def create_progress_bar_with_emoji(duration, width=800, height=100, scale_height
 
 
 # Componer el video final
-def compose_video(video_total_duration, background_clip, logo_clip, question_clip, question_image_clip, options_clips, account_clip, narration_audio, narration_audio_winner, clock_sound_effects, ding_sound_effects, progress_bar_with_emoji):
-    final_clip = CompositeVideoClip([background_clip.set_start(0), logo_clip.set_start(0), question_clip.set_start(0), question_image_clip.set_start(0), *options_clips, account_clip.set_start(0), progress_bar_with_emoji.set_start(narration_audio.duration)])
+def compose_video(ctxVideo, video_total_duration, logo_clip, question_clip, question_image_clip, options_clips, account_clip, narration_audio, narration_audio_winner, clock_sound_effects, ding_sound_effects, progress_bar_with_emoji):
+    # final_clip = CompositeVideoClip([background_clip.set_start(0), logo_clip.set_start(0), question_clip.set_start(0), question_image_clip.set_start(0), *options_clips, account_clip.set_start(0), progress_bar_with_emoji.set_start(narration_audio.duration)])
+
+    video_size = (ctxVideo["video_width"], ctxVideo["video_height"])
+
+    final_clip = CompositeVideoClip([logo_clip.set_start(0), question_clip.set_start(0), question_image_clip.set_start(0), *options_clips, account_clip.set_start(0), progress_bar_with_emoji.set_start(narration_audio.duration)], size=video_size)
     final_clip.set_duration(video_total_duration)
+
     print(f"[DEBUG] video_total_duration 1: {video_total_duration}")
+
     # for idx, clip in enumerate(options_clips):
     #     print(f"[DEBUG] options_clips[{idx}] - start: {clip.start}, duration: {clip.duration}, end: {clip.end}")
 
@@ -541,6 +621,7 @@ def compose_video(video_total_duration, background_clip, logo_clip, question_cli
     # final_clip.write_videofile(output_file, codec='libx264', fps=24, preset='ultrafast')
     return final_clip
 
+
 def get_clip_top_position(clip, t=None):
     """
     Devuelve la coordenada y (top) del clip en el tiempo t.
@@ -557,43 +638,53 @@ def get_clip_top_position(clip, t=None):
         _, y = clip.pos(t)
     else:
         raise TypeError("El valor de .pos no es ni una tupla ni una función.")
-    
     return y
 
 # Función principal para generar el video de trivia
-def generate_trivia_video(main_question, voice, background_video_path, logo_path, question_text, question_image, options, correct_option_index, account_text, narration_text, narration_text_winner, tictac_sound_path, ding_sound_path, question_font_path, options_font_path, account_font_path, question_image_font_path):
-    narration_audio_file = f"./audios/{uuidcode}.ogg"
-    generate_narration(narration_text, narration_audio_file, voice)
-    narration_audio_file_winner = f"./audios/{uuidcode}_winner.ogg"
-    generate_narration(narration_text_winner, narration_audio_file_winner, voice)
+# def generate_trivia_video(main_question, voice, background_video_path, logo_path, question_text, question_image, options, correct_option_index, account_text, narration_text, narration_text_winner, tictac_sound_path, ding_sound_path, question_font_path, options_font_path, account_font_path, question_image_font_path):
+def generate_trivia_video(main_question, voice, language, ctxVideo, logo_path, question_text, question_image, options, correct_option_index, account_text, narration_text, narration_text_winner, tictac_sound_path, ding_sound_path, question_font_path, options_font_path, account_font_path, question_image_font_path):
+    narration_audio_file = f"./public/generados/audios/{uuidcode}.ogg"
+    generate_narration(narration_text, narration_audio_file, voice, language)
+    narration_audio_file_winner = f"./public/generados/audios/{uuidcode}_winner.ogg"
+    generate_narration(narration_text_winner, narration_audio_file_winner, voice, language)
     narration_audio = AudioFileClip(narration_audio_file)
     narration_audio_winner = AudioFileClip(narration_audio_file_winner)
 
     clock_sound_effects = add_sound_effects(tictac_sound_path, start_time=0, reveal_time=3)
+    clock_sound_effects = clock_sound_effects.volumex(0.5)
     video_duration_before_winner = narration_audio.duration + clock_sound_effects.duration
     ding_sound_effects = add_sound_effects(ding_sound_path, start_time=0, reveal_time=2)
-    ding_sound_effects.volumex(0.05)
+    ding_sound_effects = ding_sound_effects.volumex(0.5)
     # video_total_duration = narration_audio.duration + clock_sound_effects.duration + narration_audio_winner.duration
     video_winner_duration = max(narration_audio_winner.duration, ding_sound_effects.duration)
     video_total_duration = narration_audio.duration + clock_sound_effects.duration + max(narration_audio_winner.duration, ding_sound_effects.duration)
-    
+
+    ctxVideo["video_duration"] = video_total_duration
+
+    print(f"[DEBUG] generate_trivia_video - ctxVideo: {ctxVideo}")
+
     # print(f"[DEBUG] generate_trivia_video - narration_audio.duration: {narration_audio.duration}")
     # print(f"[DEBUG] generate_trivia_video - clock_sound_effects.duration: {clock_sound_effects.duration}")
     # print(f"[DEBUG] generate_trivia_video - ding_sound_effects.duration: {ding_sound_effects.duration}")
     # print(f"[DEBUG] generate_trivia_video - total: {narration_audio.duration + clock_sound_effects.duration + ding_sound_effects.duration}")
     # print(f"[DEBUG] generate_trivia_video - narration_audio_winner.duration: {narration_audio_winner.duration}")
-    
     # print(f"[DEBUG] video_duration_before_winner: {video_duration_before_winner}")
     # print(f"[DEBUG] video_winner_duration: {video_winner_duration}")
-    print(f"[DEBUG] video_total_duration: {video_total_duration}")
+    print(f"[DEBUG] generate_trivia_video - video_total_duration: {video_total_duration}")
 
-    background_clip = create_background_video(background_video_path, duration=video_total_duration)
+    # background_clip = create_background_video(background_video_path, duration=video_total_duration)
+
     # print(f"[DEBUG] background_clip.duration: {background_clip.duration}")
-    logo_clip = add_logo(logo_path, background_clip)
+    logo_clip = add_logo(logo_path, ctxVideo)
+
+    print("[DEBUG] generate_trivia_video - logo_clip.w, logo_clip.h:", logo_clip.w, logo_clip.h)
+
     if (question_image):
-        question_clip = add_question_text(main_question, background_clip, question_font_path)
+        question_clip = add_question_text(main_question, ctxVideo, question_font_path)
     else:
-        question_clip = add_question_text(question_text, background_clip, question_font_path)
+        question_clip = add_question_text(question_text, ctxVideo, question_font_path)
+
+    print("[DEBUG] generate_trivia_video - question_clip.w, question_clip.h:", question_clip.w, question_clip.h)
 
     # Función para guardar la imagen del emoji
     def save_emoji_image(unicode_text, font_path, font_size, output_path):
@@ -622,7 +713,7 @@ def generate_trivia_video(main_question, voice, background_video_path, logo_path
     # Condicional para generar el question_image_clip
     if question_image.strip():
         # Generar la imagen del emoji y guardarla
-        emoji_image_path = f"./images/{uuidcode}_emoji.png"
+        emoji_image_path = f"./public/generados/images/{uuidcode}_emoji.png"
         save_emoji_image(question_image, question_image_font_path, 137, emoji_image_path)
 
         # Crear el ImageClip a partir de la imagen guardada
@@ -635,23 +726,28 @@ def generate_trivia_video(main_question, voice, background_video_path, logo_path
         question_image_clip = question_image_clip.set_duration(question_clip.duration)
         question_image_clip = question_image_clip.set_position(('center', question_clip.size[1] + 500))  # Posición debajo del question_clip
 
+    print("[DEBUG] generate_trivia_video - question_image_clip.w, question_image_clip.h:", question_image_clip.w, question_image_clip.h)
+
     print(f"[DEBUG] question_image_clip: {question_image_clip.pos}")
-    
+
     clip_top_position = get_clip_top_position(question_image_clip)  # Clip es un ImageClip, VideoClip o TextClip
-    
+
     options_top_margin = clip_top_position + 200
 
     print(f"[DEBUG] options_top_margin: {options_top_margin}")
-    
-    options_clips = add_options(options, background_clip, options_font_path, top_margin=options_top_margin) #, reveal_time=4
+
+    options_clips = add_options(options, ctxVideo, options_font_path, top_margin=options_top_margin) #, reveal_time=4
     # Pasa la fuente de opciones a la función reveal_correct_option
-    options_clips = reveal_correct_option(options_clips, background_clip, options, correct_option_index, start_time=video_duration_before_winner, reveal_time=video_winner_duration, options_font_path=options_font_path)
-    account_clip = add_account_text(account_text, background_clip, account_font_path)
+
+    options_clips = reveal_correct_option(options_clips, ctxVideo["video_width"], options, correct_option_index, start_time=video_duration_before_winner, reveal_time=video_winner_duration, options_font_path=options_font_path)
+    account_clip = add_account_text(account_text, ctxVideo["video_duration"], account_font_path)
+
+    print("[DEBUG] generate_trivia_video - account_clip.w, account_clip.h:", account_clip.w, account_clip.h)
 
     # Ejemplo de uso
     progress_bar_with_emoji = create_progress_bar_with_emoji(
         duration=clock_sound_effects.duration,      # Duración en segundos
-        width=int(background_clip.w * 0.8),         # Ancho del video
+        width=int(ctxVideo["video_width"] * 0.8),         # Ancho del video
         height=0,                                   # Altura inicial del video (no se usa directamente ahora)
         scale_height=0.8,                           # Reducir la altura del video al 80%
         emoji_size=70,                              # Tamaño del emoji
@@ -660,7 +756,7 @@ def generate_trivia_video(main_question, voice, background_video_path, logo_path
         bg_color="gray",
         emoji="🚀",
         constant_font_size=137,                     # Tamaño del emoji
-        font_path="./assets/fonts/AppleColorEmoji.ttf",
+        font_path=question_image_font_path,         #"./public/assets/fonts/AppleColorEmoji.ttf"
         proportion=0.85                             # Espacio que ocupa la barra dentro del recuadro
     )
 
@@ -668,7 +764,7 @@ def generate_trivia_video(main_question, voice, background_video_path, logo_path
 
     # exit()
 
-    video_clip = compose_video(video_total_duration, background_clip, logo_clip, question_clip, question_image_clip, options_clips, account_clip, narration_audio, narration_audio_winner, clock_sound_effects, ding_sound_effects, progress_bar_with_emoji)
+    video_clip = compose_video(ctxVideo, video_total_duration, logo_clip, question_clip, question_image_clip, options_clips, account_clip, narration_audio, narration_audio_winner, clock_sound_effects, ding_sound_effects, progress_bar_with_emoji)
 
     # Limpieza de archivos temporales
     # os.remove(narration_audio_file)
@@ -677,13 +773,23 @@ def generate_trivia_video(main_question, voice, background_video_path, logo_path
     return video_clip
 
 
-def beta_generate_combined_trivia_video(main_question, voice, questions_json, background_video_path, logo_path, account_text, tictac_sound_path, ding_sound_path, output_file, question_font_path, options_font_path, account_font_path, question_image_font_path):
+# Funcióc para generar un video con múltiples preguntas
+def generate_combined_trivia_video(main_question, voice, language, questions_json, background_video_path, background_music_path, logo_path, account_text, tictac_sound_path, ding_sound_path, output_file, question_font_path, options_font_path, account_font_path, question_image_font_path):
     start_time = time.time()  # Inicia el temporizador
 
     all_clips = []
-    temp_files = []
 
-    for idx, question in enumerate(questions_json):
+    # Definir las dimensiones objetivo
+    target_width, target_height = 1080, 1920
+
+    # model_clip = create_background_video(background_video_path, duration=3)
+
+    ctxVideo = {
+        "video_width": target_width,
+        "video_height": target_height
+    }
+
+    for question in questions_json:
         question_text = question['question_text']
         question_image = question['question_image']
         options = question['options']
@@ -692,66 +798,54 @@ def beta_generate_combined_trivia_video(main_question, voice, questions_json, ba
         narration_text = f"¿{question_text}?"
         narration_text_winner = f"{options[correct_option_index]}!!"
 
-        # Aquí normalmente usarías generate_trivia_video para generar el clip con MoviePy
-        # En lugar de eso, construirás un comando ffmpeg para procesar cada clip
-        temp_output = f"temp_clip_{idx}.mp4"
+        trivia_clip = generate_trivia_video(
+            main_question=main_question,
+            voice=voice,
+            language=language,
+            ctxVideo=ctxVideo,
+            logo_path=logo_path,
+            question_text=question_text,
+            question_image=question_image,
+            options=options,
+            correct_option_index=correct_option_index,
+            account_text=account_text,
+            narration_text=narration_text,
+            narration_text_winner=narration_text_winner,
+            tictac_sound_path=tictac_sound_path,
+            ding_sound_path=ding_sound_path,
+            question_font_path=question_font_path,
+            options_font_path=options_font_path,
+            account_font_path=account_font_path,
+            question_image_font_path=question_image_font_path
+        )
 
-        ffmpeg_command = [
-            'ffmpeg',
-            '-y',  # Sobrescribir el archivo de salida si existe
-            '-i', background_video_path,
-            '-vf', f"drawtext=fontfile={question_font_path}:text='{question_text}':x=(w-text_w)/2:y=(h-text_h)/3",
-            '-c:v', 'libx264',
-            '-preset', 'faster', # 'ultrafast',
-            '-c:a', 'aac',
-            '-b:a', '192k',
-            temp_output
-        ]
+        all_clips.append(trivia_clip)
 
-        # Ejecutar el comando ffmpeg para generar cada clip
-        subprocess.run(ffmpeg_command)
-        temp_files.append(temp_output)
+    # Concatenar los clips de trivia en una secuencia
+    trivia_sequence = concatenate_videoclips(all_clips, method="compose")
 
-    # Crear el archivo de lista para ffmpeg
-    with open("input.txt", "w") as f:
-        for temp_file in temp_files:
-            f.write(f"file '{os.path.abspath(temp_file)}'\n")
+    # Calcular la duración total de la secuencia de trivia
+    total_duration = trivia_sequence.duration
 
-    # Concatenar los clips con ffmpeg
-    ffmpeg_concat_command = [
-        'ffmpeg',
-        '-y',  # Sobrescribir el archivo de salida si existe
-        '-f', 'concat',  # Usar el archivo de lista para concatenación
-        '-safe', '0',
-        '-i', 'input.txt',
-        '-c:v', 'libx264',
-        '-preset', 'faster', #'ultrafast',
-        '-c:a', 'aac',
-        '-b:a', '192k',
-        output_file
-    ]
+    # Cargar el video de fondo y crear un bucle que dure toda la secuencia de trivia
+    background_clip = create_background_video(background_video_path, background_music_path, target_width, target_height, total_duration)
 
-    process = subprocess.Popen(ffmpeg_concat_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
+    print("trivia_sequence:", trivia_sequence)
 
-    # Mostrar barra de progreso
-    for line in process.stderr:
-        if "frame=" in line or "time=" in line:
-            print(line.strip())  # Mostrar líneas de progreso de FFmpeg
+    # Superponer la secuencia de trivia sobre el fondo en bucle
+    final_video = CompositeVideoClip([background_clip, trivia_sequence])
 
-    process.wait()  # Esperar a que termine el proceso FFmpeg
+    # Guardar el video final
+    final_video.write_videofile(output_file, codec="libx264", audio_codec="aac", fps=12, preset='ultrafast')
 
-    # Limpiar archivos temporales
-    for temp_file in temp_files:
-        os.remove(temp_file)
-    os.remove("input.txt")
-
-    end_time = time.time()  # Detener el temporizador
-    processing_time = end_time - start_time  # Calcular tiempo de procesamiento
+    end_time = time.time()  # Detiene el temporizador
+    processing_time = end_time - start_time  # Calcula el tiempo de procesamiento
 
     print(f"Tiempo de procesamiento: {processing_time} segundos")
 
-# Función para generar un video con múltiples preguntas
-def generate_combined_trivia_video(main_question, voice, questions_json, background_video_path, logo_path, account_text, tictac_sound_path, ding_sound_path, output_file, question_font_path, options_font_path, account_font_path, question_image_font_path):
+
+# Funcióc para generar un video con múltiples preguntas
+def ok_generate_combined_trivia_video(main_question, voice, questions_json, background_video_path, logo_path, account_text, tictac_sound_path, ding_sound_path, output_file, question_font_path, options_font_path, account_font_path, question_image_font_path):
     start_time = time.time()  # Inicia el temporizador
 
     all_clips = []
@@ -805,21 +899,21 @@ def generate_combined_trivia_video(main_question, voice, questions_json, backgro
     print(f"Tiempo de procesamiento: {processing_time} segundos")
 
 
-def generate_quiz_questions(theme, num_questions=2, num_options=4):
+def generate_quiz_questions(main_question, num_questions=2, num_options=4, language="Espanol"):
     # Genera la lista de opciones
     options_list = [f'"Opción {i+1}"' for i in range(num_options)]
 
     # Determina si se debe incluir "emoji" en la pregunta
-    emoji_included = 'emoji' in theme.lower()
+    emoji_included = 'emoji' in main_question.lower()
 
     # Construye el prompt para la IA
     prompt = (
-        f"Genera una lista de {num_questions} preguntas cortas en formato JSON para un quiz / trivia sobre ['{theme}']. "
-        f"El JSON debe incluir una pregunta principal corta sin emojis en ella, con el estilo MrBeast en la propiedad 'main_question' que aplique para todas las preguntas de la propiedad 'questions', "
-        f"seguido de un array 'questions' que contenga objetos con las siguientes propiedades: "
-        f"el texto de la pregunta corta {'sin emojis en ella' if emoji_included else ''} con variantes {'mencionando siempre el tema central en cada pregunta ' if not emoji_included else ''} para hacer la pronunciación más humana y consistente {'SIN INCLUIR EL EMOJI' if emoji_included else ''}, "
+        f"Genera una lista de {num_questions} preguntas cortas en idioma {language} en formato JSON para un quiz / trivia sobre ['{main_question}']. "
+        f"El JSON debe incluir una pregunta principal corta en idioma {language} sin emojis en ella, con el estilo MrBeast en la propiedad 'main_question' que aplique para todas las preguntas de la propiedad 'questions', "
+        f"seguido de un arreglo 'questions' que contenga objetos con las siguientes propiedades: "
+        f"el texto de la pregunta corta en idioma {language} {'sin emojis en ella' if emoji_included else ''} con variantes {'mencionando siempre el tema central en cada pregunta ' if not emoji_included else ''} para hacer la pronunciación más humana y consistente {'SIN INCLUIR EL EMOJI' if emoji_included else ''}, "
         f"{'una imagen representada como un emoji,' if emoji_included else ''} "
-        f"opciones de respuesta con {num_options} opciones donde alternes la opción correcta en las diferentes posiciones del arreglo de opciones entre 0 y {num_options - 1}, (IMPORTANTE: deben tener un tamano de 18 caracteres máximo por opción), y el índice de la opción correcta (IMPORTANTE: Las opciones correctas deben estár en posiciones aleatorias entre 0 y {num_options - 1} dentro del arreglo de la propiedad 'options').\n\n"
+        f"opciones de respuesta en idioma {language} con {num_options} opciones donde alternes la opción correcta en las diferentes posiciones del arreglo de opciones entre 0 y {num_options - 1}, (IMPORTANTE: deben tener un tamaño de 18 caracteres máximo por opción), y el índice de la opción correcta (IMPORTANTE: Las opciones correctas deben estár en posiciones aleatorias entre 0 y {num_options - 1} dentro del arreglo de la propiedad 'options').\n\n"
         f"Aquí hay un ejemplo del formato:\n\n"
         "{\n"
         "  \"main_question\": \"Pregunta principal de ejemplo?\",\n"
@@ -833,6 +927,7 @@ def generate_quiz_questions(theme, num_questions=2, num_options=4):
         "  ]\n"
         "} \n\n"
         f"Notas Importantes: "
+        f"- Todo el contenido que generes debe estar en idioma {language}.\n"
         "- En las opciones distribuye de forma equitativa y no secuencial la asignación de las opciones correctas en posiciones entre 0 y {num_options - 1}.\n"
         "- Todos los campos son obligatorios que estén presentes aunque estén en blanco.\n"
         "- REALIZA UNA DOBE VERIFICACION DE LAS OPCIONES CORRECTAS. NO PUEDES COMETER ERRORES.\n"
@@ -875,7 +970,7 @@ def generate_quiz_questions(theme, num_questions=2, num_options=4):
     return json.loads(result)
 
 
-def create_video(uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video):
+def create_video(uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video, logo_path, account_text):
     # Configura el analizador de argumentos de línea de comandos
     # parser = argparse.ArgumentParser(description="Genera un video de trivia basado en las preguntas del quiz.")
     # parser.add_argument("main_question", type=str, help="La pregunta principal del quiz.")
@@ -888,27 +983,37 @@ def create_video(uuid4, language, voice, main_question, num_questions, num_optio
     # uuidcode = str(uuid.uuid4())
     uuidcode = uuid4
 
+    # print("uuidcode:", uuidcode)
+
     # Genera las preguntas del quiz usando los argumentos proporcionados
     # trivia = generate_quiz_questions(args.main_question, num_questions=args.num_questions, num_options=args.num_options)
-    trivia = generate_quiz_questions(main_question, num_questions, num_options)
+    trivia = generate_quiz_questions(main_question, num_questions, num_options, language)
 
     print(trivia)
+    
+    final_logo_path = logo_path or "./public/assets/images/logo.png"
+    final_account_text = account_text or "@elclubdelosgenios"
+    
+    print("final_logo_path:", final_logo_path)
+    print("final_account_text:", final_account_text)
 
     # Genera el video combinado de la trivia
     generate_combined_trivia_video(
         main_question=trivia["main_question"],
         voice=voice,
+        language=language,
         questions_json=trivia["questions"],
-        background_video_path=f"./assets/videos/{background_video}.mp4",
-        logo_path="./assets/images/logo.png",
-        account_text="@elclubdelosgenios",
-        tictac_sound_path="./assets/audios/clock.mp3",
-        ding_sound_path="./assets/audios/ding.mp3",
-        output_file=f"./videos/{uuidcode}.mp4",
-        question_font_path="./assets/fonts/TT-Milks-Casual-Pie-Trial-Base.otf",
-        options_font_path="./assets/fonts/Sniglet-Regular.ttf",
-        account_font_path="./assets/fonts/Sniglet-Regular.ttf",
-        question_image_font_path="./assets/fonts/AppleColorEmoji.ttf"
+        background_video_path=f"./public/assets/videos/{background_video}.mp4",
+        background_music_path=f"./public/assets/music/{background_music}.mp3",
+        logo_path=final_logo_path,
+        account_text=final_account_text,
+        tictac_sound_path="./public/assets/audios/clock.mp3",
+        ding_sound_path="./public/assets/audios/ding.mp3",
+        output_file=f"./public/generados/videos/{uuidcode}.mp4",
+        question_font_path="./public/assets/fonts/TT-Milks-Casual-Pie-Trial-Base.otf",
+        options_font_path="./public/assets/fonts/Sniglet-Regular.ttf",
+        account_font_path="./public/assets/fonts/Sniglet-Regular.ttf",
+        question_image_font_path="./public/assets/fonts/AppleColorEmoji.ttf"
     )
 
     # Opcional: Imprime el JSON de la trivia
@@ -918,16 +1023,15 @@ def create_video(uuid4, language, voice, main_question, num_questions, num_optio
 #     main()
 
 
-def create_video_main(uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video):
+def create_video_main(uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video, logo_path, account_text):
     # data = [{'url': 'https://www.kayak.com/rimg/himg/17/76/2c/booking-3989982-257263533-043832.jpg', 'description': 'A luxurious, well-lit house with arched windows, a grand entrance, and a gated courtyard surrounded by lush greenery and tall trees.'}, {'url': 'https://www.kayak.com/rimg/himg/97/73/c7/booking-3989982-257263588-299448.jpg', 'description': 'A grand staircase with ornate railings and statues leads to an upper level in an elegant, spacious interior with warm-toned walls and decorative elements.'}, {'url': 'https://www.kayak.com/rimg/himg/21/16/65/booking-3989982-257263572-216394.jpg', 'description': 'A spacious, well-lit kitchen with modern appliances, granite countertops, dark cabinetry, and an arched entryway leading to a grand hallway.'}, {'url': 'https://www.kayak.com/rimg/himg/50/e3/c8/booking-3989982-257263543-083612.jpg', 'description': 'A luxurious bedroom features a four-poster bed, a cozy seating area with ornate furniture, a large TV, and eclectic decor including a plush rug and animal figurines.'}, {'url': 'https://www.kayak.com/rimg/himg/f1/0f/8b/booking-3989982-257263555-150000.jpg', 'description': 'A cozy, well-decorated living room features a fireplace, elegant seating, framed artwork, and a floor lamp with multiple globes.'}, {'url': 'https://www.kayak.com/rimg/himg/36/10/ec/booking-3989982-257263552-131976.jpg', 'description': 'The image shows a luxurious bathroom featuring a large glass-enclosed shower and a separate bathtub area with arched windows and elegant tile work.'}, {'url': 'https://www.kayak.com/rimg/himg/14/cd/e2/booking-3989982-257263561-169186.jpg', 'description': 'A luxurious dining room with ornate furniture, a chandelier, medieval shields on the wall, and a classical statue in an alcove.'}, {'url': 'https://www.kayak.com/rimg/himg/8a/ee/e5/booking-3989982-257263570-205725.jpg', 'description': 'A serene pool area with a small waterfall, decorative bridge, and lush greenery under a purple-hued sky.'}, {'url': 'https://www.kayak.com/rimg/himg/ed/f0/4a/booking-3989982-257263582-272624.jpg', 'description': 'A serene outdoor spa area features a small pool with pink lighting, surrounded by tropical plants, a waterfall, and a classical statue under a pergola.'}, {'url': 'https://www.kayak.com/rimg/himg/13/93/3a/booking-3989982-257263567-188337.jpg', 'description': 'The image shows an outdoor patio area with a pergola, equipped with a ceiling fan, string lights, a barbecue grill, and metal patio furniture.'}]
-    
     # create_property_name_audio(download_path, property_name)
     # num_elements, thumb_filename = process_images_and_audios(data, voz, download_path, uuid4)
-    
+
     print("---------------------------------------------------")
     print("uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video:", uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video)
     print("---------------------------------------------------")
-    
-    create_video(uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video)
+
+    create_video(uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video, logo_path, account_text)
 
     return True
