@@ -1,0 +1,552 @@
+2024-08-21 13:50:09.224 | INFO     | __main__:omprint:31 - pending_processes: [{'uuid': '54961e17-1d76-44cd-b09f-89195591dcf2', 'language': 'Spanish', 'voice': 'Pedro', 'main_question': 'Estrategias para aumentar seguidores en Instagram', 'num_questions': 2, 'num_options': 3, 'background_music': 'animada2', 'background_video': 'espacio2', 'logo_path': '', 'account_text': '', 'sessionUUID': 'e891f3b3-3b85-4078-ae03-4378b7171507', 'fecha_creacion': '2024-08-21T13:50:09.217953+00:00', 'fecha_modificacion': '2024-08-21T13:50:09.217953+00:00', 'estado': 'pendiente'}]
+2024-08-21 13:50:09.229 | INFO     | __main__:omprint:31 - Ejecutando el proceso ID: 54961e17-1d76-44cd-b09f-89195591dcf2
+2024-08-21 13:50:09.231 | INFO     | __main__:omprint:31 - ---------------------------------------------------
+2024-08-21 13:50:09.231 | INFO     | __main__:omprint:31 - uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video: 54961e17-1d76-44cd-b09f-89195591dcf2 Spanish Pedro Estrategias para aumentar seguidores en Instagram 2 3 animada2 espacio2
+2024-08-21 13:50:09.232 | INFO     | __main__:omprint:31 - ---------------------------------------------------
+2024-08-21 13:50:09.233 | INFO     | __main__:omprint:31 - Genera una lista de 2 preguntas cortas en idioma Spanish en formato JSON para un quiz / trivia sobre ['Estrategias para aumentar seguidores en Instagram']. El JSON debe incluir una pregunta principal corta en idioma Spanish sin emojis en ella, con el estilo MrBeast en la propiedad 'main_question' que aplique para todas las preguntas de la propiedad 'questions', seguido de un arreglo 'questions' que contenga objetos con las siguientes propiedades: el texto de la pregunta corta en idioma Spanish  con variantes mencionando siempre el tema central en cada pregunta  para hacer la pronunciación más humana y consistente ,  opciones de respuesta en idioma Spanish con 3 opciones donde alternes la opción correcta en las diferentes posiciones del arreglo de opciones entre 0 y 2, (IMPORTANTE: deben tener un tamaño de 17 caracteres máximo por opción), y el índice de la opción correcta (IMPORTANTE: Las opciones correctas deben estár en posiciones aleatorias entre 0 y 2 dentro del arreglo de la propiedad 'options').
+
+Aquí hay un ejemplo del formato:
+
+{
+  "main_question": "Pregunta principal de ejemplo?",
+  "questions": [
+    {
+        "question_text": "Variantes de la pregunta de ejemplo?",
+        "question_image": "",
+        "options": ['"Opción 1"', '"Opción 2"', '"Opción 3"'],
+        "correct_option_index": 2
+    }
+  ]
+} 
+
+Notas Importantes: - Genera todo el contenido en idioma Spanish.
+- Asigna las opciones correctas de las preguntas en posiciones aleatorias entre 0 y {num_options - 1}.
+- Crea todos los campos mencionados en el ejemplo aunque estén en blanco.
+- REALIZA UNA DOBE VERIFICACION DE LAS OPCIONES CORRECTAS. NO PUEDES COMETER ERRORES.
+
+2024-08-21 13:50:09.486 | INFO     | __main__:omprint:31 - Ya hay un proceso en ejecución.
+2024-08-21 13:50:11.591 | INFO     | __main__:omprint:31 - {'main_question': '¿Cómo aumentar seguidores en Instagram?', 'questions': [{'question_text': '¿Qué tipo de contenido atrae más en Instagram?', 'question_image': '', 'options': ['Imágenes de gatos', 'Videos cortos', 'Frases inspiradoras'], 'correct_option_index': 1}, {'question_text': '¿Cuál es la mejor hora para publicar en Instagram?', 'question_image': '', 'options': ['Durante la noche', 'En la mañana', 'Por la tarde'], 'correct_option_index': 0}]}
+2024-08-21 13:50:11.592 | INFO     | __main__:omprint:31 - final_logo_path: ./public/assets/images/logo.png
+2024-08-21 13:50:11.592 | INFO     | __main__:omprint:31 - final_account_text: @elclubdelosgenios
+2024-08-21 13:50:12.187 | INFO     | __main__:omprint:31 - [DEBUG] generate_trivia_video - ctxVideo: {'video_width': 1080, 'video_height': 1920, 'video_duration': 7.55}
+2024-08-21 13:50:12.188 | INFO     | __main__:omprint:31 - [DEBUG] generate_trivia_video - video_total_duration: 7.55
+2024-08-21 13:50:12.188 | INFO     | __main__:omprint:31 - [DEBUG] ============= add_logo - ctxVideo: {'video_width': 1080, 'video_height': 1920, 'video_duration': 7.55} =============
+2024-08-21 13:50:12.222 | INFO     | __main__:omprint:31 - [DEBUG] generate_trivia_video - logo_clip.w, logo_clip.h: 540 175
+2024-08-21 13:50:12.222 | INFO     | __main__:omprint:31 - [DEBUG] ============= add_question_text - ctxVideo: {'video_width': 1080, 'video_height': 1920, 'video_duration': 7.55} =============
+2024-08-21 13:50:12.223 | INFO     | __main__:omprint:31 - [DEBUG] add_question_text - max_width: 920
+2024-08-21 13:50:12.223 | INFO     | __main__:omprint:31 - [DEBUG] add_question_text - text_length: 46
+2024-08-21 13:50:12.224 | INFO     | __main__:omprint:31 - [DEBUG] add_question_text - fontsize: 80
+2024-08-21 13:50:12.282 | INFO     | __main__:omprint:31 - [DEBUG] generate_trivia_video - question_clip.w, question_clip.h: 920 291
+2024-08-21 13:50:12.302 | INFO     | __main__:omprint:31 - [DEBUG] generate_trivia_video - question_image_clip.w, question_image_clip.h: 91 120
+2024-08-21 13:50:12.302 | INFO     | __main__:omprint:31 - [DEBUG] question_image_clip: <function VideoClip.set_position.<locals>.<lambda> at 0x7f9da5c07ba0>
+2024-08-21 13:50:12.303 | INFO     | __main__:omprint:31 - [DEBUG] options_top_margin: 991
+2024-08-21 13:50:12.316 | INFO     | __main__:omprint:31 - [DEBUG] add_options - fontsize for option 'Imágenes de gatos': 70
+2024-08-21 13:50:12.357 | INFO     | __main__:omprint:31 - [DEBUG] add_options - fontsize for option 'Videos cortos': 70
+2024-08-21 13:50:12.397 | INFO     | __main__:omprint:31 - [DEBUG] add_options - fontsize for option 'Frases inspiradoras': 67
+2024-08-21 13:50:12.458 | INFO     | __main__:omprint:31 - [DEBUG] generate_trivia_video - account_clip.w, account_clip.h: 430 64
+2024-08-21 13:50:12.483 | INFO     | __main__:omprint:31 - [DEBUG] video_total_duration 1: 7.55
+2024-08-21 13:50:12.484 | INFO     | __main__:omprint:31 - [DEBUG] narration_audio.duration: 2.55
+2024-08-21 13:50:12.485 | INFO     | __main__:omprint:31 - [DEBUG] clock_sound_effects.duration: 3
+2024-08-21 13:50:12.486 | INFO     | __main__:omprint:31 - [DEBUG] ding_sound_effects.duration: 2
+2024-08-21 13:50:12.487 | INFO     | __main__:omprint:31 - [DEBUG] narration_audio_winner.duration: 1.04
+2024-08-21 13:50:12.488 | INFO     | __main__:omprint:31 - [DEBUG] final_audio.duration 2: 7.59
+2024-08-21 13:50:12.489 | INFO     | __main__:omprint:31 - [DEBUG] final_clip.duration 2: 7.55
+2024-08-21 13:50:13.052 | INFO     | __main__:omprint:31 - [DEBUG] generate_trivia_video - ctxVideo: {'video_width': 1080, 'video_height': 1920, 'video_duration': 7.41}
+2024-08-21 13:50:13.053 | INFO     | __main__:omprint:31 - [DEBUG] generate_trivia_video - video_total_duration: 7.41
+2024-08-21 13:50:13.054 | INFO     | __main__:omprint:31 - [DEBUG] ============= add_logo - ctxVideo: {'video_width': 1080, 'video_height': 1920, 'video_duration': 7.41} =============
+2024-08-21 13:50:13.087 | INFO     | __main__:omprint:31 - [DEBUG] generate_trivia_video - logo_clip.w, logo_clip.h: 540 175
+2024-08-21 13:50:13.088 | INFO     | __main__:omprint:31 - [DEBUG] ============= add_question_text - ctxVideo: {'video_width': 1080, 'video_height': 1920, 'video_duration': 7.41} =============
+2024-08-21 13:50:13.089 | INFO     | __main__:omprint:31 - [DEBUG] add_question_text - max_width: 920
+2024-08-21 13:50:13.090 | INFO     | __main__:omprint:31 - [DEBUG] add_question_text - text_length: 50
+2024-08-21 13:50:13.090 | INFO     | __main__:omprint:31 - [DEBUG] add_question_text - fontsize: 80
+2024-08-21 13:50:13.149 | INFO     | __main__:omprint:31 - [DEBUG] generate_trivia_video - question_clip.w, question_clip.h: 920 291
+2024-08-21 13:50:13.168 | INFO     | __main__:omprint:31 - [DEBUG] generate_trivia_video - question_image_clip.w, question_image_clip.h: 91 120
+2024-08-21 13:50:13.169 | INFO     | __main__:omprint:31 - [DEBUG] question_image_clip: <function VideoClip.set_position.<locals>.<lambda> at 0x7f9db0d68fe0>
+2024-08-21 13:50:13.170 | INFO     | __main__:omprint:31 - [DEBUG] options_top_margin: 991
+2024-08-21 13:50:13.182 | INFO     | __main__:omprint:31 - [DEBUG] add_options - fontsize for option 'Durante la noche': 70
+2024-08-21 13:50:13.223 | INFO     | __main__:omprint:31 - [DEBUG] add_options - fontsize for option 'En la mañana': 70
+2024-08-21 13:50:13.262 | INFO     | __main__:omprint:31 - [DEBUG] add_options - fontsize for option 'Por la tarde': 70
+2024-08-21 13:50:13.321 | INFO     | __main__:omprint:31 - [DEBUG] generate_trivia_video - account_clip.w, account_clip.h: 430 64
+2024-08-21 13:50:13.345 | INFO     | __main__:omprint:31 - [DEBUG] video_total_duration 1: 7.41
+2024-08-21 13:50:13.346 | INFO     | __main__:omprint:31 - [DEBUG] narration_audio.duration: 2.41
+2024-08-21 13:50:13.347 | INFO     | __main__:omprint:31 - [DEBUG] clock_sound_effects.duration: 3
+2024-08-21 13:50:13.349 | INFO     | __main__:omprint:31 - [DEBUG] ding_sound_effects.duration: 2
+2024-08-21 13:50:13.350 | INFO     | __main__:omprint:31 - [DEBUG] narration_audio_winner.duration: 1.1
+2024-08-21 13:50:13.352 | INFO     | __main__:omprint:31 - [DEBUG] final_audio.duration 2: 7.51
+2024-08-21 13:50:13.354 | INFO     | __main__:omprint:31 - [DEBUG] final_clip.duration 2: 7.41
+2024-08-21 13:50:13.881 | INFO     | __main__:omprint:31 - create_background_video - background_clip.w, background_clip.h: 1080 1920
+2024-08-21 13:50:13.888 | INFO     | __main__:omprint:31 - trivia_sequence: <moviepy.video.compositing.CompositeVideoClip.CompositeVideoClip object at 0x7f9db281bad0>
+2024-08-21 13:50:13.901 | INFO     | __main__:omprint:31 - chunk total 100.00%
+2024-08-21 13:50:13.902 | INFO     | __main__:omprint:31 - chunk index 0.00%
+2024-08-21 13:50:13.905 | INFO     | __main__:omprint:31 - chunk index 0.30%
+2024-08-21 13:50:13.906 | INFO     | __main__:omprint:31 - chunk index 0.60%
+2024-08-21 13:50:13.909 | INFO     | __main__:omprint:31 - chunk index 0.90%
+2024-08-21 13:50:13.910 | INFO     | __main__:omprint:31 - chunk index 1.20%
+2024-08-21 13:50:13.912 | INFO     | __main__:omprint:31 - chunk index 1.50%
+2024-08-21 13:50:13.914 | INFO     | __main__:omprint:31 - chunk index 1.80%
+2024-08-21 13:50:13.916 | INFO     | __main__:omprint:31 - chunk index 2.10%
+2024-08-21 13:50:13.918 | INFO     | __main__:omprint:31 - chunk index 2.40%
+2024-08-21 13:50:13.919 | INFO     | __main__:omprint:31 - chunk index 2.70%
+2024-08-21 13:50:13.921 | INFO     | __main__:omprint:31 - chunk index 3.00%
+2024-08-21 13:50:13.923 | INFO     | __main__:omprint:31 - chunk index 3.30%
+2024-08-21 13:50:13.925 | INFO     | __main__:omprint:31 - chunk index 3.60%
+2024-08-21 13:50:13.927 | INFO     | __main__:omprint:31 - chunk index 3.90%
+2024-08-21 13:50:13.929 | INFO     | __main__:omprint:31 - chunk index 4.20%
+2024-08-21 13:50:13.931 | INFO     | __main__:omprint:31 - chunk index 4.50%
+2024-08-21 13:50:13.933 | INFO     | __main__:omprint:31 - chunk index 4.80%
+2024-08-21 13:50:13.935 | INFO     | __main__:omprint:31 - chunk index 5.11%
+2024-08-21 13:50:13.936 | INFO     | __main__:omprint:31 - chunk index 5.41%
+2024-08-21 13:50:13.938 | INFO     | __main__:omprint:31 - chunk index 5.71%
+2024-08-21 13:50:13.940 | INFO     | __main__:omprint:31 - chunk index 6.01%
+2024-08-21 13:50:13.941 | INFO     | __main__:omprint:31 - chunk index 6.31%
+2024-08-21 13:50:13.943 | INFO     | __main__:omprint:31 - chunk index 6.61%
+2024-08-21 13:50:13.945 | INFO     | __main__:omprint:31 - chunk index 6.91%
+2024-08-21 13:50:13.946 | INFO     | __main__:omprint:31 - chunk index 7.21%
+2024-08-21 13:50:13.948 | INFO     | __main__:omprint:31 - chunk index 7.51%
+2024-08-21 13:50:13.950 | INFO     | __main__:omprint:31 - chunk index 7.81%
+2024-08-21 13:50:13.952 | INFO     | __main__:omprint:31 - chunk index 8.11%
+2024-08-21 13:50:13.956 | INFO     | __main__:omprint:31 - chunk index 8.41%
+2024-08-21 13:50:13.960 | INFO     | __main__:omprint:31 - chunk index 8.71%
+2024-08-21 13:50:13.962 | INFO     | __main__:omprint:31 - chunk index 9.01%
+2024-08-21 13:50:13.971 | INFO     | __main__:omprint:31 - chunk index 9.31%
+2024-08-21 13:50:13.973 | INFO     | __main__:omprint:31 - chunk index 9.61%
+2024-08-21 13:50:13.975 | INFO     | __main__:omprint:31 - chunk index 9.91%
+2024-08-21 13:50:13.977 | INFO     | __main__:omprint:31 - chunk index 10.21%
+2024-08-21 13:50:13.979 | INFO     | __main__:omprint:31 - chunk index 10.51%
+2024-08-21 13:50:13.981 | INFO     | __main__:omprint:31 - chunk index 10.81%
+2024-08-21 13:50:13.984 | INFO     | __main__:omprint:31 - chunk index 11.11%
+2024-08-21 13:50:13.986 | INFO     | __main__:omprint:31 - chunk index 11.41%
+2024-08-21 13:50:13.988 | INFO     | __main__:omprint:31 - chunk index 11.71%
+2024-08-21 13:50:13.990 | INFO     | __main__:omprint:31 - chunk index 12.01%
+2024-08-21 13:50:13.992 | INFO     | __main__:omprint:31 - chunk index 12.31%
+2024-08-21 13:50:13.994 | INFO     | __main__:omprint:31 - chunk index 12.61%
+2024-08-21 13:50:13.996 | INFO     | __main__:omprint:31 - chunk index 12.91%
+2024-08-21 13:50:13.998 | INFO     | __main__:omprint:31 - chunk index 13.21%
+2024-08-21 13:50:14.000 | INFO     | __main__:omprint:31 - chunk index 13.51%
+2024-08-21 13:50:14.002 | INFO     | __main__:omprint:31 - chunk index 13.81%
+2024-08-21 13:50:14.004 | INFO     | __main__:omprint:31 - chunk index 14.11%
+2024-08-21 13:50:14.007 | INFO     | __main__:omprint:31 - chunk index 14.41%
+2024-08-21 13:50:14.009 | INFO     | __main__:omprint:31 - chunk index 14.71%
+2024-08-21 13:50:14.010 | INFO     | __main__:omprint:31 - chunk index 15.02%
+2024-08-21 13:50:14.013 | INFO     | __main__:omprint:31 - chunk index 15.32%
+2024-08-21 13:50:14.015 | INFO     | __main__:omprint:31 - chunk index 15.62%
+2024-08-21 13:50:14.017 | INFO     | __main__:omprint:31 - chunk index 15.92%
+2024-08-21 13:50:14.019 | INFO     | __main__:omprint:31 - chunk index 16.22%
+2024-08-21 13:50:14.021 | INFO     | __main__:omprint:31 - chunk index 16.52%
+2024-08-21 13:50:14.023 | INFO     | __main__:omprint:31 - chunk index 16.82%
+2024-08-21 13:50:14.026 | INFO     | __main__:omprint:31 - chunk index 17.12%
+2024-08-21 13:50:14.028 | INFO     | __main__:omprint:31 - chunk index 17.42%
+2024-08-21 13:50:14.030 | INFO     | __main__:omprint:31 - chunk index 17.72%
+2024-08-21 13:50:14.033 | INFO     | __main__:omprint:31 - chunk index 18.02%
+2024-08-21 13:50:14.035 | INFO     | __main__:omprint:31 - chunk index 18.32%
+2024-08-21 13:50:14.037 | INFO     | __main__:omprint:31 - chunk index 18.62%
+2024-08-21 13:50:14.039 | INFO     | __main__:omprint:31 - chunk index 18.92%
+2024-08-21 13:50:14.041 | INFO     | __main__:omprint:31 - chunk index 19.22%
+2024-08-21 13:50:14.043 | INFO     | __main__:omprint:31 - chunk index 19.52%
+2024-08-21 13:50:14.046 | INFO     | __main__:omprint:31 - chunk index 19.82%
+2024-08-21 13:50:14.048 | INFO     | __main__:omprint:31 - chunk index 20.12%
+2024-08-21 13:50:14.050 | INFO     | __main__:omprint:31 - chunk index 20.42%
+2024-08-21 13:50:14.052 | INFO     | __main__:omprint:31 - chunk index 20.72%
+2024-08-21 13:50:14.054 | INFO     | __main__:omprint:31 - chunk index 21.02%
+2024-08-21 13:50:14.055 | INFO     | __main__:omprint:31 - chunk index 21.32%
+2024-08-21 13:50:14.058 | INFO     | __main__:omprint:31 - chunk index 21.62%
+2024-08-21 13:50:14.059 | INFO     | __main__:omprint:31 - chunk index 21.92%
+2024-08-21 13:50:14.062 | INFO     | __main__:omprint:31 - chunk index 22.22%
+2024-08-21 13:50:14.064 | INFO     | __main__:omprint:31 - chunk index 22.52%
+2024-08-21 13:50:14.066 | INFO     | __main__:omprint:31 - chunk index 22.82%
+2024-08-21 13:50:14.068 | INFO     | __main__:omprint:31 - chunk index 23.12%
+2024-08-21 13:50:14.070 | INFO     | __main__:omprint:31 - chunk index 23.42%
+2024-08-21 13:50:14.073 | INFO     | __main__:omprint:31 - chunk index 23.72%
+2024-08-21 13:50:14.075 | INFO     | __main__:omprint:31 - chunk index 24.02%
+2024-08-21 13:50:14.077 | INFO     | __main__:omprint:31 - chunk index 24.32%
+2024-08-21 13:50:14.080 | INFO     | __main__:omprint:31 - chunk index 24.62%
+2024-08-21 13:50:14.083 | INFO     | __main__:omprint:31 - chunk index 24.92%
+2024-08-21 13:50:14.085 | INFO     | __main__:omprint:31 - chunk index 25.23%
+2024-08-21 13:50:14.087 | INFO     | __main__:omprint:31 - chunk index 25.53%
+2024-08-21 13:50:14.089 | INFO     | __main__:omprint:31 - chunk index 25.83%
+2024-08-21 13:50:14.091 | INFO     | __main__:omprint:31 - chunk index 26.13%
+2024-08-21 13:50:14.093 | INFO     | __main__:omprint:31 - chunk index 26.43%
+2024-08-21 13:50:14.095 | INFO     | __main__:omprint:31 - chunk index 26.73%
+2024-08-21 13:50:14.097 | INFO     | __main__:omprint:31 - chunk index 27.03%
+2024-08-21 13:50:14.099 | INFO     | __main__:omprint:31 - chunk index 27.33%
+2024-08-21 13:50:14.101 | INFO     | __main__:omprint:31 - chunk index 27.63%
+2024-08-21 13:50:14.103 | INFO     | __main__:omprint:31 - chunk index 27.93%
+2024-08-21 13:50:14.105 | INFO     | __main__:omprint:31 - chunk index 28.23%
+2024-08-21 13:50:14.107 | INFO     | __main__:omprint:31 - chunk index 28.53%
+2024-08-21 13:50:14.109 | INFO     | __main__:omprint:31 - chunk index 28.83%
+2024-08-21 13:50:14.111 | INFO     | __main__:omprint:31 - chunk index 29.13%
+2024-08-21 13:50:14.113 | INFO     | __main__:omprint:31 - chunk index 29.43%
+2024-08-21 13:50:14.115 | INFO     | __main__:omprint:31 - chunk index 29.73%
+2024-08-21 13:50:14.118 | INFO     | __main__:omprint:31 - chunk index 30.03%
+2024-08-21 13:50:14.126 | INFO     | __main__:omprint:31 - chunk index 30.33%
+2024-08-21 13:50:14.129 | INFO     | __main__:omprint:31 - chunk index 30.63%
+2024-08-21 13:50:14.131 | INFO     | __main__:omprint:31 - chunk index 30.93%
+2024-08-21 13:50:14.133 | INFO     | __main__:omprint:31 - chunk index 31.23%
+2024-08-21 13:50:14.136 | INFO     | __main__:omprint:31 - chunk index 31.53%
+2024-08-21 13:50:14.138 | INFO     | __main__:omprint:31 - chunk index 31.83%
+2024-08-21 13:50:14.140 | INFO     | __main__:omprint:31 - chunk index 32.13%
+2024-08-21 13:50:14.143 | INFO     | __main__:omprint:31 - chunk index 32.43%
+2024-08-21 13:50:14.145 | INFO     | __main__:omprint:31 - chunk index 32.73%
+2024-08-21 13:50:14.147 | INFO     | __main__:omprint:31 - chunk index 33.03%
+2024-08-21 13:50:14.149 | INFO     | __main__:omprint:31 - chunk index 33.33%
+2024-08-21 13:50:14.152 | INFO     | __main__:omprint:31 - chunk index 33.63%
+2024-08-21 13:50:14.154 | INFO     | __main__:omprint:31 - chunk index 33.93%
+2024-08-21 13:50:14.156 | INFO     | __main__:omprint:31 - chunk index 34.23%
+2024-08-21 13:50:14.158 | INFO     | __main__:omprint:31 - chunk index 34.53%
+2024-08-21 13:50:14.160 | INFO     | __main__:omprint:31 - chunk index 34.83%
+2024-08-21 13:50:14.162 | INFO     | __main__:omprint:31 - chunk index 35.14%
+2024-08-21 13:50:14.164 | INFO     | __main__:omprint:31 - chunk index 35.44%
+2024-08-21 13:50:14.166 | INFO     | __main__:omprint:31 - chunk index 35.74%
+2024-08-21 13:50:14.168 | INFO     | __main__:omprint:31 - chunk index 36.04%
+2024-08-21 13:50:14.172 | INFO     | __main__:omprint:31 - chunk index 36.34%
+2024-08-21 13:50:14.174 | INFO     | __main__:omprint:31 - chunk index 36.64%
+2024-08-21 13:50:14.176 | INFO     | __main__:omprint:31 - chunk index 36.94%
+2024-08-21 13:50:14.178 | INFO     | __main__:omprint:31 - chunk index 37.24%
+2024-08-21 13:50:14.181 | INFO     | __main__:omprint:31 - chunk index 37.54%
+2024-08-21 13:50:14.183 | INFO     | __main__:omprint:31 - chunk index 37.84%
+2024-08-21 13:50:14.185 | INFO     | __main__:omprint:31 - chunk index 38.14%
+2024-08-21 13:50:14.187 | INFO     | __main__:omprint:31 - chunk index 38.44%
+2024-08-21 13:50:14.189 | INFO     | __main__:omprint:31 - chunk index 38.74%
+2024-08-21 13:50:14.191 | INFO     | __main__:omprint:31 - chunk index 39.04%
+2024-08-21 13:50:14.194 | INFO     | __main__:omprint:31 - chunk index 39.34%
+2024-08-21 13:50:14.196 | INFO     | __main__:omprint:31 - chunk index 39.64%
+2024-08-21 13:50:14.199 | INFO     | __main__:omprint:31 - chunk index 39.94%
+2024-08-21 13:50:14.201 | INFO     | __main__:omprint:31 - chunk index 40.24%
+2024-08-21 13:50:14.204 | INFO     | __main__:omprint:31 - chunk index 40.54%
+2024-08-21 13:50:14.207 | INFO     | __main__:omprint:31 - chunk index 40.84%
+2024-08-21 13:50:14.209 | INFO     | __main__:omprint:31 - chunk index 41.14%
+2024-08-21 13:50:14.211 | INFO     | __main__:omprint:31 - chunk index 41.44%
+2024-08-21 13:50:14.213 | INFO     | __main__:omprint:31 - chunk index 41.74%
+2024-08-21 13:50:14.215 | INFO     | __main__:omprint:31 - chunk index 42.04%
+2024-08-21 13:50:14.217 | INFO     | __main__:omprint:31 - chunk index 42.34%
+2024-08-21 13:50:14.220 | INFO     | __main__:omprint:31 - chunk index 42.64%
+2024-08-21 13:50:14.222 | INFO     | __main__:omprint:31 - chunk index 42.94%
+2024-08-21 13:50:14.224 | INFO     | __main__:omprint:31 - chunk index 43.24%
+2024-08-21 13:50:14.226 | INFO     | __main__:omprint:31 - chunk index 43.54%
+2024-08-21 13:50:14.229 | INFO     | __main__:omprint:31 - chunk index 43.84%
+2024-08-21 13:50:14.231 | INFO     | __main__:omprint:31 - chunk index 44.14%
+2024-08-21 13:50:14.233 | INFO     | __main__:omprint:31 - chunk index 44.44%
+2024-08-21 13:50:14.236 | INFO     | __main__:omprint:31 - chunk index 44.74%
+2024-08-21 13:50:14.238 | INFO     | __main__:omprint:31 - chunk index 45.05%
+2024-08-21 13:50:14.240 | INFO     | __main__:omprint:31 - chunk index 45.35%
+2024-08-21 13:50:14.249 | INFO     | __main__:omprint:31 - chunk index 45.65%
+2024-08-21 13:50:14.251 | INFO     | __main__:omprint:31 - chunk index 45.95%
+2024-08-21 13:50:14.253 | INFO     | __main__:omprint:31 - chunk index 46.25%
+2024-08-21 13:50:14.255 | INFO     | __main__:omprint:31 - chunk index 46.55%
+2024-08-21 13:50:14.257 | INFO     | __main__:omprint:31 - chunk index 46.85%
+2024-08-21 13:50:14.258 | INFO     | __main__:omprint:31 - chunk index 47.15%
+2024-08-21 13:50:14.259 | INFO     | __main__:omprint:31 - chunk index 47.45%
+2024-08-21 13:50:14.261 | INFO     | __main__:omprint:31 - chunk index 47.75%
+2024-08-21 13:50:14.264 | INFO     | __main__:omprint:31 - chunk index 48.05%
+2024-08-21 13:50:14.268 | INFO     | __main__:omprint:31 - chunk index 48.35%
+2024-08-21 13:50:14.272 | INFO     | __main__:omprint:31 - chunk index 48.65%
+2024-08-21 13:50:14.274 | INFO     | __main__:omprint:31 - chunk index 48.95%
+2024-08-21 13:50:14.276 | INFO     | __main__:omprint:31 - chunk index 49.25%
+2024-08-21 13:50:14.278 | INFO     | __main__:omprint:31 - chunk index 49.55%
+2024-08-21 13:50:14.281 | INFO     | __main__:omprint:31 - chunk index 49.85%
+2024-08-21 13:50:14.283 | INFO     | __main__:omprint:31 - chunk index 50.15%
+2024-08-21 13:50:14.284 | INFO     | __main__:omprint:31 - chunk index 50.45%
+2024-08-21 13:50:14.285 | INFO     | __main__:omprint:31 - chunk index 50.75%
+2024-08-21 13:50:14.288 | INFO     | __main__:omprint:31 - chunk index 51.05%
+2024-08-21 13:50:14.290 | INFO     | __main__:omprint:31 - chunk index 51.35%
+2024-08-21 13:50:14.293 | INFO     | __main__:omprint:31 - chunk index 51.65%
+2024-08-21 13:50:14.296 | INFO     | __main__:omprint:31 - chunk index 51.95%
+2024-08-21 13:50:14.298 | INFO     | __main__:omprint:31 - chunk index 52.25%
+2024-08-21 13:50:14.300 | INFO     | __main__:omprint:31 - chunk index 52.55%
+2024-08-21 13:50:14.302 | INFO     | __main__:omprint:31 - chunk index 52.85%
+2024-08-21 13:50:14.304 | INFO     | __main__:omprint:31 - chunk index 53.15%
+2024-08-21 13:50:14.306 | INFO     | __main__:omprint:31 - chunk index 53.45%
+2024-08-21 13:50:14.308 | INFO     | __main__:omprint:31 - chunk index 53.75%
+2024-08-21 13:50:14.310 | INFO     | __main__:omprint:31 - chunk index 54.05%
+2024-08-21 13:50:14.312 | INFO     | __main__:omprint:31 - chunk index 54.35%
+2024-08-21 13:50:14.315 | INFO     | __main__:omprint:31 - chunk index 54.65%
+2024-08-21 13:50:14.318 | INFO     | __main__:omprint:31 - chunk index 54.95%
+2024-08-21 13:50:14.320 | INFO     | __main__:omprint:31 - chunk index 55.26%
+2024-08-21 13:50:14.322 | INFO     | __main__:omprint:31 - chunk index 55.56%
+2024-08-21 13:50:14.324 | INFO     | __main__:omprint:31 - chunk index 55.86%
+2024-08-21 13:50:14.326 | INFO     | __main__:omprint:31 - chunk index 56.16%
+2024-08-21 13:50:14.328 | INFO     | __main__:omprint:31 - chunk index 56.46%
+2024-08-21 13:50:14.331 | INFO     | __main__:omprint:31 - chunk index 56.76%
+2024-08-21 13:50:14.333 | INFO     | __main__:omprint:31 - chunk index 57.06%
+2024-08-21 13:50:14.335 | INFO     | __main__:omprint:31 - chunk index 57.36%
+2024-08-21 13:50:14.337 | INFO     | __main__:omprint:31 - chunk index 57.66%
+2024-08-21 13:50:14.339 | INFO     | __main__:omprint:31 - chunk index 57.96%
+2024-08-21 13:50:14.341 | INFO     | __main__:omprint:31 - chunk index 58.26%
+2024-08-21 13:50:14.344 | INFO     | __main__:omprint:31 - chunk index 58.56%
+2024-08-21 13:50:14.346 | INFO     | __main__:omprint:31 - chunk index 58.86%
+2024-08-21 13:50:14.348 | INFO     | __main__:omprint:31 - chunk index 59.16%
+2024-08-21 13:50:14.351 | INFO     | __main__:omprint:31 - chunk index 59.46%
+2024-08-21 13:50:14.353 | INFO     | __main__:omprint:31 - chunk index 59.76%
+2024-08-21 13:50:14.355 | INFO     | __main__:omprint:31 - chunk index 60.06%
+2024-08-21 13:50:14.357 | INFO     | __main__:omprint:31 - chunk index 60.36%
+2024-08-21 13:50:14.359 | INFO     | __main__:omprint:31 - chunk index 60.66%
+2024-08-21 13:50:14.365 | INFO     | __main__:omprint:31 - chunk index 60.96%
+2024-08-21 13:50:14.367 | INFO     | __main__:omprint:31 - chunk index 61.26%
+2024-08-21 13:50:14.369 | INFO     | __main__:omprint:31 - chunk index 61.56%
+2024-08-21 13:50:14.371 | INFO     | __main__:omprint:31 - chunk index 61.86%
+2024-08-21 13:50:14.374 | INFO     | __main__:omprint:31 - chunk index 62.16%
+2024-08-21 13:50:14.375 | INFO     | __main__:omprint:31 - chunk index 62.46%
+2024-08-21 13:50:14.378 | INFO     | __main__:omprint:31 - chunk index 62.76%
+2024-08-21 13:50:14.379 | INFO     | __main__:omprint:31 - chunk index 63.06%
+2024-08-21 13:50:14.381 | INFO     | __main__:omprint:31 - chunk index 63.36%
+2024-08-21 13:50:14.383 | INFO     | __main__:omprint:31 - chunk index 63.66%
+2024-08-21 13:50:14.385 | INFO     | __main__:omprint:31 - chunk index 63.96%
+2024-08-21 13:50:14.387 | INFO     | __main__:omprint:31 - chunk index 64.26%
+2024-08-21 13:50:14.390 | INFO     | __main__:omprint:31 - chunk index 64.56%
+2024-08-21 13:50:14.391 | INFO     | __main__:omprint:31 - chunk index 64.86%
+2024-08-21 13:50:14.393 | INFO     | __main__:omprint:31 - chunk index 65.17%
+2024-08-21 13:50:14.395 | INFO     | __main__:omprint:31 - chunk index 65.47%
+2024-08-21 13:50:14.397 | INFO     | __main__:omprint:31 - chunk index 65.77%
+2024-08-21 13:50:14.399 | INFO     | __main__:omprint:31 - chunk index 66.07%
+2024-08-21 13:50:14.401 | INFO     | __main__:omprint:31 - chunk index 66.37%
+2024-08-21 13:50:14.403 | INFO     | __main__:omprint:31 - chunk index 66.67%
+2024-08-21 13:50:14.405 | INFO     | __main__:omprint:31 - chunk index 66.97%
+2024-08-21 13:50:14.407 | INFO     | __main__:omprint:31 - chunk index 67.27%
+2024-08-21 13:50:14.409 | INFO     | __main__:omprint:31 - chunk index 67.57%
+2024-08-21 13:50:14.411 | INFO     | __main__:omprint:31 - chunk index 67.87%
+2024-08-21 13:50:14.413 | INFO     | __main__:omprint:31 - chunk index 68.17%
+2024-08-21 13:50:14.415 | INFO     | __main__:omprint:31 - chunk index 68.47%
+2024-08-21 13:50:14.417 | INFO     | __main__:omprint:31 - chunk index 68.77%
+2024-08-21 13:50:14.419 | INFO     | __main__:omprint:31 - chunk index 69.07%
+2024-08-21 13:50:14.421 | INFO     | __main__:omprint:31 - chunk index 69.37%
+2024-08-21 13:50:14.423 | INFO     | __main__:omprint:31 - chunk index 69.67%
+2024-08-21 13:50:14.425 | INFO     | __main__:omprint:31 - chunk index 69.97%
+2024-08-21 13:50:14.427 | INFO     | __main__:omprint:31 - chunk index 70.27%
+2024-08-21 13:50:14.429 | INFO     | __main__:omprint:31 - chunk index 70.57%
+2024-08-21 13:50:14.431 | INFO     | __main__:omprint:31 - chunk index 70.87%
+2024-08-21 13:50:14.433 | INFO     | __main__:omprint:31 - chunk index 71.17%
+2024-08-21 13:50:14.435 | INFO     | __main__:omprint:31 - chunk index 71.47%
+2024-08-21 13:50:14.437 | INFO     | __main__:omprint:31 - chunk index 71.77%
+2024-08-21 13:50:14.439 | INFO     | __main__:omprint:31 - chunk index 72.07%
+2024-08-21 13:50:14.441 | INFO     | __main__:omprint:31 - chunk index 72.37%
+2024-08-21 13:50:14.443 | INFO     | __main__:omprint:31 - chunk index 72.67%
+2024-08-21 13:50:14.445 | INFO     | __main__:omprint:31 - chunk index 72.97%
+2024-08-21 13:50:14.447 | INFO     | __main__:omprint:31 - chunk index 73.27%
+2024-08-21 13:50:14.449 | INFO     | __main__:omprint:31 - chunk index 73.57%
+2024-08-21 13:50:14.451 | INFO     | __main__:omprint:31 - chunk index 73.87%
+2024-08-21 13:50:14.453 | INFO     | __main__:omprint:31 - chunk index 74.17%
+2024-08-21 13:50:14.455 | INFO     | __main__:omprint:31 - chunk index 74.47%
+2024-08-21 13:50:14.457 | INFO     | __main__:omprint:31 - chunk index 74.77%
+2024-08-21 13:50:14.459 | INFO     | __main__:omprint:31 - chunk index 75.08%
+2024-08-21 13:50:14.461 | INFO     | __main__:omprint:31 - chunk index 75.38%
+2024-08-21 13:50:14.463 | INFO     | __main__:omprint:31 - chunk index 75.68%
+2024-08-21 13:50:14.465 | INFO     | __main__:omprint:31 - chunk index 75.98%
+2024-08-21 13:50:14.471 | INFO     | __main__:omprint:31 - chunk index 76.28%
+2024-08-21 13:50:14.473 | INFO     | __main__:omprint:31 - chunk index 76.58%
+2024-08-21 13:50:14.475 | INFO     | __main__:omprint:31 - chunk index 76.88%
+2024-08-21 13:50:14.478 | INFO     | __main__:omprint:31 - chunk index 77.18%
+2024-08-21 13:50:14.480 | INFO     | __main__:omprint:31 - chunk index 77.48%
+2024-08-21 13:50:14.482 | INFO     | __main__:omprint:31 - chunk index 77.78%
+2024-08-21 13:50:14.484 | INFO     | __main__:omprint:31 - chunk index 78.08%
+2024-08-21 13:50:14.486 | INFO     | __main__:omprint:31 - chunk index 78.38%
+2024-08-21 13:50:14.489 | INFO     | __main__:omprint:31 - chunk index 78.68%
+2024-08-21 13:50:14.491 | INFO     | __main__:omprint:31 - chunk index 78.98%
+2024-08-21 13:50:14.493 | INFO     | __main__:omprint:31 - chunk index 79.28%
+2024-08-21 13:50:14.496 | INFO     | __main__:omprint:31 - chunk index 79.58%
+2024-08-21 13:50:14.497 | INFO     | __main__:omprint:31 - chunk index 79.88%
+2024-08-21 13:50:14.499 | INFO     | __main__:omprint:31 - chunk index 80.18%
+2024-08-21 13:50:14.501 | INFO     | __main__:omprint:31 - chunk index 80.48%
+2024-08-21 13:50:14.503 | INFO     | __main__:omprint:31 - chunk index 80.78%
+2024-08-21 13:50:14.505 | INFO     | __main__:omprint:31 - chunk index 81.08%
+2024-08-21 13:50:14.508 | INFO     | __main__:omprint:31 - chunk index 81.38%
+2024-08-21 13:50:14.509 | INFO     | __main__:omprint:31 - chunk index 81.68%
+2024-08-21 13:50:14.511 | INFO     | __main__:omprint:31 - chunk index 81.98%
+2024-08-21 13:50:14.514 | INFO     | __main__:omprint:31 - chunk index 82.28%
+2024-08-21 13:50:14.516 | INFO     | __main__:omprint:31 - chunk index 82.58%
+2024-08-21 13:50:14.518 | INFO     | __main__:omprint:31 - chunk index 82.88%
+2024-08-21 13:50:14.520 | INFO     | __main__:omprint:31 - chunk index 83.18%
+2024-08-21 13:50:14.522 | INFO     | __main__:omprint:31 - chunk index 83.48%
+2024-08-21 13:50:14.524 | INFO     | __main__:omprint:31 - chunk index 83.78%
+2024-08-21 13:50:14.525 | INFO     | __main__:omprint:31 - chunk index 84.08%
+2024-08-21 13:50:14.527 | INFO     | __main__:omprint:31 - chunk index 84.38%
+2024-08-21 13:50:14.529 | INFO     | __main__:omprint:31 - chunk index 84.68%
+2024-08-21 13:50:14.531 | INFO     | __main__:omprint:31 - chunk index 84.98%
+2024-08-21 13:50:14.533 | INFO     | __main__:omprint:31 - chunk index 85.29%
+2024-08-21 13:50:14.535 | INFO     | __main__:omprint:31 - chunk index 85.59%
+2024-08-21 13:50:14.537 | INFO     | __main__:omprint:31 - chunk index 85.89%
+2024-08-21 13:50:14.539 | INFO     | __main__:omprint:31 - chunk index 86.19%
+2024-08-21 13:50:14.541 | INFO     | __main__:omprint:31 - chunk index 86.49%
+2024-08-21 13:50:14.543 | INFO     | __main__:omprint:31 - chunk index 86.79%
+2024-08-21 13:50:14.545 | INFO     | __main__:omprint:31 - chunk index 87.09%
+2024-08-21 13:50:14.547 | INFO     | __main__:omprint:31 - chunk index 87.39%
+2024-08-21 13:50:14.549 | INFO     | __main__:omprint:31 - chunk index 87.69%
+2024-08-21 13:50:14.550 | INFO     | __main__:omprint:31 - chunk index 87.99%
+2024-08-21 13:50:14.552 | INFO     | __main__:omprint:31 - chunk index 88.29%
+2024-08-21 13:50:14.555 | INFO     | __main__:omprint:31 - chunk index 88.59%
+2024-08-21 13:50:14.556 | INFO     | __main__:omprint:31 - chunk index 88.89%
+2024-08-21 13:50:14.558 | INFO     | __main__:omprint:31 - chunk index 89.19%
+2024-08-21 13:50:14.560 | INFO     | __main__:omprint:31 - chunk index 89.49%
+2024-08-21 13:50:14.562 | INFO     | __main__:omprint:31 - chunk index 89.79%
+2024-08-21 13:50:14.564 | INFO     | __main__:omprint:31 - chunk index 90.09%
+2024-08-21 13:50:14.566 | INFO     | __main__:omprint:31 - chunk index 90.39%
+2024-08-21 13:50:14.569 | INFO     | __main__:omprint:31 - chunk index 90.69%
+2024-08-21 13:50:14.571 | INFO     | __main__:omprint:31 - chunk index 90.99%
+2024-08-21 13:50:14.573 | INFO     | __main__:omprint:31 - chunk index 91.29%
+2024-08-21 13:50:14.580 | INFO     | __main__:omprint:31 - chunk index 91.59%
+2024-08-21 13:50:14.582 | INFO     | __main__:omprint:31 - chunk index 91.89%
+2024-08-21 13:50:14.584 | INFO     | __main__:omprint:31 - chunk index 92.19%
+2024-08-21 13:50:14.586 | INFO     | __main__:omprint:31 - chunk index 92.49%
+2024-08-21 13:50:14.588 | INFO     | __main__:omprint:31 - chunk index 92.79%
+2024-08-21 13:50:14.591 | INFO     | __main__:omprint:31 - chunk index 93.09%
+2024-08-21 13:50:14.593 | INFO     | __main__:omprint:31 - chunk index 93.39%
+2024-08-21 13:50:14.595 | INFO     | __main__:omprint:31 - chunk index 93.69%
+2024-08-21 13:50:14.598 | INFO     | __main__:omprint:31 - chunk index 93.99%
+2024-08-21 13:50:14.600 | INFO     | __main__:omprint:31 - chunk index 94.29%
+2024-08-21 13:50:14.602 | INFO     | __main__:omprint:31 - chunk index 94.59%
+2024-08-21 13:50:14.604 | INFO     | __main__:omprint:31 - chunk index 94.89%
+2024-08-21 13:50:14.607 | INFO     | __main__:omprint:31 - chunk index 95.20%
+2024-08-21 13:50:14.609 | INFO     | __main__:omprint:31 - chunk index 95.50%
+2024-08-21 13:50:14.612 | INFO     | __main__:omprint:31 - chunk index 95.80%
+2024-08-21 13:50:14.615 | INFO     | __main__:omprint:31 - chunk index 96.10%
+2024-08-21 13:50:14.617 | INFO     | __main__:omprint:31 - chunk index 96.40%
+2024-08-21 13:50:14.620 | INFO     | __main__:omprint:31 - chunk index 96.70%
+2024-08-21 13:50:14.622 | INFO     | __main__:omprint:31 - chunk index 97.00%
+2024-08-21 13:50:14.624 | INFO     | __main__:omprint:31 - chunk index 97.30%
+2024-08-21 13:50:14.627 | INFO     | __main__:omprint:31 - chunk index 97.60%
+2024-08-21 13:50:14.629 | INFO     | __main__:omprint:31 - chunk index 97.90%
+2024-08-21 13:50:14.631 | INFO     | __main__:omprint:31 - chunk index 98.20%
+2024-08-21 13:50:14.634 | INFO     | __main__:omprint:31 - chunk index 98.50%
+2024-08-21 13:50:14.636 | INFO     | __main__:omprint:31 - chunk index 98.80%
+2024-08-21 13:50:14.638 | INFO     | __main__:omprint:31 - chunk index 99.10%
+2024-08-21 13:50:14.640 | INFO     | __main__:omprint:31 - chunk index 99.40%
+2024-08-21 13:50:14.642 | INFO     | __main__:omprint:31 - chunk index 99.70%
+2024-08-21 13:50:14.644 | INFO     | __main__:omprint:31 - chunk index 100.00%
+2024-08-21 13:50:14.649 | INFO     | __main__:omprint:31 - t total 100.00%
+2024-08-21 13:50:14.651 | INFO     | __main__:omprint:31 - t index 0.00%
+2024-08-21 13:50:15.371 | INFO     | __main__:omprint:31 - t index 0.56%
+2024-08-21 13:50:16.282 | INFO     | __main__:omprint:31 - t index 1.11%
+2024-08-21 13:50:17.089 | INFO     | __main__:omprint:31 - t index 1.67%
+2024-08-21 13:50:17.913 | INFO     | __main__:omprint:31 - t index 2.22%
+2024-08-21 13:50:18.715 | INFO     | __main__:omprint:31 - t index 2.78%
+2024-08-21 13:50:19.509 | INFO     | __main__:omprint:31 - t index 3.33%
+2024-08-21 13:50:20.314 | INFO     | __main__:omprint:31 - t index 3.89%
+2024-08-21 13:50:21.109 | INFO     | __main__:omprint:31 - t index 4.44%
+2024-08-21 13:50:21.904 | INFO     | __main__:omprint:31 - t index 5.00%
+2024-08-21 13:50:22.703 | INFO     | __main__:omprint:31 - t index 5.56%
+2024-08-21 13:50:23.503 | INFO     | __main__:omprint:31 - t index 6.11%
+2024-08-21 13:50:24.330 | INFO     | __main__:omprint:31 - t index 6.67%
+2024-08-21 13:50:25.127 | INFO     | __main__:omprint:31 - t index 7.22%
+2024-08-21 13:50:25.944 | INFO     | __main__:omprint:31 - t index 7.78%
+2024-08-21 13:50:26.732 | INFO     | __main__:omprint:31 - t index 8.33%
+2024-08-21 13:50:27.539 | INFO     | __main__:omprint:31 - t index 8.89%
+2024-08-21 13:50:28.340 | INFO     | __main__:omprint:31 - t index 9.44%
+2024-08-21 13:50:29.139 | INFO     | __main__:omprint:31 - t index 10.00%
+2024-08-21 13:50:29.932 | INFO     | __main__:omprint:31 - t index 10.56%
+2024-08-21 13:50:30.740 | INFO     | __main__:omprint:31 - t index 11.11%
+2024-08-21 13:50:31.537 | INFO     | __main__:omprint:31 - t index 11.67%
+2024-08-21 13:50:32.341 | INFO     | __main__:omprint:31 - t index 12.22%
+2024-08-21 13:50:33.136 | INFO     | __main__:omprint:31 - t index 12.78%
+2024-08-21 13:50:33.931 | INFO     | __main__:omprint:31 - t index 13.33%
+2024-08-21 13:50:34.765 | INFO     | __main__:omprint:31 - t index 13.89%
+2024-08-21 13:50:35.599 | INFO     | __main__:omprint:31 - t index 14.44%
+2024-08-21 13:50:36.417 | INFO     | __main__:omprint:31 - t index 15.00%
+2024-08-21 13:50:37.222 | INFO     | __main__:omprint:31 - t index 15.56%
+2024-08-21 13:50:38.050 | INFO     | __main__:omprint:31 - t index 16.11%
+2024-08-21 13:50:38.873 | INFO     | __main__:omprint:31 - t index 16.67%
+2024-08-21 13:50:39.736 | INFO     | __main__:omprint:31 - t index 17.22%
+2024-08-21 13:50:40.569 | INFO     | __main__:omprint:31 - t index 17.78%
+2024-08-21 13:50:41.449 | INFO     | __main__:omprint:31 - t index 18.33%
+2024-08-21 13:50:42.254 | INFO     | __main__:omprint:31 - t index 18.89%
+2024-08-21 13:50:43.001 | INFO     | __main__:omprint:31 - Ya hay un proceso en ejecución.
+2024-08-21 13:50:43.170 | INFO     | __main__:omprint:31 - t index 19.44%
+2024-08-21 13:50:43.970 | INFO     | __main__:omprint:31 - t index 20.00%
+2024-08-21 13:50:44.743 | INFO     | __main__:omprint:31 - t index 20.56%
+2024-08-21 13:50:45.623 | INFO     | __main__:omprint:31 - t index 21.11%
+2024-08-21 13:50:46.421 | INFO     | __main__:omprint:31 - t index 21.67%
+2024-08-21 13:50:47.203 | INFO     | __main__:omprint:31 - t index 22.22%
+2024-08-21 13:50:48.077 | INFO     | __main__:omprint:31 - t index 22.78%
+2024-08-21 13:50:48.873 | INFO     | __main__:omprint:31 - t index 23.33%
+2024-08-21 13:50:49.663 | INFO     | __main__:omprint:31 - t index 23.89%
+2024-08-21 13:50:50.560 | INFO     | __main__:omprint:31 - t index 24.44%
+2024-08-21 13:50:51.373 | INFO     | __main__:omprint:31 - t index 25.00%
+2024-08-21 13:50:52.344 | INFO     | __main__:omprint:31 - t index 25.56%
+2024-08-21 13:50:53.578 | INFO     | __main__:omprint:31 - t index 26.11%
+2024-08-21 13:50:54.662 | INFO     | __main__:omprint:31 - t index 26.67%
+2024-08-21 13:50:55.706 | INFO     | __main__:omprint:31 - t index 27.22%
+2024-08-21 13:50:56.885 | INFO     | __main__:omprint:31 - t index 27.78%
+2024-08-21 13:50:57.973 | INFO     | __main__:omprint:31 - t index 28.33%
+2024-08-21 13:50:59.022 | INFO     | __main__:omprint:31 - t index 28.89%
+2024-08-21 13:50:59.956 | INFO     | __main__:omprint:31 - t index 29.44%
+2024-08-21 13:51:00.809 | INFO     | __main__:omprint:31 - t index 30.00%
+2024-08-21 13:51:01.606 | INFO     | __main__:omprint:31 - t index 30.56%
+2024-08-21 13:51:02.506 | INFO     | __main__:omprint:31 - t index 31.11%
+2024-08-21 13:51:03.302 | INFO     | __main__:omprint:31 - t index 31.67%
+2024-08-21 13:51:04.101 | INFO     | __main__:omprint:31 - t index 32.22%
+2024-08-21 13:51:05.111 | INFO     | __main__:omprint:31 - t index 32.78%
+2024-08-21 13:51:06.159 | INFO     | __main__:omprint:31 - t index 33.33%
+2024-08-21 13:51:06.933 | INFO     | __main__:omprint:31 - t index 33.89%
+2024-08-21 13:51:07.837 | INFO     | __main__:omprint:31 - t index 34.44%
+2024-08-21 13:51:08.654 | INFO     | __main__:omprint:31 - t index 35.00%
+2024-08-21 13:51:09.488 | INFO     | __main__:omprint:31 - t index 35.56%
+2024-08-21 13:51:10.400 | INFO     | __main__:omprint:31 - t index 36.11%
+2024-08-21 13:51:11.216 | INFO     | __main__:omprint:31 - t index 36.67%
+2024-08-21 13:51:12.036 | INFO     | __main__:omprint:31 - t index 37.22%
+2024-08-21 13:51:12.989 | INFO     | __main__:omprint:31 - t index 37.78%
+2024-08-21 13:51:14.063 | INFO     | __main__:omprint:31 - t index 38.33%
+2024-08-21 13:51:15.162 | INFO     | __main__:omprint:31 - t index 38.89%
+2024-08-21 13:51:16.100 | INFO     | __main__:omprint:31 - t index 39.44%
+2024-08-21 13:51:16.910 | INFO     | __main__:omprint:31 - t index 40.00%
+2024-08-21 13:51:17.809 | INFO     | __main__:omprint:31 - t index 40.56%
+2024-08-21 13:51:18.627 | INFO     | __main__:omprint:31 - t index 41.11%
+2024-08-21 13:51:19.511 | INFO     | __main__:omprint:31 - t index 41.67%
+2024-08-21 13:51:20.316 | INFO     | __main__:omprint:31 - t index 42.22%
+2024-08-21 13:51:21.219 | INFO     | __main__:omprint:31 - t index 42.78%
+2024-08-21 13:51:22.031 | INFO     | __main__:omprint:31 - t index 43.33%
+2024-08-21 13:51:22.920 | INFO     | __main__:omprint:31 - t index 43.89%
+2024-08-21 13:51:23.730 | INFO     | __main__:omprint:31 - t index 44.44%
+2024-08-21 13:51:24.670 | INFO     | __main__:omprint:31 - t index 45.00%
+2024-08-21 13:51:25.473 | INFO     | __main__:omprint:31 - t index 45.56%
+2024-08-21 13:51:26.365 | INFO     | __main__:omprint:31 - t index 46.11%
+2024-08-21 13:51:27.155 | INFO     | __main__:omprint:31 - t index 46.67%
+2024-08-21 13:51:28.056 | INFO     | __main__:omprint:31 - t index 47.22%
+2024-08-21 13:51:28.857 | INFO     | __main__:omprint:31 - t index 47.78%
+2024-08-21 13:51:29.857 | INFO     | __main__:omprint:31 - t index 48.33%
+2024-08-21 13:51:31.027 | INFO     | __main__:omprint:31 - t index 48.89%
+2024-08-21 13:51:32.778 | INFO     | __main__:omprint:31 - t index 49.44%
+2024-08-21 13:51:34.289 | INFO     | __main__:omprint:31 - t index 50.00%
+2024-08-21 13:51:35.900 | INFO     | __main__:omprint:31 - t index 50.56%
+2024-08-21 13:51:37.054 | INFO     | __main__:omprint:31 - t index 51.11%
+2024-08-21 13:51:38.336 | INFO     | __main__:omprint:31 - t index 51.67%
+2024-08-21 13:51:39.347 | INFO     | __main__:omprint:31 - t index 52.22%
+2024-08-21 13:51:40.619 | INFO     | __main__:omprint:31 - t index 52.78%
+2024-08-21 13:51:41.508 | INFO     | __main__:omprint:31 - t index 53.33%
+2024-08-21 13:51:42.573 | INFO     | __main__:omprint:31 - t index 53.89%
+2024-08-21 13:51:43.004 | INFO     | __main__:omprint:31 - Ya hay un proceso en ejecución.
+2024-08-21 13:51:43.555 | INFO     | __main__:omprint:31 - t index 54.44%
+2024-08-21 13:51:44.810 | INFO     | __main__:omprint:31 - t index 55.00%
+2024-08-21 13:51:46.106 | INFO     | __main__:omprint:31 - t index 55.56%
+2024-08-21 13:51:47.314 | INFO     | __main__:omprint:31 - t index 56.11%
+2024-08-21 13:51:48.391 | INFO     | __main__:omprint:31 - t index 56.67%
+2024-08-21 13:51:49.464 | INFO     | __main__:omprint:31 - t index 57.22%
+2024-08-21 13:51:50.848 | INFO     | __main__:omprint:31 - t index 57.78%
+2024-08-21 13:51:52.371 | INFO     | __main__:omprint:31 - t index 58.33%
+2024-08-21 13:51:53.801 | INFO     | __main__:omprint:31 - t index 58.89%
+2024-08-21 13:51:55.194 | INFO     | __main__:omprint:31 - t index 59.44%
+2024-08-21 13:51:56.523 | INFO     | __main__:omprint:31 - t index 60.00%
+2024-08-21 13:51:57.692 | INFO     | __main__:omprint:31 - t index 60.56%
+2024-08-21 13:51:58.873 | INFO     | __main__:omprint:31 - t index 61.11%
+2024-08-21 13:52:00.194 | INFO     | __main__:omprint:31 - t index 61.67%
+2024-08-21 13:52:01.513 | INFO     | __main__:omprint:31 - t index 62.22%
+2024-08-21 13:52:02.873 | INFO     | __main__:omprint:31 - t index 62.78%
+2024-08-21 13:52:04.097 | INFO     | __main__:omprint:31 - t index 63.33%
+2024-08-21 13:52:05.117 | INFO     | __main__:omprint:31 - t index 63.89%
+2024-08-21 13:52:06.069 | INFO     | __main__:omprint:31 - t index 64.44%
+2024-08-21 13:52:07.550 | INFO     | __main__:omprint:31 - t index 65.00%
+2024-08-21 13:52:09.127 | INFO     | __main__:omprint:31 - t index 65.56%
+2024-08-21 13:52:10.715 | INFO     | __main__:omprint:31 - t index 66.11%
+2024-08-21 13:52:12.305 | INFO     | __main__:omprint:31 - t index 66.67%
+2024-08-21 13:52:13.725 | INFO     | __main__:omprint:31 - t index 67.22%
+2024-08-21 13:52:15.045 | INFO     | __main__:omprint:31 - t index 67.78%
+2024-08-21 13:52:16.611 | INFO     | __main__:omprint:31 - t index 68.33%
+2024-08-21 13:52:18.224 | INFO     | __main__:omprint:31 - t index 68.89%
+2024-08-21 13:52:19.644 | INFO     | __main__:omprint:31 - t index 69.44%
+2024-08-21 13:52:21.028 | INFO     | __main__:omprint:31 - t index 70.00%
+2024-08-21 13:52:22.275 | INFO     | __main__:omprint:31 - t index 70.56%
+2024-08-21 13:52:23.660 | INFO     | __main__:omprint:31 - t index 71.11%
+2024-08-21 13:52:24.938 | INFO     | __main__:omprint:31 - t index 71.67%
+2024-08-21 13:52:26.292 | INFO     | __main__:omprint:31 - t index 72.22%
+2024-08-21 13:52:27.506 | INFO     | __main__:omprint:31 - t index 72.78%
+2024-08-21 13:52:29.141 | INFO     | __main__:omprint:31 - t index 73.33%
+2024-08-21 13:52:30.738 | INFO     | __main__:omprint:31 - t index 73.89%
+2024-08-21 13:52:32.245 | INFO     | __main__:omprint:31 - t index 74.44%
+2024-08-21 13:52:34.583 | INFO     | __main__:omprint:31 - t index 75.00%

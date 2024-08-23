@@ -295,17 +295,6 @@ def add_question_text(question_text, ctxVideo, question_font_path, margin=80, to
     return question_clip
 
 
-# Añadir texto de la pregunta
-def ok_add_question_text(question_text, video_clip, question_font_path, margin=80, top_margin=450):
-    # Calcular el ancho máximo permitido para el texto, considerando los márgenes
-    max_width = video_clip.w - 2 * margin
-
-    # Crear el TextClip con ajuste de línea
-    question_clip = (TextClip(question_text, fontsize=80, color='white', font=question_font_path, method='caption', size=(max_width, None))
-                     .set_duration(video_clip.duration)
-                     .set_pos(("center", top_margin)))  # Controlar la altura de presentación con top_margin
-    return question_clip
-
 # Añadir opciones de respuesta
 def add_options(options, ctxVideo, options_font_path, top_margin, margin=170):
     # print(f"[DEBUG] add_options - video_clip.duration: {video_clip.duration}")
@@ -335,6 +324,11 @@ def add_options(options, ctxVideo, options_font_path, top_margin, margin=170):
     option_bg_color = 'white'  # Fondo blanco para las opciones
     option_bg_height = 115  # Altura del fondo de las opciones
     corner_radius = 50  # Radio de las esquinas redondeadas del fondo
+    
+    # Definir límites de fontsize para el texto de las opciones
+    max_fontsize = 70
+    min_fontsize = 50
+    max_chars = 18  # Máximo de caracteres para el tamaño de fuente más grande
 
     for i, option in enumerate(options):
         # Crear el círculo con Pillow
@@ -369,8 +363,17 @@ def add_options(options, ctxVideo, options_font_path, top_margin, margin=170):
         option_bg_clip = ImageClip(bg_array).set_duration(ctxVideo["video_duration"])
         option_bg_clip = option_bg_clip.set_position((margin + 10, y_positions[i] + 1))
 
+        # Calcular el fontsize basado en la longitud del texto de la opción
+        text_length = len(option)
+        if text_length <= max_chars:
+            fontsize = max_fontsize
+        else:
+            fontsize = max(min_fontsize, int(max_fontsize - (text_length - max_chars) * (max_fontsize - min_fontsize) / max_chars))
+
+        print(f"[DEBUG] add_options - fontsize for option '{option}': {fontsize}")
+
         # Crear el texto de la opción
-        option_text_clip = (TextClip(option, fontsize=70, color='black', font=options_font_path)
+        option_text_clip = (TextClip(option, fontsize=fontsize, color='black', font=options_font_path)
                             .set_duration(ctxVideo["video_duration"])
                             .set_position((margin + circle_radius * 2 + 20, y_positions[i] + 15)))
 
@@ -770,80 +773,6 @@ def generate_trivia_video(main_question, voice, language, ctxVideo, logo_path, q
     return video_clip
 
 
-def beta_generate_combined_trivia_video(main_question, voice, questions_json, background_video_path, logo_path, account_text, tictac_sound_path, ding_sound_path, output_file, question_font_path, options_font_path, account_font_path, question_image_font_path):
-    start_time = time.time()  # Inicia el temporizador
-
-    all_clips = []
-    temp_files = []
-
-    for idx, question in enumerate(questions_json):
-        question_text = question['question_text']
-        question_image = question['question_image']
-        options = question['options']
-        correct_option_index = question['correct_option_index']
-
-        narration_text = f"¿{question_text}?"
-        narration_text_winner = f"{options[correct_option_index]}!!"
-
-        # Aquí normalmente usarías generate_trivia_video para generar el clip con MoviePy
-        # En lugar de eso, construirás un comando ffmpeg para procesar cada clip
-        temp_output = f"temp_clip_{idx}.mp4"
-
-        ffmpeg_command = [
-            'ffmpeg',
-            '-y',  # Sobrescribir el archivo de salida si existe
-            '-i', background_video_path,
-            '-vf', f"drawtext=fontfile={question_font_path}:text='{question_text}':x=(w-text_w)/2:y=(h-text_h)/3",
-            '-c:v', 'libx264',
-            '-preset', 'faster', # 'ultrafast',
-            '-c:a', 'aac',
-            '-b:a', '192k',
-            temp_output
-        ]
-
-        # Ejecutar el comando ffmpeg para generar cada clip
-        subprocess.run(ffmpeg_command)
-        temp_files.append(temp_output)
-
-    # Crear el archivo de lista para ffmpeg
-    with open("input.txt", "w") as f:
-        for temp_file in temp_files:
-            f.write(f"file '{os.path.abspath(temp_file)}'\n")
-
-    # Concatenar los clips con ffmpeg
-    ffmpeg_concat_command = [
-        'ffmpeg',
-        '-y',  # Sobrescribir el archivo de salida si existe
-        '-f', 'concat',  # Usar el archivo de lista para concatenación
-        '-safe', '0',
-        '-i', 'input.txt',
-        '-c:v', 'libx264',
-        '-preset', 'faster', #'ultrafast',
-        '-c:a', 'aac',
-        '-b:a', '192k',
-        output_file
-    ]
-
-    process = subprocess.Popen(ffmpeg_concat_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
-
-    # Mostrar barra de progreso
-    for line in process.stderr:
-        if "frame=" in line or "time=" in line:
-            print(line.strip())  # Mostrar líneas de progreso de FFmpeg
-
-    process.wait()  # Esperar a que termine el proceso FFmpeg
-
-    # Limpiar archivos temporales
-    for temp_file in temp_files:
-        os.remove(temp_file)
-    os.remove("input.txt")
-
-    end_time = time.time()  # Detener el temporizador
-    processing_time = end_time - start_time  # Calcular tiempo de procesamiento
-
-    print(f"Tiempo de procesamiento: {processing_time} segundos")
-
-
 # Funcióc para generar un video con múltiples preguntas
 def generate_combined_trivia_video(main_question, voice, language, questions_json, background_video_path, background_music_path, logo_path, account_text, tictac_sound_path, ding_sound_path, output_file, question_font_path, options_font_path, account_font_path, question_image_font_path):
     start_time = time.time()  # Inicia el temporizador
@@ -984,7 +913,7 @@ def generate_quiz_questions(main_question, num_questions=2, num_options=4, langu
         f"seguido de un arreglo 'questions' que contenga objetos con las siguientes propiedades: "
         f"el texto de la pregunta corta en idioma {language} {'sin emojis en ella' if emoji_included else ''} con variantes {'mencionando siempre el tema central en cada pregunta ' if not emoji_included else ''} para hacer la pronunciación más humana y consistente {'SIN INCLUIR EL EMOJI' if emoji_included else ''}, "
         f"{'una imagen representada como un emoji,' if emoji_included else ''} "
-        f"opciones de respuesta en idioma {language} con {num_options} opciones donde alternes la opción correcta en las diferentes posiciones del arreglo de opciones entre 0 y {num_options - 1}, (IMPORTANTE: deben tener un tamano de 18 caracteres máximo por opción), y el índice de la opción correcta (IMPORTANTE: Las opciones correctas deben estár en posiciones aleatorias entre 0 y {num_options - 1} dentro del arreglo de la propiedad 'options').\n\n"
+        f"opciones de respuesta en idioma {language} con {num_options} opciones donde alternes la opción correcta en las diferentes posiciones del arreglo de opciones entre 0 y {num_options - 1}, (IMPORTANTE: deben tener un tamaño de 18 caracteres máximo por opción), y el índice de la opción correcta (IMPORTANTE: Las opciones correctas deben estár en posiciones aleatorias entre 0 y {num_options - 1} dentro del arreglo de la propiedad 'options').\n\n"
         f"Aquí hay un ejemplo del formato:\n\n"
         "{\n"
         "  \"main_question\": \"Pregunta principal de ejemplo?\",\n"
@@ -1041,7 +970,7 @@ def generate_quiz_questions(main_question, num_questions=2, num_options=4, langu
     return json.loads(result)
 
 
-def create_video(uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video):
+def create_video(uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video, logo_path, account_text):
     # Configura el analizador de argumentos de línea de comandos
     # parser = argparse.ArgumentParser(description="Genera un video de trivia basado en las preguntas del quiz.")
     # parser.add_argument("main_question", type=str, help="La pregunta principal del quiz.")
@@ -1061,6 +990,12 @@ def create_video(uuid4, language, voice, main_question, num_questions, num_optio
     trivia = generate_quiz_questions(main_question, num_questions, num_options, language)
 
     print(trivia)
+    
+    final_logo_path = logo_path or "./public/assets/images/logo.png"
+    final_account_text = account_text or "@elclubdelosgenios"
+    
+    print("final_logo_path:", final_logo_path)
+    print("final_account_text:", final_account_text)
 
     # Genera el video combinado de la trivia
     generate_combined_trivia_video(
@@ -1070,8 +1005,8 @@ def create_video(uuid4, language, voice, main_question, num_questions, num_optio
         questions_json=trivia["questions"],
         background_video_path=f"./public/assets/videos/{background_video}.mp4",
         background_music_path=f"./public/assets/music/{background_music}.mp3",
-        logo_path="./public/assets/images/logo.png",
-        account_text="@elclubdelosgenios",
+        logo_path=final_logo_path,
+        account_text=final_account_text,
         tictac_sound_path="./public/assets/audios/clock.mp3",
         ding_sound_path="./public/assets/audios/ding.mp3",
         output_file=f"./public/generados/videos/{uuidcode}.mp4",
@@ -1088,7 +1023,7 @@ def create_video(uuid4, language, voice, main_question, num_questions, num_optio
 #     main()
 
 
-def create_video_main(uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video):
+def create_video_main(uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video, logo_path, account_text):
     # data = [{'url': 'https://www.kayak.com/rimg/himg/17/76/2c/booking-3989982-257263533-043832.jpg', 'description': 'A luxurious, well-lit house with arched windows, a grand entrance, and a gated courtyard surrounded by lush greenery and tall trees.'}, {'url': 'https://www.kayak.com/rimg/himg/97/73/c7/booking-3989982-257263588-299448.jpg', 'description': 'A grand staircase with ornate railings and statues leads to an upper level in an elegant, spacious interior with warm-toned walls and decorative elements.'}, {'url': 'https://www.kayak.com/rimg/himg/21/16/65/booking-3989982-257263572-216394.jpg', 'description': 'A spacious, well-lit kitchen with modern appliances, granite countertops, dark cabinetry, and an arched entryway leading to a grand hallway.'}, {'url': 'https://www.kayak.com/rimg/himg/50/e3/c8/booking-3989982-257263543-083612.jpg', 'description': 'A luxurious bedroom features a four-poster bed, a cozy seating area with ornate furniture, a large TV, and eclectic decor including a plush rug and animal figurines.'}, {'url': 'https://www.kayak.com/rimg/himg/f1/0f/8b/booking-3989982-257263555-150000.jpg', 'description': 'A cozy, well-decorated living room features a fireplace, elegant seating, framed artwork, and a floor lamp with multiple globes.'}, {'url': 'https://www.kayak.com/rimg/himg/36/10/ec/booking-3989982-257263552-131976.jpg', 'description': 'The image shows a luxurious bathroom featuring a large glass-enclosed shower and a separate bathtub area with arched windows and elegant tile work.'}, {'url': 'https://www.kayak.com/rimg/himg/14/cd/e2/booking-3989982-257263561-169186.jpg', 'description': 'A luxurious dining room with ornate furniture, a chandelier, medieval shields on the wall, and a classical statue in an alcove.'}, {'url': 'https://www.kayak.com/rimg/himg/8a/ee/e5/booking-3989982-257263570-205725.jpg', 'description': 'A serene pool area with a small waterfall, decorative bridge, and lush greenery under a purple-hued sky.'}, {'url': 'https://www.kayak.com/rimg/himg/ed/f0/4a/booking-3989982-257263582-272624.jpg', 'description': 'A serene outdoor spa area features a small pool with pink lighting, surrounded by tropical plants, a waterfall, and a classical statue under a pergola.'}, {'url': 'https://www.kayak.com/rimg/himg/13/93/3a/booking-3989982-257263567-188337.jpg', 'description': 'The image shows an outdoor patio area with a pergola, equipped with a ceiling fan, string lights, a barbecue grill, and metal patio furniture.'}]
     # create_property_name_audio(download_path, property_name)
     # num_elements, thumb_filename = process_images_and_audios(data, voz, download_path, uuid4)
@@ -1097,6 +1032,6 @@ def create_video_main(uuid4, language, voice, main_question, num_questions, num_
     print("uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video:", uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video)
     print("---------------------------------------------------")
 
-    create_video(uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video)
+    create_video(uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video, logo_path, account_text)
 
     return True

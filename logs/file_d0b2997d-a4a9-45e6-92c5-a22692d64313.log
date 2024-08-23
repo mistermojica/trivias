@@ -1,0 +1,1093 @@
+2024-08-21 13:57:48.448 | INFO     | __main__:omprint:31 - pending_processes: [{'uuid': 'd0b2997d-a4a9-45e6-92c5-a22692d64313', 'language': 'Spanish', 'voice': 'Pedro', 'main_question': 'Tendencias de Instagram en 2024', 'num_questions': 2, 'num_options': 3, 'background_music': 'animada2', 'background_video': 'espacio2', 'logo_path': '', 'account_text': '', 'sessionUUID': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'fecha_creacion': '2024-08-21T13:57:48.445290+00:00', 'fecha_modificacion': '2024-08-21T13:57:48.445290+00:00', 'estado': 'pendiente'}]
+2024-08-21 13:57:48.457 | INFO     | __main__:omprint:31 - Ejecutando el proceso ID: d0b2997d-a4a9-45e6-92c5-a22692d64313
+2024-08-21 13:57:48.458 | INFO     | __main__:omprint:31 - ---------------------------------------------------
+2024-08-21 13:57:48.459 | INFO     | __main__:omprint:31 - uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video: d0b2997d-a4a9-45e6-92c5-a22692d64313 Spanish Pedro Tendencias de Instagram en 2024 2 3 animada2 espacio2
+2024-08-21 13:57:48.460 | INFO     | __main__:omprint:31 - ---------------------------------------------------
+2024-08-21 13:57:48.461 | INFO     | __main__:omprint:31 - Genera una lista de 2 preguntas cortas en idioma Spanish en formato JSON para un quiz / trivia sobre ['Tendencias de Instagram en 2024']. El JSON debe incluir una pregunta principal corta en idioma Spanish sin emojis en ella, con el estilo MrBeast en la propiedad 'main_question' que aplique para todas las preguntas de la propiedad 'questions', seguido de un arreglo 'questions' que contenga objetos con las siguientes propiedades: el texto de la pregunta corta en idioma Spanish  con variantes mencionando siempre el tema central en cada pregunta  para hacer la pronunciación más humana y consistente ,  opciones de respuesta en idioma Spanish con 3 opciones donde alternes la opción correcta en las diferentes posiciones del arreglo de opciones entre 0 y 2, (IMPORTANTE: deben tener un tamaño de 17 caracteres máximo por opción), y el índice de la opción correcta (IMPORTANTE: Las opciones correctas deben estár en posiciones aleatorias entre 0 y 2 dentro del arreglo de la propiedad 'options').
+
+Aquí hay un ejemplo del formato:
+
+{
+  "main_question": "Pregunta principal de ejemplo?",
+  "questions": [
+    {
+        "question_text": "Variantes de la pregunta de ejemplo?",
+        "question_image": "",
+        "options": ['"Opción 1"', '"Opción 2"', '"Opción 3"'],
+        "correct_option_index": 2
+    }
+  ]
+} 
+
+Notas Importantes: - Genera todo el contenido en idioma Spanish.
+- Asigna las opciones correctas de las preguntas en posiciones aleatorias entre 0 y {num_options - 1}.
+- Crea todos los campos mencionados en el ejemplo aunque estén en blanco.
+- REALIZA UNA DOBE VERIFICACION DE LAS OPCIONES CORRECTAS. NO PUEDES COMETER ERRORES.
+
+2024-08-21 13:57:48.470 | INFO     | __main__:omprint:31 - Ya hay un proceso en ejecución.
+2024-08-21 13:57:50.793 | INFO     | __main__:omprint:31 - {'main_question': '¿Qué sabes sobre las tendencias de Instagram en 2024?', 'questions': [{'question_text': '¿Cuál es una tendencia de Instagram 2024?', 'question_image': '', 'options': ['Reels cortos', 'Historias interactivas', 'Fotografía en vivo'], 'correct_option_index': 1}, {'question_text': '¿Qué contenido es popular en Instagram para 2024?', 'question_image': '', 'options': ['Infografías', 'Videos largos', 'Reels divertidos'], 'correct_option_index': 2}]}
+2024-08-21 13:57:50.793 | INFO     | __main__:omprint:31 - final_logo_path: ./public/assets/images/logo.png
+2024-08-21 13:57:50.794 | INFO     | __main__:omprint:31 - final_account_text: @elclubdelosgenios
+2024-08-21 13:57:51.348 | INFO     | __main__:omprint:31 - [DEBUG] generate_trivia_video - ctxVideo: {'video_width': 1080, 'video_height': 1920, 'video_duration': 7.890000000000001}
+2024-08-21 13:57:51.349 | INFO     | __main__:omprint:31 - [DEBUG] generate_trivia_video - video_total_duration: 7.890000000000001
+2024-08-21 13:57:51.350 | INFO     | __main__:omprint:31 - [DEBUG] ============= add_logo - ctxVideo: {'video_width': 1080, 'video_height': 1920, 'video_duration': 7.890000000000001} =============
+2024-08-21 13:57:51.389 | INFO     | __main__:omprint:31 - [DEBUG] generate_trivia_video - logo_clip.w, logo_clip.h: 540 175
+2024-08-21 13:57:51.390 | INFO     | __main__:omprint:31 - [DEBUG] ============= add_question_text - ctxVideo: {'video_width': 1080, 'video_height': 1920, 'video_duration': 7.890000000000001} =============
+2024-08-21 13:57:51.390 | INFO     | __main__:omprint:31 - [DEBUG] add_question_text - max_width: 920
+2024-08-21 13:57:51.391 | INFO     | __main__:omprint:31 - [DEBUG] add_question_text - text_length: 41
+2024-08-21 13:57:51.392 | INFO     | __main__:omprint:31 - [DEBUG] add_question_text - fontsize: 80
+2024-08-21 13:57:51.452 | INFO     | __main__:omprint:31 - [DEBUG] generate_trivia_video - question_clip.w, question_clip.h: 920 291
+2024-08-21 13:57:51.472 | INFO     | __main__:omprint:31 - [DEBUG] generate_trivia_video - question_image_clip.w, question_image_clip.h: 91 120
+2024-08-21 13:57:51.473 | INFO     | __main__:omprint:31 - [DEBUG] question_image_clip: <function VideoClip.set_position.<locals>.<lambda> at 0x761b73a67420>
+2024-08-21 13:57:51.474 | INFO     | __main__:omprint:31 - [DEBUG] options_top_margin: 991
+2024-08-21 13:57:51.487 | INFO     | __main__:omprint:31 - [DEBUG] add_options - fontsize for option 'Reels cortos': 70
+2024-08-21 13:57:51.527 | INFO     | __main__:omprint:31 - [DEBUG] add_options - fontsize for option 'Historias interactivas': 64
+2024-08-21 13:57:51.570 | INFO     | __main__:omprint:31 - [DEBUG] add_options - fontsize for option 'Fotografía en vivo': 68
+2024-08-21 13:57:51.632 | INFO     | __main__:omprint:31 - [DEBUG] generate_trivia_video - account_clip.w, account_clip.h: 430 64
+2024-08-21 13:57:51.657 | INFO     | __main__:omprint:31 - [DEBUG] video_total_duration 1: 7.890000000000001
+2024-08-21 13:57:51.659 | INFO     | __main__:omprint:31 - [DEBUG] narration_audio.duration: 2.89
+2024-08-21 13:57:51.660 | INFO     | __main__:omprint:31 - [DEBUG] clock_sound_effects.duration: 3
+2024-08-21 13:57:51.661 | INFO     | __main__:omprint:31 - [DEBUG] ding_sound_effects.duration: 2
+2024-08-21 13:57:51.661 | INFO     | __main__:omprint:31 - [DEBUG] narration_audio_winner.duration: 1.41
+2024-08-21 13:57:51.661 | INFO     | __main__:omprint:31 - [DEBUG] final_audio.duration 2: 8.3
+2024-08-21 13:57:51.662 | INFO     | __main__:omprint:31 - [DEBUG] final_clip.duration 2: 7.890000000000001
+2024-08-21 13:57:52.319 | INFO     | __main__:omprint:31 - [DEBUG] generate_trivia_video - ctxVideo: {'video_width': 1080, 'video_height': 1920, 'video_duration': 8.34}
+2024-08-21 13:57:52.319 | INFO     | __main__:omprint:31 - [DEBUG] generate_trivia_video - video_total_duration: 8.34
+2024-08-21 13:57:52.320 | INFO     | __main__:omprint:31 - [DEBUG] ============= add_logo - ctxVideo: {'video_width': 1080, 'video_height': 1920, 'video_duration': 8.34} =============
+2024-08-21 13:57:52.354 | INFO     | __main__:omprint:31 - [DEBUG] generate_trivia_video - logo_clip.w, logo_clip.h: 540 175
+2024-08-21 13:57:52.355 | INFO     | __main__:omprint:31 - [DEBUG] ============= add_question_text - ctxVideo: {'video_width': 1080, 'video_height': 1920, 'video_duration': 8.34} =============
+2024-08-21 13:57:52.356 | INFO     | __main__:omprint:31 - [DEBUG] add_question_text - max_width: 920
+2024-08-21 13:57:52.357 | INFO     | __main__:omprint:31 - [DEBUG] add_question_text - text_length: 49
+2024-08-21 13:57:52.357 | INFO     | __main__:omprint:31 - [DEBUG] add_question_text - fontsize: 80
+2024-08-21 13:57:52.425 | INFO     | __main__:omprint:31 - [DEBUG] generate_trivia_video - question_clip.w, question_clip.h: 920 388
+2024-08-21 13:57:52.446 | INFO     | __main__:omprint:31 - [DEBUG] generate_trivia_video - question_image_clip.w, question_image_clip.h: 91 120
+2024-08-21 13:57:52.447 | INFO     | __main__:omprint:31 - [DEBUG] question_image_clip: <function VideoClip.set_position.<locals>.<lambda> at 0x761b81551620>
+2024-08-21 13:57:52.447 | INFO     | __main__:omprint:31 - [DEBUG] options_top_margin: 1088
+2024-08-21 13:57:52.460 | INFO     | __main__:omprint:31 - [DEBUG] add_options - fontsize for option 'Infografías': 70
+2024-08-21 13:57:52.501 | INFO     | __main__:omprint:31 - [DEBUG] add_options - fontsize for option 'Videos largos': 70
+2024-08-21 13:57:52.542 | INFO     | __main__:omprint:31 - [DEBUG] add_options - fontsize for option 'Reels divertidos': 70
+2024-08-21 13:57:52.604 | INFO     | __main__:omprint:31 - [DEBUG] generate_trivia_video - account_clip.w, account_clip.h: 430 64
+2024-08-21 13:57:52.628 | INFO     | __main__:omprint:31 - [DEBUG] video_total_duration 1: 8.34
+2024-08-21 13:57:52.629 | INFO     | __main__:omprint:31 - [DEBUG] narration_audio.duration: 3.34
+2024-08-21 13:57:52.629 | INFO     | __main__:omprint:31 - [DEBUG] clock_sound_effects.duration: 3
+2024-08-21 13:57:52.630 | INFO     | __main__:omprint:31 - [DEBUG] ding_sound_effects.duration: 2
+2024-08-21 13:57:52.630 | INFO     | __main__:omprint:31 - [DEBUG] narration_audio_winner.duration: 1.14
+2024-08-21 13:57:52.630 | INFO     | __main__:omprint:31 - [DEBUG] final_audio.duration 2: 8.48
+2024-08-21 13:57:52.631 | INFO     | __main__:omprint:31 - [DEBUG] final_clip.duration 2: 8.34
+2024-08-21 13:57:53.123 | INFO     | __main__:omprint:31 - create_background_video - background_clip.w, background_clip.h: 1080 1920
+2024-08-21 13:57:53.129 | INFO     | __main__:omprint:31 - trivia_sequence: <moviepy.video.compositing.CompositeVideoClip.CompositeVideoClip object at 0x761b81554c10>
+2024-08-21 13:57:53.143 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 100.0, 'response': None}
+2024-08-21 13:57:53.146 | INFO     | __main__:omprint:31 - chunk total 100.00%
+2024-08-21 13:57:53.147 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 0.0, 'response': None}
+2024-08-21 13:57:53.148 | INFO     | __main__:omprint:31 - chunk index 0.00%
+2024-08-21 13:57:53.150 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 0.2770083102493075, 'response': None}
+2024-08-21 13:57:53.151 | INFO     | __main__:omprint:31 - chunk index 0.28%
+2024-08-21 13:57:53.153 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 0.554016620498615, 'response': None}
+2024-08-21 13:57:53.154 | INFO     | __main__:omprint:31 - chunk index 0.55%
+2024-08-21 13:57:53.156 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 0.8310249307479225, 'response': None}
+2024-08-21 13:57:53.157 | INFO     | __main__:omprint:31 - chunk index 0.83%
+2024-08-21 13:57:53.159 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 1.10803324099723, 'response': None}
+2024-08-21 13:57:53.159 | INFO     | __main__:omprint:31 - chunk index 1.11%
+2024-08-21 13:57:53.161 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 1.3850415512465373, 'response': None}
+2024-08-21 13:57:53.162 | INFO     | __main__:omprint:31 - chunk index 1.39%
+2024-08-21 13:57:53.164 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 1.662049861495845, 'response': None}
+2024-08-21 13:57:53.164 | INFO     | __main__:omprint:31 - chunk index 1.66%
+2024-08-21 13:57:53.166 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 1.9390581717451523, 'response': None}
+2024-08-21 13:57:53.167 | INFO     | __main__:omprint:31 - chunk index 1.94%
+2024-08-21 13:57:53.169 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 2.21606648199446, 'response': None}
+2024-08-21 13:57:53.170 | INFO     | __main__:omprint:31 - chunk index 2.22%
+2024-08-21 13:57:53.172 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 2.4930747922437675, 'response': None}
+2024-08-21 13:57:53.173 | INFO     | __main__:omprint:31 - chunk index 2.49%
+2024-08-21 13:57:53.175 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 2.7700831024930745, 'response': None}
+2024-08-21 13:57:53.175 | INFO     | __main__:omprint:31 - chunk index 2.77%
+2024-08-21 13:57:53.177 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 3.0470914127423825, 'response': None}
+2024-08-21 13:57:53.178 | INFO     | __main__:omprint:31 - chunk index 3.05%
+2024-08-21 13:57:53.180 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 3.32409972299169, 'response': None}
+2024-08-21 13:57:53.180 | INFO     | __main__:omprint:31 - chunk index 3.32%
+2024-08-21 13:57:53.183 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 3.6011080332409975, 'response': None}
+2024-08-21 13:57:53.183 | INFO     | __main__:omprint:31 - chunk index 3.60%
+2024-08-21 13:57:53.185 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 3.8781163434903045, 'response': None}
+2024-08-21 13:57:53.185 | INFO     | __main__:omprint:31 - chunk index 3.88%
+2024-08-21 13:57:53.188 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 4.1551246537396125, 'response': None}
+2024-08-21 13:57:53.189 | INFO     | __main__:omprint:31 - chunk index 4.16%
+2024-08-21 13:57:53.193 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 4.43213296398892, 'response': None}
+2024-08-21 13:57:53.194 | INFO     | __main__:omprint:31 - chunk index 4.43%
+2024-08-21 13:57:53.197 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 4.7091412742382275, 'response': None}
+2024-08-21 13:57:53.200 | INFO     | __main__:omprint:31 - chunk index 4.71%
+2024-08-21 13:57:53.203 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 4.986149584487535, 'response': None}
+2024-08-21 13:57:53.204 | INFO     | __main__:omprint:31 - chunk index 4.99%
+2024-08-21 13:57:53.209 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 5.263157894736842, 'response': None}
+2024-08-21 13:57:53.210 | INFO     | __main__:omprint:31 - chunk index 5.26%
+2024-08-21 13:57:53.212 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 5.540166204986149, 'response': None}
+2024-08-21 13:57:53.212 | INFO     | __main__:omprint:31 - chunk index 5.54%
+2024-08-21 13:57:53.214 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 5.8171745152354575, 'response': None}
+2024-08-21 13:57:53.215 | INFO     | __main__:omprint:31 - chunk index 5.82%
+2024-08-21 13:57:53.217 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 6.094182825484765, 'response': None}
+2024-08-21 13:57:53.218 | INFO     | __main__:omprint:31 - chunk index 6.09%
+2024-08-21 13:57:53.220 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 6.3711911357340725, 'response': None}
+2024-08-21 13:57:53.221 | INFO     | __main__:omprint:31 - chunk index 6.37%
+2024-08-21 13:57:53.223 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 6.64819944598338, 'response': None}
+2024-08-21 13:57:53.224 | INFO     | __main__:omprint:31 - chunk index 6.65%
+2024-08-21 13:57:53.226 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 6.9252077562326875, 'response': None}
+2024-08-21 13:57:53.226 | INFO     | __main__:omprint:31 - chunk index 6.93%
+2024-08-21 13:57:53.228 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 7.202216066481995, 'response': None}
+2024-08-21 13:57:53.228 | INFO     | __main__:omprint:31 - chunk index 7.20%
+2024-08-21 13:57:53.230 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 7.479224376731302, 'response': None}
+2024-08-21 13:57:53.231 | INFO     | __main__:omprint:31 - chunk index 7.48%
+2024-08-21 13:57:53.233 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 7.756232686980609, 'response': None}
+2024-08-21 13:57:53.234 | INFO     | __main__:omprint:31 - chunk index 7.76%
+2024-08-21 13:57:53.236 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 8.033240997229916, 'response': None}
+2024-08-21 13:57:53.238 | INFO     | __main__:omprint:31 - chunk index 8.03%
+2024-08-21 13:57:53.241 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 8.310249307479225, 'response': None}
+2024-08-21 13:57:53.242 | INFO     | __main__:omprint:31 - chunk index 8.31%
+2024-08-21 13:57:53.256 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 8.587257617728532, 'response': None}
+2024-08-21 13:57:53.258 | INFO     | __main__:omprint:31 - chunk index 8.59%
+2024-08-21 13:57:53.260 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 8.86426592797784, 'response': None}
+2024-08-21 13:57:53.261 | INFO     | __main__:omprint:31 - chunk index 8.86%
+2024-08-21 13:57:53.262 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 9.141274238227147, 'response': None}
+2024-08-21 13:57:53.263 | INFO     | __main__:omprint:31 - chunk index 9.14%
+2024-08-21 13:57:53.267 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 9.418282548476455, 'response': None}
+2024-08-21 13:57:53.267 | INFO     | __main__:omprint:31 - chunk index 9.42%
+2024-08-21 13:57:53.271 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 9.695290858725762, 'response': None}
+2024-08-21 13:57:53.271 | INFO     | __main__:omprint:31 - chunk index 9.70%
+2024-08-21 13:57:53.274 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 9.97229916897507, 'response': None}
+2024-08-21 13:57:53.274 | INFO     | __main__:omprint:31 - chunk index 9.97%
+2024-08-21 13:57:53.276 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 10.249307479224377, 'response': None}
+2024-08-21 13:57:53.277 | INFO     | __main__:omprint:31 - chunk index 10.25%
+2024-08-21 13:57:53.279 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 10.526315789473683, 'response': None}
+2024-08-21 13:57:53.279 | INFO     | __main__:omprint:31 - chunk index 10.53%
+2024-08-21 13:57:53.282 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 10.80332409972299, 'response': None}
+2024-08-21 13:57:53.282 | INFO     | __main__:omprint:31 - chunk index 10.80%
+2024-08-21 13:57:53.284 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 11.080332409972298, 'response': None}
+2024-08-21 13:57:53.285 | INFO     | __main__:omprint:31 - chunk index 11.08%
+2024-08-21 13:57:53.287 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 11.357340720221606, 'response': None}
+2024-08-21 13:57:53.288 | INFO     | __main__:omprint:31 - chunk index 11.36%
+2024-08-21 13:57:53.290 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 11.634349030470915, 'response': None}
+2024-08-21 13:57:53.290 | INFO     | __main__:omprint:31 - chunk index 11.63%
+2024-08-21 13:57:53.293 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 11.911357340720222, 'response': None}
+2024-08-21 13:57:53.293 | INFO     | __main__:omprint:31 - chunk index 11.91%
+2024-08-21 13:57:53.297 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 12.18836565096953, 'response': None}
+2024-08-21 13:57:53.298 | INFO     | __main__:omprint:31 - chunk index 12.19%
+2024-08-21 13:57:53.302 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 12.465373961218837, 'response': None}
+2024-08-21 13:57:53.303 | INFO     | __main__:omprint:31 - chunk index 12.47%
+2024-08-21 13:57:53.306 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 12.742382271468145, 'response': None}
+2024-08-21 13:57:53.307 | INFO     | __main__:omprint:31 - chunk index 12.74%
+2024-08-21 13:57:53.309 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 13.019390581717452, 'response': None}
+2024-08-21 13:57:53.310 | INFO     | __main__:omprint:31 - chunk index 13.02%
+2024-08-21 13:57:53.313 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 13.29639889196676, 'response': None}
+2024-08-21 13:57:53.314 | INFO     | __main__:omprint:31 - chunk index 13.30%
+2024-08-21 13:57:53.316 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 13.573407202216067, 'response': None}
+2024-08-21 13:57:53.317 | INFO     | __main__:omprint:31 - chunk index 13.57%
+2024-08-21 13:57:53.320 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 13.850415512465375, 'response': None}
+2024-08-21 13:57:53.321 | INFO     | __main__:omprint:31 - chunk index 13.85%
+2024-08-21 13:57:53.324 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 14.127423822714682, 'response': None}
+2024-08-21 13:57:53.325 | INFO     | __main__:omprint:31 - chunk index 14.13%
+2024-08-21 13:57:53.327 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 14.40443213296399, 'response': None}
+2024-08-21 13:57:53.328 | INFO     | __main__:omprint:31 - chunk index 14.40%
+2024-08-21 13:57:53.335 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 14.681440443213297, 'response': None}
+2024-08-21 13:57:53.335 | INFO     | __main__:omprint:31 - chunk index 14.68%
+2024-08-21 13:57:53.341 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 14.958448753462603, 'response': None}
+2024-08-21 13:57:53.342 | INFO     | __main__:omprint:31 - chunk index 14.96%
+2024-08-21 13:57:53.346 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 15.23545706371191, 'response': None}
+2024-08-21 13:57:53.346 | INFO     | __main__:omprint:31 - chunk index 15.24%
+2024-08-21 13:57:53.349 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 15.512465373961218, 'response': None}
+2024-08-21 13:57:53.350 | INFO     | __main__:omprint:31 - chunk index 15.51%
+2024-08-21 13:57:53.352 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 15.789473684210526, 'response': None}
+2024-08-21 13:57:53.352 | INFO     | __main__:omprint:31 - chunk index 15.79%
+2024-08-21 13:57:53.356 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 16.06648199445983, 'response': None}
+2024-08-21 13:57:53.357 | INFO     | __main__:omprint:31 - chunk index 16.07%
+2024-08-21 13:57:53.360 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 16.343490304709142, 'response': None}
+2024-08-21 13:57:53.362 | INFO     | __main__:omprint:31 - chunk index 16.34%
+2024-08-21 13:57:53.365 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 16.62049861495845, 'response': None}
+2024-08-21 13:57:53.366 | INFO     | __main__:omprint:31 - chunk index 16.62%
+2024-08-21 13:57:53.369 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 16.897506925207757, 'response': None}
+2024-08-21 13:57:53.370 | INFO     | __main__:omprint:31 - chunk index 16.90%
+2024-08-21 13:57:53.373 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 17.174515235457065, 'response': None}
+2024-08-21 13:57:53.374 | INFO     | __main__:omprint:31 - chunk index 17.17%
+2024-08-21 13:57:53.377 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 17.451523545706372, 'response': None}
+2024-08-21 13:57:53.378 | INFO     | __main__:omprint:31 - chunk index 17.45%
+2024-08-21 13:57:53.381 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 17.72853185595568, 'response': None}
+2024-08-21 13:57:53.382 | INFO     | __main__:omprint:31 - chunk index 17.73%
+2024-08-21 13:57:53.385 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 18.005540166204987, 'response': None}
+2024-08-21 13:57:53.386 | INFO     | __main__:omprint:31 - chunk index 18.01%
+2024-08-21 13:57:53.389 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 18.282548476454295, 'response': None}
+2024-08-21 13:57:53.390 | INFO     | __main__:omprint:31 - chunk index 18.28%
+2024-08-21 13:57:53.393 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 18.559556786703602, 'response': None}
+2024-08-21 13:57:53.394 | INFO     | __main__:omprint:31 - chunk index 18.56%
+2024-08-21 13:57:53.397 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 18.83656509695291, 'response': None}
+2024-08-21 13:57:53.398 | INFO     | __main__:omprint:31 - chunk index 18.84%
+2024-08-21 13:57:53.401 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 19.113573407202217, 'response': None}
+2024-08-21 13:57:53.402 | INFO     | __main__:omprint:31 - chunk index 19.11%
+2024-08-21 13:57:53.405 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 19.390581717451525, 'response': None}
+2024-08-21 13:57:53.406 | INFO     | __main__:omprint:31 - chunk index 19.39%
+2024-08-21 13:57:53.409 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 19.667590027700832, 'response': None}
+2024-08-21 13:57:53.410 | INFO     | __main__:omprint:31 - chunk index 19.67%
+2024-08-21 13:57:53.413 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 19.94459833795014, 'response': None}
+2024-08-21 13:57:53.414 | INFO     | __main__:omprint:31 - chunk index 19.94%
+2024-08-21 13:57:53.417 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 20.221606648199447, 'response': None}
+2024-08-21 13:57:53.418 | INFO     | __main__:omprint:31 - chunk index 20.22%
+2024-08-21 13:57:53.422 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 20.498614958448755, 'response': None}
+2024-08-21 13:57:53.423 | INFO     | __main__:omprint:31 - chunk index 20.50%
+2024-08-21 13:57:53.425 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 20.77562326869806, 'response': None}
+2024-08-21 13:57:53.426 | INFO     | __main__:omprint:31 - chunk index 20.78%
+2024-08-21 13:57:53.429 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 21.052631578947366, 'response': None}
+2024-08-21 13:57:53.430 | INFO     | __main__:omprint:31 - chunk index 21.05%
+2024-08-21 13:57:53.433 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 21.329639889196674, 'response': None}
+2024-08-21 13:57:53.434 | INFO     | __main__:omprint:31 - chunk index 21.33%
+2024-08-21 13:57:53.436 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 21.60664819944598, 'response': None}
+2024-08-21 13:57:53.438 | INFO     | __main__:omprint:31 - chunk index 21.61%
+2024-08-21 13:57:53.440 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 21.88365650969529, 'response': None}
+2024-08-21 13:57:53.441 | INFO     | __main__:omprint:31 - chunk index 21.88%
+2024-08-21 13:57:53.444 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 22.160664819944596, 'response': None}
+2024-08-21 13:57:53.445 | INFO     | __main__:omprint:31 - chunk index 22.16%
+2024-08-21 13:57:53.447 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 22.437673130193904, 'response': None}
+2024-08-21 13:57:53.448 | INFO     | __main__:omprint:31 - chunk index 22.44%
+2024-08-21 13:57:53.456 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 22.71468144044321, 'response': None}
+2024-08-21 13:57:53.457 | INFO     | __main__:omprint:31 - chunk index 22.71%
+2024-08-21 13:57:53.459 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 22.99168975069252, 'response': None}
+2024-08-21 13:57:53.460 | INFO     | __main__:omprint:31 - chunk index 22.99%
+2024-08-21 13:57:53.465 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 23.26869806094183, 'response': None}
+2024-08-21 13:57:53.465 | INFO     | __main__:omprint:31 - chunk index 23.27%
+2024-08-21 13:57:53.468 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 23.545706371191137, 'response': None}
+2024-08-21 13:57:53.474 | INFO     | __main__:omprint:31 - chunk index 23.55%
+2024-08-21 13:57:53.476 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 23.822714681440445, 'response': None}
+2024-08-21 13:57:53.477 | INFO     | __main__:omprint:31 - chunk index 23.82%
+2024-08-21 13:57:53.480 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 24.099722991689752, 'response': None}
+2024-08-21 13:57:53.480 | INFO     | __main__:omprint:31 - chunk index 24.10%
+2024-08-21 13:57:53.482 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 24.37673130193906, 'response': None}
+2024-08-21 13:57:53.485 | INFO     | __main__:omprint:31 - chunk index 24.38%
+2024-08-21 13:57:53.487 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 24.653739612188367, 'response': None}
+2024-08-21 13:57:53.489 | INFO     | __main__:omprint:31 - chunk index 24.65%
+2024-08-21 13:57:53.491 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 24.930747922437675, 'response': None}
+2024-08-21 13:57:53.494 | INFO     | __main__:omprint:31 - chunk index 24.93%
+2024-08-21 13:57:53.496 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 25.20775623268698, 'response': None}
+2024-08-21 13:57:53.497 | INFO     | __main__:omprint:31 - chunk index 25.21%
+2024-08-21 13:57:53.499 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 25.48476454293629, 'response': None}
+2024-08-21 13:57:53.500 | INFO     | __main__:omprint:31 - chunk index 25.48%
+2024-08-21 13:57:53.502 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 25.761772853185594, 'response': None}
+2024-08-21 13:57:53.503 | INFO     | __main__:omprint:31 - chunk index 25.76%
+2024-08-21 13:57:53.505 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 26.038781163434905, 'response': None}
+2024-08-21 13:57:53.506 | INFO     | __main__:omprint:31 - chunk index 26.04%
+2024-08-21 13:57:53.507 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 26.31578947368421, 'response': None}
+2024-08-21 13:57:53.508 | INFO     | __main__:omprint:31 - chunk index 26.32%
+2024-08-21 13:57:53.510 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 26.59279778393352, 'response': None}
+2024-08-21 13:57:53.511 | INFO     | __main__:omprint:31 - chunk index 26.59%
+2024-08-21 13:57:53.513 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 26.869806094182824, 'response': None}
+2024-08-21 13:57:53.514 | INFO     | __main__:omprint:31 - chunk index 26.87%
+2024-08-21 13:57:53.521 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 27.146814404432135, 'response': None}
+2024-08-21 13:57:53.522 | INFO     | __main__:omprint:31 - chunk index 27.15%
+2024-08-21 13:57:53.525 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 27.42382271468144, 'response': None}
+2024-08-21 13:57:53.529 | INFO     | __main__:omprint:31 - chunk index 27.42%
+2024-08-21 13:57:53.532 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 27.70083102493075, 'response': None}
+2024-08-21 13:57:53.533 | INFO     | __main__:omprint:31 - chunk index 27.70%
+2024-08-21 13:57:53.539 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 27.977839335180054, 'response': None}
+2024-08-21 13:57:53.541 | INFO     | __main__:omprint:31 - chunk index 27.98%
+2024-08-21 13:57:53.543 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 28.254847645429365, 'response': None}
+2024-08-21 13:57:53.543 | INFO     | __main__:omprint:31 - chunk index 28.25%
+2024-08-21 13:57:53.547 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 28.53185595567867, 'response': None}
+2024-08-21 13:57:53.548 | INFO     | __main__:omprint:31 - chunk index 28.53%
+2024-08-21 13:57:53.549 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 28.80886426592798, 'response': None}
+2024-08-21 13:57:53.550 | INFO     | __main__:omprint:31 - chunk index 28.81%
+2024-08-21 13:57:53.552 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 29.085872576177284, 'response': None}
+2024-08-21 13:57:53.552 | INFO     | __main__:omprint:31 - chunk index 29.09%
+2024-08-21 13:57:53.553 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 29.362880886426595, 'response': None}
+2024-08-21 13:57:53.554 | INFO     | __main__:omprint:31 - chunk index 29.36%
+2024-08-21 13:57:53.556 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 29.6398891966759, 'response': None}
+2024-08-21 13:57:53.557 | INFO     | __main__:omprint:31 - chunk index 29.64%
+2024-08-21 13:57:53.559 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 29.916897506925206, 'response': None}
+2024-08-21 13:57:53.562 | INFO     | __main__:omprint:31 - chunk index 29.92%
+2024-08-21 13:57:53.564 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 30.193905817174517, 'response': None}
+2024-08-21 13:57:53.565 | INFO     | __main__:omprint:31 - chunk index 30.19%
+2024-08-21 13:57:53.567 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 30.47091412742382, 'response': None}
+2024-08-21 13:57:53.568 | INFO     | __main__:omprint:31 - chunk index 30.47%
+2024-08-21 13:57:53.570 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 30.747922437673132, 'response': None}
+2024-08-21 13:57:53.571 | INFO     | __main__:omprint:31 - chunk index 30.75%
+2024-08-21 13:57:53.573 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 31.024930747922436, 'response': None}
+2024-08-21 13:57:53.574 | INFO     | __main__:omprint:31 - chunk index 31.02%
+2024-08-21 13:57:53.576 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 31.301939058171747, 'response': None}
+2024-08-21 13:57:53.577 | INFO     | __main__:omprint:31 - chunk index 31.30%
+2024-08-21 13:57:53.580 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 31.57894736842105, 'response': None}
+2024-08-21 13:57:53.581 | INFO     | __main__:omprint:31 - chunk index 31.58%
+2024-08-21 13:57:53.583 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 31.855955678670362, 'response': None}
+2024-08-21 13:57:53.584 | INFO     | __main__:omprint:31 - chunk index 31.86%
+2024-08-21 13:57:53.585 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 32.13296398891966, 'response': None}
+2024-08-21 13:57:53.586 | INFO     | __main__:omprint:31 - chunk index 32.13%
+2024-08-21 13:57:53.588 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 32.40997229916898, 'response': None}
+2024-08-21 13:57:53.588 | INFO     | __main__:omprint:31 - chunk index 32.41%
+2024-08-21 13:57:53.590 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 32.686980609418285, 'response': None}
+2024-08-21 13:57:53.591 | INFO     | __main__:omprint:31 - chunk index 32.69%
+2024-08-21 13:57:53.597 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 32.96398891966759, 'response': None}
+2024-08-21 13:57:53.598 | INFO     | __main__:omprint:31 - chunk index 32.96%
+2024-08-21 13:57:53.600 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 33.2409972299169, 'response': None}
+2024-08-21 13:57:53.601 | INFO     | __main__:omprint:31 - chunk index 33.24%
+2024-08-21 13:57:53.605 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 33.51800554016621, 'response': None}
+2024-08-21 13:57:53.606 | INFO     | __main__:omprint:31 - chunk index 33.52%
+2024-08-21 13:57:53.608 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 33.795013850415515, 'response': None}
+2024-08-21 13:57:53.611 | INFO     | __main__:omprint:31 - chunk index 33.80%
+2024-08-21 13:57:53.613 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 34.07202216066482, 'response': None}
+2024-08-21 13:57:53.614 | INFO     | __main__:omprint:31 - chunk index 34.07%
+2024-08-21 13:57:53.616 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 34.34903047091413, 'response': None}
+2024-08-21 13:57:53.617 | INFO     | __main__:omprint:31 - chunk index 34.35%
+2024-08-21 13:57:53.618 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 34.62603878116344, 'response': None}
+2024-08-21 13:57:53.619 | INFO     | __main__:omprint:31 - chunk index 34.63%
+2024-08-21 13:57:53.621 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 34.903047091412745, 'response': None}
+2024-08-21 13:57:53.622 | INFO     | __main__:omprint:31 - chunk index 34.90%
+2024-08-21 13:57:53.625 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 35.18005540166205, 'response': None}
+2024-08-21 13:57:53.626 | INFO     | __main__:omprint:31 - chunk index 35.18%
+2024-08-21 13:57:53.628 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 35.45706371191136, 'response': None}
+2024-08-21 13:57:53.630 | INFO     | __main__:omprint:31 - chunk index 35.46%
+2024-08-21 13:57:53.633 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 35.73407202216066, 'response': None}
+2024-08-21 13:57:53.633 | INFO     | __main__:omprint:31 - chunk index 35.73%
+2024-08-21 13:57:53.636 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 36.011080332409975, 'response': None}
+2024-08-21 13:57:53.637 | INFO     | __main__:omprint:31 - chunk index 36.01%
+2024-08-21 13:57:53.639 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 36.288088642659275, 'response': None}
+2024-08-21 13:57:53.640 | INFO     | __main__:omprint:31 - chunk index 36.29%
+2024-08-21 13:57:53.642 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 36.56509695290859, 'response': None}
+2024-08-21 13:57:53.643 | INFO     | __main__:omprint:31 - chunk index 36.57%
+2024-08-21 13:57:53.645 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 36.84210526315789, 'response': None}
+2024-08-21 13:57:53.646 | INFO     | __main__:omprint:31 - chunk index 36.84%
+2024-08-21 13:57:53.648 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 37.119113573407205, 'response': None}
+2024-08-21 13:57:53.649 | INFO     | __main__:omprint:31 - chunk index 37.12%
+2024-08-21 13:57:53.651 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 37.396121883656505, 'response': None}
+2024-08-21 13:57:53.654 | INFO     | __main__:omprint:31 - chunk index 37.40%
+2024-08-21 13:57:53.656 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 37.67313019390582, 'response': None}
+2024-08-21 13:57:53.657 | INFO     | __main__:omprint:31 - chunk index 37.67%
+2024-08-21 13:57:53.659 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 37.95013850415512, 'response': None}
+2024-08-21 13:57:53.660 | INFO     | __main__:omprint:31 - chunk index 37.95%
+2024-08-21 13:57:53.662 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 38.227146814404435, 'response': None}
+2024-08-21 13:57:53.663 | INFO     | __main__:omprint:31 - chunk index 38.23%
+2024-08-21 13:57:53.665 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 38.504155124653735, 'response': None}
+2024-08-21 13:57:53.666 | INFO     | __main__:omprint:31 - chunk index 38.50%
+2024-08-21 13:57:53.668 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 38.78116343490305, 'response': None}
+2024-08-21 13:57:53.668 | INFO     | __main__:omprint:31 - chunk index 38.78%
+2024-08-21 13:57:53.670 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 39.05817174515235, 'response': None}
+2024-08-21 13:57:53.671 | INFO     | __main__:omprint:31 - chunk index 39.06%
+2024-08-21 13:57:53.673 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 39.335180055401665, 'response': None}
+2024-08-21 13:57:53.674 | INFO     | __main__:omprint:31 - chunk index 39.34%
+2024-08-21 13:57:53.676 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 39.612188365650965, 'response': None}
+2024-08-21 13:57:53.677 | INFO     | __main__:omprint:31 - chunk index 39.61%
+2024-08-21 13:57:53.679 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 39.88919667590028, 'response': None}
+2024-08-21 13:57:53.680 | INFO     | __main__:omprint:31 - chunk index 39.89%
+2024-08-21 13:57:53.682 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 40.16620498614959, 'response': None}
+2024-08-21 13:57:53.683 | INFO     | __main__:omprint:31 - chunk index 40.17%
+2024-08-21 13:57:53.686 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 40.443213296398895, 'response': None}
+2024-08-21 13:57:53.687 | INFO     | __main__:omprint:31 - chunk index 40.44%
+2024-08-21 13:57:53.689 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 40.7202216066482, 'response': None}
+2024-08-21 13:57:53.690 | INFO     | __main__:omprint:31 - chunk index 40.72%
+2024-08-21 13:57:53.692 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 40.99722991689751, 'response': None}
+2024-08-21 13:57:53.693 | INFO     | __main__:omprint:31 - chunk index 41.00%
+2024-08-21 13:57:53.695 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 41.27423822714682, 'response': None}
+2024-08-21 13:57:53.697 | INFO     | __main__:omprint:31 - chunk index 41.27%
+2024-08-21 13:57:53.699 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 41.55124653739612, 'response': None}
+2024-08-21 13:57:53.700 | INFO     | __main__:omprint:31 - chunk index 41.55%
+2024-08-21 13:57:53.702 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 41.82825484764543, 'response': None}
+2024-08-21 13:57:53.703 | INFO     | __main__:omprint:31 - chunk index 41.83%
+2024-08-21 13:57:53.714 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 42.10526315789473, 'response': None}
+2024-08-21 13:57:53.715 | INFO     | __main__:omprint:31 - chunk index 42.11%
+2024-08-21 13:57:53.717 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 42.38227146814405, 'response': None}
+2024-08-21 13:57:53.718 | INFO     | __main__:omprint:31 - chunk index 42.38%
+2024-08-21 13:57:53.721 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 42.65927977839335, 'response': None}
+2024-08-21 13:57:53.722 | INFO     | __main__:omprint:31 - chunk index 42.66%
+2024-08-21 13:57:53.725 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 42.93628808864266, 'response': None}
+2024-08-21 13:57:53.727 | INFO     | __main__:omprint:31 - chunk index 42.94%
+2024-08-21 13:57:53.729 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 43.21329639889196, 'response': None}
+2024-08-21 13:57:53.731 | INFO     | __main__:omprint:31 - chunk index 43.21%
+2024-08-21 13:57:53.733 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 43.49030470914128, 'response': None}
+2024-08-21 13:57:53.735 | INFO     | __main__:omprint:31 - chunk index 43.49%
+2024-08-21 13:57:53.738 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 43.76731301939058, 'response': None}
+2024-08-21 13:57:53.739 | INFO     | __main__:omprint:31 - chunk index 43.77%
+2024-08-21 13:57:53.742 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 44.04432132963989, 'response': None}
+2024-08-21 13:57:53.743 | INFO     | __main__:omprint:31 - chunk index 44.04%
+2024-08-21 13:57:53.746 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 44.32132963988919, 'response': None}
+2024-08-21 13:57:53.747 | INFO     | __main__:omprint:31 - chunk index 44.32%
+2024-08-21 13:57:53.750 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 44.59833795013851, 'response': None}
+2024-08-21 13:57:53.751 | INFO     | __main__:omprint:31 - chunk index 44.60%
+2024-08-21 13:57:53.754 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 44.87534626038781, 'response': None}
+2024-08-21 13:57:53.756 | INFO     | __main__:omprint:31 - chunk index 44.88%
+2024-08-21 13:57:53.758 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 45.15235457063712, 'response': None}
+2024-08-21 13:57:53.760 | INFO     | __main__:omprint:31 - chunk index 45.15%
+2024-08-21 13:57:53.762 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 45.42936288088642, 'response': None}
+2024-08-21 13:57:53.762 | INFO     | __main__:omprint:31 - chunk index 45.43%
+2024-08-21 13:57:53.764 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 45.70637119113574, 'response': None}
+2024-08-21 13:57:53.765 | INFO     | __main__:omprint:31 - chunk index 45.71%
+2024-08-21 13:57:53.766 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 45.98337950138504, 'response': None}
+2024-08-21 13:57:53.767 | INFO     | __main__:omprint:31 - chunk index 45.98%
+2024-08-21 13:57:53.771 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 46.26038781163435, 'response': None}
+2024-08-21 13:57:53.771 | INFO     | __main__:omprint:31 - chunk index 46.26%
+2024-08-21 13:57:53.773 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 46.53739612188366, 'response': None}
+2024-08-21 13:57:53.774 | INFO     | __main__:omprint:31 - chunk index 46.54%
+2024-08-21 13:57:53.776 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 46.81440443213297, 'response': None}
+2024-08-21 13:57:53.777 | INFO     | __main__:omprint:31 - chunk index 46.81%
+2024-08-21 13:57:53.780 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 47.091412742382275, 'response': None}
+2024-08-21 13:57:53.780 | INFO     | __main__:omprint:31 - chunk index 47.09%
+2024-08-21 13:57:53.783 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 47.368421052631575, 'response': None}
+2024-08-21 13:57:53.784 | INFO     | __main__:omprint:31 - chunk index 47.37%
+2024-08-21 13:57:53.787 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 47.64542936288089, 'response': None}
+2024-08-21 13:57:53.788 | INFO     | __main__:omprint:31 - chunk index 47.65%
+2024-08-21 13:57:53.790 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 47.92243767313019, 'response': None}
+2024-08-21 13:57:53.791 | INFO     | __main__:omprint:31 - chunk index 47.92%
+2024-08-21 13:57:53.794 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 48.199445983379505, 'response': None}
+2024-08-21 13:57:53.795 | INFO     | __main__:omprint:31 - chunk index 48.20%
+2024-08-21 13:57:53.798 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 48.476454293628805, 'response': None}
+2024-08-21 13:57:53.799 | INFO     | __main__:omprint:31 - chunk index 48.48%
+2024-08-21 13:57:53.802 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 48.75346260387812, 'response': None}
+2024-08-21 13:57:53.803 | INFO     | __main__:omprint:31 - chunk index 48.75%
+2024-08-21 13:57:53.805 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 49.03047091412742, 'response': None}
+2024-08-21 13:57:53.806 | INFO     | __main__:omprint:31 - chunk index 49.03%
+2024-08-21 13:57:53.810 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 49.307479224376735, 'response': None}
+2024-08-21 13:57:53.813 | INFO     | __main__:omprint:31 - chunk index 49.31%
+2024-08-21 13:57:53.815 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 49.584487534626035, 'response': None}
+2024-08-21 13:57:53.817 | INFO     | __main__:omprint:31 - chunk index 49.58%
+2024-08-21 13:57:53.820 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 49.86149584487535, 'response': None}
+2024-08-21 13:57:53.821 | INFO     | __main__:omprint:31 - chunk index 49.86%
+2024-08-21 13:57:53.824 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 50.13850415512465, 'response': None}
+2024-08-21 13:57:53.825 | INFO     | __main__:omprint:31 - chunk index 50.14%
+2024-08-21 13:57:53.828 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 50.41551246537396, 'response': None}
+2024-08-21 13:57:53.832 | INFO     | __main__:omprint:31 - chunk index 50.42%
+2024-08-21 13:57:53.835 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 50.69252077562327, 'response': None}
+2024-08-21 13:57:53.836 | INFO     | __main__:omprint:31 - chunk index 50.69%
+2024-08-21 13:57:53.839 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 50.96952908587258, 'response': None}
+2024-08-21 13:57:53.840 | INFO     | __main__:omprint:31 - chunk index 50.97%
+2024-08-21 13:57:53.843 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 51.24653739612188, 'response': None}
+2024-08-21 13:57:53.844 | INFO     | __main__:omprint:31 - chunk index 51.25%
+2024-08-21 13:57:53.847 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 51.52354570637119, 'response': None}
+2024-08-21 13:57:53.848 | INFO     | __main__:omprint:31 - chunk index 51.52%
+2024-08-21 13:57:53.851 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 51.8005540166205, 'response': None}
+2024-08-21 13:57:53.852 | INFO     | __main__:omprint:31 - chunk index 51.80%
+2024-08-21 13:57:53.854 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 52.07756232686981, 'response': None}
+2024-08-21 13:57:53.855 | INFO     | __main__:omprint:31 - chunk index 52.08%
+2024-08-21 13:57:53.858 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 52.35457063711911, 'response': None}
+2024-08-21 13:57:53.859 | INFO     | __main__:omprint:31 - chunk index 52.35%
+2024-08-21 13:57:53.862 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 52.63157894736842, 'response': None}
+2024-08-21 13:57:53.863 | INFO     | __main__:omprint:31 - chunk index 52.63%
+2024-08-21 13:57:53.866 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 52.90858725761773, 'response': None}
+2024-08-21 13:57:53.867 | INFO     | __main__:omprint:31 - chunk index 52.91%
+2024-08-21 13:57:53.869 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 53.18559556786704, 'response': None}
+2024-08-21 13:57:53.870 | INFO     | __main__:omprint:31 - chunk index 53.19%
+2024-08-21 13:57:53.873 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 53.46260387811634, 'response': None}
+2024-08-21 13:57:53.874 | INFO     | __main__:omprint:31 - chunk index 53.46%
+2024-08-21 13:57:53.877 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 53.73961218836565, 'response': None}
+2024-08-21 13:57:53.878 | INFO     | __main__:omprint:31 - chunk index 53.74%
+2024-08-21 13:57:53.880 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 54.016620498614955, 'response': None}
+2024-08-21 13:57:53.881 | INFO     | __main__:omprint:31 - chunk index 54.02%
+2024-08-21 13:57:53.884 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 54.29362880886427, 'response': None}
+2024-08-21 13:57:53.885 | INFO     | __main__:omprint:31 - chunk index 54.29%
+2024-08-21 13:57:53.889 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 54.57063711911358, 'response': None}
+2024-08-21 13:57:53.897 | INFO     | __main__:omprint:31 - chunk index 54.57%
+2024-08-21 13:57:53.898 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 54.84764542936288, 'response': None}
+2024-08-21 13:57:53.898 | INFO     | __main__:omprint:31 - chunk index 54.85%
+2024-08-21 13:57:53.900 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 55.124653739612185, 'response': None}
+2024-08-21 13:57:53.900 | INFO     | __main__:omprint:31 - chunk index 55.12%
+2024-08-21 13:57:53.901 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 55.4016620498615, 'response': None}
+2024-08-21 13:57:53.902 | INFO     | __main__:omprint:31 - chunk index 55.40%
+2024-08-21 13:57:53.907 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 55.67867036011081, 'response': None}
+2024-08-21 13:57:53.907 | INFO     | __main__:omprint:31 - chunk index 55.68%
+2024-08-21 13:57:53.909 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 55.95567867036011, 'response': None}
+2024-08-21 13:57:53.910 | INFO     | __main__:omprint:31 - chunk index 55.96%
+2024-08-21 13:57:53.917 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 56.232686980609415, 'response': None}
+2024-08-21 13:57:53.918 | INFO     | __main__:omprint:31 - chunk index 56.23%
+2024-08-21 13:57:53.920 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 56.50969529085873, 'response': None}
+2024-08-21 13:57:53.920 | INFO     | __main__:omprint:31 - chunk index 56.51%
+2024-08-21 13:57:53.922 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 56.78670360110804, 'response': None}
+2024-08-21 13:57:53.923 | INFO     | __main__:omprint:31 - chunk index 56.79%
+2024-08-21 13:57:53.925 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 57.06371191135734, 'response': None}
+2024-08-21 13:57:53.925 | INFO     | __main__:omprint:31 - chunk index 57.06%
+2024-08-21 13:57:53.928 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 57.340720221606645, 'response': None}
+2024-08-21 13:57:53.929 | INFO     | __main__:omprint:31 - chunk index 57.34%
+2024-08-21 13:57:53.931 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 57.61772853185596, 'response': None}
+2024-08-21 13:57:53.931 | INFO     | __main__:omprint:31 - chunk index 57.62%
+2024-08-21 13:57:53.933 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 57.89473684210527, 'response': None}
+2024-08-21 13:57:53.934 | INFO     | __main__:omprint:31 - chunk index 57.89%
+2024-08-21 13:57:53.936 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 58.17174515235457, 'response': None}
+2024-08-21 13:57:53.936 | INFO     | __main__:omprint:31 - chunk index 58.17%
+2024-08-21 13:57:53.938 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 58.448753462603875, 'response': None}
+2024-08-21 13:57:53.939 | INFO     | __main__:omprint:31 - chunk index 58.45%
+2024-08-21 13:57:53.941 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 58.72576177285319, 'response': None}
+2024-08-21 13:57:53.942 | INFO     | __main__:omprint:31 - chunk index 58.73%
+2024-08-21 13:57:53.943 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 59.0027700831025, 'response': None}
+2024-08-21 13:57:53.943 | INFO     | __main__:omprint:31 - chunk index 59.00%
+2024-08-21 13:57:53.945 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 59.2797783933518, 'response': None}
+2024-08-21 13:57:53.946 | INFO     | __main__:omprint:31 - chunk index 59.28%
+2024-08-21 13:57:53.947 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 59.556786703601105, 'response': None}
+2024-08-21 13:57:53.948 | INFO     | __main__:omprint:31 - chunk index 59.56%
+2024-08-21 13:57:53.950 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 59.83379501385041, 'response': None}
+2024-08-21 13:57:53.950 | INFO     | __main__:omprint:31 - chunk index 59.83%
+2024-08-21 13:57:53.952 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 60.11080332409973, 'response': None}
+2024-08-21 13:57:53.953 | INFO     | __main__:omprint:31 - chunk index 60.11%
+2024-08-21 13:57:53.955 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 60.387811634349035, 'response': None}
+2024-08-21 13:57:53.956 | INFO     | __main__:omprint:31 - chunk index 60.39%
+2024-08-21 13:57:53.957 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 60.664819944598335, 'response': None}
+2024-08-21 13:57:53.958 | INFO     | __main__:omprint:31 - chunk index 60.66%
+2024-08-21 13:57:53.962 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 60.94182825484764, 'response': None}
+2024-08-21 13:57:53.963 | INFO     | __main__:omprint:31 - chunk index 60.94%
+2024-08-21 13:57:53.967 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 61.21883656509696, 'response': None}
+2024-08-21 13:57:53.968 | INFO     | __main__:omprint:31 - chunk index 61.22%
+2024-08-21 13:57:53.971 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 61.495844875346265, 'response': None}
+2024-08-21 13:57:53.972 | INFO     | __main__:omprint:31 - chunk index 61.50%
+2024-08-21 13:57:53.975 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 61.772853185595565, 'response': None}
+2024-08-21 13:57:53.976 | INFO     | __main__:omprint:31 - chunk index 61.77%
+2024-08-21 13:57:53.978 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 62.04986149584487, 'response': None}
+2024-08-21 13:57:53.979 | INFO     | __main__:omprint:31 - chunk index 62.05%
+2024-08-21 13:57:53.981 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 62.32686980609419, 'response': None}
+2024-08-21 13:57:53.982 | INFO     | __main__:omprint:31 - chunk index 62.33%
+2024-08-21 13:57:53.984 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 62.603878116343495, 'response': None}
+2024-08-21 13:57:53.985 | INFO     | __main__:omprint:31 - chunk index 62.60%
+2024-08-21 13:57:53.987 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 62.880886426592795, 'response': None}
+2024-08-21 13:57:53.988 | INFO     | __main__:omprint:31 - chunk index 62.88%
+2024-08-21 13:57:53.989 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 63.1578947368421, 'response': None}
+2024-08-21 13:57:53.990 | INFO     | __main__:omprint:31 - chunk index 63.16%
+2024-08-21 13:57:53.995 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 63.43490304709142, 'response': None}
+2024-08-21 13:57:53.996 | INFO     | __main__:omprint:31 - chunk index 63.43%
+2024-08-21 13:57:53.998 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 63.711911357340725, 'response': None}
+2024-08-21 13:57:53.998 | INFO     | __main__:omprint:31 - chunk index 63.71%
+2024-08-21 13:57:54.000 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 63.988919667590025, 'response': None}
+2024-08-21 13:57:54.001 | INFO     | __main__:omprint:31 - chunk index 63.99%
+2024-08-21 13:57:54.004 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 64.26592797783933, 'response': None}
+2024-08-21 13:57:54.004 | INFO     | __main__:omprint:31 - chunk index 64.27%
+2024-08-21 13:57:54.007 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 64.54293628808865, 'response': None}
+2024-08-21 13:57:54.008 | INFO     | __main__:omprint:31 - chunk index 64.54%
+2024-08-21 13:57:54.010 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 64.81994459833795, 'response': None}
+2024-08-21 13:57:54.011 | INFO     | __main__:omprint:31 - chunk index 64.82%
+2024-08-21 13:57:54.014 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 65.09695290858726, 'response': None}
+2024-08-21 13:57:54.016 | INFO     | __main__:omprint:31 - chunk index 65.10%
+2024-08-21 13:57:54.018 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 65.37396121883657, 'response': None}
+2024-08-21 13:57:54.020 | INFO     | __main__:omprint:31 - chunk index 65.37%
+2024-08-21 13:57:54.022 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 65.65096952908587, 'response': None}
+2024-08-21 13:57:54.024 | INFO     | __main__:omprint:31 - chunk index 65.65%
+2024-08-21 13:57:54.026 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 65.92797783933518, 'response': None}
+2024-08-21 13:57:54.029 | INFO     | __main__:omprint:31 - chunk index 65.93%
+2024-08-21 13:57:54.032 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 66.20498614958449, 'response': None}
+2024-08-21 13:57:54.034 | INFO     | __main__:omprint:31 - chunk index 66.20%
+2024-08-21 13:57:54.036 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 66.4819944598338, 'response': None}
+2024-08-21 13:57:54.038 | INFO     | __main__:omprint:31 - chunk index 66.48%
+2024-08-21 13:57:54.040 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 66.7590027700831, 'response': None}
+2024-08-21 13:57:54.042 | INFO     | __main__:omprint:31 - chunk index 66.76%
+2024-08-21 13:57:54.044 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 67.03601108033241, 'response': None}
+2024-08-21 13:57:54.046 | INFO     | __main__:omprint:31 - chunk index 67.04%
+2024-08-21 13:57:54.048 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 67.31301939058172, 'response': None}
+2024-08-21 13:57:54.050 | INFO     | __main__:omprint:31 - chunk index 67.31%
+2024-08-21 13:57:54.052 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 67.59002770083103, 'response': None}
+2024-08-21 13:57:54.053 | INFO     | __main__:omprint:31 - chunk index 67.59%
+2024-08-21 13:57:54.056 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 67.86703601108033, 'response': None}
+2024-08-21 13:57:54.057 | INFO     | __main__:omprint:31 - chunk index 67.87%
+2024-08-21 13:57:54.060 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 68.14404432132964, 'response': None}
+2024-08-21 13:57:54.061 | INFO     | __main__:omprint:31 - chunk index 68.14%
+2024-08-21 13:57:54.064 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 68.42105263157895, 'response': None}
+2024-08-21 13:57:54.065 | INFO     | __main__:omprint:31 - chunk index 68.42%
+2024-08-21 13:57:54.068 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 68.69806094182826, 'response': None}
+2024-08-21 13:57:54.069 | INFO     | __main__:omprint:31 - chunk index 68.70%
+2024-08-21 13:57:54.072 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 68.97506925207756, 'response': None}
+2024-08-21 13:57:54.073 | INFO     | __main__:omprint:31 - chunk index 68.98%
+2024-08-21 13:57:54.076 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 69.25207756232687, 'response': None}
+2024-08-21 13:57:54.077 | INFO     | __main__:omprint:31 - chunk index 69.25%
+2024-08-21 13:57:54.079 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 69.52908587257618, 'response': None}
+2024-08-21 13:57:54.081 | INFO     | __main__:omprint:31 - chunk index 69.53%
+2024-08-21 13:57:54.083 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 69.80609418282549, 'response': None}
+2024-08-21 13:57:54.084 | INFO     | __main__:omprint:31 - chunk index 69.81%
+2024-08-21 13:57:54.087 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 70.08310249307479, 'response': None}
+2024-08-21 13:57:54.088 | INFO     | __main__:omprint:31 - chunk index 70.08%
+2024-08-21 13:57:54.095 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 70.3601108033241, 'response': None}
+2024-08-21 13:57:54.095 | INFO     | __main__:omprint:31 - chunk index 70.36%
+2024-08-21 13:57:54.097 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 70.6371191135734, 'response': None}
+2024-08-21 13:57:54.097 | INFO     | __main__:omprint:31 - chunk index 70.64%
+2024-08-21 13:57:54.100 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 70.91412742382272, 'response': None}
+2024-08-21 13:57:54.101 | INFO     | __main__:omprint:31 - chunk index 70.91%
+2024-08-21 13:57:54.104 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 71.19113573407202, 'response': None}
+2024-08-21 13:57:54.104 | INFO     | __main__:omprint:31 - chunk index 71.19%
+2024-08-21 13:57:54.107 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 71.46814404432132, 'response': None}
+2024-08-21 13:57:54.107 | INFO     | __main__:omprint:31 - chunk index 71.47%
+2024-08-21 13:57:54.109 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 71.74515235457064, 'response': None}
+2024-08-21 13:57:54.110 | INFO     | __main__:omprint:31 - chunk index 71.75%
+2024-08-21 13:57:54.112 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 72.02216066481995, 'response': None}
+2024-08-21 13:57:54.113 | INFO     | __main__:omprint:31 - chunk index 72.02%
+2024-08-21 13:57:54.115 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 72.29916897506925, 'response': None}
+2024-08-21 13:57:54.116 | INFO     | __main__:omprint:31 - chunk index 72.30%
+2024-08-21 13:57:54.117 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 72.57617728531855, 'response': None}
+2024-08-21 13:57:54.117 | INFO     | __main__:omprint:31 - chunk index 72.58%
+2024-08-21 13:57:54.118 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 72.85318559556787, 'response': None}
+2024-08-21 13:57:54.119 | INFO     | __main__:omprint:31 - chunk index 72.85%
+2024-08-21 13:57:54.122 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 73.13019390581718, 'response': None}
+2024-08-21 13:57:54.122 | INFO     | __main__:omprint:31 - chunk index 73.13%
+2024-08-21 13:57:54.125 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 73.40720221606648, 'response': None}
+2024-08-21 13:57:54.126 | INFO     | __main__:omprint:31 - chunk index 73.41%
+2024-08-21 13:57:54.127 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 73.68421052631578, 'response': None}
+2024-08-21 13:57:54.127 | INFO     | __main__:omprint:31 - chunk index 73.68%
+2024-08-21 13:57:54.131 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 73.9612188365651, 'response': None}
+2024-08-21 13:57:54.132 | INFO     | __main__:omprint:31 - chunk index 73.96%
+2024-08-21 13:57:54.134 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 74.23822714681441, 'response': None}
+2024-08-21 13:57:54.134 | INFO     | __main__:omprint:31 - chunk index 74.24%
+2024-08-21 13:57:54.136 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 74.51523545706371, 'response': None}
+2024-08-21 13:57:54.137 | INFO     | __main__:omprint:31 - chunk index 74.52%
+2024-08-21 13:57:54.139 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 74.79224376731301, 'response': None}
+2024-08-21 13:57:54.140 | INFO     | __main__:omprint:31 - chunk index 74.79%
+2024-08-21 13:57:54.142 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 75.06925207756233, 'response': None}
+2024-08-21 13:57:54.143 | INFO     | __main__:omprint:31 - chunk index 75.07%
+2024-08-21 13:57:54.145 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 75.34626038781164, 'response': None}
+2024-08-21 13:57:54.146 | INFO     | __main__:omprint:31 - chunk index 75.35%
+2024-08-21 13:57:54.149 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 75.62326869806094, 'response': None}
+2024-08-21 13:57:54.150 | INFO     | __main__:omprint:31 - chunk index 75.62%
+2024-08-21 13:57:54.152 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 75.90027700831024, 'response': None}
+2024-08-21 13:57:54.153 | INFO     | __main__:omprint:31 - chunk index 75.90%
+2024-08-21 13:57:54.155 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 76.17728531855957, 'response': None}
+2024-08-21 13:57:54.155 | INFO     | __main__:omprint:31 - chunk index 76.18%
+2024-08-21 13:57:54.158 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 76.45429362880887, 'response': None}
+2024-08-21 13:57:54.158 | INFO     | __main__:omprint:31 - chunk index 76.45%
+2024-08-21 13:57:54.160 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 76.73130193905817, 'response': None}
+2024-08-21 13:57:54.161 | INFO     | __main__:omprint:31 - chunk index 76.73%
+2024-08-21 13:57:54.163 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 77.00831024930747, 'response': None}
+2024-08-21 13:57:54.163 | INFO     | __main__:omprint:31 - chunk index 77.01%
+2024-08-21 13:57:54.166 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 77.28531855955679, 'response': None}
+2024-08-21 13:57:54.166 | INFO     | __main__:omprint:31 - chunk index 77.29%
+2024-08-21 13:57:54.168 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 77.5623268698061, 'response': None}
+2024-08-21 13:57:54.169 | INFO     | __main__:omprint:31 - chunk index 77.56%
+2024-08-21 13:57:54.171 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 77.8393351800554, 'response': None}
+2024-08-21 13:57:54.171 | INFO     | __main__:omprint:31 - chunk index 77.84%
+2024-08-21 13:57:54.174 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 78.1163434903047, 'response': None}
+2024-08-21 13:57:54.174 | INFO     | __main__:omprint:31 - chunk index 78.12%
+2024-08-21 13:57:54.177 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 78.39335180055402, 'response': None}
+2024-08-21 13:57:54.177 | INFO     | __main__:omprint:31 - chunk index 78.39%
+2024-08-21 13:57:54.179 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 78.67036011080333, 'response': None}
+2024-08-21 13:57:54.181 | INFO     | __main__:omprint:31 - chunk index 78.67%
+2024-08-21 13:57:54.183 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 78.94736842105263, 'response': None}
+2024-08-21 13:57:54.183 | INFO     | __main__:omprint:31 - chunk index 78.95%
+2024-08-21 13:57:54.185 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 79.22437673130193, 'response': None}
+2024-08-21 13:57:54.185 | INFO     | __main__:omprint:31 - chunk index 79.22%
+2024-08-21 13:57:54.186 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 79.50138504155125, 'response': None}
+2024-08-21 13:57:54.187 | INFO     | __main__:omprint:31 - chunk index 79.50%
+2024-08-21 13:57:54.190 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 79.77839335180056, 'response': None}
+2024-08-21 13:57:54.191 | INFO     | __main__:omprint:31 - chunk index 79.78%
+2024-08-21 13:57:54.194 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 80.05540166204986, 'response': None}
+2024-08-21 13:57:54.195 | INFO     | __main__:omprint:31 - chunk index 80.06%
+2024-08-21 13:57:54.197 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 80.33240997229917, 'response': None}
+2024-08-21 13:57:54.198 | INFO     | __main__:omprint:31 - chunk index 80.33%
+2024-08-21 13:57:54.200 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 80.60941828254848, 'response': None}
+2024-08-21 13:57:54.201 | INFO     | __main__:omprint:31 - chunk index 80.61%
+2024-08-21 13:57:54.203 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 80.88642659279779, 'response': None}
+2024-08-21 13:57:54.204 | INFO     | __main__:omprint:31 - chunk index 80.89%
+2024-08-21 13:57:54.206 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 81.16343490304709, 'response': None}
+2024-08-21 13:57:54.207 | INFO     | __main__:omprint:31 - chunk index 81.16%
+2024-08-21 13:57:54.210 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 81.4404432132964, 'response': None}
+2024-08-21 13:57:54.211 | INFO     | __main__:omprint:31 - chunk index 81.44%
+2024-08-21 13:57:54.213 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 81.7174515235457, 'response': None}
+2024-08-21 13:57:54.214 | INFO     | __main__:omprint:31 - chunk index 81.72%
+2024-08-21 13:57:54.216 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 81.99445983379502, 'response': None}
+2024-08-21 13:57:54.217 | INFO     | __main__:omprint:31 - chunk index 81.99%
+2024-08-21 13:57:54.220 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 82.27146814404432, 'response': None}
+2024-08-21 13:57:54.220 | INFO     | __main__:omprint:31 - chunk index 82.27%
+2024-08-21 13:57:54.222 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 82.54847645429363, 'response': None}
+2024-08-21 13:57:54.223 | INFO     | __main__:omprint:31 - chunk index 82.55%
+2024-08-21 13:57:54.226 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 82.82548476454294, 'response': None}
+2024-08-21 13:57:54.227 | INFO     | __main__:omprint:31 - chunk index 82.83%
+2024-08-21 13:57:54.229 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 83.10249307479224, 'response': None}
+2024-08-21 13:57:54.230 | INFO     | __main__:omprint:31 - chunk index 83.10%
+2024-08-21 13:57:54.232 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 83.37950138504155, 'response': None}
+2024-08-21 13:57:54.233 | INFO     | __main__:omprint:31 - chunk index 83.38%
+2024-08-21 13:57:54.235 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 83.65650969529086, 'response': None}
+2024-08-21 13:57:54.236 | INFO     | __main__:omprint:31 - chunk index 83.66%
+2024-08-21 13:57:54.238 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 83.93351800554017, 'response': None}
+2024-08-21 13:57:54.239 | INFO     | __main__:omprint:31 - chunk index 83.93%
+2024-08-21 13:57:54.241 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 84.21052631578947, 'response': None}
+2024-08-21 13:57:54.242 | INFO     | __main__:omprint:31 - chunk index 84.21%
+2024-08-21 13:57:54.250 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 84.48753462603878, 'response': None}
+2024-08-21 13:57:54.253 | INFO     | __main__:omprint:31 - chunk index 84.49%
+2024-08-21 13:57:54.259 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 84.7645429362881, 'response': None}
+2024-08-21 13:57:54.260 | INFO     | __main__:omprint:31 - chunk index 84.76%
+2024-08-21 13:57:54.262 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 85.0415512465374, 'response': None}
+2024-08-21 13:57:54.263 | INFO     | __main__:omprint:31 - chunk index 85.04%
+2024-08-21 13:57:54.265 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 85.3185595567867, 'response': None}
+2024-08-21 13:57:54.266 | INFO     | __main__:omprint:31 - chunk index 85.32%
+2024-08-21 13:57:54.270 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 85.59556786703601, 'response': None}
+2024-08-21 13:57:54.271 | INFO     | __main__:omprint:31 - chunk index 85.60%
+2024-08-21 13:57:54.273 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 85.87257617728532, 'response': None}
+2024-08-21 13:57:54.274 | INFO     | __main__:omprint:31 - chunk index 85.87%
+2024-08-21 13:57:54.276 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 86.14958448753463, 'response': None}
+2024-08-21 13:57:54.277 | INFO     | __main__:omprint:31 - chunk index 86.15%
+2024-08-21 13:57:54.279 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 86.42659279778393, 'response': None}
+2024-08-21 13:57:54.280 | INFO     | __main__:omprint:31 - chunk index 86.43%
+2024-08-21 13:57:54.282 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 86.70360110803324, 'response': None}
+2024-08-21 13:57:54.283 | INFO     | __main__:omprint:31 - chunk index 86.70%
+2024-08-21 13:57:54.284 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 86.98060941828255, 'response': None}
+2024-08-21 13:57:54.285 | INFO     | __main__:omprint:31 - chunk index 86.98%
+2024-08-21 13:57:54.286 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 87.25761772853186, 'response': None}
+2024-08-21 13:57:54.286 | INFO     | __main__:omprint:31 - chunk index 87.26%
+2024-08-21 13:57:54.288 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 87.53462603878116, 'response': None}
+2024-08-21 13:57:54.288 | INFO     | __main__:omprint:31 - chunk index 87.53%
+2024-08-21 13:57:54.290 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 87.81163434903047, 'response': None}
+2024-08-21 13:57:54.290 | INFO     | __main__:omprint:31 - chunk index 87.81%
+2024-08-21 13:57:54.297 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 88.08864265927978, 'response': None}
+2024-08-21 13:57:54.297 | INFO     | __main__:omprint:31 - chunk index 88.09%
+2024-08-21 13:57:54.299 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 88.36565096952909, 'response': None}
+2024-08-21 13:57:54.300 | INFO     | __main__:omprint:31 - chunk index 88.37%
+2024-08-21 13:57:54.303 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 88.64265927977839, 'response': None}
+2024-08-21 13:57:54.304 | INFO     | __main__:omprint:31 - chunk index 88.64%
+2024-08-21 13:57:54.306 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 88.9196675900277, 'response': None}
+2024-08-21 13:57:54.307 | INFO     | __main__:omprint:31 - chunk index 88.92%
+2024-08-21 13:57:54.310 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 89.19667590027701, 'response': None}
+2024-08-21 13:57:54.311 | INFO     | __main__:omprint:31 - chunk index 89.20%
+2024-08-21 13:57:54.313 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 89.47368421052632, 'response': None}
+2024-08-21 13:57:54.314 | INFO     | __main__:omprint:31 - chunk index 89.47%
+2024-08-21 13:57:54.316 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 89.75069252077562, 'response': None}
+2024-08-21 13:57:54.316 | INFO     | __main__:omprint:31 - chunk index 89.75%
+2024-08-21 13:57:54.319 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 90.02770083102493, 'response': None}
+2024-08-21 13:57:54.320 | INFO     | __main__:omprint:31 - chunk index 90.03%
+2024-08-21 13:57:54.323 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 90.30470914127424, 'response': None}
+2024-08-21 13:57:54.324 | INFO     | __main__:omprint:31 - chunk index 90.30%
+2024-08-21 13:57:54.326 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 90.58171745152355, 'response': None}
+2024-08-21 13:57:54.327 | INFO     | __main__:omprint:31 - chunk index 90.58%
+2024-08-21 13:57:54.329 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 90.85872576177285, 'response': None}
+2024-08-21 13:57:54.330 | INFO     | __main__:omprint:31 - chunk index 90.86%
+2024-08-21 13:57:54.332 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 91.13573407202216, 'response': None}
+2024-08-21 13:57:54.334 | INFO     | __main__:omprint:31 - chunk index 91.14%
+2024-08-21 13:57:54.336 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 91.41274238227147, 'response': None}
+2024-08-21 13:57:54.337 | INFO     | __main__:omprint:31 - chunk index 91.41%
+2024-08-21 13:57:54.339 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 91.68975069252078, 'response': None}
+2024-08-21 13:57:54.340 | INFO     | __main__:omprint:31 - chunk index 91.69%
+2024-08-21 13:57:54.342 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 91.96675900277008, 'response': None}
+2024-08-21 13:57:54.343 | INFO     | __main__:omprint:31 - chunk index 91.97%
+2024-08-21 13:57:54.345 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 92.24376731301939, 'response': None}
+2024-08-21 13:57:54.345 | INFO     | __main__:omprint:31 - chunk index 92.24%
+2024-08-21 13:57:54.348 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 92.5207756232687, 'response': None}
+2024-08-21 13:57:54.349 | INFO     | __main__:omprint:31 - chunk index 92.52%
+2024-08-21 13:57:54.351 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 92.797783933518, 'response': None}
+2024-08-21 13:57:54.352 | INFO     | __main__:omprint:31 - chunk index 92.80%
+2024-08-21 13:57:54.354 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 93.07479224376732, 'response': None}
+2024-08-21 13:57:54.355 | INFO     | __main__:omprint:31 - chunk index 93.07%
+2024-08-21 13:57:54.357 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 93.35180055401662, 'response': None}
+2024-08-21 13:57:54.358 | INFO     | __main__:omprint:31 - chunk index 93.35%
+2024-08-21 13:57:54.360 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 93.62880886426593, 'response': None}
+2024-08-21 13:57:54.361 | INFO     | __main__:omprint:31 - chunk index 93.63%
+2024-08-21 13:57:54.364 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 93.90581717451524, 'response': None}
+2024-08-21 13:57:54.365 | INFO     | __main__:omprint:31 - chunk index 93.91%
+2024-08-21 13:57:54.367 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 94.18282548476455, 'response': None}
+2024-08-21 13:57:54.368 | INFO     | __main__:omprint:31 - chunk index 94.18%
+2024-08-21 13:57:54.370 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 94.45983379501385, 'response': None}
+2024-08-21 13:57:54.371 | INFO     | __main__:omprint:31 - chunk index 94.46%
+2024-08-21 13:57:54.373 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 94.73684210526315, 'response': None}
+2024-08-21 13:57:54.375 | INFO     | __main__:omprint:31 - chunk index 94.74%
+2024-08-21 13:57:54.377 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 95.01385041551247, 'response': None}
+2024-08-21 13:57:54.378 | INFO     | __main__:omprint:31 - chunk index 95.01%
+2024-08-21 13:57:54.381 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 95.29085872576178, 'response': None}
+2024-08-21 13:57:54.382 | INFO     | __main__:omprint:31 - chunk index 95.29%
+2024-08-21 13:57:54.384 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 95.56786703601108, 'response': None}
+2024-08-21 13:57:54.385 | INFO     | __main__:omprint:31 - chunk index 95.57%
+2024-08-21 13:57:54.397 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 95.84487534626038, 'response': None}
+2024-08-21 13:57:54.398 | INFO     | __main__:omprint:31 - chunk index 95.84%
+2024-08-21 13:57:54.400 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 96.1218836565097, 'response': None}
+2024-08-21 13:57:54.401 | INFO     | __main__:omprint:31 - chunk index 96.12%
+2024-08-21 13:57:54.404 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 96.39889196675901, 'response': None}
+2024-08-21 13:57:54.405 | INFO     | __main__:omprint:31 - chunk index 96.40%
+2024-08-21 13:57:54.407 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 96.67590027700831, 'response': None}
+2024-08-21 13:57:54.408 | INFO     | __main__:omprint:31 - chunk index 96.68%
+2024-08-21 13:57:54.410 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 96.95290858725761, 'response': None}
+2024-08-21 13:57:54.411 | INFO     | __main__:omprint:31 - chunk index 96.95%
+2024-08-21 13:57:54.413 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 97.22991689750693, 'response': None}
+2024-08-21 13:57:54.414 | INFO     | __main__:omprint:31 - chunk index 97.23%
+2024-08-21 13:57:54.416 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 97.50692520775624, 'response': None}
+2024-08-21 13:57:54.417 | INFO     | __main__:omprint:31 - chunk index 97.51%
+2024-08-21 13:57:54.419 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 97.78393351800554, 'response': None}
+2024-08-21 13:57:54.420 | INFO     | __main__:omprint:31 - chunk index 97.78%
+2024-08-21 13:57:54.423 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 98.06094182825484, 'response': None}
+2024-08-21 13:57:54.424 | INFO     | __main__:omprint:31 - chunk index 98.06%
+2024-08-21 13:57:54.426 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 98.33795013850416, 'response': None}
+2024-08-21 13:57:54.427 | INFO     | __main__:omprint:31 - chunk index 98.34%
+2024-08-21 13:57:54.434 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 98.61495844875347, 'response': None}
+2024-08-21 13:57:54.436 | INFO     | __main__:omprint:31 - chunk index 98.61%
+2024-08-21 13:57:54.438 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 98.89196675900277, 'response': None}
+2024-08-21 13:57:54.439 | INFO     | __main__:omprint:31 - chunk index 98.89%
+2024-08-21 13:57:54.441 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 99.16897506925207, 'response': None}
+2024-08-21 13:57:54.442 | INFO     | __main__:omprint:31 - chunk index 99.17%
+2024-08-21 13:57:54.444 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 99.44598337950139, 'response': None}
+2024-08-21 13:57:54.445 | INFO     | __main__:omprint:31 - chunk index 99.45%
+2024-08-21 13:57:54.446 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 99.7229916897507, 'response': None}
+2024-08-21 13:57:54.447 | INFO     | __main__:omprint:31 - chunk index 99.72%
+2024-08-21 13:57:54.449 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 100.0, 'response': None}
+2024-08-21 13:57:54.450 | INFO     | __main__:omprint:31 - chunk index 100.00%
+2024-08-21 13:57:54.459 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 100.0, 'response': None}
+2024-08-21 13:57:54.461 | INFO     | __main__:omprint:31 - t total 100.00%
+2024-08-21 13:57:54.462 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 0.0, 'response': None}
+2024-08-21 13:57:54.463 | INFO     | __main__:omprint:31 - t index 0.00%
+2024-08-21 13:57:55.330 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 0.5128205128205128, 'response': None}
+2024-08-21 13:57:55.332 | INFO     | __main__:omprint:31 - t index 0.51%
+2024-08-21 13:57:56.221 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 1.0256410256410255, 'response': None}
+2024-08-21 13:57:56.222 | INFO     | __main__:omprint:31 - t index 1.03%
+2024-08-21 13:57:57.080 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 1.5384615384615385, 'response': None}
+2024-08-21 13:57:57.081 | INFO     | __main__:omprint:31 - t index 1.54%
+2024-08-21 13:57:57.973 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 2.051282051282051, 'response': None}
+2024-08-21 13:57:57.973 | INFO     | __main__:omprint:31 - t index 2.05%
+2024-08-21 13:57:58.821 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 2.564102564102564, 'response': None}
+2024-08-21 13:57:58.821 | INFO     | __main__:omprint:31 - t index 2.56%
+2024-08-21 13:57:59.700 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 3.076923076923077, 'response': None}
+2024-08-21 13:57:59.701 | INFO     | __main__:omprint:31 - t index 3.08%
+2024-08-21 13:58:00.532 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 3.5897435897435894, 'response': None}
+2024-08-21 13:58:00.533 | INFO     | __main__:omprint:31 - t index 3.59%
+2024-08-21 13:58:01.386 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 4.102564102564102, 'response': None}
+2024-08-21 13:58:01.387 | INFO     | __main__:omprint:31 - t index 4.10%
+2024-08-21 13:58:02.204 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 4.615384615384616, 'response': None}
+2024-08-21 13:58:02.204 | INFO     | __main__:omprint:31 - t index 4.62%
+2024-08-21 13:58:03.017 | INFO     | __main__:omprint:31 - Ya hay un proceso en ejecución.
+2024-08-21 13:58:03.052 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 5.128205128205128, 'response': None}
+2024-08-21 13:58:03.053 | INFO     | __main__:omprint:31 - t index 5.13%
+2024-08-21 13:58:03.880 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 5.641025641025641, 'response': None}
+2024-08-21 13:58:03.882 | INFO     | __main__:omprint:31 - t index 5.64%
+2024-08-21 13:58:04.741 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 6.153846153846154, 'response': None}
+2024-08-21 13:58:04.742 | INFO     | __main__:omprint:31 - t index 6.15%
+2024-08-21 13:58:05.560 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 6.666666666666667, 'response': None}
+2024-08-21 13:58:05.561 | INFO     | __main__:omprint:31 - t index 6.67%
+2024-08-21 13:58:06.420 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 7.179487179487179, 'response': None}
+2024-08-21 13:58:06.420 | INFO     | __main__:omprint:31 - t index 7.18%
+2024-08-21 13:58:07.271 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 7.6923076923076925, 'response': None}
+2024-08-21 13:58:07.271 | INFO     | __main__:omprint:31 - t index 7.69%
+2024-08-21 13:58:08.155 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 8.205128205128204, 'response': None}
+2024-08-21 13:58:08.155 | INFO     | __main__:omprint:31 - t index 8.21%
+2024-08-21 13:58:09.004 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 8.717948717948717, 'response': None}
+2024-08-21 13:58:09.006 | INFO     | __main__:omprint:31 - t index 8.72%
+2024-08-21 13:58:09.877 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 9.230769230769232, 'response': None}
+2024-08-21 13:58:09.878 | INFO     | __main__:omprint:31 - t index 9.23%
+2024-08-21 13:58:10.720 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 9.743589743589745, 'response': None}
+2024-08-21 13:58:10.720 | INFO     | __main__:omprint:31 - t index 9.74%
+2024-08-21 13:58:11.601 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 10.256410256410255, 'response': None}
+2024-08-21 13:58:11.602 | INFO     | __main__:omprint:31 - t index 10.26%
+2024-08-21 13:58:12.436 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 10.76923076923077, 'response': None}
+2024-08-21 13:58:12.437 | INFO     | __main__:omprint:31 - t index 10.77%
+2024-08-21 13:58:13.288 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 11.282051282051283, 'response': None}
+2024-08-21 13:58:13.288 | INFO     | __main__:omprint:31 - t index 11.28%
+2024-08-21 13:58:14.162 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 11.794871794871794, 'response': None}
+2024-08-21 13:58:14.163 | INFO     | __main__:omprint:31 - t index 11.79%
+2024-08-21 13:58:15.070 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 12.307692307692308, 'response': None}
+2024-08-21 13:58:15.070 | INFO     | __main__:omprint:31 - t index 12.31%
+2024-08-21 13:58:15.939 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 12.82051282051282, 'response': None}
+2024-08-21 13:58:15.942 | INFO     | __main__:omprint:31 - t index 12.82%
+2024-08-21 13:58:16.849 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 13.333333333333334, 'response': None}
+2024-08-21 13:58:16.850 | INFO     | __main__:omprint:31 - t index 13.33%
+2024-08-21 13:58:17.705 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 13.846153846153847, 'response': None}
+2024-08-21 13:58:17.706 | INFO     | __main__:omprint:31 - t index 13.85%
+2024-08-21 13:58:18.603 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 14.358974358974358, 'response': None}
+2024-08-21 13:58:18.604 | INFO     | __main__:omprint:31 - t index 14.36%
+2024-08-21 13:58:19.472 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 14.871794871794872, 'response': None}
+2024-08-21 13:58:19.474 | INFO     | __main__:omprint:31 - t index 14.87%
+2024-08-21 13:58:20.355 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 15.384615384615385, 'response': None}
+2024-08-21 13:58:20.356 | INFO     | __main__:omprint:31 - t index 15.38%
+2024-08-21 13:58:21.233 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 15.897435897435896, 'response': None}
+2024-08-21 13:58:21.234 | INFO     | __main__:omprint:31 - t index 15.90%
+2024-08-21 13:58:22.119 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 16.41025641025641, 'response': None}
+2024-08-21 13:58:22.121 | INFO     | __main__:omprint:31 - t index 16.41%
+2024-08-21 13:58:22.983 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 16.923076923076923, 'response': None}
+2024-08-21 13:58:22.983 | INFO     | __main__:omprint:31 - t index 16.92%
+2024-08-21 13:58:23.874 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 17.435897435897434, 'response': None}
+2024-08-21 13:58:23.874 | INFO     | __main__:omprint:31 - t index 17.44%
+2024-08-21 13:58:24.748 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 17.94871794871795, 'response': None}
+2024-08-21 13:58:24.748 | INFO     | __main__:omprint:31 - t index 17.95%
+2024-08-21 13:58:25.676 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 18.461538461538463, 'response': None}
+2024-08-21 13:58:25.678 | INFO     | __main__:omprint:31 - t index 18.46%
+2024-08-21 13:58:26.500 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 18.974358974358974, 'response': None}
+2024-08-21 13:58:26.501 | INFO     | __main__:omprint:31 - t index 18.97%
+2024-08-21 13:58:27.371 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 19.48717948717949, 'response': None}
+2024-08-21 13:58:27.372 | INFO     | __main__:omprint:31 - t index 19.49%
+2024-08-21 13:58:28.259 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 20.0, 'response': None}
+2024-08-21 13:58:28.260 | INFO     | __main__:omprint:31 - t index 20.00%
+2024-08-21 13:58:29.153 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 20.51282051282051, 'response': None}
+2024-08-21 13:58:29.154 | INFO     | __main__:omprint:31 - t index 20.51%
+2024-08-21 13:58:30.011 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 21.025641025641026, 'response': None}
+2024-08-21 13:58:30.014 | INFO     | __main__:omprint:31 - t index 21.03%
+2024-08-21 13:58:30.933 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 21.53846153846154, 'response': None}
+2024-08-21 13:58:30.934 | INFO     | __main__:omprint:31 - t index 21.54%
+2024-08-21 13:58:31.793 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 22.05128205128205, 'response': None}
+2024-08-21 13:58:31.794 | INFO     | __main__:omprint:31 - t index 22.05%
+2024-08-21 13:58:32.681 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 22.564102564102566, 'response': None}
+2024-08-21 13:58:32.682 | INFO     | __main__:omprint:31 - t index 22.56%
+2024-08-21 13:58:33.537 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 23.076923076923077, 'response': None}
+2024-08-21 13:58:33.537 | INFO     | __main__:omprint:31 - t index 23.08%
+2024-08-21 13:58:34.431 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 23.589743589743588, 'response': None}
+2024-08-21 13:58:34.433 | INFO     | __main__:omprint:31 - t index 23.59%
+2024-08-21 13:58:35.307 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 24.102564102564102, 'response': None}
+2024-08-21 13:58:35.308 | INFO     | __main__:omprint:31 - t index 24.10%
+2024-08-21 13:58:36.200 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 24.615384615384617, 'response': None}
+2024-08-21 13:58:36.201 | INFO     | __main__:omprint:31 - t index 24.62%
+2024-08-21 13:58:37.229 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 25.128205128205128, 'response': None}
+2024-08-21 13:58:37.229 | INFO     | __main__:omprint:31 - t index 25.13%
+2024-08-21 13:58:38.468 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 25.64102564102564, 'response': None}
+2024-08-21 13:58:38.469 | INFO     | __main__:omprint:31 - t index 25.64%
+2024-08-21 13:58:39.930 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 26.153846153846157, 'response': None}
+2024-08-21 13:58:39.931 | INFO     | __main__:omprint:31 - t index 26.15%
+2024-08-21 13:58:41.316 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 26.666666666666668, 'response': None}
+2024-08-21 13:58:41.317 | INFO     | __main__:omprint:31 - t index 26.67%
+2024-08-21 13:58:42.616 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 27.17948717948718, 'response': None}
+2024-08-21 13:58:42.617 | INFO     | __main__:omprint:31 - t index 27.18%
+2024-08-21 13:58:43.946 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 27.692307692307693, 'response': None}
+2024-08-21 13:58:43.947 | INFO     | __main__:omprint:31 - t index 27.69%
+2024-08-21 13:58:45.269 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 28.205128205128204, 'response': None}
+2024-08-21 13:58:45.269 | INFO     | __main__:omprint:31 - t index 28.21%
+2024-08-21 13:58:46.630 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 28.717948717948715, 'response': None}
+2024-08-21 13:58:46.631 | INFO     | __main__:omprint:31 - t index 28.72%
+2024-08-21 13:58:47.965 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 29.230769230769234, 'response': None}
+2024-08-21 13:58:47.966 | INFO     | __main__:omprint:31 - t index 29.23%
+2024-08-21 13:58:49.267 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 29.743589743589745, 'response': None}
+2024-08-21 13:58:49.267 | INFO     | __main__:omprint:31 - t index 29.74%
+2024-08-21 13:58:50.569 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 30.256410256410255, 'response': None}
+2024-08-21 13:58:50.570 | INFO     | __main__:omprint:31 - t index 30.26%
+2024-08-21 13:58:51.905 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 30.76923076923077, 'response': None}
+2024-08-21 13:58:51.906 | INFO     | __main__:omprint:31 - t index 30.77%
+2024-08-21 13:58:53.175 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 31.28205128205128, 'response': None}
+2024-08-21 13:58:53.175 | INFO     | __main__:omprint:31 - t index 31.28%
+2024-08-21 13:58:54.489 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 31.794871794871792, 'response': None}
+2024-08-21 13:58:54.490 | INFO     | __main__:omprint:31 - t index 31.79%
+2024-08-21 13:58:55.745 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 32.30769230769231, 'response': None}
+2024-08-21 13:58:55.746 | INFO     | __main__:omprint:31 - t index 32.31%
+2024-08-21 13:58:57.060 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 32.82051282051282, 'response': None}
+2024-08-21 13:58:57.060 | INFO     | __main__:omprint:31 - t index 32.82%
+2024-08-21 13:58:58.370 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 33.33333333333333, 'response': None}
+2024-08-21 13:58:58.371 | INFO     | __main__:omprint:31 - t index 33.33%
+2024-08-21 13:58:59.719 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 33.84615384615385, 'response': None}
+2024-08-21 13:58:59.719 | INFO     | __main__:omprint:31 - t index 33.85%
+2024-08-21 13:59:01.069 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 34.35897435897436, 'response': None}
+2024-08-21 13:59:01.070 | INFO     | __main__:omprint:31 - t index 34.36%
+2024-08-21 13:59:02.534 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 34.87179487179487, 'response': None}
+2024-08-21 13:59:02.536 | INFO     | __main__:omprint:31 - t index 34.87%
+2024-08-21 13:59:03.019 | INFO     | __main__:omprint:31 - Ya hay un proceso en ejecución.
+2024-08-21 13:59:03.896 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 35.38461538461539, 'response': None}
+2024-08-21 13:59:03.897 | INFO     | __main__:omprint:31 - t index 35.38%
+2024-08-21 13:59:05.333 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 35.8974358974359, 'response': None}
+2024-08-21 13:59:05.334 | INFO     | __main__:omprint:31 - t index 35.90%
+2024-08-21 13:59:06.725 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 36.41025641025641, 'response': None}
+2024-08-21 13:59:06.725 | INFO     | __main__:omprint:31 - t index 36.41%
+2024-08-21 13:59:08.057 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 36.92307692307693, 'response': None}
+2024-08-21 13:59:08.061 | INFO     | __main__:omprint:31 - t index 36.92%
+2024-08-21 13:59:09.317 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 37.43589743589744, 'response': None}
+2024-08-21 13:59:09.317 | INFO     | __main__:omprint:31 - t index 37.44%
+2024-08-21 13:59:10.664 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 37.94871794871795, 'response': None}
+2024-08-21 13:59:10.664 | INFO     | __main__:omprint:31 - t index 37.95%
+2024-08-21 13:59:11.870 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 38.46153846153847, 'response': None}
+2024-08-21 13:59:11.871 | INFO     | __main__:omprint:31 - t index 38.46%
+2024-08-21 13:59:13.124 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 38.97435897435898, 'response': None}
+2024-08-21 13:59:13.127 | INFO     | __main__:omprint:31 - t index 38.97%
+2024-08-21 13:59:14.390 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 39.48717948717949, 'response': None}
+2024-08-21 13:59:14.390 | INFO     | __main__:omprint:31 - t index 39.49%
+2024-08-21 13:59:15.676 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 40.0, 'response': None}
+2024-08-21 13:59:15.677 | INFO     | __main__:omprint:31 - t index 40.00%
+2024-08-21 13:59:16.985 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 40.51282051282051, 'response': None}
+2024-08-21 13:59:16.986 | INFO     | __main__:omprint:31 - t index 40.51%
+2024-08-21 13:59:18.241 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 41.02564102564102, 'response': None}
+2024-08-21 13:59:18.242 | INFO     | __main__:omprint:31 - t index 41.03%
+2024-08-21 13:59:19.507 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 41.53846153846154, 'response': None}
+2024-08-21 13:59:19.507 | INFO     | __main__:omprint:31 - t index 41.54%
+2024-08-21 13:59:20.931 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 42.05128205128205, 'response': None}
+2024-08-21 13:59:20.934 | INFO     | __main__:omprint:31 - t index 42.05%
+2024-08-21 13:59:22.369 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 42.56410256410256, 'response': None}
+2024-08-21 13:59:22.370 | INFO     | __main__:omprint:31 - t index 42.56%
+2024-08-21 13:59:23.905 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 43.07692307692308, 'response': None}
+2024-08-21 13:59:23.906 | INFO     | __main__:omprint:31 - t index 43.08%
+2024-08-21 13:59:25.125 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 43.58974358974359, 'response': None}
+2024-08-21 13:59:25.126 | INFO     | __main__:omprint:31 - t index 43.59%
+2024-08-21 13:59:26.627 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 44.1025641025641, 'response': None}
+2024-08-21 13:59:26.629 | INFO     | __main__:omprint:31 - t index 44.10%
+2024-08-21 13:59:27.607 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 44.61538461538462, 'response': None}
+2024-08-21 13:59:27.608 | INFO     | __main__:omprint:31 - t index 44.62%
+2024-08-21 13:59:28.561 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 45.12820512820513, 'response': None}
+2024-08-21 13:59:28.562 | INFO     | __main__:omprint:31 - t index 45.13%
+2024-08-21 13:59:29.793 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 45.64102564102564, 'response': None}
+2024-08-21 13:59:29.794 | INFO     | __main__:omprint:31 - t index 45.64%
+2024-08-21 13:59:30.777 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 46.15384615384615, 'response': None}
+2024-08-21 13:59:30.778 | INFO     | __main__:omprint:31 - t index 46.15%
+2024-08-21 13:59:31.838 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 46.666666666666664, 'response': None}
+2024-08-21 13:59:31.838 | INFO     | __main__:omprint:31 - t index 46.67%
+2024-08-21 13:59:33.311 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 47.179487179487175, 'response': None}
+2024-08-21 13:59:33.312 | INFO     | __main__:omprint:31 - t index 47.18%
+2024-08-21 13:59:34.740 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 47.69230769230769, 'response': None}
+2024-08-21 13:59:34.741 | INFO     | __main__:omprint:31 - t index 47.69%
+2024-08-21 13:59:35.752 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 48.205128205128204, 'response': None}
+2024-08-21 13:59:35.753 | INFO     | __main__:omprint:31 - t index 48.21%
+2024-08-21 13:59:36.715 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 48.717948717948715, 'response': None}
+2024-08-21 13:59:36.717 | INFO     | __main__:omprint:31 - t index 48.72%
+2024-08-21 13:59:37.874 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 49.23076923076923, 'response': None}
+2024-08-21 13:59:37.875 | INFO     | __main__:omprint:31 - t index 49.23%
+2024-08-21 13:59:39.010 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 49.743589743589745, 'response': None}
+2024-08-21 13:59:39.011 | INFO     | __main__:omprint:31 - t index 49.74%
+2024-08-21 13:59:39.956 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 50.256410256410255, 'response': None}
+2024-08-21 13:59:39.957 | INFO     | __main__:omprint:31 - t index 50.26%
+2024-08-21 13:59:40.836 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 50.76923076923077, 'response': None}
+2024-08-21 13:59:40.837 | INFO     | __main__:omprint:31 - t index 50.77%
+2024-08-21 13:59:41.674 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 51.28205128205128, 'response': None}
+2024-08-21 13:59:41.675 | INFO     | __main__:omprint:31 - t index 51.28%
+2024-08-21 13:59:42.589 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 51.7948717948718, 'response': None}
+2024-08-21 13:59:42.589 | INFO     | __main__:omprint:31 - t index 51.79%
+2024-08-21 13:59:43.471 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 52.307692307692314, 'response': None}
+2024-08-21 13:59:43.473 | INFO     | __main__:omprint:31 - t index 52.31%
+2024-08-21 13:59:44.428 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 52.820512820512825, 'response': None}
+2024-08-21 13:59:44.429 | INFO     | __main__:omprint:31 - t index 52.82%
+2024-08-21 13:59:45.318 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 53.333333333333336, 'response': None}
+2024-08-21 13:59:45.319 | INFO     | __main__:omprint:31 - t index 53.33%
+2024-08-21 13:59:46.227 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 53.84615384615385, 'response': None}
+2024-08-21 13:59:46.228 | INFO     | __main__:omprint:31 - t index 53.85%
+2024-08-21 13:59:47.115 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 54.35897435897436, 'response': None}
+2024-08-21 13:59:47.115 | INFO     | __main__:omprint:31 - t index 54.36%
+2024-08-21 13:59:47.984 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 54.871794871794876, 'response': None}
+2024-08-21 13:59:47.985 | INFO     | __main__:omprint:31 - t index 54.87%
+2024-08-21 13:59:48.862 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 55.38461538461539, 'response': None}
+2024-08-21 13:59:48.863 | INFO     | __main__:omprint:31 - t index 55.38%
+2024-08-21 13:59:49.804 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 55.8974358974359, 'response': None}
+2024-08-21 13:59:49.805 | INFO     | __main__:omprint:31 - t index 55.90%
+2024-08-21 13:59:50.696 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 56.41025641025641, 'response': None}
+2024-08-21 13:59:50.698 | INFO     | __main__:omprint:31 - t index 56.41%
+2024-08-21 13:59:51.612 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 56.92307692307692, 'response': None}
+2024-08-21 13:59:51.614 | INFO     | __main__:omprint:31 - t index 56.92%
+2024-08-21 13:59:52.482 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 57.43589743589743, 'response': None}
+2024-08-21 13:59:52.483 | INFO     | __main__:omprint:31 - t index 57.44%
+2024-08-21 13:59:53.383 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 57.948717948717956, 'response': None}
+2024-08-21 13:59:53.384 | INFO     | __main__:omprint:31 - t index 57.95%
+2024-08-21 13:59:54.279 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 58.46153846153847, 'response': None}
+2024-08-21 13:59:54.280 | INFO     | __main__:omprint:31 - t index 58.46%
+2024-08-21 13:59:55.182 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 58.97435897435898, 'response': None}
+2024-08-21 13:59:55.182 | INFO     | __main__:omprint:31 - t index 58.97%
+2024-08-21 13:59:56.053 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 59.48717948717949, 'response': None}
+2024-08-21 13:59:56.054 | INFO     | __main__:omprint:31 - t index 59.49%
+2024-08-21 13:59:56.982 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 60.0, 'response': None}
+2024-08-21 13:59:56.982 | INFO     | __main__:omprint:31 - t index 60.00%
+2024-08-21 13:59:57.889 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 60.51282051282051, 'response': None}
+2024-08-21 13:59:57.890 | INFO     | __main__:omprint:31 - t index 60.51%
+2024-08-21 13:59:58.820 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 61.02564102564103, 'response': None}
+2024-08-21 13:59:58.821 | INFO     | __main__:omprint:31 - t index 61.03%
+2024-08-21 13:59:59.786 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 61.53846153846154, 'response': None}
+2024-08-21 13:59:59.786 | INFO     | __main__:omprint:31 - t index 61.54%
+2024-08-21 14:00:00.731 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 62.05128205128205, 'response': None}
+2024-08-21 14:00:00.731 | INFO     | __main__:omprint:31 - t index 62.05%
+2024-08-21 14:00:01.686 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 62.56410256410256, 'response': None}
+2024-08-21 14:00:01.688 | INFO     | __main__:omprint:31 - t index 62.56%
+2024-08-21 14:00:02.648 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 63.07692307692307, 'response': None}
+2024-08-21 14:00:02.650 | INFO     | __main__:omprint:31 - t index 63.08%
+2024-08-21 14:00:03.022 | INFO     | __main__:omprint:31 - Ya hay un proceso en ejecución.
+2024-08-21 14:00:03.607 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 63.589743589743584, 'response': None}
+2024-08-21 14:00:03.608 | INFO     | __main__:omprint:31 - t index 63.59%
+2024-08-21 14:00:04.615 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 64.1025641025641, 'response': None}
+2024-08-21 14:00:04.616 | INFO     | __main__:omprint:31 - t index 64.10%
+2024-08-21 14:00:05.498 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 64.61538461538461, 'response': None}
+2024-08-21 14:00:05.500 | INFO     | __main__:omprint:31 - t index 64.62%
+2024-08-21 14:00:06.389 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 65.12820512820512, 'response': None}
+2024-08-21 14:00:06.390 | INFO     | __main__:omprint:31 - t index 65.13%
+2024-08-21 14:00:07.275 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 65.64102564102564, 'response': None}
+2024-08-21 14:00:07.275 | INFO     | __main__:omprint:31 - t index 65.64%
+2024-08-21 14:00:08.209 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 66.15384615384615, 'response': None}
+2024-08-21 14:00:08.209 | INFO     | __main__:omprint:31 - t index 66.15%
+2024-08-21 14:00:09.122 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 66.66666666666666, 'response': None}
+2024-08-21 14:00:09.123 | INFO     | __main__:omprint:31 - t index 66.67%
+2024-08-21 14:00:10.056 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 67.17948717948717, 'response': None}
+2024-08-21 14:00:10.058 | INFO     | __main__:omprint:31 - t index 67.18%
+2024-08-21 14:00:10.977 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 67.6923076923077, 'response': None}
+2024-08-21 14:00:10.977 | INFO     | __main__:omprint:31 - t index 67.69%
+2024-08-21 14:00:11.843 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 68.2051282051282, 'response': None}
+2024-08-21 14:00:11.843 | INFO     | __main__:omprint:31 - t index 68.21%
+2024-08-21 14:00:12.697 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 68.71794871794872, 'response': None}
+2024-08-21 14:00:12.698 | INFO     | __main__:omprint:31 - t index 68.72%
+2024-08-21 14:00:13.545 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 69.23076923076923, 'response': None}
+2024-08-21 14:00:13.546 | INFO     | __main__:omprint:31 - t index 69.23%
+2024-08-21 14:00:14.391 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 69.74358974358974, 'response': None}
+2024-08-21 14:00:14.393 | INFO     | __main__:omprint:31 - t index 69.74%
+2024-08-21 14:00:15.258 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 70.25641025641025, 'response': None}
+2024-08-21 14:00:15.258 | INFO     | __main__:omprint:31 - t index 70.26%
+2024-08-21 14:00:16.124 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 70.76923076923077, 'response': None}
+2024-08-21 14:00:16.125 | INFO     | __main__:omprint:31 - t index 70.77%
+2024-08-21 14:00:17.143 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 71.28205128205128, 'response': None}
+2024-08-21 14:00:17.144 | INFO     | __main__:omprint:31 - t index 71.28%
+2024-08-21 14:00:17.990 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 71.7948717948718, 'response': None}
+2024-08-21 14:00:17.991 | INFO     | __main__:omprint:31 - t index 71.79%
+2024-08-21 14:00:19.835 | INFO     | __main__:omprint:31 - {'uuid': 'e9ab0545-298b-4fa5-8c3c-d4e938b470c7', 'socketio': None, 'progress': 72.3076923076923, 'response': None}
+2024-08-21 14:00:19.836 | INFO     | __main__:omprint:31 - t index 72.31%

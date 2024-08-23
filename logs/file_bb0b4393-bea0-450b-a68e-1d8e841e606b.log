@@ -260,3 +260,6 @@ Notas Importantes: - Todo el contenido que generes debe estar en idioma Spanish.
 2024-08-19 02:47:58.377 | INFO     | __main__:omprint:30 - create_background_video - background_clip.w, background_clip.h: 1080 1920
 2024-08-19 02:47:58.382 | INFO     | __main__:omprint:30 - trivia_sequence: <moviepy.video.compositing.CompositeVideoClip.CompositeVideoClip object at 0x7a8af40f2410>
 2024-08-19 02:48:33.839 | INFO     | __main__:omprint:30 - Ya hay un proceso en ejecución.
+2024-08-19 02:49:33.840 | INFO     | __main__:omprint:30 - Ya hay un proceso en ejecución.
+2024-08-19 02:50:33.841 | INFO     | __main__:omprint:30 - Ya hay un proceso en ejecución.
+2024-08-19 02:51:33.842 | INFO     | __main__:omprint:30 - Ya hay un proceso en ejecución.

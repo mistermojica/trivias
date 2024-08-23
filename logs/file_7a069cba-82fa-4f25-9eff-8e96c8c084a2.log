@@ -1,0 +1,269 @@
+2024-08-19 12:18:28.289 | INFO     | __main__:omprint:30 - pending_processes: [{'uuid': '7a069cba-82fa-4f25-9eff-8e96c8c084a2', 'language': 'Spanish', 'voice': 'Andres', 'main_question': 'Qué tanto sabes sobre la creación del mundo según el libro de Génesis.', 'num_questions': 2, 'num_options': 3, 'background_music': 'felicidad3', 'background_video': 'nubes1', 'logo_path': './public/cargados/logos/7a069cba-82fa-4f25-9eff-8e96c8c084a2.png', 'account_text': 'Bíbl-IA-TV', 'fecha_creacion': '2024-08-19T12:18:28.283427+00:00', 'fecha_modificacion': '2024-08-19T12:18:28.283427+00:00', 'estado': 'pendiente'}]
+2024-08-19 12:18:28.290 | INFO     | __main__:omprint:30 - Ejecutando el proceso ID: 7a069cba-82fa-4f25-9eff-8e96c8c084a2
+2024-08-19 12:18:28.290 | INFO     | __main__:omprint:30 - ---------------------------------------------------
+2024-08-19 12:18:28.291 | INFO     | __main__:omprint:30 - uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video: 7a069cba-82fa-4f25-9eff-8e96c8c084a2 Spanish Andres Qué tanto sabes sobre la creación del mundo según el libro de Génesis. 2 3 felicidad3 nubes1
+2024-08-19 12:18:28.291 | INFO     | __main__:omprint:30 - ---------------------------------------------------
+2024-08-19 12:18:28.291 | INFO     | __main__:omprint:30 - Genera una lista de 2 preguntas cortas en idioma Spanish en formato JSON para un quiz / trivia sobre ['Qué tanto sabes sobre la creación del mundo según el libro de Génesis.']. El JSON debe incluir una pregunta principal corta en idioma Spanish sin emojis en ella, con el estilo MrBeast en la propiedad 'main_question' que aplique para todas las preguntas de la propiedad 'questions', seguido de un arreglo 'questions' que contenga objetos con las siguientes propiedades: el texto de la pregunta corta en idioma Spanish  con variantes mencionando siempre el tema central en cada pregunta  para hacer la pronunciación más humana y consistente ,  opciones de respuesta en idioma Spanish con 3 opciones donde alternes la opción correcta en las diferentes posiciones del arreglo de opciones entre 0 y 2, (IMPORTANTE: deben tener un tamaño de 18 caracteres máximo por opción), y el índice de la opción correcta (IMPORTANTE: Las opciones correctas deben estár en posiciones aleatorias entre 0 y 2 dentro del arreglo de la propiedad 'options').
+
+Aquí hay un ejemplo del formato:
+
+{
+  "main_question": "Pregunta principal de ejemplo?",
+  "questions": [
+    {
+        "question_text": "Variantes de la pregunta de ejemplo?",
+        "question_image": "",
+        "options": ['"Opción 1"', '"Opción 2"', '"Opción 3"'],
+        "correct_option_index": 2
+    }
+  ]
+} 
+
+Notas Importantes: - Todo el contenido que generes debe estar en idioma Spanish.
+- En las opciones distribuye de forma equitativa y no secuencial la asignación de las opciones correctas en posiciones entre 0 y {num_options - 1}.
+- Todos los campos son obligatorios que estén presentes aunque estén en blanco.
+- REALIZA UNA DOBE VERIFICACION DE LAS OPCIONES CORRECTAS. NO PUEDES COMETER ERRORES.
+
+2024-08-19 12:18:30.993 | INFO     | __main__:omprint:30 - {'main_question': '¿Qué tanto sabes sobre la creación del mundo según Génesis?', 'questions': [{'question_text': '¿Qué creó Dios el primer día?', 'question_image': '', 'options': ['La luz', 'Las plantas', 'Los animales'], 'correct_option_index': 0}, {'question_text': '¿Cuántos días duró la creación?', 'question_image': '', 'options': ['Siete días', 'Cinco días', 'Ocho días'], 'correct_option_index': 0}]}
+2024-08-19 12:18:30.993 | INFO     | __main__:omprint:30 - final_logo_path: ./public/cargados/logos/7a069cba-82fa-4f25-9eff-8e96c8c084a2.png
+2024-08-19 12:18:30.993 | INFO     | __main__:omprint:30 - final_account_text: Bíbl-IA-TV
+2024-08-19 12:18:31.444 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - ctxVideo: {'video_width': 1080, 'video_height': 1920, 'video_duration': 6.5}
+2024-08-19 12:18:31.445 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - video_total_duration: 6.5
+2024-08-19 12:18:31.445 | INFO     | __main__:omprint:30 - [DEBUG] ============= add_logo - ctxVideo: {'video_width': 1080, 'video_height': 1920, 'video_duration': 6.5} =============
+2024-08-19 12:18:31.596 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - logo_clip.w, logo_clip.h: 540 540
+2024-08-19 12:18:31.596 | INFO     | __main__:omprint:30 - [DEBUG] ============= add_question_text - ctxVideo: {'video_width': 1080, 'video_height': 1920, 'video_duration': 6.5} =============
+2024-08-19 12:18:31.597 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - max_width: 920
+2024-08-19 12:18:31.597 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - text_length: 29
+2024-08-19 12:18:31.597 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - fontsize: 80
+2024-08-19 12:18:31.638 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - question_clip.w, question_clip.h: 920 194
+2024-08-19 12:18:31.656 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - question_image_clip.w, question_image_clip.h: 91 120
+2024-08-19 12:18:31.656 | INFO     | __main__:omprint:30 - [DEBUG] question_image_clip: <function VideoClip.set_position.<locals>.<lambda> at 0x70dbf937c540>
+2024-08-19 12:18:31.656 | INFO     | __main__:omprint:30 - [DEBUG] options_top_margin: 894
+2024-08-19 12:18:31.667 | INFO     | __main__:omprint:30 - [DEBUG] add_options - fontsize for option 'La luz': 70
+2024-08-19 12:18:31.702 | INFO     | __main__:omprint:30 - [DEBUG] add_options - fontsize for option 'Las plantas': 70
+2024-08-19 12:18:31.739 | INFO     | __main__:omprint:30 - [DEBUG] add_options - fontsize for option 'Los animales': 70
+2024-08-19 12:18:31.793 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - account_clip.w, account_clip.h: 227 64
+2024-08-19 12:18:31.814 | INFO     | __main__:omprint:30 - [DEBUG] video_total_duration 1: 6.5
+2024-08-19 12:18:31.815 | INFO     | __main__:omprint:30 - [DEBUG] narration_audio.duration: 1.5
+2024-08-19 12:18:31.815 | INFO     | __main__:omprint:30 - [DEBUG] clock_sound_effects.duration: 3
+2024-08-19 12:18:31.815 | INFO     | __main__:omprint:30 - [DEBUG] ding_sound_effects.duration: 2
+2024-08-19 12:18:31.816 | INFO     | __main__:omprint:30 - [DEBUG] narration_audio_winner.duration: 0.61
+2024-08-19 12:18:31.816 | INFO     | __main__:omprint:30 - [DEBUG] final_audio.duration 2: 6.5
+2024-08-19 12:18:31.816 | INFO     | __main__:omprint:30 - [DEBUG] final_clip.duration 2: 6.5
+2024-08-19 12:18:32.386 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - ctxVideo: {'video_width': 1080, 'video_height': 1920, 'video_duration': 6.53}
+2024-08-19 12:18:32.387 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - video_total_duration: 6.53
+2024-08-19 12:18:32.387 | INFO     | __main__:omprint:30 - [DEBUG] ============= add_logo - ctxVideo: {'video_width': 1080, 'video_height': 1920, 'video_duration': 6.53} =============
+2024-08-19 12:18:32.537 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - logo_clip.w, logo_clip.h: 540 540
+2024-08-19 12:18:32.538 | INFO     | __main__:omprint:30 - [DEBUG] ============= add_question_text - ctxVideo: {'video_width': 1080, 'video_height': 1920, 'video_duration': 6.53} =============
+2024-08-19 12:18:32.538 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - max_width: 920
+2024-08-19 12:18:32.538 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - text_length: 31
+2024-08-19 12:18:32.538 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - fontsize: 80
+2024-08-19 12:18:32.588 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - question_clip.w, question_clip.h: 920 194
+2024-08-19 12:18:32.607 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - question_image_clip.w, question_image_clip.h: 91 120
+2024-08-19 12:18:32.607 | INFO     | __main__:omprint:30 - [DEBUG] question_image_clip: <function VideoClip.set_position.<locals>.<lambda> at 0x70dbf936c720>
+2024-08-19 12:18:32.608 | INFO     | __main__:omprint:30 - [DEBUG] options_top_margin: 894
+2024-08-19 12:18:32.619 | INFO     | __main__:omprint:30 - [DEBUG] add_options - fontsize for option 'Siete días': 70
+2024-08-19 12:18:32.656 | INFO     | __main__:omprint:30 - [DEBUG] add_options - fontsize for option 'Cinco días': 70
+2024-08-19 12:18:32.693 | INFO     | __main__:omprint:30 - [DEBUG] add_options - fontsize for option 'Ocho días': 70
+2024-08-19 12:18:32.747 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - account_clip.w, account_clip.h: 227 64
+2024-08-19 12:18:32.770 | INFO     | __main__:omprint:30 - [DEBUG] video_total_duration 1: 6.53
+2024-08-19 12:18:32.770 | INFO     | __main__:omprint:30 - [DEBUG] narration_audio.duration: 1.53
+2024-08-19 12:18:32.770 | INFO     | __main__:omprint:30 - [DEBUG] clock_sound_effects.duration: 3
+2024-08-19 12:18:32.771 | INFO     | __main__:omprint:30 - [DEBUG] ding_sound_effects.duration: 2
+2024-08-19 12:18:32.771 | INFO     | __main__:omprint:30 - [DEBUG] narration_audio_winner.duration: 0.88
+2024-08-19 12:18:32.771 | INFO     | __main__:omprint:30 - [DEBUG] final_audio.duration 2: 6.53
+2024-08-19 12:18:32.772 | INFO     | __main__:omprint:30 - [DEBUG] final_clip.duration 2: 6.53
+2024-08-19 12:18:32.943 | INFO     | __main__:omprint:30 - create_background_video - background_clip.w, background_clip.h: 1080 1920
+2024-08-19 12:18:32.946 | INFO     | __main__:omprint:30 - trivia_sequence: <moviepy.video.compositing.CompositeVideoClip.CompositeVideoClip object at 0x70dbf912b8d0>
+2024-08-19 12:18:42.190 | INFO     | __main__:omprint:30 - Ya hay un proceso en ejecución.
+2024-08-19 12:19:42.191 | INFO     | __main__:omprint:30 - Ya hay un proceso en ejecución.
+2024-08-19 12:20:31.448 | INFO     | __main__:omprint:30 - Tiempo de procesamiento: 120.45450282096863 segundos
+2024-08-19 12:20:31.449 | INFO     | __main__:omprint:30 - video_to_upload: https://trivias.luxuryroamers.com/generados/videos/7a069cba-82fa-4f25-9eff-8e96c8c084a2.mp4
+2024-08-19 12:20:31.449 | INFO     | __main__:omprint:30 - El script tomó 123.16 segundos en ejecutarse.
+2024-08-19 12:20:36.455 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-19 12:20:36.455 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-19 12:20:42.191 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-19 12:20:42.192 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-19 12:21:42.192 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-19 12:21:42.193 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-19 12:22:42.193 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-19 12:22:42.194 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-19 12:23:42.194 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-19 12:23:42.195 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-19 12:24:42.195 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-19 12:24:42.196 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-19 12:25:42.196 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-19 12:25:42.196 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-19 12:26:42.197 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-19 12:26:42.197 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-19 12:27:42.198 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-19 12:27:42.198 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-19 12:28:42.199 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-19 12:28:42.199 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-19 12:29:42.200 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-19 12:29:42.200 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-19 12:30:42.201 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-19 12:30:42.201 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-19 12:31:42.202 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-19 12:31:42.202 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-19 12:32:42.203 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-19 12:32:42.203 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-19 12:33:42.204 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-19 12:33:42.204 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-19 12:34:42.205 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-19 12:34:42.205 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-19 12:35:42.206 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-19 12:35:42.206 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-19 12:36:42.207 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-19 12:36:42.207 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-19 12:37:42.208 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-19 12:37:42.208 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-19 12:38:42.209 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-19 12:38:42.209 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-19 12:39:42.210 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-19 12:39:42.210 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-19 12:40:42.211 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-19 12:40:42.211 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-19 12:41:42.212 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-19 12:41:42.212 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-19 12:42:42.213 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-19 12:42:42.213 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-19 12:43:42.214 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-19 12:43:42.214 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-19 12:44:42.215 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-19 12:44:42.215 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-19 12:45:42.216 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-19 12:45:42.216 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-19 12:46:42.217 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-19 12:46:42.217 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-19 12:47:42.218 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-19 12:47:42.218 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-19 12:48:42.218 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-19 12:48:42.219 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-19 12:49:42.219 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-19 12:49:42.220 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-19 12:50:42.220 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-19 12:50:42.221 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-19 12:51:42.221 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-19 12:51:42.222 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-19 12:52:42.222 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-19 12:52:42.223 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-19 12:53:42.223 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-19 12:53:42.223 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-19 12:54:42.224 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-19 12:54:42.224 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-19 12:55:42.225 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-19 12:55:42.225 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-19 12:56:42.226 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-19 12:56:42.226 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-19 12:57:42.227 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-19 12:57:42.227 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-19 12:58:13.458 | INFO     | __main__:omprint:30 - ImmutableMultiDict([('url', 'undefined'), ('language', 'Spanish'), ('voice', 'Andres'), ('main_question', 'Qué tanto sabes sobre la creación del mundo según el libro de Génesis.'), ('num_questions', '2'), ('num_options', '3'), ('background_music', 'felicidad2'), ('background_video', 'nubes1'), ('account', '@Bibl-IA-TV')])
+2024-08-19 12:58:13.469 | INFO     | __main__:omprint:30 - pending_processes: [{'uuid': 'b241dd28-eb19-41a9-90ba-de0bcb834e6a', 'language': 'Spanish', 'voice': 'Andres', 'main_question': 'Qué tanto sabes sobre la creación del mundo según el libro de Génesis.', 'num_questions': 2, 'num_options': 3, 'background_music': 'felicidad2', 'background_video': 'nubes1', 'logo_path': './public/cargados/logos/b241dd28-eb19-41a9-90ba-de0bcb834e6a.png', 'account_text': '@Bibl-IA-TV', 'fecha_creacion': '2024-08-19T12:58:13.463939+00:00', 'fecha_modificacion': '2024-08-19T12:58:13.463939+00:00', 'estado': 'pendiente'}]
+2024-08-19 12:58:13.470 | INFO     | __main__:omprint:30 - Ejecutando el proceso ID: b241dd28-eb19-41a9-90ba-de0bcb834e6a
+2024-08-19 12:58:13.471 | INFO     | __main__:omprint:30 - ---------------------------------------------------
+2024-08-19 12:58:13.471 | INFO     | __main__:omprint:30 - uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video: b241dd28-eb19-41a9-90ba-de0bcb834e6a Spanish Andres Qué tanto sabes sobre la creación del mundo según el libro de Génesis. 2 3 felicidad2 nubes1
+2024-08-19 12:58:13.472 | INFO     | __main__:omprint:30 - ---------------------------------------------------
+2024-08-19 12:58:13.472 | INFO     | __main__:omprint:30 - Genera una lista de 2 preguntas cortas en idioma Spanish en formato JSON para un quiz / trivia sobre ['Qué tanto sabes sobre la creación del mundo según el libro de Génesis.']. El JSON debe incluir una pregunta principal corta en idioma Spanish sin emojis en ella, con el estilo MrBeast en la propiedad 'main_question' que aplique para todas las preguntas de la propiedad 'questions', seguido de un arreglo 'questions' que contenga objetos con las siguientes propiedades: el texto de la pregunta corta en idioma Spanish  con variantes mencionando siempre el tema central en cada pregunta  para hacer la pronunciación más humana y consistente ,  opciones de respuesta en idioma Spanish con 3 opciones donde alternes la opción correcta en las diferentes posiciones del arreglo de opciones entre 0 y 2, (IMPORTANTE: deben tener un tamaño de 18 caracteres máximo por opción), y el índice de la opción correcta (IMPORTANTE: Las opciones correctas deben estár en posiciones aleatorias entre 0 y 2 dentro del arreglo de la propiedad 'options').
+
+Aquí hay un ejemplo del formato:
+
+{
+  "main_question": "Pregunta principal de ejemplo?",
+  "questions": [
+    {
+        "question_text": "Variantes de la pregunta de ejemplo?",
+        "question_image": "",
+        "options": ['"Opción 1"', '"Opción 2"', '"Opción 3"'],
+        "correct_option_index": 2
+    }
+  ]
+} 
+
+Notas Importantes: - Todo el contenido que generes debe estar en idioma Spanish.
+- En las opciones distribuye de forma equitativa y no secuencial la asignación de las opciones correctas en posiciones entre 0 y {num_options - 1}.
+- Todos los campos son obligatorios que estén presentes aunque estén en blanco.
+- REALIZA UNA DOBE VERIFICACION DE LAS OPCIONES CORRECTAS. NO PUEDES COMETER ERRORES.
+
+2024-08-19 12:58:15.483 | INFO     | __main__:omprint:30 - {'main_question': '¿Qué tanto sabes sobre la creación del mundo según el libro de Génesis?', 'questions': [{'question_text': '¿Qué se creó primero?', 'question_image': '', 'options': ['La luz', 'El agua', 'Las plantas'], 'correct_option_index': 0}, {'question_text': '¿Cuántos días duró la creación?', 'question_image': '', 'options': ['Seis días', 'Cinco días', 'Siete días'], 'correct_option_index': 0}]}
+2024-08-19 12:58:15.483 | INFO     | __main__:omprint:30 - final_logo_path: ./public/cargados/logos/b241dd28-eb19-41a9-90ba-de0bcb834e6a.png
+2024-08-19 12:58:15.483 | INFO     | __main__:omprint:30 - final_account_text: @Bibl-IA-TV
+2024-08-19 12:58:15.977 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - ctxVideo: {'video_width': 1080, 'video_height': 1920, 'video_duration': 6.04}
+2024-08-19 12:58:15.978 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - video_total_duration: 6.04
+2024-08-19 12:58:15.978 | INFO     | __main__:omprint:30 - [DEBUG] ============= add_logo - ctxVideo: {'video_width': 1080, 'video_height': 1920, 'video_duration': 6.04} =============
+2024-08-19 12:58:15.990 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - logo_clip.w, logo_clip.h: 540 162
+2024-08-19 12:58:15.990 | INFO     | __main__:omprint:30 - [DEBUG] ============= add_question_text - ctxVideo: {'video_width': 1080, 'video_height': 1920, 'video_duration': 6.04} =============
+2024-08-19 12:58:15.990 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - max_width: 920
+2024-08-19 12:58:15.991 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - text_length: 21
+2024-08-19 12:58:15.991 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - fontsize: 80
+2024-08-19 12:58:16.031 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - question_clip.w, question_clip.h: 920 194
+2024-08-19 12:58:16.053 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - question_image_clip.w, question_image_clip.h: 91 120
+2024-08-19 12:58:16.054 | INFO     | __main__:omprint:30 - [DEBUG] question_image_clip: <function VideoClip.set_position.<locals>.<lambda> at 0x70dbfa12c4a0>
+2024-08-19 12:58:16.054 | INFO     | __main__:omprint:30 - [DEBUG] options_top_margin: 894
+2024-08-19 12:58:16.066 | INFO     | __main__:omprint:30 - [DEBUG] add_options - fontsize for option 'La luz': 70
+2024-08-19 12:58:16.103 | INFO     | __main__:omprint:30 - [DEBUG] add_options - fontsize for option 'El agua': 70
+2024-08-19 12:58:16.140 | INFO     | __main__:omprint:30 - [DEBUG] add_options - fontsize for option 'Las plantas': 70
+2024-08-19 12:58:16.196 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - account_clip.w, account_clip.h: 263 64
+2024-08-19 12:58:16.220 | INFO     | __main__:omprint:30 - [DEBUG] video_total_duration 1: 6.04
+2024-08-19 12:58:16.222 | INFO     | __main__:omprint:30 - [DEBUG] narration_audio.duration: 1.04
+2024-08-19 12:58:16.222 | INFO     | __main__:omprint:30 - [DEBUG] clock_sound_effects.duration: 3
+2024-08-19 12:58:16.222 | INFO     | __main__:omprint:30 - [DEBUG] ding_sound_effects.duration: 2
+2024-08-19 12:58:16.223 | INFO     | __main__:omprint:30 - [DEBUG] narration_audio_winner.duration: 0.61
+2024-08-19 12:58:16.223 | INFO     | __main__:omprint:30 - [DEBUG] final_audio.duration 2: 6.04
+2024-08-19 12:58:16.224 | INFO     | __main__:omprint:30 - [DEBUG] final_clip.duration 2: 6.04
+2024-08-19 12:58:16.696 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - ctxVideo: {'video_width': 1080, 'video_height': 1920, 'video_duration': 6.53}
+2024-08-19 12:58:16.697 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - video_total_duration: 6.53
+2024-08-19 12:58:16.697 | INFO     | __main__:omprint:30 - [DEBUG] ============= add_logo - ctxVideo: {'video_width': 1080, 'video_height': 1920, 'video_duration': 6.53} =============
+2024-08-19 12:58:16.708 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - logo_clip.w, logo_clip.h: 540 162
+2024-08-19 12:58:16.708 | INFO     | __main__:omprint:30 - [DEBUG] ============= add_question_text - ctxVideo: {'video_width': 1080, 'video_height': 1920, 'video_duration': 6.53} =============
+2024-08-19 12:58:16.709 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - max_width: 920
+2024-08-19 12:58:16.709 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - text_length: 31
+2024-08-19 12:58:16.710 | INFO     | __main__:omprint:30 - [DEBUG] add_question_text - fontsize: 80
+2024-08-19 12:58:16.752 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - question_clip.w, question_clip.h: 920 194
+2024-08-19 12:58:16.771 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - question_image_clip.w, question_image_clip.h: 91 120
+2024-08-19 12:58:16.771 | INFO     | __main__:omprint:30 - [DEBUG] question_image_clip: <function VideoClip.set_position.<locals>.<lambda> at 0x70dbf8c9f4c0>
+2024-08-19 12:58:16.772 | INFO     | __main__:omprint:30 - [DEBUG] options_top_margin: 894
+2024-08-19 12:58:16.783 | INFO     | __main__:omprint:30 - [DEBUG] add_options - fontsize for option 'Seis días': 70
+2024-08-19 12:58:16.820 | INFO     | __main__:omprint:30 - [DEBUG] add_options - fontsize for option 'Cinco días': 70
+2024-08-19 12:58:16.858 | INFO     | __main__:omprint:30 - [DEBUG] add_options - fontsize for option 'Siete días': 70
+2024-08-19 12:58:16.915 | INFO     | __main__:omprint:30 - [DEBUG] generate_trivia_video - account_clip.w, account_clip.h: 263 64
+2024-08-19 12:58:16.938 | INFO     | __main__:omprint:30 - [DEBUG] video_total_duration 1: 6.53
+2024-08-19 12:58:16.939 | INFO     | __main__:omprint:30 - [DEBUG] narration_audio.duration: 1.53
+2024-08-19 12:58:16.939 | INFO     | __main__:omprint:30 - [DEBUG] clock_sound_effects.duration: 3
+2024-08-19 12:58:16.940 | INFO     | __main__:omprint:30 - [DEBUG] ding_sound_effects.duration: 2
+2024-08-19 12:58:16.940 | INFO     | __main__:omprint:30 - [DEBUG] narration_audio_winner.duration: 0.85
+2024-08-19 12:58:16.941 | INFO     | __main__:omprint:30 - [DEBUG] final_audio.duration 2: 6.53
+2024-08-19 12:58:16.941 | INFO     | __main__:omprint:30 - [DEBUG] final_clip.duration 2: 6.53
+2024-08-19 12:58:17.116 | INFO     | __main__:omprint:30 - create_background_video - background_clip.w, background_clip.h: 1080 1920
+2024-08-19 12:58:17.122 | INFO     | __main__:omprint:30 - trivia_sequence: <moviepy.video.compositing.CompositeVideoClip.CompositeVideoClip object at 0x70dbf9362490>
+2024-08-19 12:58:42.228 | INFO     | __main__:omprint:30 - Ya hay un proceso en ejecución.
+2024-08-19 12:59:42.228 | INFO     | __main__:omprint:30 - Ya hay un proceso en ejecución.
+2024-08-19 13:00:13.268 | INFO     | __main__:omprint:30 - Tiempo de procesamiento: 117.78408670425415 segundos
+2024-08-19 13:00:13.268 | INFO     | __main__:omprint:30 - video_to_upload: https://trivias.luxuryroamers.com/generados/videos/b241dd28-eb19-41a9-90ba-de0bcb834e6a.mp4
+2024-08-19 13:00:13.269 | INFO     | __main__:omprint:30 - El script tomó 119.80 segundos en ejecutarse.
+2024-08-19 13:00:18.275 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-19 13:00:18.275 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-19 13:00:42.229 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-19 13:00:42.230 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-19 13:01:42.231 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-19 13:01:42.231 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-19 13:02:42.232 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-19 13:02:42.232 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-19 13:03:42.233 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-19 13:03:42.233 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-19 13:04:42.234 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-19 13:04:42.235 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-19 13:05:42.235 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-19 13:05:42.236 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-19 13:06:42.237 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-19 13:06:42.237 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-19 13:07:42.238 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-19 13:07:42.239 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-19 13:08:42.239 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-19 13:08:42.240 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-19 13:09:42.241 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-19 13:09:42.241 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-19 13:10:42.242 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-19 13:10:42.242 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-19 13:11:42.244 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-19 13:11:42.245 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.

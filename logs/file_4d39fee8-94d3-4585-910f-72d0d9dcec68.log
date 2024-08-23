@@ -1,0 +1,29 @@
+2024-08-19 15:30:55.036 | INFO     | __main__:omprint:30 - Traceback (most recent call last):
+
+2024-08-19 15:30:55.037 | INFO     | __main__:omprint:30 -   File "/home/t2ytuser/.pyenv/versions/3.11.9/lib/python3.11/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+2024-08-19 15:30:55.037 | INFO     | __main__:omprint:30 -   File "/home/t2ytuser/.pyenv/versions/3.11.9/lib/python3.11/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+2024-08-19 15:30:55.038 | INFO     | __main__:omprint:30 -   File "/home/t2ytuser/.pyenv/versions/3.11.9/lib/python3.11/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+
+2024-08-19 15:30:55.038 | INFO     | __main__:omprint:30 -   File "/home/t2ytuser/.pyenv/versions/3.11.9/lib/python3.11/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+2024-08-19 15:30:55.038 | INFO     | __main__:omprint:30 -   File "/home/t2ytuser/trivia/main.py", line 308, in process_request
+    save_to_db(process_id, language, voice, line, num_questions, num_options, background_music, background_video, logo_path)
+
+2024-08-19 15:30:55.039 | INFO     | __main__:omprint:30 - TypeError: save_to_db() missing 1 required positional argument: 'account_text'
+
+2024-08-19 15:31:39.135 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-19 15:31:39.135 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-19 15:32:39.136 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-19 15:32:39.136 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.
+2024-08-19 15:33:39.137 | INFO     | __main__:omprint:30 - pending_processes: []
+2024-08-19 15:33:39.137 | INFO     | __main__:omprint:30 - No hay más procesos pendientes.

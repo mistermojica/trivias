@@ -7,6 +7,26 @@
     <title>Generación Video Triviass</title>
     <!-- Bootstrap CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuid.min.js"></script>
+    <script type="text/javascript">
+        // const socket = io.connect('https://' + document.domain + ':' + location.port);
+        const socket = io.connect('wss://' + document.domain);
+
+        // Generar un UUID para identificar esta sesión
+        const sessionUUID = uuid.v4();
+
+        socket.on('connect', function() {
+            console.log('Conectado al servidor con el uuid:', sessionUUID);
+        });
+
+        socket.on('video_progress', function(data) {
+            console.log(data);
+            if (data.uuid === sessionUUID) {
+                document.getElementById('progressbar').textContent = data.progress.toFixed(2) + '%';
+            }
+        });
+    </script>
 </head>
 
 <body>
@@ -14,40 +34,28 @@
         <h2>Generación Videos Trivias</h2>
         <hr>
         <form id="videoForm">
-            <div class="form-group row">
-                <label for="main_question" class="col-sm-2 col-form-label">Tema(s):</label>
-                <div class="col-sm-10">
-                    <textarea id="main_question" name="main_question" rows="5" class="form-control"></textarea>
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <label for="num_questions" class="col-sm-2 col-form-label">Cantidad Preguntas:</label>
-                <div class="col-sm-4">
-                    <input type="range" id="num_questions" name="num_questions" class="form-control" min="2" max="30" value="2" oninput="updateNumQuestionsValue(this.value)">
-                    <span id="num_questions_value">2</span> preguntas
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <label for="num_options" class="col-sm-2 col-form-label">Cantidad Opciones:</label>
-                <div class="col-sm-4">
-                    <input type="range" id="num_options" name="num_options" class="form-control" min="1" max="10" value="3" oninput="updateNumOptionsValue(this.value)">
-                    <span id="num_options_value">3</span> opciones
-                </div>
-            </div>
-
             <!-- <div class="form-group row">
-                <label for="context" class="col-sm-2 col-form-label">Contexto:</label>
-                <div class="col-sm-10">
-                    <textarea id="context" name="context" class="form-control" rows="5"></textarea>
+                <label for="keyword" class="col-sm-2 col-form-label">Palabra clave:</label>
+                <div class="col-sm-8">
+                    <input type="text" id="keyword" name="keyword" class="form-control">
+                </div>
+                <div class="col-sm-2">
+                    <button type="button" id="searchButton" class="btn btn-info btn-md">
+                        <i class="fas fa-search"></i>
+                    </button>
                 </div>
             </div> -->
 
             <div class="form-group row">
-                <label for="language" class="col-sm-2 col-form-label">Idioma:</label>
-                <div class="col-sm-4">
-                    <select id="language" name="language" class="form-control" >
+                <label for="context" class="col-sm-12 col-form-label sr-only">Contexto:</label>
+                <div class="col-sm-12">
+                    <textarea id="context" name="context" class="form-control" rows="1" placeholder="Escribe el contexto aqui" maxlength="500"></textarea>
+                </div>
+            </div>
+        
+            <div class="form-group row mt-3">
+                <div class="col-sm-12">
+                    <select id="language" name="language" class="form-control">
                         <option value="" selected>Selecciona un idioma</option>
                         <option value="Spanish">Español</option>
                         <option value="English">Inglés</option>
@@ -62,11 +70,88 @@
                     </select>
                 </div>
             </div>
+        
+            <div class="form-group row mt-3">
+                <div class="col-sm-12">
+                    <select id="options" name="options" class="form-control">
+                        <option value="1" selected>Genera 1 tema</option>
+                        <option value="2">Genera 2 temas</option>
+                        <option value="3">Genera 3 temas</option>
+                        <option value="4">Genera 4 temas</option>
+                        <option value="5">Genera 5 temas</option>
+                        <option value="7">Genera 7 temas</option>
+                        <option value="10">Genera 10 temas</option>
+                        <option value="15">Genera 15 temas</option>
+                        <option value="20">Genera 20 temas</option>
+                    </select>
+                </div>
+            </div>
+        
+            <div class="form-group row mt-4">
+                <div class="col-sm-12">
+                    <button type="button" id="searchButton" class="btn btn-dark btn-block">
+                        <i class="fas fa-search mr-2"></i> Generar Ideas de Temas
+                    </button>
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="form-group row">
+                <label for="main_question" class="col-sm-2 col-form-label">Tema(s):</label>
+                <div class="col-sm-10">
+                    <textarea id="main_question" name="main_question" rows="5" class="form-control"></textarea>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="num_questions" class="col-sm-2 col-form-label">Cantidad Preguntas:</label>
+                <div class="col-sm-4">
+                    <input type="range" id="num_questions" name="num_questions" class="form-control" min="2" max="30"
+                        value="2" oninput="updateNumQuestionsValue(this.value)">
+                    <span id="num_questions_value">2</span> preguntas
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="num_options" class="col-sm-2 col-form-label">Cantidad Opciones:</label>
+                <div class="col-sm-4">
+                    <input type="range" id="num_options" name="num_options" class="form-control" min="1" max="10"
+                        value="3" oninput="updateNumOptionsValue(this.value)">
+                    <span id="num_options_value">3</span> opciones
+                </div>
+            </div>
+
+            <!-- <div class="form-group row">
+                <label for="context" class="col-sm-2 col-form-label">Contexto:</label>
+                <div class="col-sm-10">
+                    <textarea id="context" name="context" class="form-control" rows="5"></textarea>
+                </div>
+            </div> -->
+
+            <!-- <div class="form-group row">
+                <label for="language_other" class="col-sm-2 col-form-label">Idioma:</label>
+                <div class="col-sm-4">
+                    <select id="language_other" name="language_other" class="form-control">
+                        <option value="" selected>Selecciona un idioma</option>
+                        <option value="Spanish">Español</option>
+                        <option value="English">Inglés</option>
+                        <option value="French">Francés</option>
+                        <option value="Portuguese">Portugués</option>
+                        <option value="Italian">Italiano</option>
+                        <option value="Chinese">Chino</option>
+                        <option value="Hindi">Hindi</option>
+                        <option value="Russian">Ruso</option>
+                        <option value="German">Alemán</option>
+                        <option value="Japanese">Japonés</option>
+                    </select>
+                </div>
+            </div> -->
 
             <div class="form-group row">
                 <label for="voice" class="col-sm-2 col-form-label">Voz:</label>
                 <div class="col-sm-4">
-                    <select id="voice" name="voice" class="form-control" >
+                    <select id="voice" name="voice" class="form-control">
                         <option value="" selected>Selecciona una voz</option>
                     </select>
                 </div>
@@ -205,7 +290,8 @@
                         <option value="reto2">Reto 2</option>
                         <option value="reto3">Reto 3</option>
                     </select>
-                    <button type="button" class="btn btn-info btn-md ml-2 hear-background_music" title="Reproducir Música">
+                    <button type="button" class="btn btn-info btn-md ml-2 hear-background_music"
+                        title="Reproducir Música">
                         <i class="fas fa-play"></i>
                     </button>
                     <audio id="audioPlayer" controls style="display: none; margin-left: 10px;">
@@ -217,8 +303,8 @@
 
             <div class="form-group row">
                 <label for="background_video" class="col-sm-2 col-form-label">Video de Fondo:</label>
-                <div class="col-sm-4 d-flex">
-                    <select id="background_video" name="background_video" class="form-control" >
+                <div class="col-sm-6 d-flex">
+                    <select id="background_video" name="background_video" class="form-control">
                         <option value="" selected>Selecciona video de fondo</option>
                         <option value="espacio1">Espacio 1</option>
                         <option value="espacio2">Espacio 2</option>
@@ -248,7 +334,8 @@
                         <option value="paris2">Paris 2</option>
                         <option value="paris2">Paris 3</option>
                     </select>
-                    <button type="button" class="btn btn-info btn-md ml-2 view-background_video" title="Previsualizar Video">
+                    <button type="button" class="btn btn-info btn-md ml-2 view-background_video"
+                        title="Previsualizar Video">
                         <i class="fas fa-eye"></i>
                     </button>
                 </div>
@@ -265,7 +352,15 @@
                 <label for="logo" class="col-sm-2 col-form-label">Logo:</label>
                 <div class="col-sm-4">
                     <!-- <input type="file" id="logo" name="logo" class="form-control" accept=".jpg, .jpeg, .png"> -->
-                    <input type="file" id="logo" name="logo" accept=".jpg, .jpeg, .png" class="form-control form-control-md">
+                    <input type="file" id="logo" name="logo" accept=".jpg, .jpeg, .png"
+                        class="form-control form-control-md">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="account" class="col-sm-2 col-form-label">Cuenta:</label>
+                <div class="col-sm-10">
+                    <p id="progressbar" name="progressbar">Progreso...</p>
                 </div>
             </div>
 
@@ -421,7 +516,7 @@
         </form>
 
         <!-- Lista de videos -->
-        <div id="videoList" class="mt-5"> 
+        <div id="videoList" class="mt-5">
             <hr>
             <h3>Videos Generados</h3>
             <hr>
@@ -437,7 +532,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <!-- Bootstrap modal para éxito -->
-    <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
+    <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -457,7 +553,8 @@
     </div>
 
     <!-- Bootstrap modal para ver video -->
-    <div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-labelledby="viewModalLabel" aria-hidden="true">
+    <div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-labelledby="viewModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog modal-sm" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -478,54 +575,54 @@
 
     <script>
         const voces = [
-            {"Language": "English", "VoiceId": "Danielle", "Name": "Danielle", "Gender": "Female"},
-            {"Language": "English", "VoiceId": "Gregory", "Name": "Gregory", "Gender": "Male"},
-            {"Language": "English", "VoiceId": "Ivy", "Name": "Ivy", "Gender": "Female"},
-            {"Language": "English", "VoiceId": "Joanna", "Name": "Joanna", "Gender": "Female"},
-            {"Language": "English", "VoiceId": "Kendra", "Name": "Kendra", "Gender": "Female"},
-            {"Language": "English", "VoiceId": "Kimberly", "Name": "Kimberly", "Gender": "Female"},
-            {"Language": "English", "VoiceId": "Salli", "Name": "Salli", "Gender": "Female"},
-            {"Language": "English", "VoiceId": "Joey", "Name": "Joey", "Gender": "Male"},
-            {"Language": "English", "VoiceId": "Justin", "Name": "Justin", "Gender": "Male"},
-            {"Language": "English", "VoiceId": "Kevin", "Name": "Kevin", "Gender": "Male"},
-            {"Language": "English", "VoiceId": "Matthew", "Name": "Matthew", "Gender": "Male"},
-            {"Language": "English", "VoiceId": "Ruth", "Name": "Ruth", "Gender": "Female"},
-            {"Language": "English", "VoiceId": "Stephen", "Name": "Stephen", "Gender": "Male"},
+            { "Language": "English", "VoiceId": "Danielle", "Name": "Danielle", "Gender": "Female" },
+            { "Language": "English", "VoiceId": "Gregory", "Name": "Gregory", "Gender": "Male" },
+            { "Language": "English", "VoiceId": "Ivy", "Name": "Ivy", "Gender": "Female" },
+            { "Language": "English", "VoiceId": "Joanna", "Name": "Joanna", "Gender": "Female" },
+            { "Language": "English", "VoiceId": "Kendra", "Name": "Kendra", "Gender": "Female" },
+            { "Language": "English", "VoiceId": "Kimberly", "Name": "Kimberly", "Gender": "Female" },
+            { "Language": "English", "VoiceId": "Salli", "Name": "Salli", "Gender": "Female" },
+            { "Language": "English", "VoiceId": "Joey", "Name": "Joey", "Gender": "Male" },
+            { "Language": "English", "VoiceId": "Justin", "Name": "Justin", "Gender": "Male" },
+            { "Language": "English", "VoiceId": "Kevin", "Name": "Kevin", "Gender": "Male" },
+            { "Language": "English", "VoiceId": "Matthew", "Name": "Matthew", "Gender": "Male" },
+            { "Language": "English", "VoiceId": "Ruth", "Name": "Ruth", "Gender": "Female" },
+            { "Language": "English", "VoiceId": "Stephen", "Name": "Stephen", "Gender": "Male" },
 
-            {"Language": "Spanish", "VoiceId": "Lupe", "Name": "Lupe", "Gender": "Female"},
-            {"Language": "Spanish", "VoiceId": "Pedro", "Name": "Pedro", "Gender": "Male"},
-            {"Language": "Spanish", "VoiceId": "Miguel", "Name": "Miguel", "Gender": "Male"},
-            {"Language": "Spanish", "VoiceId": "Penelope", "Name": "Penelope", "Gender": "Female"},
-            {"Language": "Spanish", "VoiceId": "Mia", "Name": "Mia", "Gender": "Female"},
-            {"Language": "Spanish", "VoiceId": "Andres", "Name": "Andres", "Gender": "Male"},
+            { "Language": "Spanish", "VoiceId": "Lupe", "Name": "Lupe", "Gender": "Female" },
+            { "Language": "Spanish", "VoiceId": "Pedro", "Name": "Pedro", "Gender": "Male" },
+            { "Language": "Spanish", "VoiceId": "Miguel", "Name": "Miguel", "Gender": "Male" },
+            { "Language": "Spanish", "VoiceId": "Penelope", "Name": "Penelope", "Gender": "Female" },
+            { "Language": "Spanish", "VoiceId": "Mia", "Name": "Mia", "Gender": "Female" },
+            { "Language": "Spanish", "VoiceId": "Andres", "Name": "Andres", "Gender": "Male" },
 
-            {"Language": "French", "VoiceId": "Lea", "Name": "Lea", "Gender": "Female"},
-            {"Language": "French", "VoiceId": "Remi", "Name": "Remi", "Gender": "Male"},
-            {"Language": "French", "VoiceId": "Celine", "Name": "Celine", "Gender": "Female"},
-            {"Language": "French", "VoiceId": "Mathieu", "Name": "Mathieu", "Gender": "Male"},
+            { "Language": "French", "VoiceId": "Lea", "Name": "Lea", "Gender": "Female" },
+            { "Language": "French", "VoiceId": "Remi", "Name": "Remi", "Gender": "Male" },
+            { "Language": "French", "VoiceId": "Celine", "Name": "Celine", "Gender": "Female" },
+            { "Language": "French", "VoiceId": "Mathieu", "Name": "Mathieu", "Gender": "Male" },
 
-            {"Language": "Portuguese", "VoiceId": "Camila", "Name": "Camila", "Gender": "Female"},
-            {"Language": "Portuguese", "VoiceId": "Vitoria", "Name": "Vitoria", "Gender": "Female"},
-            {"Language": "Portuguese", "VoiceId": "Ricardo", "Name": "Ricardo", "Gender": "Male"},
-            {"Language": "Portuguese", "VoiceId": "Thiago", "Name": "Thiago", "Gender": "Male"},
+            { "Language": "Portuguese", "VoiceId": "Camila", "Name": "Camila", "Gender": "Female" },
+            { "Language": "Portuguese", "VoiceId": "Vitoria", "Name": "Vitoria", "Gender": "Female" },
+            { "Language": "Portuguese", "VoiceId": "Ricardo", "Name": "Ricardo", "Gender": "Male" },
+            { "Language": "Portuguese", "VoiceId": "Thiago", "Name": "Thiago", "Gender": "Male" },
 
-            {"Language": "Italian", "VoiceId": "Bianca", "Name": "Bianca", "Gender": "Female"},
-            {"Language": "Italian", "VoiceId": "Adriano", "Name": "Adriano", "Gender": "Male"},
-            {"Language": "Italian", "VoiceId": "Carla", "Name": "Carla", "Gender": "Female"},
-            {"Language": "Italian", "VoiceId": "Giorgio", "Name": "Giorgio", "Gender": "Male"},
+            { "Language": "Italian", "VoiceId": "Bianca", "Name": "Bianca", "Gender": "Female" },
+            { "Language": "Italian", "VoiceId": "Adriano", "Name": "Adriano", "Gender": "Male" },
+            { "Language": "Italian", "VoiceId": "Carla", "Name": "Carla", "Gender": "Female" },
+            { "Language": "Italian", "VoiceId": "Giorgio", "Name": "Giorgio", "Gender": "Male" },
 
-            {"Language": "German", "VoiceId": "Vicki", "Name": "Vicki", "Gender": "Female"},
-            {"Language": "German", "VoiceId": "Daniel", "Name": "Daniel", "Gender": "Male"},
-            {"Language": "German", "VoiceId": "Marlene", "Name": "Marlene", "Gender": "Female"},
-            {"Language": "German", "VoiceId": "Hans", "Name": "Hans", "Gender": "Male"},
+            { "Language": "German", "VoiceId": "Vicki", "Name": "Vicki", "Gender": "Female" },
+            { "Language": "German", "VoiceId": "Daniel", "Name": "Daniel", "Gender": "Male" },
+            { "Language": "German", "VoiceId": "Marlene", "Name": "Marlene", "Gender": "Female" },
+            { "Language": "German", "VoiceId": "Hans", "Name": "Hans", "Gender": "Male" },
 
-            {"Language": "Russian", "VoiceId": "Tatyana", "Name": "Tatyana", "Gender": "Female"},
-            {"Language": "Russian", "VoiceId": "Maxim", "Name": "Maxim", "Gender": "Male"},
+            { "Language": "Russian", "VoiceId": "Tatyana", "Name": "Tatyana", "Gender": "Female" },
+            { "Language": "Russian", "VoiceId": "Maxim", "Name": "Maxim", "Gender": "Male" },
 
-            {"Language": "Chinese", "VoiceId": "Zhiyu", "Name": "Zhiyu", "Gender": "Female"},
+            { "Language": "Chinese", "VoiceId": "Zhiyu", "Name": "Zhiyu", "Gender": "Female" },
 
-            {"Language": "Hindi", "VoiceId": "Kajal", "Name": "Kajal", "Gender": "Female"},
-            {"Language": "Hindi", "VoiceId": "Aditi", "Name": "Aditi", "Gender": "Female"}
+            { "Language": "Hindi", "VoiceId": "Kajal", "Name": "Kajal", "Gender": "Female" },
+            { "Language": "Hindi", "VoiceId": "Aditi", "Name": "Aditi", "Gender": "Female" }
         ];
 
         function updateNumQuestionsValue(value) {
@@ -664,6 +761,38 @@
             // Ejecutar loadPropertyList() cada minuto
             setInterval(loadPropertyList, 60000); // 60000 milisegundos = 1 minuto
 
+            $('#searchButton').click(function() {
+                var context = $('#context').val();
+                var language = $('#language').val();
+                var options = $('#options').val();
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/generate',
+                    data: {
+                        context: context,
+                        language: language,
+                        options: options
+                    },
+                    success: function(response) {
+                        // Limpiar el campo main_question antes de insertar las nuevas líneas
+                        $('#main_question').val('');
+
+                        // Iterar sobre cada trivia y agregarla en una nueva línea
+                        response.conceptos.forEach(function(trivia) {
+                            $('#main_question').val(function(index, val) {
+                                return val + trivia + '\n';
+                            });
+                        });
+
+                        console.log("Success:", response);
+                    },
+                    error: function(error) {
+                        console.error("Error:", error);
+                    }
+                });
+            });
+
             $("#videoForm").submit(function (event) {
                 event.preventDefault(); // Evitar el envío del formulario por defecto
 
@@ -680,6 +809,7 @@
                 formData.append("background_music", $("#background_music").val());
                 formData.append("background_video", $("#background_video").val());
                 formData.append("account", $("#account").val());
+                formData.append("sessionUUID", sessionUUID);
 
                 // Agregar el archivo del logo al FormData
                 var logoFile = $("#logo")[0].files[0]; // Captura el archivo del input con id 'logo'
@@ -708,6 +838,8 @@
                     processData: false,  // Necesario para que jQuery no convierta el FormData en una cadena
                     data: formData,
                     success: function (response) {
+                        // Enviar el UUID al servidor
+                        socket.emit('start_process', { uuid: sessionUUID });
                         // Mostrar el modal de éxito
                         $("#successModal").modal('show');
                         // Limpiar el formulario
