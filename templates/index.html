@@ -4,34 +4,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Generación Video Triviass</title>
+    <title>Generador Video Triviass</title>
     <!-- Bootstrap CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuid.min.js"></script>
     <script type="text/javascript">
-        // const socket = io.connect('https://' + document.domain + ':' + location.port);
+        // Conexión al servidor WebSocket
         const socket = io.connect('wss://' + document.domain);
+    
+        // Verificar si el sessionUUID ya existe en localStorage
+        let sessionUUID = localStorage.getItem('sessionUUID');
 
-        // Generar un UUID para identificar esta sesión
-        const sessionUUID = uuid.v4();
+        console.log("sessionUUID 1:", sessionUUID);
+    
+        // Si no existe, generar uno nuevo y guardarlo en localStorage
+        if (!sessionUUID) {
+            sessionUUID = uuid.v4();
+            localStorage.setItem('sessionUUID', sessionUUID);
+        }
 
+        console.log("sessionUUID 2:", sessionUUID);
+    
         socket.on('connect', function() {
             console.log('Conectado al servidor con el uuid:', sessionUUID);
-        });
 
+            // Iniciar ping-pong cada 1 segundo
+            setInterval(function() {
+                const currentTime = new Date().toISOString().replace('T', ' ').split('.')[0]; // Formato YYYY-MM-DD HH:MM:SS
+                console.log({currentTime});
+                socket.emit('ping_from_client', { uuid: sessionUUID, time: currentTime });
+            }, 2000);
+        });
+    
         socket.on('video_progress', function(data) {
-            console.log(data);
+            console.log("sessionUUID 3:", sessionUUID);
+            console.log("video_progress data:", data);
             if (data.uuid === sessionUUID) {
                 document.getElementById('progressbar').textContent = data.progress.toFixed(2) + '%';
             }
+        });
+
+        socket.on('greeting', function(data) {
+            console.log("sessionUUID 4:", sessionUUID);
+            console.log("greeting data:", data);
+            if (data.uuid === sessionUUID) {
+                document.getElementById('progressbar').textContent = data.progress;
+            }
+        });
+
+        socket.on('pong_from_server', function(data) {
+            console.log('Pong recibido del servidor:', data);
         });
     </script>
 </head>
 
 <body>
     <div class="container mt-5">
-        <h2>Generación Videos Trivias</h2>
+        <h2>Generador Videos Trivias</h2>
         <hr>
         <form id="videoForm">
             <!-- <div class="form-group row">
@@ -74,7 +104,8 @@
             <div class="form-group row mt-3">
                 <div class="col-sm-12">
                     <select id="options" name="options" class="form-control">
-                        <option value="1" selected>Genera 1 tema</option>
+                        <option value="0" selected>Selecciona una cantidad de temas</option>
+                        <option value="1">Genera 1 tema</option>
                         <option value="2">Genera 2 temas</option>
                         <option value="3">Genera 3 temas</option>
                         <option value="4">Genera 4 temas</option>

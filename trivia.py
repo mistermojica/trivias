@@ -24,7 +24,7 @@ openai = OpenAI()
 
 openai.api_key = OPENAI_API_KEY
 
-socketio = None
+# sio = None
 
 SCRIPT_DIR = os.path.dirname(__file__)
 
@@ -331,9 +331,9 @@ def add_options(options, ctxVideo, options_font_path, top_margin, margin=170):
     corner_radius = 50  # Radio de las esquinas redondeadas del fondo
 
     # Definir límites de fontsize para el texto de las opciones
-    max_fontsize = 70
-    min_fontsize = 50
-    max_chars = 17  # Máximo de caracteres para el tamaño de fuente más grande
+    max_fontsize = 65
+    min_fontsize = 40
+    max_chars = 15  # Máximo de caracteres para el tamaño de fuente más grande
 
     for i, option in enumerate(options):
         # Crear el círculo con Pillow
@@ -743,6 +743,9 @@ def generate_trivia_video(main_question, voice, language, ctxVideo, logo_path, q
 
     options_clips = add_options(options, ctxVideo, options_font_path, top_margin=options_top_margin) #, reveal_time=4
     # Pasa la fuente de opciones a la función reveal_correct_option
+    
+    # exit()
+    
 
     options_clips = reveal_correct_option(options_clips, ctxVideo["video_width"], options, correct_option_index, start_time=video_duration_before_winner, reveal_time=video_winner_duration, options_font_path=options_font_path)
     account_clip = add_account_text(account_text, ctxVideo["video_duration"], account_font_path)
@@ -779,12 +782,12 @@ def generate_trivia_video(main_question, voice, language, ctxVideo, logo_path, q
 
 
 # Funcióc para generar un video con múltiples preguntas
-def generate_combined_trivia_video(main_question, voice, language, questions_json, background_video_path, background_music_path, logo_path, account_text, tictac_sound_path, ding_sound_path, output_file, question_font_path, options_font_path, account_font_path, question_image_font_path, sessionUUID, socketio):
-    print("[DEBUG 06]: ====================\n", "generate_combined_trivia_video -> socketio", socketio, "\====================")
+def generate_combined_trivia_video(main_question, voice, language, questions_json, background_video_path, background_music_path, logo_path, account_text, tictac_sound_path, ding_sound_path, output_file, question_font_path, options_font_path, account_font_path, question_image_font_path, sessionUUID, sio):
+    print("[DEBUG 06]: \n====================\n", "generate_combined_trivia_video -> sio", sio, "\n====================")
 
     start_time = time.time()  # Inicia el temporizador
     
-    logger = MyBarLogger(sessionUUID, socketio)
+    logger = MyBarLogger(sessionUUID, sio)
 
     all_clips = []
 
@@ -908,11 +911,11 @@ def ok_generate_combined_trivia_video(main_question, voice, questions_json, back
     print(f"Tiempo de procesamiento: {processing_time} segundos")
 
 
-def generate_trivias(context, options=5, language="Spanish"):
+def generate_trivias(context, options=1, language="Spanish"):
     # Construye el prompt basado en el contexto y el lenguaje
     prompt = (
-        f"Genera {options} frases nominales básicas en idioma {language} basadas en el siguiente contexto: ['{context}'].\n\n"
-        f"Los conceptos deben ser oraciones cortas y directas en idioma {language}. En un arreglo simple en formato JSON.\n"
+        f"Genera {options} {'frases nominales básicas' if options > 1 else 'frase nominal básica'} en idioma {language} {'basadas' if options > 1 else 'basada'} en el siguiente contexto: ['{context}'].\n\n"
+        f"{'Los conceptos deben ser oraciones cortas y directas' if options > 1 else 'El concepto debe ser una oración corta y directa'} en idioma {language}. En un arreglo simple en formato JSON.\n"
         'Ejemplos del resultado esperado: {"conceptos": ["Creación del mundo según Génesis", "Matemáticas para niños", "Conjugación del verbo ser o estar en Inglés", "Entrenamiento de fuerza", "Dieta equilibrada", "Ejercicios básicos", "Cálculo de límites", "Historia de los Incas"]}.\n'
         f"IMPORTANTE: Genera el contenido en {language}. Estas expresiones deben ser útiles para que a partir de ellas una IA pueda generar varias preguntas de selección única a manera de trivias."
     )
@@ -954,7 +957,7 @@ def generate_quiz_questions(main_question, num_questions=2, num_options=4, langu
 
     # Construye el prompt para la IA
     prompt = (
-        f"Genera una lista de {num_questions} preguntas cortas en idioma {language} en formato JSON para un quiz / trivia sobre ['{main_question}']. "
+        f"Genera una {'lista de' if num_questions > 1 else ''} {num_questions} {'preguntas cortas' if num_questions > 1 else 'pregunta corta'} en idioma {language} en formato JSON para un quiz / trivia sobre ['{main_question}']. "
         f"El JSON debe incluir una pregunta principal corta en idioma {language} sin emojis en ella, con el estilo MrBeast en la propiedad 'main_question' que aplique para todas las preguntas de la propiedad 'questions', "
         f"seguido de un arreglo 'questions' que contenga objetos con las siguientes propiedades: "
         f"el texto de la pregunta corta en idioma {language} {'sin emojis en ella' if emoji_included else ''} con variantes {'mencionando siempre el tema central en cada pregunta ' if not emoji_included else ''} para hacer la pronunciación más humana y consistente {'SIN INCLUIR EL EMOJI' if emoji_included else ''}, "
@@ -1017,8 +1020,8 @@ def generate_quiz_questions(main_question, num_questions=2, num_options=4, langu
     return json.loads(result)
 
 
-def create_video(uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video, logo_path, account_text, sessionUUID, socketio):
-    print("[DEBUG 05]: ====================\n", "create_video -> socketio", socketio, "\====================")
+def create_video(uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video, logo_path, account_text, sessionUUID, sio):
+    print("[DEBUG 05]: \n====================\n", "create_video -> sio", sio, "\n====================")
     
     # Configura el analizador de argumentos de línea de comandos
     # parser = argparse.ArgumentParser(description="Genera un video de trivia basado en las preguntas del quiz.")
@@ -1064,7 +1067,7 @@ def create_video(uuid4, language, voice, main_question, num_questions, num_optio
         account_font_path=f"{SCRIPT_DIR}/public/assets/fonts/Sniglet-Regular.ttf",
         question_image_font_path=f"{SCRIPT_DIR}/public/assets/fonts/AppleColorEmoji.ttf",
         sessionUUID=sessionUUID,
-        socketio=socketio
+        sio=sio
     )
 
     # Opcional: Imprime el JSON de la trivia
@@ -1074,10 +1077,10 @@ def create_video(uuid4, language, voice, main_question, num_questions, num_optio
 #     main()
 
 class MyBarLogger(ProgressBarLogger):
-    def __init__(self, session_uuid, socketio):
+    def __init__(self, session_uuid, sio):
         super().__init__()
         self.session_uuid = session_uuid
-        self.socketio = socketio
+        self.sio = sio
 
     def bars_callback(self, bar, attr, value, old_value=None):
         total = self.bars[bar]['total']
@@ -1086,28 +1089,44 @@ class MyBarLogger(ProgressBarLogger):
         else:
             percentage = 0
             
-        print("[DEBUG 07]: ====================\n", "MyBarLogger -> bars_callback -> self.socketio", self.socketio, "self.session_uuid", self.session_uuid, "\====================")
+        print("[DEBUG 07]: \n====================\n", "MyBarLogger -> bars_callback -> self.sio", self.sio, "self.session_uuid", self.session_uuid, "\n====================")
+
+        # participants = self.sio.server.manager.get_participants('/')
+        
+        # print("[DEBUG 08]: \n====================\n", "MyBarLogger -> participants:", participants, "\n====================")
+
+        # Asegúrate de que el cliente esté conectado
+        # if sid in self.sio.server.manager.get_participants('/'):
+            # self.sio.emit('response', {'message': "hola"}, room=sid)
+        # else:
+            # print(f"Cliente con SID {sid} no está conectado.")
 
         # Emitir el progreso con el UUID para identificar la sesión
-    
-        response = self.socketio.emit('video_progress', {'uuid': self.session_uuid, 'progress': percentage})
+        response = self.sio.emit('video_progress', {'uuid': self.session_uuid, 'progress': percentage})
 
-        print({'uuid': self.session_uuid, 'socketio': socketio, 'progress': percentage, "response": response})
+        print({'uuid': self.session_uuid, 'sio': self.sio, 'progress': percentage, "response": response})
 
         print(f'{bar} {attr} {percentage:.2f}%')
 
 
-def create_video_main(uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video, logo_path, account_text, sessionUUID, socketio):
+def create_video_main(uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video, logo_path, account_text, sessionUUID, sio):
     # data = [{'url': 'https://www.kayak.com/rimg/himg/17/76/2c/booking-3989982-257263533-043832.jpg', 'description': 'A luxurious, well-lit house with arched windows, a grand entrance, and a gated courtyard surrounded by lush greenery and tall trees.'}, {'url': 'https://www.kayak.com/rimg/himg/97/73/c7/booking-3989982-257263588-299448.jpg', 'description': 'A grand staircase with ornate railings and statues leads to an upper level in an elegant, spacious interior with warm-toned walls and decorative elements.'}, {'url': 'https://www.kayak.com/rimg/himg/21/16/65/booking-3989982-257263572-216394.jpg', 'description': 'A spacious, well-lit kitchen with modern appliances, granite countertops, dark cabinetry, and an arched entryway leading to a grand hallway.'}, {'url': 'https://www.kayak.com/rimg/himg/50/e3/c8/booking-3989982-257263543-083612.jpg', 'description': 'A luxurious bedroom features a four-poster bed, a cozy seating area with ornate furniture, a large TV, and eclectic decor including a plush rug and animal figurines.'}, {'url': 'https://www.kayak.com/rimg/himg/f1/0f/8b/booking-3989982-257263555-150000.jpg', 'description': 'A cozy, well-decorated living room features a fireplace, elegant seating, framed artwork, and a floor lamp with multiple globes.'}, {'url': 'https://www.kayak.com/rimg/himg/36/10/ec/booking-3989982-257263552-131976.jpg', 'description': 'The image shows a luxurious bathroom featuring a large glass-enclosed shower and a separate bathtub area with arched windows and elegant tile work.'}, {'url': 'https://www.kayak.com/rimg/himg/14/cd/e2/booking-3989982-257263561-169186.jpg', 'description': 'A luxurious dining room with ornate furniture, a chandelier, medieval shields on the wall, and a classical statue in an alcove.'}, {'url': 'https://www.kayak.com/rimg/himg/8a/ee/e5/booking-3989982-257263570-205725.jpg', 'description': 'A serene pool area with a small waterfall, decorative bridge, and lush greenery under a purple-hued sky.'}, {'url': 'https://www.kayak.com/rimg/himg/ed/f0/4a/booking-3989982-257263582-272624.jpg', 'description': 'A serene outdoor spa area features a small pool with pink lighting, surrounded by tropical plants, a waterfall, and a classical statue under a pergola.'}, {'url': 'https://www.kayak.com/rimg/himg/13/93/3a/booking-3989982-257263567-188337.jpg', 'description': 'The image shows an outdoor patio area with a pergola, equipped with a ceiling fan, string lights, a barbecue grill, and metal patio furniture.'}]
     # create_property_name_audio(download_path, property_name)
     # num_elements, thumb_filename = process_images_and_audios(data, voz, download_path, uuid4)
 
-    print("[DEBUG 04]: ====================\n", "create_video_main -> socketio", socketio, "\====================")
+    sio.emit('greeting', {'uuid': sessionUUID, 'progress': "hola"})
+
+    print("[DEBUG 04]: \n====================\n", "create_video_main -> sio", sio, "\n====================")
+
+    # participants = sio.server.manager.get_participants('/')
+        
+    # print("[DEBUG 08]: \n====================\n", "MyBarLogger -> participants:", participants, "\n====================")
+    # exit()
 
     print("---------------------------------------------------")
-    print("uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video:", uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video, logo_path, account_text, sessionUUID, socketio)
+    print("uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video:", uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video, logo_path, account_text, sessionUUID, sio)
     print("---------------------------------------------------")
 
-    create_video(uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video, logo_path, account_text, sessionUUID, socketio)
+    create_video(uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video, logo_path, account_text, sessionUUID, sio)
 
     return True

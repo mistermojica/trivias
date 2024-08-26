@@ -46,6 +46,15 @@ openai.api_key = OPENAI_API_KEY
 # Definir script_dir como una variable global
 SCRIPT_DIR = os.path.dirname(__file__)
 
+app = Flask(__name__, static_folder=PUBLIC_FOLDER)
+socketio = SocketIO(app)
+
+# Initialize TinyDB
+db = TinyDB('luxuryroamers.json')
+procesos_table = db.table('procesos')
+
+process_lock = threading.Lock()
+
 async def download_image(url, download_path, filename):
     img_name = os.path.join(download_path, str(filename) + os.path.splitext(os.path.basename(url))[1])
 
@@ -138,11 +147,11 @@ def run_http_server(port, directory):
     httpd = HTTPServer(('localhost', port), SimpleHTTPRequestHandler)
     httpd.serve_forever()
 
-async def create_video_local(uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video, logo_path, account_text, sessionUUID, socketio):
+async def create_video_local(uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video, logo_path, account_text, sessionUUID, sio):
     # Registrar el tiempo de inicio
     start_time = time.time()
     
-    print("[DEBUG 03]: ====================\n", "create_video_local -> socketio", socketio, "\====================")
+    print("[DEBUG 03]: \n====================\n", "create_video_local -> sio", sio, "\n====================")
 
     # Iniciar el servidor HTTP en un hilo separado
     directory = f'./{PUBLIC_FOLDER}'
@@ -157,7 +166,7 @@ async def create_video_local(uuid4, language, voice, main_question, num_question
     # Llamar a la función para borrar el contenido de la carpeta
     clear_directory(download_path)
 
-    create_video_main(uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video, logo_path, account_text, sessionUUID, socketio)
+    create_video_main(uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video, logo_path, account_text, sessionUUID, sio)
 
     # send_vehicle_data_to_instagram(ctx)
 
@@ -179,15 +188,6 @@ async def create_video_local(uuid4, language, voice, main_question, num_question
 
     return {"execution_time": execution_time}
 
-
-app = Flask(__name__, static_folder=PUBLIC_FOLDER)
-socketio = SocketIO(app)
-
-# Initialize TinyDB
-db = TinyDB('luxuryroamers.json')
-procesos_table = db.table('procesos')
-
-process_lock = threading.Lock()
 
 
 def save_to_db(process_id, language, voice, main_question, num_questions, num_options, background_music, background_video, logo_path, account_text, sessionUUID):
@@ -217,7 +217,7 @@ def update_process_status(process_id, status):
     Process = Query()
     procesos_table.update(
         {
-            "estado": status, 
+            "estado": status,
             "fecha_modificacion": datetime.now(timezone.utc).isoformat(),
             "url_video": url_video
         }, Process.uuid == process_id)
@@ -232,8 +232,8 @@ def get_pending_processes():
     return procesos_table.search(Query().estado == 'pendiente')
 
 
-def process_pending_tasks():
-    print("[DEBUG 02]: ====================\n", "process_pending_tasks -> socketio", socketio, "\====================")
+def process_pending_tasks(sio):
+    print("[DEBUG 02]: \n====================\n", "process_pending_tasks -> sio", sio, "\n====================")
     
     if not process_lock.acquire(blocking=False):
         print("Ya hay un proceso en ejecución.")
@@ -251,6 +251,8 @@ def process_pending_tasks():
                 process_id = process['uuid']
                 print(f"Ejecutando el proceso ID: {process_id}")
                 try:
+                    sio.emit('greeting', {'uuid': process['sessionUUID'], 'progress': "hola 2"})
+                    
                     asyncio.run(create_video_local(
                         process['uuid'],
                         process['language'],
@@ -263,7 +265,7 @@ def process_pending_tasks():
                         process['logo_path'],
                         process['account_text'],
                         process['sessionUUID'],
-                        socketio
+                        sio
                     ))
                     update_process_status(process_id, 'completado')
                 except Exception as e:
@@ -297,7 +299,7 @@ def generate():
 @app.route('/process', methods=['POST'])
 def process_request():
     
-    print("[DEBUG B]: ====================\n", "process_request -> socketio:", socketio, "\====================")
+    # print("[DEBUG B]: \n====================\n", "process_request -> socketio:", socketio, "\n====================")
 
     # Captura el archivo logo
     if 'logo' in request.files:
@@ -338,7 +340,7 @@ def process_request():
             save_to_db(process_id, language, voice, line, num_questions, num_options, background_music, background_video, logo_path, account_text, sessionUUID)
 
         # Inicia el proceso en segundo plano, usando process_id único por cada línea
-        threading.Thread(target=process_pending_tasks).start()
+        threading.Thread(target=process_pending_tasks, args=(socketio,)).start()
 
 
     return jsonify({"message": "Procesos registrados exitosamente."}), 200
@@ -479,22 +481,37 @@ def get_background_music(musicid):
         return jsonify({"error": str(e)}), 500
 
 
-def start_process_monitor():
+@socketio.on('ping_from_client')
+def handle_ping_from_client(data):
+    session_uuid = data['uuid']
+    client_time = data['time']
+    
+    # Preparar la respuesta de Pong con la misma UUID y hora recibida
+    server_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    print(server_time)
+    socketio.emit('pong_from_server', {'uuid': session_uuid, 'client_time': client_time, 'server_time': server_time})
+
+
+def start_process_monitor(sio):
     while True:
-        print("[DEBUG 01]: ====================\n", "start_process_monitor -> socketio", socketio, "\====================")
-        process_pending_tasks()
+        print("[DEBUG 01]: \n====================\n", "start_process_monitor -> sio", sio, "\n====================")
+        process_pending_tasks(sio)
         time.sleep(60)  # Esperar 1 minuto antes de verificar nuevamente
 
 
 if __name__ == '__main__':
     
-    print("[DEBUG A]: ====================\n", "__main__ -> socketio", socketio, "\====================")
+    print("[DEBUG A]: \n====================\n", "__main__ -> socketio", socketio, "\n====================")
 
     print(f"--------------------------------------------")
     print(f"Servidor Flask corriendo en el puerto {PORT}")
     print(f"--------------------------------------------")
 
-    threading.Thread(target=start_process_monitor).start()  # Iniciar el monitor de procesos en segundo plano
+    # socketio.start_background_task(target=start_process_monitor)
+
+    # socketio.run(app, host='0.0.0.0', port=PORT)
+
+    threading.Thread(target=start_process_monitor, args=(socketio,)).start()  # Iniciar el monitor de procesos en segundo plano
 
     socketio.run(app, host='0.0.0.0', port=PORT)
 
