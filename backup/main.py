@@ -1,11 +1,8 @@
 # main.py
-import eventlet
-eventlet.monkey_patch()
-
 import os
 import asyncio
 import random
-import json
+# import json
 # import webbrowser
 import time
 import uuid
@@ -53,7 +50,7 @@ openai.api_key = OPENAI_API_KEY
 SCRIPT_DIR = os.path.dirname(__file__)
 
 app = Flask(__name__, static_folder=PUBLIC_FOLDER)
-socketio = SocketIO(app, cors_allowed_origins="*", async_mode='eventlet', transports=['websocket'])
+socketio = SocketIO(app)
 event_bus = EventEmitter()
 
 connected_clients = set()
@@ -194,6 +191,7 @@ async def create_video_local(uuid4, language, voice, main_question, num_question
     return {"execution_time": execution_time}
 
 
+
 def save_to_db(process_id, language, voice, main_question, num_questions, num_options, background_music, background_video, logo_path, account_text, sessionUUID):
     timestamp = datetime.now(timezone.utc).isoformat()
     proceso = {
@@ -210,8 +208,7 @@ def save_to_db(process_id, language, voice, main_question, num_questions, num_op
         "sessionUUID": sessionUUID,
         "fecha_creacion": timestamp,
         "fecha_modificacion": timestamp,
-        "estado": "pendiente",
-        "url_video": ""
+        "estado": "pendiente"
     }
     procesos_table.insert(proceso)
     return process_id
@@ -238,7 +235,7 @@ def get_pending_processes():
 
 
 def process_pending_tasks(eb):
-    # print("[DEBUG 02]: \n====================\n", "process_pending_tasks -> eb", eb, "\n====================")
+    print("[DEBUG 02]: \n====================\n", "process_pending_tasks -> eb", eb, "\n====================")
     
     if not process_lock.acquire(blocking=False):
         print("Ya hay un proceso en ejecución.")
@@ -252,16 +249,13 @@ def process_pending_tasks(eb):
                 print("No hay más procesos pendientes.")
                 break
 
-            # Crear un nuevo bucle de eventos en este hilo
-            loop = asyncio.new_event_loop()
-            asyncio.set_event_loop(loop)
             for process in sorted(pending_processes, key=lambda x: x['fecha_creacion']):
                 process_id = process['uuid']
                 print(f"Ejecutando el proceso ID: {process_id}")
-                update_process_status(process_id, 'procesando')
                 try:
-                    loop.run_until_complete(create_video_local(
-                    # asyncio.run(create_video_local(
+                    eb.emit('greeting', {'uuid': process['sessionUUID'], 'progress': "hola 2"})
+                    
+                    asyncio.run(create_video_local(
                         process['uuid'],
                         process['language'],
                         process['voice'],
@@ -277,11 +271,10 @@ def process_pending_tasks(eb):
                     ))
                     update_process_status(process_id, 'completado')
                 except Exception as e:
-                    update_process_status(process_id, 'fallido')
+                    update_process_status(process_id, f'error: {e}')
                     print(f"Error al procesar el proceso ID: {process_id}, error: {e}")
 
-            # time.sleep(5)  # Espera antes de verificar nuevamente
-            # await asyncio.sleep(5)
+            time.sleep(5)  # Espera antes de verificar nuevamente
     finally:
         process_lock.release()
 
@@ -290,25 +283,9 @@ def process_pending_tasks(eb):
 def handle_video_progress(data):
     # Emitir progreso al cliente a través del WebSocket
     # socketio.emit('video_progress', data)
-    print("connected_clients:", connected_clients)
-    # socketio.emit('video_progress', data)
-
-    sid = list(connected_clients)[0]
-
-    emit_all(sid, "video_progress", data)
-    
-    # sids = list(socketio.server.manager.get_participants('/', '/'))
-    
-    # print(sids)
-    
-    # Imprimir los SID
-    # for sid in sids:
-        # print(f"Cliente conectado con SID: {sid}")
-    
-    # for sid in connected_clients:
-    #     print("video_progress - connected_clients - sid:", sid)
-        # socketio.send(data, room=sid)
-        # socketio.emit(data, room=sid)
+    for sid in connected_clients:
+        print("video_progress - connected_clients - sid:", sid)
+        socketio.send(data, room=sid)
     print("\n=============================================================")
     print("video_progress:", data)
     print("=============================================================\n")
@@ -337,8 +314,6 @@ def generate():
     
     # Generar las trivias usando la función generate_trivias
     generated_trivias = generate_trivias(context, options=options, language=language)
-    
-    socketio.emit("generate", json.dumps(generated_trivias))
     
     # Retornar las trivias generadas en formato JSON
     return jsonify(generated_trivias)
@@ -458,15 +433,13 @@ def list_videos():
 
     # Obtener todos los registros de la base de datos
     all_processes = procesos_table.all()
-    
-    print(list(all_processes))
 
     # Filtrar solo los registros que tienen un url_video y estado 'completado'
     for process in all_processes:
-        if process['estado'] in ['completado', 'procesando', 'pendiente', 'fallido']:
+        if 'url_video' in process and (process['estado'] == 'completado' or process['estado'] == 'pendiente'):
             video_files.append({
                 "process_id": process['uuid'],
-                "filename": process['url_video'] or "",
+                "filename": process['url_video'],
                 "main_question": process['main_question'],
                 "num_questions": process['num_questions'],
                 "num_options": process['num_options'],
@@ -478,8 +451,6 @@ def list_videos():
 
     # Ordenar los archivos por tiempo de modificación en orden descendente
     video_files.sort(key=lambda x: x["modified"], reverse=True)
-    
-    print("video_files:", video_files)
 
     return jsonify(video_files)
 
@@ -533,48 +504,19 @@ def get_background_music(musicid):
         return jsonify({"error": str(e)}), 500
 
 
-
-def emit_all(sid, event_name, data):
-    # Obtén todos los namespaces
-    names = list(socketio.server.manager.get_namespaces())
-    print("NAMES:", names)
-    for name in names:
-        print(f"++++++++++++++++++++++ Cliente conectado con NAME: {name}")
-        rooms = list(socketio.server.manager.get_rooms(sid, name))
-        print("ROOMS:", rooms)
-        for room in rooms:
-            print(f"++++++++++++++++++++++ Cliente conectado con ROOM: {room}")
-            sids = list(socketio.server.manager.get_participants(name, room))
-            print("IDS:", sids)
-            for sid in sids:
-                print(f"++++++++++++++++++++++ Cliente conectado con SID: {sid}")
-                # emit('emit_connected', {'message': 'Conectado al servidor WebSocket'}, room=room)
-                # send({'send_connected': 'Conectado al servidor WebSocket'}, room=room)
-                socketio.emit(event_name, data, room=room)
-
-
 @socketio.on('connect')
 def handle_connect():
     sid = request.sid
-    connected_clients.add(sid)
+    connected_clients.add(sid)  # Añadir el SID del cliente conectado
     print(f"Cliente conectado: {sid}")
-
-    emit_all(sid, "emit_connected", {'message': 'Conectado al servidor WebSocket'})
+    emit('emit_connected', {'message': 'Conectado al servidor WebSocket'}, room=sid)
+    send({'send_connected': 'Conectado al servidor WebSocket'}, room=sid)
 
 
 @socketio.on('disconnect')
 def handle_disconnect():
     sid = request.sid
     connected_clients.discard(sid)  # Remover el SID del cliente desconectado
-    
-    sids = list(socketio.server.manager.get_participants('/', '/'))
-    
-    print(sids)
-    
-    # Imprimir los SID
-    for sid in sids:
-        print(f"-------------------- Cliente desconectado con SID: {sid}")    
-    
     print(f"Cliente desconectado: {sid}")
 
 
@@ -584,19 +526,19 @@ def handle_ping_from_client(data):
     client_time = data['time']
 
     sid = request.sid
-
+    
     # Preparar la respuesta de Pong con la misma UUID y hora recibida
     server_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     # print(server_time)
     socketio.emit('pong_from_server', {'sid': sid, 'uuid': session_uuid, 'client_time': client_time, 'server_time': server_time})
-
-    # for lsid in connected_clients:
-    #     print("ping_from_server - connected_clients - lsid:", lsid)
+    
+    for lsid in connected_clients:
+        print("ping_from_server - connected_clients - lsid:", lsid)
 
 
 def start_process_monitor(eb):
     while True:
-        # print("[DEBUG 01]: \n====================\n", "start_process_monitor -> eb", eb, "\n====================")
+        print("[DEBUG 01]: \n====================\n", "start_process_monitor -> eb", eb, "\n====================")
         process_pending_tasks(eb)
         time.sleep(60)  # Esperar 1 minuto antes de verificar nuevamente
 
@@ -620,8 +562,3 @@ if __name__ == '__main__':
     # app.run(host='0.0.0.0', port=PORT)
     # Corrección para iniciar la aplicación con soporte tanto para HTTP como para WebSocket
     
-    # Usar socketio.start_background_task para iniciar la tarea en segundo plano
-    # socketio.start_background_task(target=start_process_monitor, eb=event_bus)
-
-    # # Ejecutar la aplicación con soporte para WebSockets
-    # socketio.run(app, host='0.0.0.0', port=PORT)

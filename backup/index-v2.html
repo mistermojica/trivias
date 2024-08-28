@@ -6,44 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Generador Video Triviass</title>
     <!-- Bootstrap CSS -->
-    <style>
-        .progress-container {
-            width: 100%;
-            background-color: #f3f3f3;
-            border-radius: 25px;
-            box-shadow: 0 3px 3px -2px rgba(0, 0, 0, 0.2);
-            margin: 20px 0;
-        }
-
-        .progress-bar {
-            width: 0%;
-            height: 30px;
-            background-color: #4caf50;
-            border-radius: 25px;
-            text-align: center;
-            line-height: 30px;
-            color: white;
-            transition: width 0.4s ease;
-        }
-    </style>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuid.min.js"></script>
     <script type="text/javascript">
-        function updateProgress(percentage) {
-            let progressBar = document.getElementById("progress-bar");
-            if (percentage >= 0 && percentage <= 100) {
-                progressBar.style.width = percentage + '%';
-                progressBar.textContent = percentage + '%';
-            } else {
-                console.error("El porcentaje debe estar entre 0 y 100.");
-            }
-        }
-
         // Conexión al servidor WebSocket
-        const socket = io.connect(`https://${document.domain}`, {
-            transports: ['websocket']
-        });
+        const socket = io.connect('wss://' + document.domain);
     
         // Verificar si el sessionUUID ya existe en localStorage
         let sessionUUID = localStorage.getItem('sessionUUID');
@@ -70,51 +38,24 @@
         });
     
         socket.on('video_progress', function(data) {
-            console.log("video_progress - sessionUUID 3:", sessionUUID);
-            console.log("video_progress - data.uuid 3:", data.uuid);
-            console.log("video_progress - sessionUUID = data.uuid:", sessionUUID = data.uuid);
-            console.log("video_progress - data:", data);
+            console.log("sessionUUID 3:", sessionUUID);
+            console.log("video_progress data:", data);
             if (data.uuid === sessionUUID) {
-                // document.getElementById('progressbar').textContent = data.progress.toFixed(2) + '%';
-                updateProgress(data.progress.toFixed(2));
+                document.getElementById('progressbar').textContent = data.progress.toFixed(2) + '%';
             }
         });
 
         socket.on('greeting', function(data) {
             console.log("sessionUUID 4:", sessionUUID);
             console.log("greeting data:", data);
-            // alert("greeting - data:\n" + JSON.stringify(data));
-            // if (data.uuid === sessionUUID) {
-            //     document.getElementById('progressbar').textContent = data.progress;
-            // }
-        });
-
-        socket.on('emit_connected', function(data) {
-            console.log("sessionUUID 5:", sessionUUID);
-            console.log("emit_connected data:", data);
-            // alert("emit_connected - data:\n" + JSON.stringify(data));
-            // if (data.uuid === sessionUUID) {
-            //     document.getElementById('progressbar').textContent = data.progress;
-            // }
-        });
-
-        socket.on('send_connected', function(data) {
-            console.log("sessionUUID 6:", sessionUUID);
-            console.log("send_connected data:", data);
-            alert("send_connected - data:\n" + JSON.stringify(data));
-            // if (data.uuid === sessionUUID) {
-            //     document.getElementById('progressbar').textContent = data.progress;
-            // }
+            if (data.uuid === sessionUUID) {
+                document.getElementById('progressbar').textContent = data.progress;
+            }
         });
 
         socket.on('pong_from_server', function(data) {
-            // console.log('Pong recibido del servidor:', data);
+            console.log('Pong recibido del servidor:', data);
         });
-
-        socket.on('generate', function(data) {
-            console.log('generate:', data);
-        });
-
     </script>
 </head>
 
@@ -448,13 +389,9 @@
             </div>
 
             <div class="form-group row">
-                <label for="account" class="col-sm-2 col-form-label">Proceso:</label>
+                <label for="account" class="col-sm-2 col-form-label">Cuenta:</label>
                 <div class="col-sm-10">
-                    <!-- <p id="progressbar" name="progressbar"> -->
-                        <div class="progress-container">
-                            <div class="progress-bar" id="progress-bar">0%</div>
-                        </div>
-                    <!-- </p> -->
+                    <p id="progressbar" name="progressbar">Progreso...</p>
                 </div>
             </div>
 
@@ -772,9 +709,8 @@
                                 type: "DELETE",
                                 url: "/videos/" + videoid,
                                 success: function (response) {
-                                    // alert("Propiedad borrada exitosamente.");
+                                    alert("Propiedad borrada exitosamente.");
                                     $("#videoid_" + videoid).remove();
-                                    loadPropertyList();
                                 },
                                 error: function () {
                                     alert("Hubo un error al borrar el video.");

@@ -1,16 +1,16 @@
 import os
+from moviepy.editor import concatenate_videoclips, VideoFileClip, ImageClip, TextClip, CompositeVideoClip, AudioFileClip, CompositeAudioClip, VideoClip
+from moviepy.video.fx.all import fadein, fadeout
+import boto3
 import time
 import uuid
 import io
 import json
-import subprocess
-import argparse
-from moviepy.editor import concatenate_videoclips, VideoFileClip, ImageClip, TextClip, CompositeVideoClip, AudioFileClip, CompositeAudioClip, VideoClip
-# from moviepy.video.fx.all import fadein, fadeout
-import boto3
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 from openai import OpenAI
+import subprocess
+import argparse
 from dotenv import load_dotenv, find_dotenv
 from proglog import ProgressBarLogger
 
@@ -782,12 +782,12 @@ def generate_trivia_video(main_question, voice, language, ctxVideo, logo_path, q
 
 
 # Funcióc para generar un video con múltiples preguntas
-def generate_combined_trivia_video(main_question, voice, language, questions_json, background_video_path, background_music_path, logo_path, account_text, tictac_sound_path, ding_sound_path, output_file, question_font_path, options_font_path, account_font_path, question_image_font_path, process_id, sessionUUID, eb):
-    print("[DEBUG 06]: \n====================\n", "generate_combined_trivia_video -> eb", eb, "\n====================")
+def generate_combined_trivia_video(main_question, voice, language, questions_json, background_video_path, background_music_path, logo_path, account_text, tictac_sound_path, ding_sound_path, output_file, question_font_path, options_font_path, account_font_path, question_image_font_path, sessionUUID, sio):
+    print("[DEBUG 06]: \n====================\n", "generate_combined_trivia_video -> sio", sio, "\n====================")
 
     start_time = time.time()  # Inicia el temporizador
     
-    logger = MyBarLogger(process_id, sessionUUID, eb)
+    logger = MyBarLogger(sessionUUID, sio)
 
     all_clips = []
 
@@ -849,6 +849,61 @@ def generate_combined_trivia_video(main_question, voice, language, questions_jso
 
     # Guardar el video final
     final_video.write_videofile(output_file, codec="libx264", audio_codec="aac", fps=12, preset='ultrafast', logger=logger)
+
+    end_time = time.time()  # Detiene el temporizador
+    processing_time = end_time - start_time  # Calcula el tiempo de procesamiento
+
+    print(f"Tiempo de procesamiento: {processing_time} segundos")
+
+
+# Funcióc para generar un video con múltiples preguntas
+def ok_generate_combined_trivia_video(main_question, voice, questions_json, background_video_path, logo_path, account_text, tictac_sound_path, ding_sound_path, output_file, question_font_path, options_font_path, account_font_path, question_image_font_path):
+    start_time = time.time()  # Inicia el temporizador
+
+    all_clips = []
+
+    for question in questions_json:
+        question_text = question['question_text']
+        question_image = question['question_image']
+        options = question['options']
+        correct_option_index = question['correct_option_index']
+
+        narration_text = f"¿{question_text}?"
+        narration_text_winner = f"{options[correct_option_index]}!!"
+        # narration_text_winner = f"Es, {options[correct_option_index]}!"
+
+        trivia_clip = generate_trivia_video(
+            main_question=main_question,
+            voice=voice,
+            background_video_path=background_video_path,
+            logo_path=logo_path,
+            question_text=question_text,
+            question_image=question_image,
+            options=options,
+            correct_option_index=correct_option_index,
+            account_text=account_text,
+            narration_text=narration_text,
+            narration_text_winner=narration_text_winner,
+            tictac_sound_path=tictac_sound_path,
+            ding_sound_path=ding_sound_path,
+            question_font_path=question_font_path,
+            options_font_path=options_font_path,
+            account_font_path=account_font_path,
+            question_image_font_path=question_image_font_path
+        )
+
+        all_clips.append(trivia_clip)
+
+    for idx, clip in enumerate(all_clips):
+        print(f"[DEBUG] all_clips[{idx}] - start: {clip.start}, duration: {clip.duration}, end: {clip.end}")
+
+    # Combinar todos los clips en un solo video
+    final_video = concatenate_videoclips(all_clips, method="compose")
+    print(f"[DEBUG] generate_combined_trivia_video - final_video.duration: {final_video.duration}")
+
+    # Guardar el video final
+    # final_video = final_video.subclip(0, 4)
+    final_video.write_videofile(output_file, codec="libx264", audio_codec="aac", fps=12, preset='ultrafast')
 
     end_time = time.time()  # Detiene el temporizador
     processing_time = end_time - start_time  # Calcula el tiempo de procesamiento
@@ -965,8 +1020,8 @@ def generate_quiz_questions(main_question, num_questions=2, num_options=4, langu
     return json.loads(result)
 
 
-def create_video(uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video, logo_path, account_text, sessionUUID, eb):
-    print("[DEBUG 05]: \n====================\n", "create_video -> eb", eb, "\n====================")
+def create_video(uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video, logo_path, account_text, sessionUUID, sio):
+    print("[DEBUG 05]: \n====================\n", "create_video -> sio", sio, "\n====================")
     
     # Configura el analizador de argumentos de línea de comandos
     # parser = argparse.ArgumentParser(description="Genera un video de trivia basado en las preguntas del quiz.")
@@ -1011,9 +1066,8 @@ def create_video(uuid4, language, voice, main_question, num_questions, num_optio
         options_font_path=f"{SCRIPT_DIR}/public/assets/fonts/Sniglet-Regular.ttf",
         account_font_path=f"{SCRIPT_DIR}/public/assets/fonts/Sniglet-Regular.ttf",
         question_image_font_path=f"{SCRIPT_DIR}/public/assets/fonts/AppleColorEmoji.ttf",
-        process_id=uuid4,
         sessionUUID=sessionUUID,
-        eb=eb
+        sio=sio
     )
 
     # Opcional: Imprime el JSON de la trivia
@@ -1023,20 +1077,19 @@ def create_video(uuid4, language, voice, main_question, num_questions, num_optio
 #     main()
 
 class MyBarLogger(ProgressBarLogger):
-    def __init__(self, process_id, session_uuid, eb):
+    def __init__(self, session_uuid, sio):
         super().__init__()
-        self.process_id = process_id
         self.session_uuid = session_uuid
-        self.eb = eb
+        self.sio = sio
 
     def bars_callback(self, bar, attr, value, old_value=None):
         total = self.bars[bar]['total']
         if total > 0:
-            percentage = int((value / total) * 100)
+            percentage = (value / total) * 100
         else:
             percentage = 0
             
-        # print("[DEBUG 07]: \n====================\n", "MyBarLogger -> bars_callback -> self.eb", self.eb, "self.session_uuid", self.session_uuid, "\n====================")
+        print("[DEBUG 07]: \n====================\n", "MyBarLogger -> bars_callback -> self.sio", self.sio, "self.session_uuid", self.session_uuid, "\n====================")
 
         # participants = self.sio.server.manager.get_participants('/')
         
@@ -1049,17 +1102,21 @@ class MyBarLogger(ProgressBarLogger):
             # print(f"Cliente con SID {sid} no está conectado.")
 
         # Emitir el progreso con el UUID para identificar la sesión
-        self.eb.emit('video_progress', {"process_id": self.process_id, 'uuid': self.session_uuid, 'progress': percentage})
+        response = self.sio.emit('video_progress', {'uuid': self.session_uuid, 'progress': percentage})
 
-        # print({'uuid': self.session_uuid, 'eb': self.eb, 'progress': percentage, "response": response})
+        print({'uuid': self.session_uuid, 'sio': self.sio, 'progress': percentage, "response": response})
 
         print(f'{bar} {attr} {percentage:.2f}%')
 
 
-def create_video_main(uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video, logo_path, account_text, sessionUUID, eb):
-    eb.emit('greeting', {'uuid': sessionUUID, 'progress': "hola"})
+def create_video_main(uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video, logo_path, account_text, sessionUUID, sio):
+    # data = [{'url': 'https://www.kayak.com/rimg/himg/17/76/2c/booking-3989982-257263533-043832.jpg', 'description': 'A luxurious, well-lit house with arched windows, a grand entrance, and a gated courtyard surrounded by lush greenery and tall trees.'}, {'url': 'https://www.kayak.com/rimg/himg/97/73/c7/booking-3989982-257263588-299448.jpg', 'description': 'A grand staircase with ornate railings and statues leads to an upper level in an elegant, spacious interior with warm-toned walls and decorative elements.'}, {'url': 'https://www.kayak.com/rimg/himg/21/16/65/booking-3989982-257263572-216394.jpg', 'description': 'A spacious, well-lit kitchen with modern appliances, granite countertops, dark cabinetry, and an arched entryway leading to a grand hallway.'}, {'url': 'https://www.kayak.com/rimg/himg/50/e3/c8/booking-3989982-257263543-083612.jpg', 'description': 'A luxurious bedroom features a four-poster bed, a cozy seating area with ornate furniture, a large TV, and eclectic decor including a plush rug and animal figurines.'}, {'url': 'https://www.kayak.com/rimg/himg/f1/0f/8b/booking-3989982-257263555-150000.jpg', 'description': 'A cozy, well-decorated living room features a fireplace, elegant seating, framed artwork, and a floor lamp with multiple globes.'}, {'url': 'https://www.kayak.com/rimg/himg/36/10/ec/booking-3989982-257263552-131976.jpg', 'description': 'The image shows a luxurious bathroom featuring a large glass-enclosed shower and a separate bathtub area with arched windows and elegant tile work.'}, {'url': 'https://www.kayak.com/rimg/himg/14/cd/e2/booking-3989982-257263561-169186.jpg', 'description': 'A luxurious dining room with ornate furniture, a chandelier, medieval shields on the wall, and a classical statue in an alcove.'}, {'url': 'https://www.kayak.com/rimg/himg/8a/ee/e5/booking-3989982-257263570-205725.jpg', 'description': 'A serene pool area with a small waterfall, decorative bridge, and lush greenery under a purple-hued sky.'}, {'url': 'https://www.kayak.com/rimg/himg/ed/f0/4a/booking-3989982-257263582-272624.jpg', 'description': 'A serene outdoor spa area features a small pool with pink lighting, surrounded by tropical plants, a waterfall, and a classical statue under a pergola.'}, {'url': 'https://www.kayak.com/rimg/himg/13/93/3a/booking-3989982-257263567-188337.jpg', 'description': 'The image shows an outdoor patio area with a pergola, equipped with a ceiling fan, string lights, a barbecue grill, and metal patio furniture.'}]
+    # create_property_name_audio(download_path, property_name)
+    # num_elements, thumb_filename = process_images_and_audios(data, voz, download_path, uuid4)
 
-    print("[DEBUG 04]: \n====================\n", "create_video_main -> eb", eb, "\n====================")
+    sio.emit('greeting', {'uuid': sessionUUID, 'progress': "hola"})
+
+    print("[DEBUG 04]: \n====================\n", "create_video_main -> sio", sio, "\n====================")
 
     # participants = sio.server.manager.get_participants('/')
         
@@ -1067,9 +1124,9 @@ def create_video_main(uuid4, language, voice, main_question, num_questions, num_
     # exit()
 
     print("---------------------------------------------------")
-    print("uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video:", uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video, logo_path, account_text, sessionUUID, eb)
+    print("uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video:", uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video, logo_path, account_text, sessionUUID, sio)
     print("---------------------------------------------------")
 
-    create_video(uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video, logo_path, account_text, sessionUUID, eb)
+    create_video(uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video, logo_path, account_text, sessionUUID, sio)
 
     return True

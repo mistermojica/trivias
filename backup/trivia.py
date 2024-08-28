@@ -782,12 +782,12 @@ def generate_trivia_video(main_question, voice, language, ctxVideo, logo_path, q
 
 
 # Funcióc para generar un video con múltiples preguntas
-def generate_combined_trivia_video(main_question, voice, language, questions_json, background_video_path, background_music_path, logo_path, account_text, tictac_sound_path, ding_sound_path, output_file, question_font_path, options_font_path, account_font_path, question_image_font_path, process_id, sessionUUID, eb):
+def generate_combined_trivia_video(main_question, voice, language, questions_json, background_video_path, background_music_path, logo_path, account_text, tictac_sound_path, ding_sound_path, output_file, question_font_path, options_font_path, account_font_path, question_image_font_path, sessionUUID, eb):
     print("[DEBUG 06]: \n====================\n", "generate_combined_trivia_video -> eb", eb, "\n====================")
 
     start_time = time.time()  # Inicia el temporizador
     
-    logger = MyBarLogger(process_id, sessionUUID, eb)
+    logger = MyBarLogger(sessionUUID, eb)
 
     all_clips = []
 
@@ -1011,7 +1011,6 @@ def create_video(uuid4, language, voice, main_question, num_questions, num_optio
         options_font_path=f"{SCRIPT_DIR}/public/assets/fonts/Sniglet-Regular.ttf",
         account_font_path=f"{SCRIPT_DIR}/public/assets/fonts/Sniglet-Regular.ttf",
         question_image_font_path=f"{SCRIPT_DIR}/public/assets/fonts/AppleColorEmoji.ttf",
-        process_id=uuid4,
         sessionUUID=sessionUUID,
         eb=eb
     )
@@ -1023,9 +1022,8 @@ def create_video(uuid4, language, voice, main_question, num_questions, num_optio
 #     main()
 
 class MyBarLogger(ProgressBarLogger):
-    def __init__(self, process_id, session_uuid, eb):
+    def __init__(self, session_uuid, eb):
         super().__init__()
-        self.process_id = process_id
         self.session_uuid = session_uuid
         self.eb = eb
 
@@ -1049,7 +1047,7 @@ class MyBarLogger(ProgressBarLogger):
             # print(f"Cliente con SID {sid} no está conectado.")
 
         # Emitir el progreso con el UUID para identificar la sesión
-        self.eb.emit('video_progress', {"process_id": self.process_id, 'uuid': self.session_uuid, 'progress': percentage})
+        self.eb.emit('video_progress', {'uuid': self.session_uuid, 'progress': percentage})
 
         # print({'uuid': self.session_uuid, 'eb': self.eb, 'progress': percentage, "response": response})
 
