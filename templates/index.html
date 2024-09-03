@@ -35,6 +35,12 @@
             if (percentage >= 0 && percentage <= 100) {
                 progressBar.style.width = percentage + '%';
                 progressBar.textContent = percentage + '%';
+                if (percentage == 100) {
+                    progressBar.style.width = 0 + '%';
+                    progressBar.textContent = 0 + '%';
+                    question = document.getElementById("question");
+                    question.textContent = "";
+                }
             } else {
                 console.error("El porcentaje debe estar entre 0 y 100.");
             }
@@ -75,7 +81,8 @@
             console.log("video_progress - sessionUUID = data.uuid:", sessionUUID = data.uuid);
             console.log("video_progress - data:", data);
             if (data.uuid === sessionUUID) {
-                // document.getElementById('progressbar').textContent = data.progress.toFixed(2) + '%';
+                let question = document.getElementById("question");
+                question.textContent = data.question;
                 updateProgress(data.progress.toFixed(2));
             }
         });
@@ -447,10 +454,13 @@
                 </div>
             </div>
 
+            <hr>
+
             <div class="form-group row">
                 <label for="account" class="col-sm-2 col-form-label">Proceso:</label>
                 <div class="col-sm-10">
                     <!-- <p id="progressbar" name="progressbar"> -->
+                        <div class="" id="question" style="font-weight: bold;"></div>
                         <div class="progress-container">
                             <div class="progress-bar" id="progress-bar">0%</div>
                         </div>

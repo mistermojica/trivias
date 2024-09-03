@@ -787,7 +787,7 @@ def generate_combined_trivia_video(main_question, voice, language, questions_jso
 
     start_time = time.time()  # Inicia el temporizador
     
-    logger = MyBarLogger(process_id, sessionUUID, main_question, eb)
+    logger = MyBarLogger(process_id, sessionUUID, eb)
 
     all_clips = []
 
@@ -1023,11 +1023,10 @@ def create_video(uuid4, language, voice, main_question, num_questions, num_optio
 #     main()
 
 class MyBarLogger(ProgressBarLogger):
-    def __init__(self, process_id, session_uuid, question, eb):
+    def __init__(self, process_id, session_uuid, eb):
         super().__init__()
         self.process_id = process_id
         self.session_uuid = session_uuid
-        self.question = question
         self.eb = eb
 
     def bars_callback(self, bar, attr, value, old_value=None):
@@ -1050,7 +1049,7 @@ class MyBarLogger(ProgressBarLogger):
             # print(f"Cliente con SID {sid} no está conectado.")
 
         # Emitir el progreso con el UUID para identificar la sesión
-        self.eb.emit('video_progress', {'process_id': self.process_id, 'uuid': self.session_uuid, 'progress': percentage, 'question': self.question})
+        self.eb.emit('video_progress', {"process_id": self.process_id, 'uuid': self.session_uuid, 'progress': percentage})
 
         # print({'uuid': self.session_uuid, 'eb': self.eb, 'progress': percentage, "response": response})
 
@@ -1058,7 +1057,7 @@ class MyBarLogger(ProgressBarLogger):
 
 
 def create_video_main(uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video, logo_path, account_text, sessionUUID, eb):
-    # eb.emit('greeting', {'uuid': sessionUUID, 'progress': "hola"})
+    eb.emit('greeting', {'uuid': sessionUUID, 'progress': "hola"})
 
     print("[DEBUG 04]: \n====================\n", "create_video_main -> eb", eb, "\n====================")
 
