@@ -196,6 +196,11 @@ def generate_narration(text, output_file, voice, language):
     text_to_speech_polly(text, output_file, voice, language)
 
 
+def create_intro_video(intro):
+    print(intro)
+    return intro
+
+
 def create_background_video(background_video_path, background_music_path, target_width, target_height, duration):
     # Cargar el video y cortar la duración al tiempo deseado
     # background_clip = VideoFileClip(background_video_path).subclip(0, duration)
@@ -782,7 +787,7 @@ def generate_trivia_video(main_question, voice, language, ctxVideo, logo_path, q
 
 
 # Funcióc para generar un video con múltiples preguntas
-def generate_combined_trivia_video(main_question, voice, language, questions_json, background_video_path, background_music_path, logo_path, account_text, tictac_sound_path, ding_sound_path, output_file, question_font_path, options_font_path, account_font_path, question_image_font_path, process_id, sessionUUID, eb):
+def generate_combined_trivia_video(intro, main_question, voice, language, questions_json, background_video_path, background_music_path, logo_path, account_text, tictac_sound_path, ding_sound_path, output_file, question_font_path, options_font_path, account_font_path, question_image_font_path, process_id, sessionUUID, eb):
     print("[DEBUG 06]: \n====================\n", "generate_combined_trivia_video -> eb", eb, "\n====================")
 
     start_time = time.time()  # Inicia el temporizador
@@ -795,6 +800,10 @@ def generate_combined_trivia_video(main_question, voice, language, questions_jso
     target_width, target_height = 1080, 1920
 
     # model_clip = create_background_video(background_video_path, duration=3)
+    
+    intro_clip = create_intro_video(intro)
+
+    print(intro_clip)
 
     ctxVideo = {
         "video_width": target_width,
@@ -854,6 +863,55 @@ def generate_combined_trivia_video(main_question, voice, language, questions_jso
     processing_time = end_time - start_time  # Calcula el tiempo de procesamiento
 
     print(f"Tiempo de procesamiento: {processing_time} segundos")
+
+
+def generate_trivia_intro(account_name, context, language="Spanish"):
+    # Construye el prompt basado en el contexto y el lenguaje
+    
+    # print('generate_trivia_intro(account_name, context, language)', account_name, context, language)
+    
+    prompt = (
+        f"Genera una frase creativa con el estilo de MrBeast en idioma '{language}' haciendo referencia al siguiente texto: ['{context}'].\n\n"
+        f"La frase creativa debe ser una oración corta y directa en idioma '{language}' que invite al usuario a demostrar sus conocimientos sobre el tema ['{context}']. El resultado esperado es un texto simple en formato JSON.\n\n"
+        f"Ejemplos del resultado esperado:\n\n"
+        f"   {{\"intro\": \"En '{account_name}' queremos saber qué tanto sabes sobre República Dominicana.\"}}\n"
+        f"   {{\"intro\": \"En '{account_name}' demuestra qué tanto sabes sobre Fitness.\"}}\n"
+        f"   {{\"intro\": \"Adivina qué representan estos emojis.\"}}\n"
+        f"   {{\"intro\": \"Completa el refrán!\"}}\n"
+        f"   {{\"intro\": \"En '{account_name}' piensa rápido!\"}}\n"
+        f"   {{\"intro\": \"Cuánto sabes de Estados Unidos!\"}}\n"
+        f"   {{\"intro\": \"¿Qué significan estos emojis?\"}}\n"
+        f"   {{\"intro\": \"En '{account_name}' a que no adivinas!\"}}\n"
+        f"   {{\"intro\": \"Si no sabes esto, vuelve a la escuela!\"}}.\n"
+        f"IMPORTANTE: Genera el contenido en '{language}'. Esta expresión debe ser útil como introducción para una trivia de varias preguntas. Nunca coloques este texto '{account_name}' entre comillas de cualquier tipo. Estás en la libertad de usar se texto, sin comillas."
+    )
+    
+    # Configura los mensajes para la llamada a OpenAI
+    messages = [
+        {
+            "role": "system",
+            "content": "Eres un asistente virtual útil que ayuda a generar conceptos y frases educativas para videos en redes sociales."
+        },
+        {
+            "role": "user",
+            "content": prompt
+        }
+    ]
+
+    print("generate_trivia_intro ====================\n", "prompt:", prompt, "\n====================")
+
+    response = openai.chat.completions.create(
+        model="gpt-4o-mini",
+        messages=messages,
+        temperature=1.0,
+        response_format={"type": "json_object"}
+    )
+
+    result = response.choices[0].message.content
+    
+    print("====================\n", "result:", result, "\n====================")
+
+    return json.loads(result)
 
 
 def generate_trivias(context, options=1, language="Spanish"):
@@ -965,8 +1023,17 @@ def generate_quiz_questions(main_question, num_questions=2, num_options=4, langu
     return json.loads(result)
 
 
-def create_video(uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video, logo_path, account_text, sessionUUID, eb):
-    print("[DEBUG 05]: \n====================\n", "create_video -> eb", eb, "\n====================")
+def create_video(uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video, logo_path, account_text, account_name, sessionUUID, eb):
+    print("[DEBUG 05]: \n====================\n", "create_video -> eb, account_name, account_text:", eb, account_name, account_text, "\n====================")
+    
+    print("----------------------- account_name 111:", account_name)
+    
+    print("---------------------------------------------------")
+    print("22 uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video, logo_path, account_text, account_name, sessionUUID, eb:", uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video, logo_path, account_text, account_name, sessionUUID, eb)
+    print("---------------------------------------------------")
+
+    print("----------------------- account_name 222:", account_name)
+
     
     # Configura el analizador de argumentos de línea de comandos
     # parser = argparse.ArgumentParser(description="Genera un video de trivia basado en las preguntas del quiz.")
@@ -980,13 +1047,20 @@ def create_video(uuid4, language, voice, main_question, num_questions, num_optio
     # uuidcode = str(uuid.uuid4())
     uuidcode = uuid4
 
-    # print("uuidcode:", uuidcode)
+    print("----------------------- account_name:", str(account_name))
+
+    # Genera un intro para la trivia
+    intro = generate_trivia_intro(str(account_name), main_question, language)
+
+    print('INTRO:', intro)
+    
+    # exit()
 
     # Genera las preguntas del quiz usando los argumentos proporcionados
     # trivia = generate_quiz_questions(args.main_question, num_questions=args.num_questions, num_options=args.num_options)
     trivia = generate_quiz_questions(main_question, num_questions, num_options, language)
 
-    print(trivia)
+    # print(trivia)
     
     final_logo_path = logo_path or f"{SCRIPT_DIR}/public/assets/images/logo.png"
     final_account_text = account_text or "@elclubdelosgenios"
@@ -996,6 +1070,7 @@ def create_video(uuid4, language, voice, main_question, num_questions, num_optio
 
     # Genera el video combinado de la trivia
     generate_combined_trivia_video(
+        intro=intro,
         main_question=trivia["main_question"],
         voice=voice,
         language=language,
@@ -1057,7 +1132,7 @@ class MyBarLogger(ProgressBarLogger):
         print(f'{bar} {attr} {percentage:.2f}%')
 
 
-def create_video_main(uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video, logo_path, account_text, sessionUUID, eb):
+def create_video_main(uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video, logo_path, account_text, account_name, sessionUUID, eb):
     # eb.emit('greeting', {'uuid': sessionUUID, 'progress': "hola"})
 
     print("[DEBUG 04]: \n====================\n", "create_video_main -> eb", eb, "\n====================")
@@ -1068,9 +1143,9 @@ def create_video_main(uuid4, language, voice, main_question, num_questions, num_
     # exit()
 
     print("---------------------------------------------------")
-    print("uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video:", uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video, logo_path, account_text, sessionUUID, eb)
+    print("uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video:", uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video, logo_path, account_text, account_name, sessionUUID, eb)
     print("---------------------------------------------------")
 
-    create_video(uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video, logo_path, account_text, sessionUUID, eb)
+    create_video(uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video, logo_path, account_text, account_name, sessionUUID, eb)
 
     return True

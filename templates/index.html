@@ -29,6 +29,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuid.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/momentjs/2.17.1/moment.min.js"></script>
     <script type="text/javascript">
         function updateProgress(percentage) {
             let progressBar = document.getElementById("progress-bar");
@@ -130,17 +131,6 @@
         <h2>Generador Videos Trivias</h2>
         <hr>
         <form id="videoForm">
-            <!-- <div class="form-group row">
-                <label for="keyword" class="col-sm-2 col-form-label">Palabra clave:</label>
-                <div class="col-sm-8">
-                    <input type="text" id="keyword" name="keyword" class="form-control">
-                </div>
-                <div class="col-sm-2">
-                    <button type="button" id="searchButton" class="btn btn-info btn-md">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </div>
-            </div> -->
 
             <div class="form-group row">
                 <label for="context" class="col-sm-12 col-form-label sr-only">Contexto:</label>
@@ -220,13 +210,6 @@
             </div>
 
             <!-- <div class="form-group row">
-                <label for="context" class="col-sm-2 col-form-label">Contexto:</label>
-                <div class="col-sm-10">
-                    <textarea id="context" name="context" class="form-control" rows="5"></textarea>
-                </div>
-            </div> -->
-
-            <!-- <div class="form-group row">
                 <label for="language_other" class="col-sm-2 col-form-label">Idioma:</label>
                 <div class="col-sm-4">
                     <select id="language_other" name="language_other" class="form-control">
@@ -253,96 +236,6 @@
                     </select>
                 </div>
             </div>
-
-            <!-- <div class="form-group row">
-                <label for="conversation_tone" class="col-sm-2 col-form-label">Tono de la Conversación:</label>
-                <div class="col-sm-4">
-                    <select id="conversation_tone" name="conversation_tone" class="form-control" >
-                        <option value="" selected>Selecciona un tono</option>
-                        <option value="Entusiasta">Entusiasta</option>
-                        <option value="Humorístico">Humorístico</option>
-                        <option value="Motivacional">Motivacional</option>
-                        <option value="Conversacional">Conversacional</option>
-                        <option value="Autoritario">Autoritario</option>
-                        <option value="Persuasivo">Persuasivo</option>
-                        <option value="Narrativo">Narrativo</option>
-                        <option value="Empático">Empático</option>
-                        <option value="Innovador">Innovador</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <label for="video_type" class="col-sm-2 col-form-label">Tipo de Video:</label>
-                <div class="col-sm-4">
-                    <select id="video_type" name="video_type" class="form-control" >
-                        <option value="" selected>Selecciona un tipo de video</option>
-                        <option value="Tour Virtual">Tour Virtual</option>
-                        <option value="Resumen de Características">Resumen de Características</option>
-                        <option value="Histórico">Histórico</option>
-                        <option value="Reportaje">Reportaje</option>
-                        <option value="Noticia">Noticia</option>
-                        <option value="VSL">VSL (Video Sales Letter)</option>
-                        <option value="Tutorial">Tutorial</option>
-                        <option value="Testimonial">Testimonial</option>
-                        <option value="Entrevista">Entrevista</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <label for="asset_type" class="col-sm-2 col-form-label">Tipo de Activo:</label>
-                <div class="col-sm-4">
-                    <select id="asset_type" name="asset_type" class="form-control" >
-                        <option value="" selected>Selecciona un tipo de activo</option>
-                        <option value="Casa">Casa</option>
-                        <option value="Apartamento">Apartamento</option>
-                        <option value="Villa">Villa</option>
-                        <option value="Ático">Ático</option>
-                        <option value="Terreno">Terreno</option>
-                        <option value="Mansión">Mansión</option>
-                        <option value="Yate">Yate</option>
-                        <option value="Jet Privado">Jet Privado</option>
-                        <option value="Automóvil de Lujo">Automóvil de Lujo</option>
-                        <option value="Isla Privada">Isla Privada</option>
-                        <option value="Penthouse">Penthouse</option>
-                        <option value="Rancho">Rancho</option>
-                        <option value="Castillo">Castillo</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <label for="asset_name" class="col-sm-2 col-form-label">Nombre del Activo:</label>
-                <div class="col-sm-4">
-                    <input type="text" id="asset_name" name="asset_name" class="form-control">
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <label for="video_source" class="col-sm-2 col-form-label">Fuente de Videos:</label>
-                <div class="col-sm-4">
-                    <select id="video_source" name="video_source" class="form-control" >
-                        <option value="" selected>Selecciona una fuente de videos</option>
-                        <option value="Scrapping">Scrapping</option>
-                        <option value="Carga Manual">Carga Manual</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <label for="url" class="col-sm-2 col-form-label">URL:</label>
-                <div class="col-sm-10">
-                    <input type="text" id="url" name="url" class="form-control" >
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <label for="number_images" class="col-sm-2 col-form-label">Número de Imágenes:</label>
-                <div class="col-sm-4">
-                    <input type="number" id="number_images" name="number_images" class="form-control" >
-                </div>
-            </div> -->
 
             <div class="form-group row">
                 <label for="background_music" class="col-sm-2 col-form-label">Música de Fondo:</label>
@@ -439,9 +332,16 @@
             </div>
 
             <div class="form-group row">
+                <label for="account_name" class="col-sm-2 col-form-label">Nombre Cuenta:</label>
+                <div class="col-sm-10">
+                    <input type="text" id="account_name" name="account_name" class="form-control" placeholder="El Club de los Genios">
+                </div>
+            </div>
+
+            <div class="form-group row">
                 <label for="account" class="col-sm-2 col-form-label">Cuenta:</label>
                 <div class="col-sm-10">
-                    <input type="text" id="account" name="account" class="form-control">
+                    <input type="text" id="account" name="account" class="form-control" placeholder="@clubdelosgenios">
                 </div>
             </div>
 
@@ -468,153 +368,11 @@
                 </div>
             </div>
 
-            <!-- <div class="form-group row">
-                <label for="visual_style" class="col-sm-2 col-form-label">Estilo Visual:</label>
-                <div class="col-sm-4">
-                    <select id="visual_style" name="visual_style" class="form-control" >
-                        <option value="" selected>Selecciona un estilo visual</option>
-                        <option value="Minimalista">Minimalista</option>
-                        <option value="Lujoso">Lujoso</option>
-                        <option value="Moderno">Moderno</option>
-                        <option value="Clásico">Clásico</option>
-                    </select>
-                </div>
-            </div> -->
-
-            <!-- <div class="form-group row">
-                <label for="interval" class="col-sm-2 col-form-label">Intervalo (segundos):</label>
-                <div class="col-sm-4">
-                    <input type="number" id="interval" name="interval" class="form-control" min="1" max="10">
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <label for="platforms" class="col-sm-2 col-form-label">Plataformas:</label>
-                <div class="col-sm-10">
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="instagram" name="platforms" value="Instagram">
-                        <label class="form-check-label" for="instagram">Instagram</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="tiktok" name="platforms" value="TikTok">
-                        <label class="form-check-label" for="tiktok">TikTok</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="youtube" name="platforms" value="YouTube">
-                        <label class="form-check-label" for="youtube">YouTube</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="facebook" name="platforms" value="Facebook">
-                        <label class="form-check-label" for="facebook">Facebook</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="linkedin" name="platforms" value="LinkedIn">
-                        <label class="form-check-label" for="linkedin">LinkedIn</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="twitter" name="platforms" value="Twitter">
-                        <label class="form-check-label" for="twitter">Twitter</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="pinterest" name="platforms" value="Pinterest">
-                        <label class="form-check-label" for="pinterest">Pinterest</label>
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Generar Miniatura:</label>
-                <div class="col-sm-10">
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" id="generate_thumbnail_yes" name="generate_thumbnail" value="Yes">
-                        <label class="form-check-label" for="generate_thumbnail_yes">Sí</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" id="generate_thumbnail_no" name="generate_thumbnail" value="No">
-                        <label class="form-check-label" for="generate_thumbnail_no">No</label>
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Orientación:</label>
-                <div class="col-sm-10">
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" id="orientation_portrait" name="orientation" value="Portrait">
-                        <label class="form-check-label" for="orientation_portrait">Portrait</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" id="orientation_landscape" name="orientation" value="Landscape">
-                        <label class="form-check-label" for="orientation_landscape">Landscape</label>
-                    </div>
-                </div>
-            </div> -->
-
-            <!-- <div class="form-group row">
-                <label for="caption_text" class="col-sm-2 col-form-label">Texto del Caption:</label>
-                <div class="col-sm-10">
-                    <textarea id="caption_text" name="caption_text" class="form-control" rows="7" ></textarea>
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <label for="hashtags" class="col-sm-2 col-form-label">Hashtags:</label>
-                <div class="col-sm-10">
-                    <input type="text" id="hashtags" name="hashtags" class="form-control">
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <label for="call_to_action" class="col-sm-2 col-form-label">Llamado a la Acción:</label>
-                <div class="col-sm-10">
-                    <input type="text" id="call_to_action" name="call_to_action" class="form-control">
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <label for="mention_account" class="col-sm-2 col-form-label">Cuenta a Mencionar:</label>
-                <div class="col-sm-10">
-                    <input type="text" id="mention_account" name="mention_account" class="form-control">
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <label for="contact_info" class="col-sm-2 col-form-label">Datos de Contacto:</label>
-                <div class="col-sm-10">
-                    <input type="text" id="contact_info" name="contact_info" class="form-control">
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <label for="output_format" class="col-sm-2 col-form-label">Formato de Salida:</label>
-                <div class="col-sm-4">
-                    <select id="output_format" name="output_format" class="form-control" >
-                        <option value="" selected>Selecciona un formato de salida</option>
-                        <option value="MP4">MP4</option>
-                        <option value="MOV">MOV</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <label for="publication_datetime" class="col-sm-2 col-form-label">Fecha y Hora de Publicación:</label>
-                <div class="col-sm-4">
-                    <input type="datetime-local" id="publication_datetime" name="publication_datetime" class="form-control" >
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <label for="photos" class="col-sm-2 col-form-label">Fotos:</label>
-                <div class="col-sm-10">
-                    <input type="file" id="photos" name="photos" class="form-control" multiple>
-                </div>
-            </div> -->
-
             <div class="form-group row">
                 <div class="col-sm-10 offset-sm-2">
                     <hr>
-                    <button type="submit" class="btn btn-primary">Enviar</button>
-                    <button type="button" class="btn btn-danger" id="stopButton">Detener</button>
+                    <button type="submit" class="btn btn-primary">Generar</button>
+                    <!-- <button type="button" class="btn btn-danger" id="stopButton">Detener</button> -->
                 </div>
             </div>
         </form>
@@ -622,7 +380,17 @@
         <!-- Lista de videos -->
         <div id="videoList" class="mt-5">
             <hr>
-            <h3>Videos Generados</h3>
+            <div class="d-flex justify-content-between align-items-center">
+                <h3>Videos Generados</h3>
+                <div>
+                    <button id="viewCards" class="btn btn-secondary" title="Ver en Cards">
+                        <i class="fas fa-th-large"></i>
+                    </button>
+                    <button id="viewRows" class="btn btn-secondary" title="Ver en Filas">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
             <hr>
             <div class="row" id="videoListContent">
                 <!-- Aquí se cargará la lista de videos -->
@@ -739,6 +507,8 @@
 
         $(document).ready(function () {
             // Función para cargar la lista de videos
+            let viewMode = 'cards'; // Variable para controlar el modo de vista
+
             function loadPropertyList() {
                 $.ajax({
                     type: "GET",
@@ -747,31 +517,125 @@
                         let videoListContent = $("#videoListContent");
                         videoListContent.empty();
                         response.forEach((video) => {
-                            console.log(video);
+                            console.log({video});
                             let encodedProperty = encodeURIComponent(video.filename);
                             let videoid = btoa(encodedProperty);
-                            videoListContent.append(`
-                                <div class="col-sm-4 mb-3" id="videoid_${videoid}">
-                                    <div class="card rounded border">
-                                        <div class="card-body text-center">
-                                            <h7 class="card-title">Tema: ${video.main_question}</h7><br>
-                                            <p class="card-text">
-                                                <small class="text-muted">Id: ${video.process_id}</small><br>
-                                                <small class="text-muted">Idioma: ${video.language}</small><br>
-                                                <small class="text-muted">Cantidad Preguntas: ${video.num_questions}</small><br>
-                                                <small class="text-muted">Cantidad Opciones: ${video.num_options}</small><br>
-                                                <small class="text-muted">Modificado: ${video.modified}</small><br>
-                                                <small class="text-muted">Estado: ${video.status || ""}</small>
-                                            </p>
-                                            <div class="btn-group" role="group" aria-label="Acciones del video">
-                                                <button class="btn btn-info btn-lg view-button" data-video="${video.filename}" title="Ver"><i class="fas fa-eye"></i></button>&nbsp;&nbsp;&nbsp;
-                                                <a href="${video.filename}" class="btn btn-primary btn-lg" download title="Descargar"><i class="fas fa-download"></i></a>&nbsp;&nbsp;&nbsp;
-                                                <button class="btn btn-danger btn-lg delete-button" data-video="${video.process_id}" title="Borrar"><i class="fas fa-trash-alt"></i></button>
+                            let buttons = '';
+
+                            // Obtener el último fragmento del ID
+                            let process_id = video.process_id.split('-').pop();
+
+                            // Condicional para agregar los botones según el estado del video
+                            if (video.status === 'completado' || video.status === 'fallido' || video.status === 'cancelado') {
+                                buttons += `
+                                    <button class="btn btn-success btn-md update-status-button" data-video="${video.process_id}" data-status="pendiente" title="Activar">
+                                        <i class="fas fa-play"></i>
+                                    </button>&nbsp;&nbsp;&nbsp;
+                                `;
+                            } else if (video.status === 'pendiente') {
+                                buttons += `
+                                    <button class="btn btn-warning btn-md update-status-button" data-video="${video.process_id}" data-status="cancelado" title="Desactivar">
+                                        <i class="fas fa-pause"></i>
+                                    </button>&nbsp;&nbsp;&nbsp;
+                                `;
+                            }
+
+                            if (viewMode === 'cards') {
+                                // Mostrar en forma de cards
+                                videoListContent.append(`
+                                    <div class="col-sm-4 mb-3" id="videoid_${videoid}">
+                                        <div class="card rounded border">
+                                            <div class="card-body text-center">
+                                                <h7 class="card-title"><strong>${video.main_question}</strong></h7><br>
+                                                <p class="card-text">
+                                                    <small class="text-muted"><i class="fas fa-id-badge"></i> ${process_id}</small>
+                                                    <button class="btn btn-sm btn-outline-secondary copy-button" data-clipboard-text="${video.process_id}" title="Copiar ID">
+                                                        <i class="fas fa-copy"></i>
+                                                    </button> |
+                                                    <small class="text-muted"><i class="fas fa-language"></i> ${video.language}</small> | 
+                                                    <small class="text-muted"><i class="fas fa-question-circle"></i> ${video.num_questions}</small> | 
+                                                    <small class="text-muted"><i class="fas fa-list-alt"></i> ${video.num_options}</small> | 
+                                                    <small class="text-muted"><i class="fas fa-calendar-alt"></i> ${moment(video.modified).format('YYYY-MM-DD hh:mm A')}</small> | 
+                                                    <small class="text-muted"><i class="fas fa-info-circle"></i> ${video.status || ""}</small>
+                                                </p>
+                                                <div class="btn-group" role="group" aria-label="Acciones del video">
+                                                    <button class="btn btn-info btn-md view-button" data-video="${video.filename}" title="Ver"><i class="fas fa-eye"></i></button>&nbsp;&nbsp;&nbsp;
+                                                    <a href="${video.filename}" class="btn btn-primary btn-md" download title="Descargar"><i class="fas fa-download"></i></a>&nbsp;&nbsp;&nbsp;
+                                                    <button class="btn btn-danger btn-md delete-button" data-video="${video.process_id}" title="Borrar"><i class="fas fa-trash-alt"></i></button>&nbsp;&nbsp;&nbsp;
+                                                    ${buttons}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            `);
+                                `);
+                            } else if (viewMode === 'rows') {
+                                // Mostrar en forma de filas
+                                videoListContent.append(`
+                                    <div class="row mb-3" id="videoid_${videoid}">
+                                        <div class="col-12">
+                                            <div class="card rounded border">
+                                                <div class="card-body">
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <div>
+                                                            <h7 class="card-title"><strong>${video.main_question}</strong></h7><br>
+                                                            <span class="card-text">
+                                                                <small class="text-muted"><i class="fas fa-id-badge"></i> ${process_id}</small>
+                                                                <button class="btn btn-sm btn-outline-secondary copy-button" data-clipboard-text="${video.process_id}" title="Copiar ID">
+                                                                    <i class="fas fa-copy"></i>
+                                                                </button> |
+                                                                <small class="text-muted"><i class="fas fa-language"></i> ${video.language}</small> | 
+                                                                <small class="text-muted"><i class="fas fa-question-circle"></i> ${video.num_questions}</small> | 
+                                                                <small class="text-muted"><i class="fas fa-list-alt"></i> ${video.num_options}</small> | 
+                                                                <small class="text-muted"><i class="fas fa-calendar-alt"></i> ${moment(video.modified).format('YYYY-MM-DD hh:mm A')}</small> | 
+                                                                <small class="text-muted"><i class="fas fa-info-circle"></i> ${video.status || ""}</small>&nbsp;&nbsp;&nbsp;
+                                                            </span>
+                                                        </div>
+                                                        <div>
+                                                            <div class="btn-group" role="group" aria-label="Acciones del video">
+                                                                <button class="btn btn-info btn-md view-button" data-video="${video.filename}" title="Ver"><i class="fas fa-eye"></i></button>&nbsp;&nbsp;&nbsp;
+                                                                <a href="${video.filename}" class="btn btn-primary btn-md" download title="Descargar"><i class="fas fa-download"></i></a>&nbsp;&nbsp;&nbsp;
+                                                                <button class="btn btn-danger btn-md delete-button" data-video="${video.process_id}" title="Borrar"><i class="fas fa-trash-alt"></i></button>&nbsp;&nbsp;&nbsp;
+                                                                ${buttons}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                `);
+                            }
+                        });
+
+                        // Funcionalidad para copiar al portapapeles
+                        $('.copy-button').click(function() {
+                            let clipboardText = $(this).data('clipboard-text');
+                            navigator.clipboard.writeText(clipboardText).then(() => {
+                                console.log(`ID ${clipboardText} copiado al portapapeles`);
+                            }).catch(err => {
+                                console.log(`Error al copiar el ID: ${clipboardText}`, err);
+                                alert();
+                            });
+                        });
+
+                        // Agregar evento de clic para los botones de actualizar estado
+                        $(".update-status-button").click(function () {
+                            var videoid = $(this).data("video");
+                            var newStatus = $(this).data("status");
+
+                            $.ajax({
+                                type: "PATCH",
+                                url: "/videos/" + videoid + "/status",
+                                contentType: "application/json",
+                                data: JSON.stringify({ status: newStatus }), // Enviar el nuevo estado en la solicitud
+                                success: function (response) {
+                                    alert("Estado del proceso actualizado exitosamente.");
+                                    // Aquí podrías actualizar la interfaz o hacer otras acciones según necesites
+                                },
+                                error: function () {
+                                    alert("Hubo un error al actualizar el estado del proceso.");
+                                }
+                            });
                         });
 
                         // Agregar evento de clic para los botones de borrar
@@ -795,63 +659,10 @@
                         // Agregar evento de clic para los botones de ver
                         $(".view-button").click(function () {
                             var videoSrc = $(this).data("video");
+                            console.log({videoSrc});
                             $("#viewVideoSource").attr("src", videoSrc);
                             $("#viewVideo")[0].load();
                             $("#viewModal").modal('show');
-                        });
-
-                        // Agregar evento de clic para el botón de previsualización de la música de fondo
-                        $(".hear-background_music").click(function () {
-                            var selectedMusic = $("#background_music").val(); // Obtener el valor del campo background_music
-
-                            if (selectedMusic) {
-                                $.ajax({
-                                    type: "GET",
-                                    url: `/backgroundmusic/${selectedMusic}`, // URL del servicio que retorna la URL de la música
-                                    success: function (response) {
-                                        // Suponiendo que 'response' es un objeto JSON con la URL de la música
-                                        var musicUrl = response.music_url;
-
-                                        // Configurar la URL de la música en el reproductor de audio
-                                        $("#audioSource").attr("src", musicUrl);
-                                        $("#audioPlayer")[0].load(); // Cargar la música
-                                        $("#audioPlayer")[0].play(); // Reproducir la música
-                                        $("#audioPlayer").show(); // Mostrar el reproductor de audio
-                                    },
-                                    error: function () {
-                                        alert("Hubo un error al cargar la previsualización de la música.");
-                                    }
-                                });
-                            } else {
-                                alert("Por favor selecciona una música de fondo antes de previsualizar.");
-                            }
-                        });
-
-                        // Agregar evento de clic para el botón de previsualización del video de fondo
-                        $(".view-background_video").click(function () {
-                            var selectedVideo = $("#background_video").val(); // Obtener el valor del campo background_video
-
-                            if (selectedVideo) {
-                                $.ajax({
-                                    type: "GET",
-                                    url: `/backgroundvideo/${selectedVideo}`, // URL del servicio que retorna la URL del video
-                                    // data: { video: selectedVideo }, // Enviar el valor seleccionado en el GET
-                                    success: function (response) {
-                                        // Suponiendo que 'response' es un string con la URL del video
-                                        var videoUrl = response.video_url;
-
-                                        // Configurar la URL del video en el modal
-                                        $("#viewVideoSource").attr("src", videoUrl);
-                                        $("#viewVideo")[0].load(); // Cargar el video
-                                        $("#viewModal").modal('show'); // Mostrar el modal de previsualización
-                                    },
-                                    error: function () {
-                                        alert("Hubo un error al cargar la previsualización del video.");
-                                    }
-                                });
-                            } else {
-                                alert("Por favor selecciona un video de fondo antes de previsualizar.");
-                            }
                         });
                     },
                     error: function (error) {
@@ -865,6 +676,71 @@
 
             // Ejecutar loadPropertyList() cada minuto
             setInterval(loadPropertyList, 60000); // 60000 milisegundos = 1 minuto
+
+            // Event listeners para alternar la vista
+            $("#viewCards").click(function () {
+                viewMode = 'cards';
+                loadPropertyList();
+            });
+
+            $("#viewRows").click(function () {
+                viewMode = 'rows';
+                loadPropertyList();
+            });
+
+            // Agregar evento de clic para el botón de previsualización de la música de fondo
+            $(".hear-background_music").click(function () {
+                var selectedMusic = $("#background_music").val(); // Obtener el valor del campo background_music
+
+                if (selectedMusic) {
+                    $.ajax({
+                        type: "GET",
+                        url: `/backgroundmusic/${selectedMusic}`, // URL del servicio que retorna la URL de la música
+                        success: function (response) {
+                            // Suponiendo que 'response' es un objeto JSON con la URL de la música
+                            var musicUrl = response.music_url;
+
+                            // Configurar la URL de la música en el reproductor de audio
+                            $("#audioSource").attr("src", musicUrl);
+                            $("#audioPlayer")[0].load(); // Cargar la música
+                            $("#audioPlayer")[0].play(); // Reproducir la música
+                            $("#audioPlayer").show(); // Mostrar el reproductor de audio
+                        },
+                        error: function () {
+                            alert("Hubo un error al cargar la previsualización de la música.");
+                        }
+                    });
+                } else {
+                    alert("Por favor selecciona una música de fondo antes de previsualizar.");
+                }
+            });
+
+            // Agregar evento de clic para el botón de previsualización del video de fondo
+            $(".view-background_video").click(function () {
+                var selectedVideo = $("#background_video").val(); // Obtener el valor del campo background_video
+
+                if (selectedVideo) {
+                    $.ajax({
+                        type: "GET",
+                        url: `/backgroundvideo/${selectedVideo}`, // URL del servicio que retorna la URL del video
+                        // data: { video: selectedVideo }, // Enviar el valor seleccionado en el GET
+                        success: function (response) {
+                            // Suponiendo que 'response' es un string con la URL del video
+                            var videoUrl = response.video_url;
+
+                            // Configurar la URL del video en el modal
+                            $("#viewVideoSource").attr("src", videoUrl);
+                            $("#viewVideo")[0].load(); // Cargar el video
+                            $("#viewModal").modal('show'); // Mostrar el modal de previsualización
+                        },
+                        error: function () {
+                            alert("Hubo un error al cargar la previsualización del video.");
+                        }
+                    });
+                } else {
+                    alert("Por favor selecciona un video de fondo antes de previsualizar.");
+                }
+            });
 
             $('#searchButton').click(function() {
                 var context = $('#context').val();
@@ -913,6 +789,7 @@
                 formData.append("num_options", $("#num_options").val());
                 formData.append("background_music", $("#background_music").val());
                 formData.append("background_video", $("#background_video").val());
+                formData.append("account_name", $("#account_name").val());
                 formData.append("account", $("#account").val());
                 formData.append("sessionUUID", sessionUUID);
 
@@ -959,19 +836,19 @@
                 });
             });
 
-            $("#stopButton").click(function () {
-                // Enviar señal de detención a Flask mediante una solicitud AJAX
-                $.ajax({
-                    type: "POST",
-                    url: "/stop",
-                    success: function (response) {
-                        alert("Proceso detenido.");
-                    },
-                    error: function (response) {
-                        alert("Hubo un error al detener el proceso.");
-                    }
-                });
-            });
+            // $("#stopButton").click(function () {
+            //     // Enviar señal de detención a Flask mediante una solicitud AJAX
+            //     $.ajax({
+            //         type: "POST",
+            //         url: "/stop",
+            //         success: function (response) {
+            //             alert("Proceso detenido.");
+            //         },
+            //         error: function (response) {
+            //             alert("Hubo un error al detener el proceso.");
+            //         }
+            //     });
+            // });
 
             $("#language").change(function () {
                 var selectedLanguage = $(this).val();

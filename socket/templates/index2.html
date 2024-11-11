@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Progreso de Creación de Video</title>
+</head>
+<body>
+    <h1>Progreso de Creación de Video</h1>
+    <p>Progreso: <span id="progressbar">0%</span></p>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script>
+        const socket = io.connect('http://' + document.domain + ':' + location.port);
+
+        socket.on('video_progress', function(data) {
+            document.getElementById('progressbar').textContent = data.progress.toFixed(2) + '%';
+        });
+
+        function startVideoCreation() {
+            fetch('/start-video', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    video_file: 'input_video.mp4',
+                    output_file: 'output_video.mp4'
+                })
+            }).then(response => response.json())
+              .then(data => console.log(data));
+        }
+
+        // Iniciar la creación del video al cargar la página
+        window.onload = startVideoCreation;
+    </script>
+</body>
+</html>

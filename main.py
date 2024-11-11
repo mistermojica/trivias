@@ -157,7 +157,7 @@ def run_http_server(port, directory):
     httpd.serve_forever()
 
 
-async def create_video_local(uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video, logo_path, account_text, sessionUUID, eb):
+async def create_video_local(uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video, logo_path, account_text, account_name, sessionUUID, eb):
     # Registrar el tiempo de inicio
     start_time = time.time()
     
@@ -171,7 +171,7 @@ async def create_video_local(uuid4, language, voice, main_question, num_question
     # Llamar a la función para borrar el contenido de la carpeta
     clear_directory(download_path)
 
-    create_video_main(uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video, logo_path, account_text, sessionUUID, eb)
+    create_video_main(uuid4, language, voice, main_question, num_questions, num_options, background_music, background_video, logo_path, account_text, account_name, sessionUUID, eb)
 
     # send_vehicle_data_to_instagram(ctx)
 
@@ -194,7 +194,7 @@ async def create_video_local(uuid4, language, voice, main_question, num_question
     return {"execution_time": execution_time}
 
 
-def save_to_db(process_id, language, voice, main_question, num_questions, num_options, background_music, background_video, logo_path, account_text, sessionUUID):
+def save_to_db(process_id, language, voice, main_question, num_questions, num_options, background_music, background_video, logo_path, account_text, account_name, sessionUUID):
     timestamp = datetime.now(timezone.utc).isoformat()
     proceso = {
         "uuid": process_id,
@@ -206,6 +206,7 @@ def save_to_db(process_id, language, voice, main_question, num_questions, num_op
         "background_music": background_music,
         "background_video": background_video,
         "logo_path": logo_path,
+        "account_name": account_name,
         "account_text": account_text,
         "sessionUUID": sessionUUID,
         "fecha_creacion": timestamp,
@@ -217,7 +218,7 @@ def save_to_db(process_id, language, voice, main_question, num_questions, num_op
     return process_id
 
 
-def update_process_status(process_id, status):
+def update_process_video_url(process_id, status):
     url_video = f'https://trivias.luxuryroamers.com/generados/videos/{process_id}.mp4'
     Process = Query()
     procesos_table.update(
@@ -227,6 +228,13 @@ def update_process_status(process_id, status):
             "url_video": url_video
         }, Process.uuid == process_id)
 
+def update_process_status(process_id, status):
+    Process = Query()
+    procesos_table.update(
+        {
+            "estado": status,
+            "fecha_modificacion": datetime.now(timezone.utc).isoformat()
+        }, Process.uuid == process_id)
 
 def delete_process(process_id):
     Process = Query()
@@ -258,7 +266,7 @@ def process_pending_tasks(eb):
             for process in sorted(pending_processes, key=lambda x: x['fecha_creacion']):
                 process_id = process['uuid']
                 print(f"Ejecutando el proceso ID: {process_id}")
-                update_process_status(process_id, 'procesando')
+                update_process_video_url(process_id, 'procesando')
                 try:
                     loop.run_until_complete(create_video_local(
                     # asyncio.run(create_video_local(
@@ -272,6 +280,7 @@ def process_pending_tasks(eb):
                         process['background_video'],
                         process['logo_path'],
                         process['account_text'],
+                        process['account_name'],
                         process['sessionUUID'],
                         eb
                     ))
@@ -363,7 +372,7 @@ def process_request():
 
     # Captura datos del formulario
     data = request.form
-    print(data)
+    print('DATA:', data)
 
     language = data.get('language', 'Spanish')
     voice = data.get('voice', 'Pedro')
@@ -372,6 +381,7 @@ def process_request():
     num_options = int(data.get('num_options'))
     background_music = data.get('background_music')
     background_video = data.get('background_video')
+    account_name = data.get('account_name', 'El Club de los Genios')
     account_text = data.get('account', '@clubdelosgenios')
     sessionUUID = data.get('sessionUUID')
 
@@ -385,11 +395,10 @@ def process_request():
             logger.add(f"./logs/file_{process_id}.log", rotation="1 day")
 
             # Guardar en la base de datos o realizar otra acción sensible a process_id
-            save_to_db(process_id, language, voice, line, num_questions, num_options, background_music, background_video, logo_path, account_text, sessionUUID)
+            save_to_db(process_id, language, voice, line, num_questions, num_options, background_music, background_video, logo_path, account_text, account_name, sessionUUID)
 
         # Inicia el proceso en segundo plano, usando process_id único por cada línea
         threading.Thread(target=process_pending_tasks, args=(event_bus,)).start()
-
 
     return jsonify({"message": "Procesos registrados exitosamente."}), 200
 
@@ -416,7 +425,7 @@ def process_request_una_linea():
     # data = request.form.to_dict()  # Captura datos del formulario
     data = request.form
 
-    print(data)
+    # print(data)
 
     language = data.get('language', 'Spanish')
     voice = data.get('voice', 'Pedro')
@@ -432,7 +441,8 @@ def process_request_una_linea():
     save_to_db(process_id, language, voice, main_question, num_questions, num_options, background_music, background_video, logo_path, account_text)
 
     # Inicia el proceso en segundo plano
-    threading.Thread(target=process_pending_tasks).start()
+    # threading.Thread(target=process_pending_tasks).start()
+    threading.Thread(target=process_pending_tasks, args=(event_bus,)).start()
 
     return jsonify({"message": "Proceso registrado exitosamente.", "process_id": process_id}), 200
 
@@ -463,7 +473,7 @@ def list_videos():
 
     # Filtrar solo los registros que tienen un url_video y estado 'completado'
     for process in all_processes:
-        if process['estado'] in ['completado', 'procesando', 'pendiente', 'fallido']:
+        if process['estado'] in ['completado', 'procesando', 'pendiente', 'fallido', 'cancelado']:
             video_files.append({
                 "process_id": process['uuid'],
                 "filename": process['url_video'] or "",
@@ -482,6 +492,19 @@ def list_videos():
     print("video_files:", video_files)
 
     return jsonify(video_files)
+
+
+@app.route('/videos/<process_id>/status', methods=['PATCH'])
+def update_process_status_endpoint(process_id):
+    try:
+        new_status = request.json.get('status')
+        if not new_status:
+            return jsonify({"error": "Status is required"}), 400
+
+        update_process_status(process_id, new_status)
+        return jsonify({"message": "Process status updated successfully"}), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 
 @app.route('/videos/<process_id>', methods=['DELETE'])
@@ -531,7 +554,6 @@ def get_background_music(musicid):
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-
 
 
 def emit_all(sid, event_name, data):
